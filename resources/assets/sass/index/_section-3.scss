@@ -1,0 +1,23 @@
+.section-3{
+    background: url('../images/address-bg.png') center no-repeat;
+    background-size: cover;
+}
+
+.store-address{
+    position: relative;
+    margin-bottom: 25px;
+    img{
+        width: 100%;
+        object-fit: cover;
+    }
+    p{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.604);
+        color: #fff;
+        font-size: 15px;
+        padding: 10px;
+    }
+}

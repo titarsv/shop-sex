@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule ^blog/wp-admin/$ public/blog/wp-admin/index.php [L]
+RewriteRule ^blog$ blog/ [L]
+RewriteRule ^blog/(.*)/$ public/blog/ [L]
+RewriteCond %{REQUEST_URI} !^public
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

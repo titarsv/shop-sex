@@ -1,0 +1,116 @@
+.section-1{
+    background: url('../images/header-pattern.png') center no-repeat;
+}
+
+.header-slider{
+    position: relative;
+    .slick-prev, .slick-next{
+        position: absolute;
+        top: 45%;
+        height: 45px;
+        width: 30px;
+        font-size: 0;
+        border: 0;
+        background: url('../images/prev.png') center no-repeat;
+        // left: 0;
+    }
+    .slick-next{
+        background: url('../images/next.png') center no-repeat;
+        right: 0;
+    }
+    .slick-dots{
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        z-index: 100;
+        bottom: 50px;
+        @include bp(lg){
+            bottom: 40px;
+        }
+        @include bp(sm){
+            bottom: 0;
+        }
+        li{
+            button{
+                font-size: 0;
+                width: 14px;
+                height: 14px;
+                border: 1px solid #ff3030;
+                border-radius: 50%;
+                background-color: transparent;
+                margin: 0 3px;
+                padding: 0;
+            }
+        }
+        .slick-active{
+            button{
+                background-color: #ff3030;
+            }        
+        }
+    }
+    &:not(.slick-initialized){
+        height: 398px;
+        overflow: hidden;
+        > div{
+            width: 100%;
+        }
+        > div + div{
+            opacity: 0;
+        }
+    }
+}
+
+.header-slider__item{
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    @include bp(sm){
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 50%;
+        }
+    }
+}
+
+.header-slider__item-text{
+    margin-top: 50px;
+    @include bp(sm){
+        margin-top: 10px;
+    }
+}
+
+.header-slider-title{
+    text-transform: uppercase;
+    color: #000;
+    font-size: 25px;
+    margin-bottom: 15px;
+    @include bp(sm){
+        display: none;
+    }
+}
+
+.header-slider-descr{
+    color: #000;
+    font-size: 16px;
+    margin-bottom: 10px;
+    @include bp(sm){
+        display: none;
+    }
+}
+
+.header-slider-btn{
+    color: #fff;
+    background-color: #ff3030;
+    font-size: 14px;
+    line-height: 30px;
+    width: 200px;
+    text-align: center;
+    border-radius: 20px;
+    &:hover{
+        text-decoration: none;
+    }
+}

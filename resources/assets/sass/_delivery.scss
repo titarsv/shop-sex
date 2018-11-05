@@ -1,0 +1,87 @@
+.delivery__title{
+    font-size: 18px;
+    color: #000;
+    text-align: left;
+    margin: 15px 0;
+}
+
+.delivery__get-order-title{
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 25px;
+}
+
+.delivery__get-order-list{
+    font-size: 13px;
+    color: #000;
+    margin-bottom: 15px;
+    li{
+        margin: 10px 0;
+    }
+}
+
+.delivery__get-order-note{
+    font-size: 13px;
+    color: #6f6f6f;
+    font-family: 'MyriadPro';
+}
+
+.delivery__get-order-img{
+    display: flex;
+    align-items: center;
+}
+
+.delivery__principle{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 20px 0;
+    img{
+        height: 100px;
+        margin-bottom: 25px;
+    }
+    p{
+        margin: 7px 0;
+        font-size: 14px;
+        color: #000;
+        font-family: 'MyriadPro';
+    }
+}
+
+.delivery__pay{
+    background: #272727;
+    padding: 30px 0;
+}
+
+.delivery__pay-title{
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.delivery__pay-list{
+    color: #fff;
+    font-size: 14px;
+    li{
+        margin: 5px 0;
+    }
+}
+
+.delivery__pay-note{
+    color: #fff;
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.delivery__pay-img{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    img{
+        opacity: .47;
+        margin: 0 5px;
+    }
+}

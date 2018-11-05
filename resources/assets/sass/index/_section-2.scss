@@ -1,0 +1,190 @@
+.category-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #d8d8d8;
+    margin-bottom: 15px;
+}
+
+.category-item__title{
+    text-align: center;
+    color: #000;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.category-item__img{
+    width: 100%;
+    height: 200px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+        object-fit: contain;
+    }
+}
+
+.category-item__btn{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+   .category-item__btn-more{
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        color: #000;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        background: #ffc8c8;
+        &:hover{
+            color: #fff;
+            background: #ff7474;
+        }
+    }
+    div{
+        width: calc(15% - 3px);
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        margin-left: 3px;
+        height: 36px;
+        cursor: pointer;
+        &::after{
+            content: '';
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 5px;
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.category_links{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 100;
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    li{
+        margin: 20px 0;
+        a{
+            color: #000;
+            font-size: 16px;
+            background: #fff;
+            &:hover{
+                color: #ff3030;
+                text-decoration: none;
+                background: #fff;
+            }
+        }
+    }
+    &.open{
+        display: block;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .category-item__btn > div:hover + .category_links, .category_links:hover{
+        display: block;
+    }
+}
+
+.section-2{
+    .container-fluid, .row, .col-sm-6{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.section-title{
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0;
+    &.white{
+        color: #fff;
+    }
+}
+
+.catalor-category{
+    padding: 50px;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    ul{
+        @include bp (md){
+            text-align: right;
+        }
+        @include bp (sm){
+            text-align: center;
+        }
+    }
+    li{
+        margin: 7px 0;
+        a{
+            color: #fff;
+            font-size: 16px;
+            &:hover{
+                text-decoration: none;
+                color: #fd4747;
+            }
+        }
+    }
+    .catalor-category__title{
+        margin-bottom: 15px;
+        font-weight: 700;
+        color: #fd4747;
+        text-shadow: 0px 0px 2px rgb(255, 116, 116);
+    }
+    @include bp (sm){
+        padding: 20px;
+    }
+}
+
+.catalor-category.man{
+    background: url('../images/man.png') right no-repeat;
+    background-size: cover;
+    background-color: #1a1a1a;
+    @include bp (sm){
+        background-size: contain;
+        background-position: 50px 17px;
+    }
+}
+
+.catalor-category.women{
+    background: url('../images/women.png') right no-repeat;
+    background-size: cover;
+    background-color: #1a1a1a;
+    @include bp (sm){
+        background-size: contain;
+        background-position: -180px 0;
+    }
+}
+
+.catalor-category.couple{
+    background: url('../images/couple.png') right no-repeat;
+    background-size: cover;
+    background-color: #1a1a1a;
+    @include bp (sm){
+        background-size: contain;
+        background-position: 50px 17px;
+    }
+}
+
+.catalor-category.gift{
+    background: url('../images/gift.png') right no-repeat;
+    background-size: cover;
+    background-color: #1a1a1a;
+    @include bp (sm){
+        background-size: contain;
+        background-position: -180px 0;
+    }
+}

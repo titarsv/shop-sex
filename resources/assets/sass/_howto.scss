@@ -1,0 +1,61 @@
+.howto__title{
+    display: flex;
+    align-items: center;
+    color: #000;
+    font-size: 16px;
+    margin: 20px 0;
+    @include bp (xs){
+        font-size: 12px;
+        line-height: 18px;
+    }
+    img{
+        width: 50px;
+    }
+    p{
+        margin-left: 10px;
+    }
+}
+
+.howto__text{
+    color: #000;
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 22px;
+    @include bp (xs){
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+.howto__consultation{
+    margin: 20px 0;
+    padding: 0;
+    font-weight: 700;
+    li{
+        margin-bottom: 10px;
+    }
+    a{
+        color: #000;
+        font-size: 16px;
+        text-decoration: none;
+        @include bp (xs){
+            font-size: 12px;
+            line-height: 18px;
+        }
+    }
+}
+
+.underlined{
+    border-bottom: 1px solid #fd4747;
+}
+
+.howto__info{
+    margin: 20px 0;
+    font-size: 16px;
+    color: #000;
+    line-height: 22px;
+    @include bp (xs){
+        font-size: 12px;
+        line-height: 18px;
+    }
+}

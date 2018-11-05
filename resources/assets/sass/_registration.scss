@@ -1,0 +1,86 @@
+.registration-tab{
+    background-color: #fff;
+    margin: 20px 0;
+    li{
+        font-size: 18px;
+        border: none;
+        background: #fff;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-weight: 700;
+        color: #000;
+        text-transform: uppercase;
+        border: 1px solid #fd4747;
+        text-align: center;
+    }        
+}
+
+.registration-form{
+    @include bp (sm){
+        padding: 20px;
+    }
+}
+
+.registration-form__input-wrp{
+    display: flex;
+    align-items: center;
+    input{
+        font-size: 14px;
+        color: #858585;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #858585;
+        border-radius: 20px;
+        outline: none;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        width: 30%;
+        &::placeholder{
+            font-size: 14px;
+            color: #858585;
+            text-align: center;
+        }
+        @include bp (sm){
+            width: 100%;
+        }
+    }
+    P{
+        position: relative;
+        color: #000;
+        font-size: 14px;
+        line-height: 20px;
+        padding-left: 20px;
+        width: 70%;
+        &:before{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 10px;
+            height: 1px;
+            background-color: #fd4747;
+        }
+        @include bp (sm){
+            width: 100%;
+        }
+    }
+    @include bp (sm){
+        display: block;
+    }
+}
+
+.registration-form__btn{
+    width: 30%;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: #fd4747;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    @include bp (sm){
+        width: 100%;
+    }
+}

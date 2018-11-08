@@ -1,6 +1,28 @@
 .footer{
     background: #202020;
     padding: 20px;
+    position: relative;
+    .header__logo{
+        margin-top: 7px;
+    }
+}
+
+.map-form-container{
+    position: absolute;
+    right: 100px;
+    top: 150px;
+    background: rgba(255, 255, 255,1);
+    padding: 10px;
+    border: 1px solid #000;
+    .question-popup__form textarea{
+        height: 100px;
+    }
+    .question-popup__form input, .question-popup__form textarea, .question-popup__form button{
+        width: 250px;
+    }
+    @include bp (sm){
+        position: static;
+    }
 }
 
 .footer__logo{
@@ -11,7 +33,21 @@
     color: #fff;
     font-size: 16px;
     line-height: 25px;
-    @include bp (xs){
+    @include bp(sm){
+        display: flex;
+        justify-content: space-around;
+    }
+    @include bp(xs){
         font-size: 12px;
+    }
+}
+
+.copyright{
+    color: #fff;
+    text-align: center;
+    line-height: 53px;
+    @include bp(xs){
+        line-height: 25px;
+        font-size: 9px;
     }
 }

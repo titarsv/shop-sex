@@ -260,6 +260,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 text-right">Источник</label>
+                                <div class="form-element col-sm-10">
+                                    <input type="text" class="form-control" name="meta_title" value="{!! $product->source !!}" readonly/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="panel panel-default">

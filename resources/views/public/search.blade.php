@@ -13,15 +13,19 @@
     <main class="main-wrapper">
         <section class="siteSection">
             <div class="container">
-                <h1>Поиск: {{ $search_text }}</h1>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 style="padding: 25px 25px 20px;">Поиск: {{ $search_text }}</h1>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-12 products-grid-container">
 						@forelse($products as $product)
-							<div class="col-lg-4 col-xs-6">
-								<div class="grid-product-card card-margin">
-									@include('public.layouts.product', ['product' => $product, 'slide' => false])
-								</div>
-							</div>
+                            <div class="col-xl-2 col-sm-3 col-xs-6">
+                                <div class="product-item">
+                                    @include('public.layouts.product', ['product' => $product])
+                                </div>
+                            </div>
 						@empty
 							<article class="order">
 								<h5 class="order__title">В этой категории пока нет товаров!</h5>

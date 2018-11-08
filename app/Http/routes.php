@@ -10,6 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/xmlsitemapupdate', function () {
+    $exitCode = Artisan::call('xmlsitemap', []);
+});
 
 Route::get('/', ['as'=>'home', 'uses'=>'MainController@index']);
 Route::get('/page/{alias}', 'HTMLContentController@show');
@@ -215,6 +218,8 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
         Route::get('/edit/{id}', 'SeoController@edit');
         Route::post('/edit/{id}', 'SeoController@update');
     });
+
+	Route::post('/group_action','ProductsController@groupAction');
 });
 Route::post('wishlist/update','WishListController@update');
 Route::post('wishlist/del','WishListController@delWishlist');
@@ -252,6 +257,7 @@ Route::post('/checkout/warehouses', 'CheckoutController@getWarehouses');
 Route::post('/checkout/confirm', 'CheckoutController@confirmOrder');
 Route::get('/checkout/complete', 'CheckoutController@orderComplete');
 Route::post('/sendmail', 'UserController@sendMail');
+Route::get('/sync-products', 'ProductsController@syncProducts');
 
 
 Route::get('/{p1}/{p2?}/{p3?}/{p4?}/{p5?}/{p6?}/{p7?}/{p8?}', 'MainController@route');

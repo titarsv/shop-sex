@@ -170,7 +170,7 @@ class Products extends Model
 
         //$all_count = $this->where('name', 'like', '%'.$text.'%')->count();
 
-        $data = $this->where('stock', 1)->where('name', 'like', '%'.$text.'%')->orWhere('articul', 'like', '%'.$text.'%')->paginate($count);
+	    $data = $this->where([['stock', 1], ['name', 'like', '%'.$text.'%']])->orWhere([['stock', 1], ['articul', 'like', '%'.$text.'%']])->orderBy('id', 'desc')->paginate($count);
         //$data = new LengthAwarePaginator($all_products->skip($count*($page-1))->take($count)->get(), ceil($all_count/$count), $paginate, $page, array('path' => 'search/'));
 
         return $data;

@@ -137,8 +137,6 @@ class ProductsController extends Controller
                 ]
             ];
 
-
-
             if(empty($per_page))
                 $per_page = config('view.product_quantity');
             $current_page = $request->page ? $request->page : 1;
@@ -146,19 +144,36 @@ class ProductsController extends Controller
             $products = new LengthAwarePaginator($current_page_products, count($products), $per_page, $current_page, $paginator_options);
             $current_search = $request->search;
         } else {
-            $products = Products::when($category_id, function($query) use ($category_id){
-                return $query->where('product_category_id', $category_id);
+            $products = Products::select('products.*')->when($category_id, function($query) use ($category_id){
+                return $query->join('product_categories AS cat', 'products.id', '=', 'cat.product_id')->where('cat.category_id', $category_id);
             })
             ->when(($stock !== false), function($query) use ($stock){
-                return $query->where('stock', $stock);
+                return $query->where('products.stock', $stock);
             })
             ->when($current_sort, function($query) use ($current_sort){
                 return $query->orderBy($current_sort['sort'], $current_sort['dest']);
             })
             ->paginate($current_show);
+
+	        // Пагинация
+//	        $paginator_options = [
+//		        'path'=>url($request->url()),
+//		        'query' => []
+//	        ];
+//
+	        if(!empty($category_id)){
+		        $products->appends(['category' => $category_id]);
+//		        $paginator_options['query']['category'] = $category_id;
+	        }
+//
+//	        if(empty($per_page))
+//		        $per_page = config('view.product_quantity');
+//	        $current_page = $request->page ? $request->page : 1;
+//	        $current_page_products = $products->slice(($current_page - 1) * $per_page, $per_page)->all();
+//	        $products = new LengthAwarePaginator($current_page_products, count($products), $per_page, $current_page, $paginator_options);
+
             $current_search = false;
         }
-
 
         return view('admin.products.index', [
             'products' => $products,
@@ -645,7 +660,7 @@ class ProductsController extends Controller
      */
     public function search(Products $products, Request $request, $page = 'page1')
     {
-        $search_text = $request->input('text');
+        $search_text = urldecode($request->input('text'));
 
         //$id = $request->get('page', 1);
 		
@@ -701,11 +716,6 @@ class ProductsController extends Controller
     {
         $update = $request->input('update');
         $errors = false;
-
-        $sync = new Sync();
-//        $sync->getAllFiles();
-//        $sync->parseFiles();
-        $sync->initSync();
 
         if($request->hasFile('import_file')){
             $errors = [];
@@ -1122,5 +1132,34 @@ class ProductsController extends Controller
             'Э' => 'E',   'Ю' => 'Yu',  'Я' => 'Ya',
         );
         return strtr($string, $converter);
+    }
+
+    public function groupAction(Request $request, Products $products, Categories $categories){
+		if(in_array($request->action, ['enable', 'disable', 'change_category', 'add_category'])){
+			$products = $products->whereIn('id', $request->products);
+			if($request->action == 'enable'){
+				$products->update(['stock' => 1]);
+			}elseif($request->action == 'disable'){
+				$products->update(['stock' => 0]);
+			}elseif($request->action == 'change_category'){
+				foreach($products->get() as $product){
+					$product->categories()->sync($request->category);
+				}
+			}elseif($request->action == 'add_category'){
+				foreach($products->get() as $product){
+					$product->categories()->attach($request->category);
+				}
+			}
+		}
+    }
+
+    public function syncProducts(){
+	    $sync = new Sync();
+        $sync->initSync();
+	    echo '<script>location = location;</script>';
+//        $sync->getAllFiles();
+//        $sync->parseFiles();
+//	      $sync->getToystoreFile();
+//	      $sync->parseToystoreFile();
     }
 }

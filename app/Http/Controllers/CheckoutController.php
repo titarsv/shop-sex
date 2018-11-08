@@ -108,11 +108,13 @@ class CheckoutController extends Controller
             $msg->subject('Новый заказ');
         });
 
-        Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => false], function($msg) use ($order_user){
-            $msg->from('admin@shop-sex.com.ua', 'Интернет-магазин shop-sex.com.ua');
-            $msg->to($order_user['email']);
-            $msg->subject('Новый заказ');
-        });
+        if(!empty($order_user['email'])) {
+            Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => false], function ($msg) use ($order_user) {
+                $msg->from('admin@shop-sex.com.ua', 'Интернет-магазин shop-sex.com.ua');
+                $msg->to($order_user['email']);
+                $msg->subject('Новый заказ');
+            });
+        }
     }
 
     /**

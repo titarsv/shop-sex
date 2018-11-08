@@ -91,6 +91,24 @@
     @include bp (sm){
         font-size: 12px;
     }
+    input{
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        font-size: 14px;
+        color: #000;
+        text-align: center;
+        border: 1px solid #cbcbcb;
+        outline: none;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        &[type='number'] {
+            -moz-appearance: textfield;
+        }
+    }
 }
 
 .cart__item-price{

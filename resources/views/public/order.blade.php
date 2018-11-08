@@ -40,7 +40,8 @@
                                     </p>
                                 </div>
                                 <div class="cart__item-quont">
-                                    <p>{{ $product['quantity'] }} шт</p>
+                                    <input pattern="^[ 0-9]+$" type="number" min="1" name="qty" value="{{ $product['quantity'] }}" data-title="Колличество" data-price="{{ $product['price'] }}" data-prod-id="{{ $code }}">
+                                    <span>шт</span>
                                 </div>
                                 <div class="cart__item-price">
                                     <p>{{ round($product['price'] * $product['quantity'], 2) }} грн</p>

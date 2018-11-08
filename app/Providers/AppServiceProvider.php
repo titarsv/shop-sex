@@ -107,11 +107,13 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('user_id', 0)->with('user_wishlist',[]);
             });
         }
+
+
         
-//        view()->composer(['public.layouts.main-menu', 'index'], function ($view) use ($categories) {
-//            $root_categories = $categories->get_root_categories();
-//            $view->with('items', $root_categories);
-//        });
+        view()->composer(['public.category'], function ($view) use ($categories) {
+            $root_categories = $categories->get_root_categories();
+            $view->with('categories', $root_categories);
+        });
 
         view()->composer(['public.layouts.header-main'], function ($view) use ($categories) {
             $cart = new Cart;
@@ -160,6 +162,21 @@ class AppServiceProvider extends ServiceProvider
             ], function($view) use ($request) {
             $path = preg_replace('/\/page\d+/i', '', $request->path());
             $view->with('seo', Seo::where('url', $path)->orWhere('url', '/'.$path)->orWhere('url', env('APP_URL').'/'.$path)->first());
+        });
+
+        view()->composer([
+            'public.layouts.header-main'
+        ], function($view) use ($request, $categories) {
+            $cat = $categories->where('name', 'Акции')->first();
+            $cats = array_merge([$cat->id], $categories->get_children_categories($cat->id));
+            $isset = false;
+            foreach($cats as $cat){
+                if($categories->where('id', $cat)->first()->products()->where('stock', 1)->count()){
+                    $isset = true;
+                    break;
+                }
+            }
+            $view->with('isset_actions', $isset)->with('isset_new', $categories->where('name', 'Новинки')->first()->products()->where('stock', 1)->count());
         });
 
     }

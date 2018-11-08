@@ -22,7 +22,7 @@
 
 @section('content')
 
-    <section>
+    <section itemscope itemtype="http://schema.org/Product">
         <div class="container">
             <div class="row">
                 {!! Breadcrumbs::render('product', $product, $product->categories) !!}
@@ -54,7 +54,7 @@
                             @if(is_object($image))
                                 <div>
                                     <div class="product-slider__item nav">
-                                        <img src="{{ $image->url('product') }}" alt="{{ $product->name }}">
+                                        <img src="{{ $image->url('product') }}" alt="{{ $product->name }}" itemprop="image">
                                     </div>
                                 </div>
                             @endif
@@ -62,9 +62,9 @@
                             <div>
                                 <div class="product-slider__item nav">
                                     @if(empty($product->image))
-                                        <img src="/uploads/no_image.jpg" alt="{{ $product->name }}">
+                                        <img src="/uploads/no_image.jpg" alt="{{ $product->name }}" itemprop="image">
                                     @else
-                                        <img src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">
+                                        <img src="{{ $product->image->url('product') }}" alt="{{ $product->name }}" itemprop="image">
                                     @endif
                                 </div>
                             </div>
@@ -73,22 +73,26 @@
                     @endif
                 </div>
                 <div class="col-md-8 col-sm-7 col-xs-12">
-                    <div class="product-description-wrp">
+                    <div class="product-description-wrp" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="грн." />
+                        <meta itemprop="price" content="{{ round($product->price, 2) }}" />
                         <p class="product-article">Артикул: {{ $product->articul }}</p>
-                        <p class="product-name">{{ $product->name }}</p>
+                        <p class="product-name" itemprop="name">{{ $product->name }}</p>
                         @if($product->stock)
-                            <p class="product-available">Есть в наличии</p>
+                            <p class="product-available" itemprop="availability" href="http://schema.org/InStock">Есть в наличии</p>
                         @else
                             <p class="product-unavailable">Нет в наличии</p>
                         @endif
-                        <p class="product-decription">{!! $product->description !!}</p>
+                        <p class="product-decription" itemprop="description">{!! $product->description !!}</p>
                         <p class="product-price">{{ number_format($product->price, 2, '.', ' ') }} грн</p>
-                        <button class="product-buy-btn btn_buy" data-prod-id="{{ $product->id }}">В корзину</button>
+                        <button class="product-buy-btn btn_buy popup-btn"  data-mfp-src="#cart-popup" data-prod-id="{{ $product->id }}">В корзину</button>
                         <button class="product-click-btn popup-btn"  data-mfp-src="#click-buy-popup">Купить в один клик</button>
                         <ul class="product-features">
                             <li>
-                                <img src="/images/icons/prod-viber.png" alt="Консультация по Viber">
-                                <p>Консультация по Viber</p>
+                                <a href="viber:0509712569" style="color: #000; text-decoration: none;">
+                                    <img src="/images/icons/prod-viber.png" alt="Консультация по Viber">
+                                    <p>Консультация по Viber</p>
+                                </a>
                             </li>
                             <li>
                                 <img src="/images/icons/prod-wallet.png" alt="Оплата любым способом">
@@ -105,6 +109,27 @@
         </div>
     </section>
 
+     <div class="mfp-hide">
+        <div id="cart-popup" class="view-popup">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
+                        <div class="question-popup__container">
+                            <p class="question-popup__container-title">К Вам в корзину добавлен: </p>
+                            <p class="product-name" itemprop="name">{{ $product->name }}</p>
+                            <img class="question-popup__container-img" src="{{ $image->url('product') }}" alt="{{ $product->name }}">
+                            <div class="question-popup__container-btns">
+                                <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">Продолжить покупки</button>
+                                <a href="/checkout" class="cart-popup__cart-btn">Перейти в корзину</a>
+                            </div>
+                            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="mfp-hide">
         <div id="click-buy-popup" class="view-popup">
             <div class="container">
@@ -112,7 +137,7 @@
                     <div class="col-sm-12 col-xs-12">
                         <div class="click-buy-popup__container">
                             <p class="click-buy-popup__container-title">Товар для заказа</p>
-                            <form action="" class="click-buy-popup__form ajax_form"
+                            <form action="/sendmail" class="click-buy-popup__form ajax_form"
                                   data-error-title="Ошибка отправки!"
                                   data-error-message="Попробуйте отправить вопрос через некоторое время."
                                   data-success-title="Спасибо за вопрос!"
@@ -128,7 +153,7 @@
                                         <span>Артикул: {{ $product->articul }}</span>
                                     </div>
                                     <div class="prod-quont">
-                                        <input type="text" name="qty" value="1" data-title="Колличество" data-price="{{ $product->price }}">
+                                        <input pattern="^[ 0-9]+$" type="number" min="1" name="qty" value="1" data-title="Колличество" data-price="{{ $product->price }}">
                                         <span>шт</span>
                                         <p class="prod-price visible-xs-block">{{ $product->price }} грн</p>
                                     </div>
@@ -137,7 +162,7 @@
                                 <p class="total">Итого: <span class="result-price">{{ $product->price }} грн</span> </p>
                                 <p>Введите Ваш номер телефона и наш менеджер поможет Вам оформить</p>
                                 <div class="click-buy-popup__form-btn-wrp">
-                                    <input type="tel" name="phone" placeholder="Телефон" data-title="Телефон" data-validate-required="Обязательное поле" data-validate-uaphone="Неправильный номер">
+                                    <input type="tel" name="phone" placeholder="+38 (___) ___ __ __" data-title="Телефон" data-validate-required="Обязательное поле" data-validate-uaphone="Неправильный номер">
                                     <button type="submit">Оформить заказ</button>
                                 </div>
                             </form>
@@ -152,7 +177,7 @@
     <section class="product__tabs">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#1" data-toggle="tab">Описание</a></li>
-            <li><a href="#2" data-toggle="tab">Отзывы</a></li>
+            {{--<li><a href="#2" data-toggle="tab">Отзывы</a></li>--}}
         </ul>
         <div class="container">
             <div class="row">
@@ -171,13 +196,13 @@
                                 <button type="submit" class="response-form__btn clear-styles">Отправить</button>
                             </form>
                         @endif
-                        <div class="user-response__item">
-                            <div  class="user-response__item-name-wrp">
-                                <p class="user-response__item-name">Анастасия</p>
-                                <p class="user-response__item-date">01.09.2018</p>
-                            </div>
-                            <p class="user-response__item-text">Рейтинг, безусловно, основан на опыте повседневного применения. Бизнес-план, отбрасывая подробности, позиционирует продукт. Отсюда естественно следует, что внутрифирменная реклама консолидирует рекламный макет.</p>
-                        </div>
+                        {{--<div class="user-response__item">--}}
+                            {{--<div  class="user-response__item-name-wrp">--}}
+                                {{--<p class="user-response__item-name">Анастасия</p>--}}
+                                {{--<p class="user-response__item-date">01.09.2018</p>--}}
+                            {{--</div>--}}
+                            {{--<p class="user-response__item-text">Рейтинг, безусловно, основан на опыте повседневного применения. Бизнес-план, отбрасывая подробности, позиционирует продукт. Отсюда естественно следует, что внутрифирменная реклама консолидирует рекламный макет.</p>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>

@@ -1,5 +1,38 @@
 .section-1{
-    background: url('../images/header-pattern.png') center no-repeat;
+    //background: url('../images/main.jpg') center no-repeat;
+    background-size: cover;
+    height: 50vh;
+    .main-title{
+        font-size: 30px;
+        color: #fff;
+        margin-top: 100px;
+        @include bp (md){
+            font-size: 25px;
+        }
+        @include bp (sm){
+            font-size: 25px;
+            margin-top: 50px;
+        }
+        @include bp (xs){
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    }
+    .banner-btn{
+        color: #fff;
+        background-color: #ff3030;
+        font-size: 14px;
+        line-height: 30px;
+        width: 200px;
+        text-align: center;
+        border-radius: 20px;
+        display: block;
+        margin-top: 20px;
+    }
+    @include bp (sm){
+        background-position: 70% 0px;
+        height: 40vh;
+    }
 }
 
 .header-slider{
@@ -12,6 +45,7 @@
         font-size: 0;
         border: 0;
         background: url('../images/prev.png') center no-repeat;
+        z-index: 1;
         // left: 0;
     }
     .slick-next{

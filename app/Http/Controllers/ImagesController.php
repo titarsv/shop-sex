@@ -100,7 +100,7 @@ class ImagesController extends Controller
 //            }
         }
 
-        $fp = fopen($destinationPath.'\\'.$newFileName, 'w');
+        $fp = fopen($destinationPath.'/'.$newFileName, 'w');
         $ch = curl_init($url);
         curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17');
         curl_setopt($ch, CURLOPT_FILE, $fp);

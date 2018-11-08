@@ -49,11 +49,41 @@
                         <a href="/admin/products/create" class="btn">Добавить новый</a>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="btn-group col-sm-2">Групповое изменение:</div>
+                    <div class="btn-group col-sm-3">
+                        <div class="btn-group">
+                            <select name="action" id="action" class="chosen-select">
+                                <option value=""></option>
+                                <option value="enable">Включить</option>
+                                <option value="disable">Отключить</option>
+                                <option value="change_category">Сменить категорию</option>
+                                <option value="add_category">Добавить категорию</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="btn-group col-sm-3">
+                        <div class="btn-group" style="visibility: hidden">
+                            <select name="action" id="categories" class="chosen-select">
+                                @forelse($categories as $category)
+                                    <option value="{!! $category->id !!}">{!! $category->name !!}</option>
+                                @empty
+                                    <option value="">Нет добавленных категорий</option>
+                                @endforelse
+                            </select>
+                        </div>
+                    </div>
+                    <div class="btn-group col-sm-2"></div>
+                    <div class="col-sm-2 text-right">
+                        <button type="button" class="btn" id="save_action">Применить</button>
+                    </div>
+                </div>
             </div>
             <div class="table table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr class="success">
+                            <td><input type="checkbox" id="check_all"></td>
                             <td>Название</td>
                             <td align="center">Изображение товара</td>
                             <td align="center">Категория</td>
@@ -64,6 +94,7 @@
                     <tbody>
                         @forelse($products as $product)
                             <tr>
+                                <td><input type="checkbox" name="selected[]" value="{{ $product->id }}"></td>
                                 <td>{!! $product->name !!}</td>
                                 @if(!empty($product->image))
                                     <td align="center">
@@ -133,6 +164,34 @@
     <script>
         $(document).ready(function(){
             navigateProductFilter();
+            $('#check_all').click(function(){
+                var $this = $(this);
+                $this.parents('table').find('td:first-child > input').prop('checked', $this.prop('checked'));
+            });
+            $("#action").chosen().change(function(){
+                if($(this).val() == 'change_category' || $(this).val() == 'add_category'){
+                    $('#categories').parent().css('visibility', 'visible');
+                }else{
+                    $('#categories').parent().css('visibility', 'hidden');
+                }
+            });
+            $('#save_action').click(function(){
+                var action = $('#action').val();
+                var products = [];
+                $('[name="selected[]"]:checked').each(function(){
+                    products.push($(this).val())
+                });
+                var data = {
+                    action: action,
+                    products: products
+                };
+                if(action == 'change_category' || action == 'add_category'){
+                    data.category = $('#categories').val();
+                }
+                $.post('/admin/group_action', data, function(response){
+                    location = location;
+                });
+            });
         });
     </script>
 @endsection

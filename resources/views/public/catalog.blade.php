@@ -7,7 +7,7 @@
 
 @section('content')
     <section>
-        <div class="container-fluid">
+        <div class="container">
             <p class="section-title">Каталог товаров</p>
             <div class="row">
                 @foreach($categories as $category)

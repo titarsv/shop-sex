@@ -7,11 +7,11 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
-if (strpos(urldecode($_SERVER['REQUEST_URI']), 'производитель') === false && urldecode($_SERVER['REQUEST_URI']) != strtolower(urldecode($_SERVER['REQUEST_URI'])) ) {
+/*if (strpos(urldecode($_SERVER['REQUEST_URI']), 'производитель') === false && urldecode($_SERVER['REQUEST_URI']) != strtolower(urldecode($_SERVER['REQUEST_URI'])) ) {
     header('Location: http://'.$_SERVER['HTTP_HOST'] .
         strtolower(urldecode($_SERVER['REQUEST_URI'])), true, 301);
     exit();
-}
+}*/
 
 define('LARAVEL_START', microtime(true));
 

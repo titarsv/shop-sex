@@ -12,6 +12,16 @@ $(function() {
         }
     });
 
+    $('.prod-quont input, .cart__item-quont input').on('keydown', function (e) {
+        return !(/^[А-Яа-яA-Za-z \-]$/.test(e.key));
+    });
+
+    $('.root_cat span').click(function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).parent().toggleClass('active');
+    });
+
   // Выбор вариации
   $('.variation-radio, .result-price .count_field').change(function(){
       var attrs = [];
@@ -228,7 +238,7 @@ $(function() {
     /**
      * Обновление колличества товара в корзине
      */
-    $('#order-popup, #order_cart_content, #order_checkout_content').on('input change', '.count_field', function(){
+    $('#order_checkout_content').on('input change', '.cart__item-quont input', function(){
         var $this = $(this);
         update_cart({
             action: 'update',
@@ -308,14 +318,14 @@ $(function() {
                         }).on("liqpay.callback", function(data){
                             console.log(data.status);
                             console.log(data);
-                            window.location = '/checkout/complete?order_id=' + response.order_id;
+                            window.location = '/thank_you?order_id=' + response.order_id;
                         }).on("liqpay.ready", function(data){
                             $('#liqpay_checkout').css('display', 'block');
                         }).on("liqpay.close", function(data){
-                            window.location = '/checkout/complete?order_id=' + response.order_id;
+                            window.location = '/thank_you?order_id=' + response.order_id;
                         });
                     } else if (response.success == 'redirect') {
-                        window.location = '/checkout/complete?order_id=' + response.order_id;
+                        window.location = '/thank_you?order_id=' + response.order_id;
                     }
                 }
             }
@@ -372,7 +382,7 @@ $(function() {
         $(this).hide();
     });
 
-    $('#filters input').change(function(){
+    $('#filters input, #filters-min input').change(function(){
         var url = $(this).data('url')
         if(typeof url !== 'undefined' && location.pathname != url){
             location = url;
@@ -443,18 +453,18 @@ $(function() {
                             }).on("liqpay.callback", function(data){
                                 console.log(data.status);
                                 console.log(data);
-                                window.location = '/checkout/complete?order_id=' + response.order_id;
+                                window.location = '/thank_you?order_id=' + response.order_id;
                             }).on("liqpay.ready", function(data){
                                 $('#liqpay_checkout').css('display', 'block');
                             }).on("liqpay.close", function(data){
-                                window.location = '/checkout/complete?order_id=' + response.order_id;
+                                window.location = '/thank_you?order_id=' + response.order_id;
                             });
                         } else if (response.success == 'redirect') {
                             swal('Заказ оформлен!', 'Номер заказа: '+response.order_id, 'success');
                             setTimeout(function(){
                                 window.location = '/user/history';
                             }, 5000);
-                            //window.location = '/checkout/complete?order_id=' + response.order_id;
+                            //window.location = '/thank_you?order_id=' + response.order_id;
                         }
                     }
                 }
@@ -611,9 +621,9 @@ $(function() {
  */
 function update_cart(data){
     $.post("/cart/update", data, function(cart){
-        var order_cart_content = $('#order_cart_content');
+        var order_cart_content = $('#order_checkout_content');
         if(order_cart_content.length > 0){
-            order_cart_content.load("/cart #order_cart_content");
+            order_cart_content.load("/checkout #order_checkout_content");
         }
         update_cart_quantity(cart);
     });

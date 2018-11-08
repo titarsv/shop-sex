@@ -522,7 +522,11 @@ $(document).ready(function(){
         $(this).parent().find('img').attr('src', '/uploads/no_image.jpg');
     });
 
-    $('.chosen-select').chosen();
+    $('.chosen-select').chosen({disable_search_threshold: 10});
+
+    $('#current-cat').click(function(){
+        $(this).parent().toggleClass('open');
+    });
 
 });
 

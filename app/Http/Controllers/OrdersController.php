@@ -18,6 +18,7 @@ use App\Models\Cart;
 use App\Models\ProductsCart;
 use Carbon\Carbon;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
+use App\Models\ModuleBestsellers;
 
 use Illuminate\Support\Facades\Session;
 
@@ -334,15 +335,10 @@ class OrdersController extends Controller
 
     public function thank_you()
     {
-        $modules_settings = Modules::all();
-
-        foreach ($modules_settings as $module_setting) {
-            if ($module_setting->alias_name == 'latest') {
-                $latest_settings = json_decode($module_setting->settings);
-            }
+        $bestsellers = [];
+        foreach (ModuleBestsellers::all() as $product){
+            $bestsellers[] = $product->product;
         }
-//        $latest_products = Products::orderBy('created_at', 'desc')->take($latest_settings->quantity)->get();
-        $latest_products = Products::orderBy('created_at', 'desc')->where('stock', 1)->whereNotNull('action')->take(12)->get();
-        return view('public.thanks')->with('latest_products', $latest_products);
+        return view('public.thanks')->with('bestsellers', $bestsellers);
     }
 }

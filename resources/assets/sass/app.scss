@@ -10,10 +10,6 @@ body, #main-container, footer{
 html, body{
   min-width: 320px;
 }
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -31,7 +27,6 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
 }
@@ -52,7 +47,6 @@ blockquote, q {
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
 	content: none;
 }
 a{
@@ -68,7 +62,7 @@ table {
 	border-spacing: 0;
 }
 main{
-	min-height: calc(100vh - 221px);
+	min-height: calc(100vh - 468px);
 }
 
 // Шапка
@@ -98,26 +92,26 @@ main{
 // Подвал
 @import 'footer';
 
-// Вспомогательный фон
-//body{
-//   background: center top url(../images/landing_new_photo.jpg) no-repeat #000;
-//  min-height: 100vh;
-//
-//  background-size: 480px auto;
-//
-//  @media screen and (min-width: 480px){
-//    background-size: 768px auto;
-//  }
-//
-//  @media screen and (min-width: 768px){
-//    background-size: 992px auto;
-//  }
-//
-//  @media screen and (min-width: 992px){
-//    background-size: 1200px auto;
-//  }
-//
-//  @media screen and (min-width: 1200px){
-//    background-size: 1920px auto;
-//  }
-//}
+.err404{
+	.main-title{
+		font-size: 72px;
+		+ .main-title{
+			font-size: 32px;
+			margin-top: 10px;
+			margin-bottom: 20px;
+			+ span{
+				color: #fff;
+				font-size: 18px;
+			}
+		}
+	}
+}
+
+.slick-slider{
+    .product-item{
+        max-width: 100%;
+        img{
+            object-fit: cover;
+        }
+    }
+}

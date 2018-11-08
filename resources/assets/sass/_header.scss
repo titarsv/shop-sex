@@ -5,6 +5,7 @@ body{
 .header{
     background-color: #202020;
     position: relative;
+    padding-top: 5px;
     @include bp (xs){
         padding: 15px 0;
     }
@@ -26,9 +27,9 @@ body{
     &:before{
         content: '';
         position: absolute;
-        width: 15px;
+        width: 20px;
         height: 15px;
-        background: url('../images/icons/shield.png') center no-repeat;
+        background: url('../images/icons/mask.png') center no-repeat;
         background-size: contain;
         left: 54px;
         top: 3px;
@@ -52,15 +53,20 @@ body{
 .header__enter-list{
     list-style: none;
     li{
-        background: url('../images/red-border.png') center no-repeat;
         background-size: contain;
         text-align: center;
         font-size: 13.5px;
-        padding: 5px 0 7px;
     }
     a{
+        border: 1px solid #fd4747;
+        border-radius: 20px;
+        padding: 5px 0;
         color: #fff;
         text-decoration: none;
+        display: inherit;
+        &:hover{
+            background: #fd4747;
+        }
     }
     @include bp (sm){
         display: none;
@@ -108,7 +114,7 @@ body{
 }
 
 .search-hidden{
-    display: none;
+    display: block;
     width: 35px;
     height: 35px;
     background: transparent;
@@ -129,13 +135,35 @@ body{
     align-items: center;
     padding: 0;
     justify-content: space-between;
+
     li{
         margin: 0 5px;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        img{
+            margin-right: 3px;
+            @include bp(md){
+               display: none;
+            }
+        }
+        @include bp(lg){
+            font-size:13px;
+        }
         @include bp(md){
             font-size:11px;
         }
+        @include bp(sm){
+            font-size:18px;
+        }
+        @include bp(xs){
+            font-size:14px;
+        }
         a{
             color: #fff;
+            @include bp(sm){
+                font-weight: bold;
+            }
         }
     }
     @include bp (sm){
@@ -150,9 +178,7 @@ body{
     align-items: center;
     justify-content: center;
     border: 1px solid #fd4747;
-    border-top: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 20px;
     color: #fff;
     text-decoration: none;
     position: relative;
@@ -160,8 +186,15 @@ body{
 }
 
 .header__cart-img{
+    position: absolute;
+    width: 29px;
+    left: 10px;
+    @include bp (lg){
+        left: 5px;
+        width: 25px;
+    }
     @include bp (md){
-        width: 20px;
+        display: none;
     }
 }
 
@@ -208,6 +241,9 @@ body{
         color: #fff;
         &:hover{
             text-decoration: none;
+        }
+        &:active{
+            color: #fd4747;
         }
     }
 }

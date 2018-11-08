@@ -9,33 +9,43 @@
 
     @if($slideshow->count())
         <section class="section-1">
-            <div class="container">
-                <div class="row">
-                    <div class="slick-slider header-slider" data-slick='{"slidesToShow": 1, "dots": true}'>
-                        @foreach($slideshow as $slide)
-                            @if($slide->status)
-                                <div>
-                                    <div class="header-slider__item">
-                                        <img src="{{ $slide->image->url() }}" alt="{{ $slide->data()->slide_title }}">
-                                        <div class="header-slider__item-text">
-                                            <p class="header-slider-title">{!! $slide->data()->slide_title !!}</p>
-                                            <p class="header-slider-descr">{{ $slide->data()->slide_description }}</p>
-                                            <a href="{{ $slide->link }}">
-                                                <p  class="header-slider-btn">{{ $slide->data()->button_text }}</p>
-                                            </a>
+            <div class="slick-slider header-slider" data-slick='{"slidesToShow": 1, "dots": true}'>
+                @foreach($slideshow as $slide)
+                    @if($slide->status)
+                        <div>
+                            <div style="background: center url({{ $slide->image->url() }}) no-repeat; background-size: cover; height: 50vh;">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-7 col-xs-8">
+                                            <p class="main-title">{!! $slide->data()->slide_title !!}</p>
+                                            <p class="main-title">{{ $slide->data()->slide_description }}</p>
                                         </div>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <a href="{{ $slide->link }}" class="banner-btn">{{ $slide->data()->button_text }}</a>
+                                        </div>
+
+                                        {{--<div class="header-slider__item">--}}
+                                            {{--<img src="{{ $slide->image->url() }}" alt="{{ $slide->data()->slide_title }}">--}}
+                                            {{--<div class="header-slider__item-text">--}}
+                                                {{--<p class="header-slider-title">{!! $slide->data()->slide_title !!}</p>--}}
+                                                {{--<p class="header-slider-descr">{{ $slide->data()->slide_description }}</p>--}}
+                                                {{--<a href="{{ $slide->link }}">--}}
+                                                    {{--<p  class="header-slider-btn">{{ $slide->data()->button_text }}</p>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </section>
     @endif
 
     <section>
-        <div class="container-fluid">
+        <div class="container">
             <p class="section-title">Каталог товаров</p>
             <div class="row">
                 @foreach($categories as $category)
@@ -130,7 +140,7 @@
             @if(!empty($shops))
             <p class="section-title">Наши магазины</p>
             <div class="row">
-                <div class="slick-slider" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "rows": 2, "arrows": false, "responsive": [{"breakpoint": 768, "settings": {"slidesToShow": 1, "rows": 1, "centerMode": true}}]}'>
+                <div class="slick-slider" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "rows": 3, "arrows": false, "responsive": [{"breakpoint": 768, "settings": {"slidesToShow": 1, "rows": 1, "centerMode": true}}]}'>
                     @foreach($shops as $shop)
                     <div class="col-sm-4 col-xs-6">
                         <div class="store-address">
@@ -151,7 +161,7 @@
         <div class="container">
             <div class="row">
                 <div class="slick-prod-wrap">
-                    <div class="slick-slider slick-prod" data-slick='{"slidesToShow": 6, "dots": false, "arrows": false, "responsive":[{"breakpoint":991,"settings":{"slidesToShow": 4, "centerMode": true}}, {"breakpoint":768,"settings":{"slidesToShow": 3, "centerMode": true}}]}'>
+                    <div class="slick-slider slick-prod" data-slick='{"slidesToShow": 6, "dots": false, "arrows": false, "responsive":[{"breakpoint":1199,"settings":{"slidesToShow": 4, "centerMode": true}}, {"breakpoint":991,"settings":{"slidesToShow": 3, "centerMode": true}}, {"breakpoint":768,"settings":{"slidesToShow": 2, "centerMode": true}}, {"breakpoint":480,"settings":{"slidesToShow": 1, "centerMode": true}}]}'>
                         @foreach($bestsellers as $bestseller)
                         <div class="col-md-2 col-sm-4 col-xs-4">
                             <div class="product-item top">
@@ -166,7 +176,7 @@
     </section>
     @endif
 
-    <section class="section-5">
+    <section class="section-6">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -178,15 +188,10 @@
                     <p class="text-section">Интимная жизнь играет немаловажную роль в повседневных делах и успехе человека. Даже полностью удовлетворяющий все потребности партнер со временем теряет свою хватку и холодеет в постели. Это ухудшает качество выполняемой им работы, влияет на здоровье и вносит разногласие в семейную жизнь. Чтобы наладить свои половые отношения и разнообразить секс, вам стоит заглянуть в секс шоп, где вы найдете много интересного для себя и партнера.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section-6">
-        <div class="container">
             <p class="section-title">Ассортимент sex shop</p>
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <p class="assort-text">Разнообразие товаров для личного и парного использования в магазине интима позволит выбрать все необходимые средства и вещи, которые помогут в становлении половой жизни на прежнюю колею. Гарантированное качество позволит уверенно пользоваться ими и проводить тест-драйвы в самых необычных местах, при любых обстоятельствах. Sex shop «Интим» создан специально, чтобы удовлетворять самые яркие фантазии взрослого человека. Одинокие молодые люди, любовники и семейные пары могут выбрать в свое пользование из каталогов тот товар, которые по их мнению идеально подойдет их амбициям, ведь различное наименование товара удовлетворит вкусы самого изощренного в сексуальных делах человека. Секс шоп позволит найти полезности для личных забав, необычного подарка своему товарищу и для исполнения маленьких капризов своей второй половинки. Самый большой выбор сексуальных игрушек, смазок, препаратов для потенции и костюмов обязан удовлетворить вас во всех пониманиях этого слова. Sex shop необходим каждому человеку, главное знать и понимать свои желания и меру раскрепощенности избранника.</p>
+                    <p class="assort-text">Разнообразие товаров для личного и парного использования в магазине интима позволит выбрать все необходимые средства и вещи, которые помогут в становлении половой жизни на прежнюю колею. Гарантированное качество позволит уверенно пользоваться ими и проводить тест-драйвы в самых необычных местах, при любых обстоятельствах.<br> Sex shop «Интим» создан специально, чтобы удовлетворять самые яркие фантазии взрослого человека. Одинокие молодые люди, любовники и семейные пары могут выбрать в свое пользование из каталогов тот товар, которые по их мнению идеально подойдет их амбициям, ведь различное наименование товара удовлетворит вкусы самого изощренного в сексуальных делах человека. Секс шоп позволит найти полезности для личных забав, необычного подарка своему товарищу и для исполнения маленьких капризов своей второй половинки.<br> Самый большой выбор сексуальных игрушек, смазок, препаратов для потенции и костюмов обязан удовлетворить вас во всех пониманиях этого слова. Sex shop необходим каждому человеку, главное знать и понимать свои желания и меру раскрепощенности избранника.</p>
                 </div>
             </div>
         </div>

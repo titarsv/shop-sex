@@ -40,35 +40,7 @@
 
 @if($admin)
     <p><strong>Телефон:</strong> {!! $user['phone'] !!}</p>
-    <p><strong>Комментарий:</strong> {!! $user['comment] !!}</p>
+    <p><strong>Комментарий:</strong> {!! $user['comment'] !!}</p>
 @else
     <p style="font-size: 16px; color: #333;">Благодарим Вас за заказ в интернет-магазине shop-sex.com.ua! В ближайшее время с Вами свяжется наш менеджер для уточнения деталей заказа!</p>
-@endif
-
-<p style="font-size:16px; color: #333;">Информация о доставке:</p>
-
-@foreach($order->getDeliveryInfo() as $key => $value)
-    @if($key == 'method') <p><strong>Способ доставки: </strong>{!! $value !!}</p> @endif
-    @if($key == 'region') <p><strong>Область: </strong>{!! $value !!}</p> @endif
-    @if($key == 'city') <p><strong>Город: </strong>{!! $value !!}</p> @endif
-    @if($key == 'warehouse') <p><strong>Отделение Новой Почты: </strong>{!! $value !!}</p> @endif
-    @if($key == 'index') <p><strong>Почтовый индекс: </strong>{!! $value !!}</p> @endif
-    @if($key == 'street') <p><strong>Улица: </strong>{!! $value !!}</p> @endif
-    @if($key == 'house') <p><strong>Дом: </strong>{!! $value !!}</p> @endif
-    @if($key == 'apart') <p><strong>Квартира: </strong>{!! $value !!}</p> @endif
-    @if($key == 'error') <p><strong>{!! $value !!}</strong></p> @endif
-@endforeach
-
-@if($order->payment == 'cash')
-    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Наличными при доставке</p>
-@elseif($order->payment == 'prepayment')
-    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Предоплата</p>
-@elseif($order->payment == 'privat')
-    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>На расчетный счет Приват Банка</p>
-@elseif($order->payment == 'nal_delivery')
-    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Наличными курьеру</p>
-@elseif($order->payment == 'nal_samovivoz')
-    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Оплата при самовывозе</p>
-@elseif($order->payment == 'nalogenniy')
-    <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Оплата наложенным платежом</p>
 @endif

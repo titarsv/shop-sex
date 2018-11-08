@@ -3,26 +3,18 @@
     <title>Ошибка 404. Страница не найдена</title>
 @endsection
 @section('content')
-    <nav class="breadrumbs">
+    <section class="section-1 err404" style="background: #000 center url(/images/main.jpg) no-repeat;">
         <div class="container">
-            <ul class="breadrumbs-list">
-                <li class="breadrumbs-item">
-                    <a href="/">Главная</a><i>→</i>
-                </li>
-                <li class="breadrumbs-item">
-                    Страница не найдена
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <main id="error-page">
-        <div class="container">
-            <h1><span>404 Error</span></h1>
-
-            <div class="error-404">
-                <p>Страница не найдена</p>
-                <img src="/images/404.png" alt="404"/>
+            <div class="row">
+                <div class="col-md-5 col-sm-7 col-xs-8">
+                    <p class="main-title">Ошибка 404</p>
+                    <p class="main-title">Кажется эта страница сейчас<br>у подруги ночует или её не существует</p>
+                    <span>Мы уже вызвали полицию и она работает над этим вопросом. Приносим извинения за неудобства.</span>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    <a href="/" class="banner-btn" onclick="window.history.back();">< Назад</a>
+                </div>
             </div>
         </div>
-    </main>
+    </section>
 @endsection

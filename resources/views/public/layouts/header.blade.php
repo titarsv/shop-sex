@@ -31,7 +31,7 @@
 
     <!-- Template Basic Images Start -->
     <meta property="og:image" content="/images/logo.jpg">
-    <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="{{env('APP_URL')}}/images/favicon.png" type="image/png">
     <!-- Template Basic Images End -->
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
@@ -70,30 +70,30 @@
     </noscript>
     <!-- Load Custom CSS Compiled without JS End -->
 
-    {{--<script type="application/ld+json">--}}
-    {{--{--}}
-        {{--"@context": "http://schema.org",--}}
-        {{--"@type": "Store",--}}
-        {{--"name": "GlobalProm",--}}
-        {{--"address": {--}}
-            {{--"@type": "PostalAddress",--}}
-            {{--"streetAddress": "Украина, ул. Сумская, 37",--}}
-            {{--"addressLocality": "Харьков",--}}
-            {{--"addressRegion": "Харьковская",--}}
-            {{--"postalCode": "61023"--}}
-        {{--},--}}
-        {{--"logo": "http://globalprom.com.ua/images/logo.jpg",--}}
-        {{--"telePhone": "050-697-21-61",--}}
-        {{--"faxNumber": "057-751-70-59",--}}
-        {{--"url": "globalprom.com.ua",--}}
-        {{--"paymentAccepted": [ "cash", "credit card", "invoice" ],--}}
-        {{--"openingHours": "Mo,Tu,We,Th,Fr 09:00-18:00",--}}
-        {{--"geo": {--}}
-            {{--"@type": "GeoCoordinates",--}}
-            {{--"latitude": "50.003199",--}}
-            {{--"longitude": "36.233781"--}}
-        {{--},--}}
-        {{--"priceRange":"$$$"--}}
-    {{--}--}}
-    {{--</script>--}}
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Store",
+        "name": "Интим",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Украина, ул. Пушкинская, 43",
+            "addressLocality": "Харьков",
+            "addressRegion": "Харьковская",
+            "postalCode": "61000"
+        },
+        "logo": "https://shop-sex.com.ua/images/logo.png",
+        "telePhone": "050-971-25-69",
+        "faxNumber": "057-751-83-45",
+        "url": "shop-sex.com.ua",
+        "paymentAccepted": [ "cash", "credit card", "invoice" ],
+        "openingHours": "Mo,Tu,We,Th,Fr 09:00-18:00",
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "49.999068",
+            "longitude": "36.241342"
+        },
+        "priceRange":"$$$"
+    }
+    </script>
 </head>

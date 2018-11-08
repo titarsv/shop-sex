@@ -116,9 +116,65 @@
 }
 
 .filters__item{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  height: 200px;
+  overflow-y: scroll;
+  .subcats{
+    padding-left: 15px;
+    display: none;
+    li{
+      margin-bottom: 5px;
+    }
+  }
+  .root_cat{
+    position: relative;
+    color: #000;
+    font-size: 14px;
+    padding-left: 15px;
+    font-weight: 600;
+    > span {
+      float: right;
+      margin-right: 15px;
+      cursor: pointer;
+      display: inline-block;
+      width: 10px;
+      text-align: center;
+      &:before{
+        content: "+";
+      }
+    }
+    &.active {
+      > span {
+        &:before{
+          content: "-";
+        }
+      }
+      + .subcats{
+        display: block;
+      }
+    }
+  }
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .filters__item-title{
@@ -155,6 +211,12 @@
     background: #fd4747;
 }
 
+.products-container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
 .product-item{
     position: relative;
@@ -163,9 +225,19 @@
     height: 300px;
     margin: 10px;
     border: 1px solid #c7c7c7;
+    min-width: 165px;
+    max-width: 210px;
+    width: 210px;
+    @include bp(lg){
+      width: 195px;
+    }
+    @include bp(xs){
+      width: 210px;
+    }
     img{
-        width: 100%;
-        object-fit: cover;
+        max-width: 100%;
+        object-fit: contain;
+        min-height: 250px;
     }
     &:hover{
         cursor: pointer;
@@ -173,6 +245,9 @@
       box-shadow: -5px -3px 23px 0px rgba(0,0,0,0.16);
         .product-item__info{
             bottom: 0;
+          .product-item__info-title{
+            height: auto;
+          }
         }
     }
     &.top{
@@ -185,32 +260,41 @@
         height: 300px;
     }
     @include bp (xs){
-        height: 200px;
+        height: auto;
     }
 }
 
 .product-item__info{
     position: absolute;
     width: 100%;
-    bottom: -45px;
+    bottom: -69px;
     left: 0;
     padding: 5px 10px 10px;
     background: rgba(0, 0, 0, 0.727);
     transition: .5s;
     text-align: left;
+    @include bp (xs){
+      position: relative;
+      bottom: 0;
+    }
 }
 
 .product-item__info-title{
     color: #fff;
     font-size: 13px;
-    height: 58px;
+    text-overflow: ellipsis;
+    height: 13px;
+    overflow: hidden;
+    @include bp (xs){
+      height: auto;
+    }
 }
 
 .product-item__info-price{
     color: #fff;
     font-size: 16px;
     font-weight: 700;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .product-item__info-link{
@@ -218,6 +302,8 @@
     font-size: 14px;
     text-decoration: underline;
     margin-top: 10px;
+    text-transform: uppercase;
+    color: #fccb3c;
     &:hover{
         color: #ff3030;
     }
@@ -229,7 +315,7 @@
     font-size: 16px;
     line-height: 30px;
     border-radius: 20px;
-    background: #ff3030;
+    background: #ff5454;
     text-align: center;
     margin-top: 15px;
     width: 150px;
@@ -246,9 +332,12 @@
         display: none;
       }
     }
-    &:hover{
-        background: darken($color: #ff3030, $amount: 5%)
-    }
+  &:hover{
+    background: #ff3030;
+  }
+  &:active{
+      background: #ff5454;
+  }
   @include bp (sm){
     width: 100%;
   }
@@ -264,7 +353,7 @@
 }
 .slick-prod{
     @include bp (sm){
-        width: 150%;
+        //width: 150%;
     }
 }
 
@@ -400,5 +489,49 @@
   }
   .next-page{
     background: url('../images/pagination-next.png') center no-repeat;
+  }
+}
+
+.question-popup__container{
+  padding: 20px;
+  position: relative;
+  .product-name{
+    text-align: center;
+  }
+  .mfp-close{
+    top: 10px;
+    right: 10px;
+  }
+  .mfp-close:active{
+    top: 10px;
+  }
+}
+
+.question-popup__container-title{
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  @include bp (xs){
+    font-size: 20px;
+  }
+}
+
+.question-popup__container-btns{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10px;
+  @include bp (xs){
+    flex-direction: column;
+  }
+}
+
+.question-popup__container-img{
+  max-height: 400px;
+  display: block;
+  margin: 0 auto;
+  @include bp (sm){
+    max-height: 300px;
+    max-width: 100%;
   }
 }

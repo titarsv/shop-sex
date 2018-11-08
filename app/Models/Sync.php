@@ -13,6 +13,7 @@ use App\Models\Categories;
 use App\Models\AttributeValues;
 use App\Http\Controllers\ImagesController;
 use Symfony\Component\DomCrawler\Crawler;
+use \Dejurin\GoogleTranslateForFree;
 
 class Sync extends Model
 {
@@ -42,6 +43,8 @@ class Sync extends Model
 
     protected $table = 'sync';
 
+	public $translations = [];
+
     protected $statuses = [
         'get_files' => 'getAllFiles',
         'parse_info' => 'parseInfoList',
@@ -49,6 +52,8 @@ class Sync extends Model
         'parse_inventory' => 'parseInventory',
         'import_products' => 'importProducts',
         'init_eros' => 'syncEros',
+        'init_toystore' => 'getToystoreFile',
+        'parse_toystore' => 'parseToystoreFile',
     ];
 
     public function initSync(){
@@ -68,7 +73,7 @@ class Sync extends Model
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY) ;
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
         curl_setopt($ch, CURLOPT_URL, $path);
         curl_setopt($ch, CURLOPT_USERPWD, "sexshopintim@mail.ru:S0rSN");
 
@@ -153,8 +158,11 @@ class Sync extends Model
 
     // Парсинг атрибутов
     public function parseSpecifications(){
+	    $settings = new Settings();
+	    $settings->update_setting('sync_status', 'parse_inventory', false);
         $products = json_decode(file_get_contents($this->storage.'parsed/products.json'), true);
         $specifications = $this->parseXls('specifications.xls');
+//        dd($specifications);
 
         if(isset($specifications[0])) {
             //        "АРТ" => "H44571"
@@ -205,9 +213,6 @@ class Sync extends Model
             fwrite($fp, json_encode($products, JSON_UNESCAPED_UNICODE));
             fclose($fp);
         }
-
-        $settings = new Settings();
-        $settings->update_setting('sync_status', 'parse_inventory', false);
     }
 
     // Парсинг остатков
@@ -281,8 +286,6 @@ class Sync extends Model
             $settings = new Settings();
             $settings->update_setting('sync_status', $i, false);
         }
-
-        echo '<script>location = location;</script>';
     }
 
     // Проверка наличия товара
@@ -664,7 +667,7 @@ class Sync extends Model
 
         // задаем кодировку windows-1251 для строки
         if( $file ){
-            $CSV_str = iconv( "UTF-8", "cp1251",  $CSV_str );
+//            $CSV_str = iconv( "UTF-8", "cp1251",  $CSV_str );
 
             // создаем csv файл и записываем в него строку
             $done = file_put_contents( $file, $CSV_str );
@@ -694,6 +697,9 @@ class Sync extends Model
 
                 $link = $this->qr_loadUrl($category->href);
                 $html = str_get_html($link);
+                if(empty($html)){
+                	continue;
+                }
                 foreach ($html->find('.product-name') as $a){
                     if(!empty($a->href)){
                         $prod_href = $a->href;
@@ -757,7 +763,6 @@ class Sync extends Model
                 }
 
                 $settings->update_setting('eros_categories', $categories, false);
-                echo '<script>location = location;</script>';
                 break;
             }
         }
@@ -767,7 +772,7 @@ class Sync extends Model
                 $categories[$i]->parsed = 0;
             }
             $settings->update_setting('eros_categories', $categories, false);
-            $settings->update_setting('sync_status', date('d.m.Y', strtotime(date('d.m.Y')) +  86400), false);
+            $settings->update_setting('sync_status', 'init_toystore', false);
         }
     }
 
@@ -807,7 +812,7 @@ class Sync extends Model
             'name' => $name,
             'category' => $this->findOrCreateCategory($category),
             'articul' => $sku,
-            'price' => (float)$price * 2,
+            'price' => (float)$price * 1.2,
             'image' => $this->findOrCreateImage($html->find('#thumbs_list_frame a', 0)->href),
             'description' => $html->find('[itemprop="description"]', 0)->plaintext,
             'source' => 'eros.com.ua',
@@ -899,5 +904,129 @@ class Sync extends Model
             curl_close($ch);
         }
         return $data;
+    }
+
+    public function getToystoreFile(){
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($ch, CURLOPT_HEADER, 0);
+	    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+	    curl_setopt($ch, CURLOPT_URL, 'http://toystore.com.pl/xmlapi/1/2/UTF8/4e90b630-218d-4971-91d7-e0342fa620fc');
+
+	    $options = array(CURLOPT_FOLLOWLOCATION => 1,
+	                     CURLOPT_TIMEOUT => 60);
+
+	    curl_setopt_array($ch, $options);
+	    $save = curl_exec($ch);
+	    curl_close($ch);
+
+	    file_put_contents($this->storage.'produkty.xml',$save);
+
+	    $settings = new Settings();
+	    $settings->update_setting('sync_status', 'parse_toystore', false);
+    }
+
+    public function parseToystoreFile(){
+//	    $translations = $this->kama_parse_csv_file($this->storage.'parsed/translations.csv');
+//	    foreach($translations as $translation){
+//		    $this->translations[$translation['text']] = $translation['translate'];
+//	    }
+	    $xml = simplexml_load_string(file_get_contents($this->storage.'produkty.xml'));
+	    $products = [];
+
+//	    $attribute = new Attribute();
+//	    $attributes = [];
+//	    foreach ($attribute->all() as $attr){
+//		    $attributes[$attr->name] = $attr->id;
+//	    }
+
+	    foreach($xml->product as $product){
+//	    	$attrs = [];
+//		    foreach($product->attributes->attribute as $attribute){
+//		    	$name = $this->translate(trim((string)$attribute->name));
+//		    	$label = $this->translate(trim((string)$attribute->label));
+//			    if(isset($attributes[$name]))
+//				    $attrs[$attributes[$name]] = $label;
+//		    }
+		    $products[] = [
+		    	'articul' => (string)$product->sku,
+//			    'attributes' => $attrs,
+			    'price' => (float)str_replace(',', '.', (string)$product->priceAfterDiscountNet) * 86,
+			    'stock' => (int)$product->qty ? 1 : 0
+		    ];
+//		    if(count($products) > 20){
+//		    	break;
+//		    }
+	    }
+//	    $translations = [['text']];
+//	    foreach($this->translations as $text){
+//		    $translations[] = [$text];
+//	    }
+//	    $this->kama_create_csv_file($translations, $this->storage.'parsed/translations.csv');
+//	    dd($this->translations);
+//	    dd($products);
+
+
+	    foreach($products as $prod){
+		    $product_table_fill = [
+			    'price' => $prod['price'],
+			    'stock' => $prod['stock']
+		    ];
+		    $product = Products::where('articul', $prod['articul'])->first();
+		    if(!empty($product)){
+			    $product->fill($product_table_fill);
+			    $product->push();
+		    }
+
+//		    if (!empty($prod['attributes'])) {
+//			    $product_attributes = [];
+//			    $values = new AttributeValues();
+//			    foreach ($prod['attributes'] as $attribute => $value) {
+//				    $value = $values->where('attribute_id', $attribute)->where('name', $value)->first();
+//				    if(!empty($value)){
+//					    $product_attributes[] = [
+//						    'product_id' => $product->id,
+//						    'attribute_id' => $attribute,
+//						    'attribute_value_id' => $value->id,
+//					    ];
+//				    }elseif(!empty($value)){
+//					    $product_attributes[] = [
+//						    'product_id' => $product->id,
+//						    'attribute_id' => $attribute,
+//						    'attribute_value_id' => AttributeValues::insertGetId([
+//							    'attribute_id' => $attribute,
+//							    'name' => $value,
+//							    'value' => strtolower($this->trim_value($this->rus2lat($value)))
+//						    ])
+//					    ];
+//				    }
+//			    }
+//
+//			    $product->attributes()->createMany($product_attributes);
+//		    }
+	    }
+
+	    $settings = new Settings();
+	    $settings->update_setting('sync_status', date('d.m.Y', strtotime(date('d.m.Y')) +  86400), false);
+    }
+
+    public function translate($text){
+    	if(isset($this->translations[$text])) {
+		    return $this->translations[$text];
+	    }else{
+//		    $source = 'pl';
+//		    $target = 'ru';
+//		    $attempts = 5;
+//
+//		    $tr = new GoogleTranslateForFree();
+//		    $result = $tr->translate($source, $target, $text, $attempts);
+//
+//		    if(!empty($result)){
+//			    $this->translations[$text] = $result;
+//			    return $result;
+//		    }
+	    }
+
+	    return $text;
     }
 }

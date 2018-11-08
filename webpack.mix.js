@@ -16,7 +16,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/header.scss', 'public/css');
 
 mix.browserSync({
-    proxy: 'shop-sex.lh',
+    proxy: 'shop-s.lh',
     files: [
         'public/dev/*.html',
         'app/**/*.php',

@@ -104,7 +104,31 @@
                                 </fieldset>
                             </div>
                         </div>
-                        <div id="filters">
+                        <div id="filters-min">
+                            <div class="filters__item">
+                                <p class="filters__item-title">Категории</p>
+                                @foreach($categories as $cat)
+                                    @php
+                                        $children = $cat->children;
+                                    @endphp
+                                    @if($children->count())
+                                        @if($category->id == $cat->id || $category->parent_id == $cat->id)
+                                            <a class="root_cat active" href="/catalog/{{ $cat->url_alias }}">{{ $cat->name }}<span></span></a>
+                                        @else
+                                            <a class="root_cat" href="/catalog/{{ $cat->url_alias }}">{{ $cat->name }}<span></span></a>
+                                        @endif
+                                        <ul class="subcats">
+                                            @foreach($children as $cat)
+                                                <li><a class="root_cat" href="/catalog/{{ $cat->url_alias }}">{{ $cat->name }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <a class="root_cat" href="/catalog/{{ $cat->url_alias }}">{{ $cat->name }}</a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        <div id="filters-min">
                         @if(!empty($attributes))
                             @foreach($attributes as $key => $attribute)
                                 <div class="filters__item">
@@ -150,13 +174,15 @@
                                 <span>Нет таких товаров...</span>
                             </div>
                         @else
-                            @foreach($products as $key => $product)
-                                <div class="col-xl-2 col-sm-4 col-xs-6">
+                            <div class="products-container">
+                                @foreach($products as $key => $product)
+                                    {{--<div class="col-xl-2 col-sm-4 col-xs-6">--}}
                                     <div class="product-item">
                                         @include('public.layouts.product', ['product' => $product])
                                     </div>
-                                </div>
-                            @endforeach
+                                    {{--</div>--}}
+                                @endforeach
+                            </div>
                         @endif
                     </div>
                 </div>

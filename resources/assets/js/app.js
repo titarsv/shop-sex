@@ -130,10 +130,12 @@ $(function() {
     })
 
     $('#click-buy-popup .prod-quont input').change(function(){
-      $('.result-price').text($(this).val() * $(this).data('price') + ' грн');
+      var total = $(this).val() * $(this).data('price');
+      $('.result-price').text(total.toFixed(2) + ' грн');
     });
     $('#click-buy-popup .prod-quont input').keyup(function(){
-        $('.result-price').text($(this).val() * $(this).data('price') + ' грн');
+        var total = $(this).val() * $(this).data('price');
+        $('.result-price').text(total.toFixed(2) + ' грн');
     });
 });
 

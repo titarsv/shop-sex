@@ -13,7 +13,7 @@
                 @foreach($slideshow as $slide)
                     @if($slide->status)
                         <div>
-                            <div style="background: center url({{ $slide->image->url() }}) no-repeat; background-size: cover; height: 50vh;">
+                            <div class="banner" style="background: center url({{ $slide->image->url() }}) no-repeat; background-size: cover;">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-5 col-sm-7 col-xs-8">

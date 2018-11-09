@@ -18,6 +18,8 @@ body{
     text-align: right;
     @include bp (sm){
         text-align: center;
+        display: flex;
+        justify-content: center;
     }
 }
 
@@ -80,6 +82,9 @@ body{
 
 .header__logo{
     width: 100%;
+    @include bp(sm){
+        max-width: 100px;
+    }
 }
 
 .header__search-wrp{

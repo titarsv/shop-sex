@@ -13,7 +13,7 @@
                     </ul>
                 </div>
                 <div class="row header__logo-search-wrp">
-                    <div class="col-sm-2 col-xs-3">
+                    <div class="col-sm-2 col-xs-5">
                         @if(Request::path()!='/')
                             <a href="{{env('APP_URL')}}">
                                 <img src="/images/logo.png" class="header__logo" alt="Главная">
@@ -35,7 +35,7 @@
                             <li><img src="/images/icons/inst.png" alt=""> shop_sex.com.ua</li>
                         </ul>
                     </div>
-                    <div class="visible-xs-block col-xs-5 col-xs-offset-2">
+                    <div class="visible-xs-block col-xs-5">
                         <ul class="header__contacts">
                             <li><a href="tel:0509712569">050 971-25-69</a></li>
                             <li><a href="tel:0958860978">095 886-09-78</a></li>

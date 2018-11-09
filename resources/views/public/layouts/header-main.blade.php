@@ -8,7 +8,7 @@
                         <li class="col-sm-2 header__enter-forum"><a href="{{env('APP_URL')}}/page/forum">Форум</a></li>
                         {{--<li class="col-sm-2 header__enter-login"><a href="{{env('APP_URL')}}/login">Войти</a></li>--}}
                     </ul>
-                    <ul class="header__contacts col-sm-3">
+                    <ul class="header__contacts hedr col-sm-3">
                         <li><img src="/images/icons/qa.png" alt=""><a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a></li>
                     </ul>
                 </div>

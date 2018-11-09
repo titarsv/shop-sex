@@ -18,6 +18,9 @@
             display: none;
         }
     }
+    @include bp (sm){
+        margin: 0 auto;
+    }
 }
 
 .cart__item{
@@ -27,6 +30,11 @@
     justify-content: space-around;
     align-items: center;
     margin: 10px 0;
+    @include bp (xs){
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .cart__item-img{
@@ -121,6 +129,8 @@
     }
     @include bp (sm){
         font-size: 12px;
+        text-align: center;
+        margin-top: 5px;
     }
 }
 

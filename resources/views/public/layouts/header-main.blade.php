@@ -8,7 +8,7 @@
                         <li class="col-sm-2 header__enter-forum"><a href="{{env('APP_URL')}}/page/forum">Форум</a></li>
                         {{--<li class="col-sm-2 header__enter-login"><a href="{{env('APP_URL')}}/login">Войти</a></li>--}}
                     </ul>
-                    <ul class="header__contacts hedr col-sm-3">
+                    <ul class="header__contacts hedr col-sm-3 hidden-xs">
                         <li><img src="/images/icons/qa.png" alt=""><a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a></li>
                     </ul>
                 </div>
@@ -46,7 +46,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 hidden-xs">
+           <div class="hidden-sm hidden-md visible-xs-blok col-xs-6">
+                <ul class="header__contacts ask-quen">
+                    <li><img src="/images/icons/qa.png" alt=""><a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a></li>
+                </ul>
+           </div>
+            <div class="col-sm-2 col-xs-6">
                 <a href="{{env('APP_URL')}}/checkout" class="cart-link">
                     <div class="header__cart">
                     <img src="/images/icons/cart-main.png" class="header__cart-img" alt="">

@@ -6,8 +6,8 @@ body{
     background-color: #202020;
     position: relative;
     padding-top: 5px;
-    @include bp (xs){
-        padding: 15px 0;
+    @include bp (sm){
+        padding: 10px 0;
     }
 }
 
@@ -160,6 +160,7 @@ body{
         }
         @include bp(sm){
             font-size:18px;
+            display: block;
         }
         @include bp(xs){
             font-size:14px;
@@ -172,12 +173,28 @@ body{
         }
     }
     @include bp (sm){
-        text-align: right;
         display: block;
-        padding: 5px 0;
+        padding: 10px 0;
+        text-align: right;
     }
 }
 
+.ask-quen {
+    text-align: center;
+    border: 1px solid #ff252a;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    max-width: 200px;
+}
+.cart-link{
+    @include bp (sm){
+        max-width: 200px;
+        display: block;
+        margin: 0 auto;
+    }
+
+}
 .header__cart{
     display: flex;
     flex-direction: column;

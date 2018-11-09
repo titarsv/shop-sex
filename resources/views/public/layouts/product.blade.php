@@ -5,5 +5,5 @@
     <p class="product-item__info-title">{{ $product->name }}</p>
     <p class="product-item__info-price">{{ number_format($product->price, 2, '.', ' ') }}грн</p>
     <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}" class="product-item__info-link">подробнее</a>
-    <button class="product-item__info-btn btn_buy" data-prod-id="{{ $product->id }}">В корзину</button>
+    <button class="product-item__info-btn btn_buy popup-btn"  data-mfp-src="#cart-popup" data-prod-id="{{ $product->id }}">В корзину</button>
 </div>

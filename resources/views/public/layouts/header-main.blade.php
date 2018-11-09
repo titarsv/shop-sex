@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-           <div class="hidden-sm hidden-md visible-xs-blok col-xs-6">
+           <div class="hidden-sm hidden-md visible-xs-block col-xs-6">
                 <ul class="header__contacts ask-quen">
                     <li><img src="/images/icons/qa.png" alt=""><a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a></li>
                 </ul>

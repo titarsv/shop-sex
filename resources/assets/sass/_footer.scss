@@ -39,6 +39,7 @@
     }
     @include bp(xs){
         font-size: 12px;
+        flex-direction: column;
     }
 }
 

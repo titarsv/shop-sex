@@ -14,13 +14,13 @@
                 </div>
                 <div class="col-xs-12">
                     <div style="text-align: center; margin-bottom: 40px;">
-                        <div class="container">
-                            <h1>Спасибо!</h1>
+                        <div class="container succes__container">
+                            <h1 class="succes__container-title">Спасибо!</h1>
                             <div class="succes__card">
-                                <span class="succes__descr">Ваш заказ успешно оформлен</span>
+                                <span class="succes__descr">Ваш заказ успешно оформлен.</span>
                             </div>
-                            <span class="succes__wait-call">Ожидайте звонок от нашего менеджера</span>
-                            <a href="{{env('APP_URL')}}" class="main-btn main-btn_accent" style="color: #1185c2;">Продолжить покупки</a>
+                            <span class="succes__wait-call">Ожидайте звонок от нашего менеджера.</span>
+                            <a href="{{env('APP_URL')}}" class="main-btn main-btn_accent succes__btn">Продолжить покупки</a>
                         </div>
                     </div>
                 </div>

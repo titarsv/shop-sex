@@ -1,5 +1,4 @@
 <header class="header">
-12323
     <div class="container">
         <div class="row">
             <div class="col-sm-10">
@@ -34,7 +33,6 @@
                             <li><img src="/images/icons/phone.png" alt=""> <a href="tel:0509712569">050 971-25-69</a></li>
                             <li><img src="/images/icons/phone.png" alt=""> <a href="tel:0958860978">095 886-09-78</a></li>
                             <li><img src="/images/icons/inst.png" alt=""> shop_sex.com.ua</li>
-                            <!-- <li><img src="/images/icons/qa.png" alt=""><a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a></li> -->
                         </ul>
                     </div>
                     <div class="visible-xs-block col-xs-5 col-xs-offset-2">

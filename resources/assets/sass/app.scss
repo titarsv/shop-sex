@@ -51,6 +51,9 @@ q:before, q:after {
 }
 a{
   text-decoration: none;
+  &:hover, &:active{
+	  text-decoration: none;
+  }
 }
 input, button{
   &:focus{

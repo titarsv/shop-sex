@@ -232,7 +232,8 @@
       width: 195px;
     }
     @include bp(xs){
-      width: 210px;
+      width: 100%;
+      max-width: 100%;
     }
     img{
         max-width: 100%;
@@ -298,15 +299,15 @@
 }
 
 .product-item__info-link{
+  &:hover{
+      color: #ff3030;
+  }
     color: #fff;
     font-size: 14px;
     text-decoration: underline;
     margin-top: 10px;
     text-transform: uppercase;
     color: #fccb3c;
-    &:hover{
-        color: #ff3030;
-    }
 }
 
 .product-item__info-btn{
@@ -351,11 +352,6 @@
         overflow: hidden;
     }
 }
-.slick-prod{
-    @include bp (sm){
-        //width: 150%;
-    }
-}
 
 .ui-slider{
     position: relative;
@@ -364,9 +360,8 @@
       z-index: 3;
       width: 13px;
       height: 13px;
-      border-radius: 100%;
+      border-radius: 50%;
       background: #ff3030;
-    //   border: 2px solid #000;
       cursor: pointer;
       top: -5px;
       &.first{

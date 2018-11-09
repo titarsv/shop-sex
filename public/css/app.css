@@ -2929,6 +2929,11 @@ a {
   text-decoration: none;
 }
 
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
 input:focus,
 button:focus {
   outline: none;
@@ -3179,6 +3184,7 @@ body {
   .header__contacts {
     text-align: right;
     display: block;
+    padding: 5px 0;
   }
 }
 
@@ -3365,7 +3371,7 @@ body {
   background: #202020;
   position: absolute;
   z-index: 1;
-  top: 66px;
+  top: 108px;
   left: 0;
   width: 100%;
   padding: 20px;
@@ -4494,7 +4500,8 @@ body {
 
 @media only screen and (max-width: 480px) {
   .product-item {
-    width: 210px;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -4659,7 +4666,7 @@ body {
   z-index: 3;
   width: 13px;
   height: 13px;
-  border-radius: 100%;
+  border-radius: 50%;
   background: #ff3030;
   cursor: pointer;
   top: -5px;

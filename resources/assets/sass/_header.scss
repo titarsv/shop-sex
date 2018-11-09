@@ -169,6 +169,7 @@ body{
     @include bp (sm){
         text-align: right;
         display: block;
+        padding: 5px 0;
     }
 }
 
@@ -302,7 +303,7 @@ body{
     background: #202020;
     position: absolute;
     z-index: 1;
-    top: 66px;
+    top: 108px;
     left: 0;
     width: 100%;
     padding: 20px;

@@ -46,22 +46,30 @@
                     </div>
                 </div>
             </div>
-           <div class="hidden-sm hidden-md visible-xs-block col-xs-6">
-                <ul class="header__contacts ask-quen">
-                    <li><img src="/images/icons/qa.png" alt=""><a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a></li>
-                </ul>
+           <div class="header-mobile__wrp-container">
+            <div class="hidden-sm hidden-md visible-xs-block col-xs-6">
+                    <ul class="header__contacts ask-quen">
+                        <li><img src="/images/icons/qa.png" alt=""><a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a></li>
+                    </ul>
+            </div>
+                <div class="col-sm-2 col-xs-6">
+                    <a href="{{env('APP_URL')}}/checkout" class="cart-link">
+                        <div class="header__cart">
+                        <img src="/images/icons/cart-main.png" class="header__cart-img" alt="">
+                            <p class="header__cart-title">Корзина</p>
+                            @if(isset($cart) && $cart->total_quantity)
+                                <p class="header__cart-sum">{{ number_format($cart->total_price, 2, '.', ' ') }}грн</p>
+                                <p class="header__cart-guant">{{ $cart->total_quantity }}</p>
+                            @endif
+                        </div>
+                    </a>
+                </div>
            </div>
-            <div class="col-sm-2 col-xs-6">
-                <a href="{{env('APP_URL')}}/checkout" class="cart-link">
-                    <div class="header__cart">
-                    <img src="/images/icons/cart-main.png" class="header__cart-img" alt="">
-                        <p class="header__cart-title">Корзина</p>
-                        @if(isset($cart) && $cart->total_quantity)
-                            <p class="header__cart-sum">{{ number_format($cart->total_price, 2, '.', ' ') }}грн</p>
-                            <p class="header__cart-guant">{{ $cart->total_quantity }}</p>
-                        @endif
-                    </div>
-                </a>
+            <div class="hidden-sm hidden-md visible-xs-block col-xs-12">
+                {!! Form::open(['route' => 'search', 'class' => 'header__search-wrp', 'method' => 'post']) !!}
+                    {!! Form::input('search', 'text', null, ['class' => 'header__search', 'placeholder' => 'поиск'] ) !!}
+                    <input type="submit" value="" class="search-hidden">
+                {!! Form::close()!!}
             </div>
             <div class="col-sm-12 hidden-xs">
                 <nav>

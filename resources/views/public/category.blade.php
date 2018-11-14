@@ -218,4 +218,14 @@
     @if(!empty($products))
         @include('public.layouts.pagination', ['paginator' => $products])
     @endif
+    
+    <div class="category-description">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    {!! $category->description !!}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

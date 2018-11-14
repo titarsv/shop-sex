@@ -530,3 +530,41 @@
     max-width: 100%;
   }
 }
+
+.category-description{
+  padding-bottom: 20px;
+  h1{
+    font-size: 25px;
+    margin: 20px 0;
+    font-weight: bold;
+  }
+  h2{
+    font-size: 22px;
+    margin: 20px 0;
+    font-weight: bold;
+  }
+  h3{
+    font-size: 20px;
+    margin: 20px 0;
+    font-weight: bold;
+  }
+  ul, ol{
+    padding-left: 30px;
+  }
+  li{
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 24px;
+    list-style: initial;
+  }
+  p{
+    font-size: 14px;
+    line-height: 24px;
+    color: #232323;
+    margin: 10px 0;
+  }
+  a{
+    text-decoration: none;
+    color: #fd4747;
+  }
+}

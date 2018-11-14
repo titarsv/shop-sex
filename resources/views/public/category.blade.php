@@ -2,16 +2,20 @@
 @section('meta')
     <title>
         @if(empty($category->meta_title)))
-            {!! $category->name !!}}
+            {!! $category->name !!}} | Секс-шоп в Харькове, интернет-магазин | Shop-sex.com.ua
         @else
-            {!! $category->meta_title !!}
+            {!! $category->meta_title !!} | Секс-шоп в Харькове, интернет-магазин | Shop-sex.com.ua
         @endif
         @if(!empty($products) && $products->currentPage() > 1) - Страница {!! $products->currentPage() !!}@endif
     </title>
 
     @if(empty($products) || $products->currentPage() == 1)
-        <meta name="description" content="{!! $category->meta_description or '' !!}">
-        <meta name="keywords" content="{!! $category->meta_keywords or '' !!}">
+        @if(empty($category->meta_description))
+        <meta name="description" content="{{ strip_tags($category->description) }}">
+        @else
+        <meta name="description" content="{{ strip_tags($category->meta_description) }}">
+        @endif
+        <meta name="keywords" content="{{ $category->meta_keywords or '' }}">
     @endif
 
     @if(!empty($category->canonical) && empty($_GET['page']))

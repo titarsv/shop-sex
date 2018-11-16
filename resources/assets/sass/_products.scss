@@ -568,3 +568,16 @@
     color: #fd4747;
   }
 }
+.flash{
+    animation-duration: 3s;
+    animation-name: flash;
+}
+@keyframes flash {
+     from {
+         color: #000;
+     }
+
+     to {
+         color: #ff5454;
+     }
+ }

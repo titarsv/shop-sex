@@ -89,7 +89,7 @@
                         <button class="product-click-btn popup-btn"  data-mfp-src="#click-buy-popup">Купить в один клик</button>
                         <ul class="product-features">
                             <li>
-                                <a href="viber://chat?number=+380509712569" style="color: #000; text-decoration: none;">
+                                <a class="flash" href="viber://chat?number=+380509712569" style="color: #000; text-decoration: none;">
                                     <img src="/images/icons/prod-viber.png" alt="Консультация по Viber">
                                     <p>Консультация по Viber</p>
                                 </a>

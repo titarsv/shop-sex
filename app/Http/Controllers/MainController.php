@@ -63,7 +63,11 @@ class MainController extends Controller
         $part = end($parts);
 
         $redirects = array(
-
+            '/forumy/obshchaya-diskussiya' => '/page/forum',
+            '/osobye-pokrytiya-vibratorov-dlya-nezabyvaemyh-oshchushcheniy' => '/page/forum',
+            '/user/login' => '/login',
+            '/user/register' => '/login',
+            '/user/password' => '/login',
         );
 
         if(isset($redirects[urldecode(str_replace(env('APP_URL', 'https://shop-sex.com.ua'), '', url()->current()))])){
@@ -72,9 +76,9 @@ class MainController extends Controller
             return redirect()->action(
                 'CategoriesController@show', ['alias' => $part], 301
             );
-        }elseif(count($parts) > 2 && $products->where('url_alias', str_replace('-detail', '', $part))->count()){
+        }elseif(count($parts) >= 2 && $products->where('url_alias', $part)->count()){
             return redirect()->action(
-                'ProductsController@show', ['alias' => str_replace('-detail', '', $part)], 301
+                'ProductsController@show', ['alias' => $part], 301
             );
         }elseif(count($parts) == 2 && $news->where('url_alias', $part)->count()){
             return redirect()->action(

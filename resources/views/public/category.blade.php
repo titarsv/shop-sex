@@ -192,7 +192,7 @@
                 </div>
             </div>
         </div>
-        <div class="mfp-hide">
+        <div class="hidden mfp-hide">
             @foreach($products as $key => $product)
             <div id="cart-popup_{{ $product->id }}" class="view-popup">
                 <div class="container">

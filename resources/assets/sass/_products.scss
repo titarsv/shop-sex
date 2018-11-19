@@ -569,15 +569,18 @@
   }
 }
 .flash{
-    animation-duration: 3s;
+    animation-duration: 1s;
     animation-name: flash;
+    animation-iteration-count: infinite;
 }
 @keyframes flash {
      from {
          color: #000;
      }
-
-     to {
+     50%{
          color: #ff5454;
+     }
+     to {
+         color: #000;
      }
  }

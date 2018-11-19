@@ -20,25 +20,45 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 products-grid-container">
+                        <div class="products-container">
 						@forelse($products as $product)
-                            <div class="col-xl-2 col-sm-3 col-xs-6">
-                                <div class="product-item">
-                                    @include('public.layouts.product', ['product' => $product])
-                                </div>
+                            <div class="product-item">
+                                @include('public.layouts.product', ['product' => $product])
                             </div>
 						@empty
 							<article class="order">
 								<h5 class="order__title">В этой категории пока нет товаров!</h5>
 							</article>
 						@endforelse
-                    </div>
-
-                    <div class="col-sm-12">
-                        {{--{!! $products->appends(['text' => $search_text])->render() !!}--}}
-                        @include('public.layouts.pagination', ['paginator' => $paginator])
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="hidden mfp-hide">
+                @foreach($products as $key => $product)
+                    <div id="cart-popup_{{ $product->id }}" class="view-popup">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
+                                    <div class="question-popup__container">
+                                        <p class="question-popup__container-title">К Вам в корзину добавлен: </p>
+                                        <p class="product-name" itemprop="name">{{ $product->name }}</p>
+                                        <img class="question-popup__container-img" src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}">
+                                        <div class="question-popup__container-btns">
+                                            <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">Продолжить покупки</button>
+                                            <a href="/checkout" class="cart-popup__cart-btn">Перейти в корзину</a>
+                                        </div>
+                                        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </section>
+        @if(!empty($products))
+            @include('public.layouts.pagination', ['paginator' => $products])
+        @endif
     </main>
 @endsection

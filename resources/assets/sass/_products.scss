@@ -568,19 +568,3 @@
     color: #fd4747;
   }
 }
-.flash{
-    animation-duration: 1s;
-    animation-name: flash;
-    animation-iteration-count: infinite;
-}
-@keyframes flash {
-     from {
-         color: #000;
-     }
-     50%{
-         color: #ff5454;
-     }
-     to {
-         color: #000;
-     }
- }

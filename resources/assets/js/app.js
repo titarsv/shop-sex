@@ -119,11 +119,42 @@ $(function() {
     });
 
 
+
     // $('input.sliderValue').change(function() {
     //   var $this = $(this);
     //   $('.price-range').slider('values', $this.data('index'), $this.val());
     // });
   }
+
+    $('.sliderValue').keypress(function(e) {
+        if(e.which == 13) {
+            var parent = $(this).parent();
+            var from = parent.find('.sliderValue').eq(0).val();
+            var to = parent.find('.sliderValue').eq(1).val();
+            var path_parts = location.pathname.split('/');
+            var append = false;
+            if(typeof path_parts[3] !== 'undefined'){
+                var filter = path_parts[3];
+                var filter_parts = filter.split('_');
+                for(var i=0; i<filter_parts.length; i++){
+                    var filter_data = filter_parts[i].split('-');
+                    if(filter_data.length == 3 && filter_data[0] == 'price'){
+                        filter_parts[i] = 'price-'+from+'-'+to;
+                        append = true;
+                    }
+                }
+                if(!append){
+                    filter_parts[filter_parts.length] = 'price-'+from+'-'+to;
+                }
+                path_parts[3] = filter_parts.join('_');
+            }else{
+                path_parts[3] = 'price-'+from+'-'+to;
+            }
+
+            var path = path_parts.join('/');
+            location = path;
+        }
+    });
 
     $('.category-details').click(function() {
         $(this).next('ul').toggleClass('open');

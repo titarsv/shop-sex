@@ -23,6 +23,7 @@
 @section('content')
 
     <section itemscope itemtype="http://schema.org/Product">
+        <meta itemprop="name" content="{{ $product->name }}" />
         <div class="container">
             <div class="row">
                 {!! Breadcrumbs::render('product', $product, $product->categories) !!}

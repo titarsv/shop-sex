@@ -83,9 +83,10 @@
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
+        "image": "https://shop-sex.com.ua/images/logo.png",
         "telePhone": "050-971-25-69",
         "faxNumber": "057-751-83-45",
-        "url": "shop-sex.com.ua",
+        "url": "https://shop-sex.com.ua",
         "paymentAccepted": [ "cash", "credit card", "invoice" ],
         "openingHours": "Mo,Tu,We,Th,Fr 09:00-18:00",
         "geo": {

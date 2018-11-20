@@ -118,7 +118,7 @@
                         <div class="question-popup__container">
                             <p class="question-popup__container-title">К Вам в корзину добавлен: </p>
                             <p class="product-name" itemprop="name">{{ $product->name }}</p>
-                            <img class="question-popup__container-img" src="{{ $image->url('product') }}" alt="{{ $product->name }}">
+                            <img class="question-popup__container-img" src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">
                             <div class="question-popup__container-btns">
                                 <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">Продолжить покупки</button>
                                 <a href="/checkout" class="cart-popup__cart-btn">Перейти в корзину</a>
@@ -143,7 +143,7 @@
                                   data-error-message="Попробуйте отправить вопрос через некоторое время."
                                   data-success-title="Спасибо за вопрос!"
                                   data-success-message="Наш менеджер свяжется с вами в ближайшее время.">
-                                <input type="hidden" name="form" value="Сообщить о снижении цены" data-title="Форма">
+                                <input type="hidden" name="form" value="Купить в 1 клик" data-title="Форма">
                                 <input type="hidden" name="product_name" value="{{ $product->name }}" data-title="Название товара">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}" data-title="ID товара">
                                 <input type="hidden" name="product_articul" value="{{ $product->articul }}" data-title="Артикул товара">

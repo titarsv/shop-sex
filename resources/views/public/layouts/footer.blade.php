@@ -67,6 +67,11 @@
                 map: map,
                 // icon: image,
             });
+            var marker10 = new google.maps.Marker({
+                position: new google.maps.LatLng(49.943600, 36.301988),
+                map: map,
+                // icon: image,
+            });
 
 
             var content1 = '<div id="iw-container">' +
@@ -114,6 +119,11 @@
                 '<p class="iw-info">(Напротив ТРЦ "Украина")</p>' +
                 '<img src="/images/addr/addr7.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
+            var content10 = '<div id="iw-container">' +
+                '<p class="iw-title">Героев Сталинграда 136/8</p>' +
+                '<p class="iw-info">торговое помещение 94/1</p>' +
+                '<img src="/images/addr/addr10.jpg" class="iw-info" style="width: 283px;">' +
+                '</div>';
 
             // A new Info Window is created and set content
             var infowindow1 = new google.maps.InfoWindow({
@@ -154,6 +164,10 @@
                 content: content9,
                 maxWidth: 300
             });
+            var infowindow10 = new google.maps.InfoWindow({
+                content: content10,
+                maxWidth: 300
+            });
 
             // This event expects a click on a marker
             // When this event is fired the Info Window is opened.
@@ -184,6 +198,9 @@
             google.maps.event.addListener(marker9, 'click', function() {
                 infowindow9.open(map,marker9);
             });
+            google.maps.event.addListener(marker10, 'click', function() {
+                infowindow10.open(map,marker10);
+            });
 
             // Event that closes the Info Window with a click on the map
             google.maps.event.addListener(map, 'click', function() {
@@ -196,6 +213,7 @@
                 infowindow7.close();
                 infowindow8.close();
                 infowindow9.close();
+                infowindow10.close();
             });
 
             var mapElement1 = document.getElementById('addr1');
@@ -332,7 +350,7 @@
             }
 
             var mapElement8 = document.getElementById('addr8');
-            if(mapElement2 !== null){
+            if(mapElement8 !== null){
                 var map8 = new google.maps.Map(mapElement8, {
                     zoom: 16,
                     scrollwheel: true,
@@ -362,10 +380,29 @@
                     map: map9,
                 });
                 google.maps.event.addListener(marker9, 'click', function() {
-                    infowindow2.open(map9,marker9);
+                    infowindow9.open(map9,marker9);
                 });
                 google.maps.event.addListener(map9, 'click', function() {
                     infowindow9.close();
+                });
+            }
+
+            var mapElement10 = document.getElementById('addr10');
+            if(mapElement10 !== null){
+                var map10 = new google.maps.Map(mapElement10, {
+                    zoom: 16,
+                    scrollwheel: true,
+                    center: new google.maps.LatLng(49.943600, 36.301988)
+                });
+                var marker10 = new google.maps.Marker({
+                    position: new google.maps.LatLng(49.943600, 36.301988),
+                    map: map10,
+                });
+                google.maps.event.addListener(marker10, 'click', function() {
+                    infowindow10.open(map10,marker10);
+                });
+                google.maps.event.addListener(map10, 'click', function() {
+                    infowindow10.close();
                 });
             }
 

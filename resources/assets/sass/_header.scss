@@ -1,11 +1,27 @@
 body{
     font-family: 'Roboto', sans-serif;
+    padding-top: 120px;
+    @include bp(lg){
+        padding-top: 110px;
+    }
+    @include bp(md){
+         padding-top: 121px;
+    }
+    @include bp(sm){
+        padding-top: 194px;
+    }
+    @include bp(xs){
+        padding-top: 186px;
+    }
 }
 
 .header{
     background-color: #202020;
-    position: relative;
     padding-top: 5px;
+    position: fixed;
+    z-index: 101;
+    width: 100%;
+    top: 0;
     @include bp (sm){
         padding: 10px 0;
     }

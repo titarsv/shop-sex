@@ -566,6 +566,12 @@ class UserController extends Controller
             $data = json_decode($_POST['data']);
             $session_data = ['sourse' => 'Поисковая система', 'term' => 'Ключ', 'campaign' => 'Кампания'];
 
+            if (isset($data->phone) && $data->phone->val == '+38 (050) 912-36-80') {
+                header("HTTP/1.0 200 OK");
+                echo '{"status":"success"}';
+                die();
+            }
+
             foreach ($data as $key => $params) {
                 if (!empty($params->title) && !empty($params->val)) {
                     $val = $this->prepare_data($params->val, $key);

@@ -102,11 +102,13 @@ class CheckoutController extends Controller
 
         $cart->current_cart()->delete();
 
-        Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => true], function($msg) use ($setting){
-            $msg->from('admin@shop-sex.com.ua', 'Интернет-магазин shop-sex.com.ua');
-            $msg->to(get_object_vars($setting->get_setting('notify_emails')));
-            $msg->subject('Новый заказ');
-        });
+        if($order_user['phone'] != '+38 (050) 912-36-80') {
+            Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => true], function ($msg) use ($setting) {
+                $msg->from('admin@shop-sex.com.ua', 'Интернет-магазин shop-sex.com.ua');
+                $msg->to(get_object_vars($setting->get_setting('notify_emails')));
+                $msg->subject('Новый заказ');
+            });
+        }
 
         if(!empty($order_user['email'])) {
             Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => false], function ($msg) use ($order_user) {

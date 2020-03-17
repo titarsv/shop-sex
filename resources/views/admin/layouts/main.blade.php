@@ -24,7 +24,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
-                            <span class="badge">{!! $new_orders + $new_reviews + $personal_sales !!}</span>
+                            <span class="badge" style="position: absolute;z-index: 1;">{!! $new_orders + $new_reviews + $personal_sales !!}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="/admin/orders">Заказы <span class="badge">{!! $new_orders !!}</span></a></li>

@@ -59,10 +59,14 @@
                                 <option value="disable">Отключить</option>
                                 <option value="change_category">Сменить категорию</option>
                                 <option value="add_category">Добавить категорию</option>
+                                <option value="change_price">Изменить цену всех товаров</option>
                             </select>
                         </div>
                     </div>
                     <div class="btn-group col-sm-3">
+                        <div class="btn-group" style="display:none;">
+                            <input type="text" id="price_percent" placeholder="Например: -30%">
+                        </div>
                         <div class="btn-group" style="visibility: hidden">
                             <select name="action" id="categories" class="chosen-select">
                                 @forelse($categories as $category)
@@ -171,8 +175,12 @@
             $("#action").chosen().change(function(){
                 if($(this).val() == 'change_category' || $(this).val() == 'add_category'){
                     $('#categories').parent().css('visibility', 'visible');
+                }else if($(this).val() == 'change_price'){
+                    $('#price_percent').parent().css('display', 'block');
+                    $('.table-responsive table').find('td:first-child > input').prop('checked', true);
                 }else{
                     $('#categories').parent().css('visibility', 'hidden');
+                    $('#price_percent').parent().css('display', 'none');
                 }
             });
             $('#save_action').click(function(){
@@ -187,6 +195,9 @@
                 };
                 if(action == 'change_category' || action == 'add_category'){
                     data.category = $('#categories').val();
+                }
+                if(action == 'change_price'){
+                    data.percent = $('#price_percent').val();
                 }
                 $.post('/admin/group_action', data, function(response){
                     location = location;

@@ -17,6 +17,7 @@ use Excel;
 use App\Models\Gallery;
 use App\Models\Sync;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
@@ -1135,7 +1136,7 @@ class ProductsController extends Controller
     }
 
     public function groupAction(Request $request, Products $products, Categories $categories){
-		if(in_array($request->action, ['enable', 'disable', 'change_category', 'add_category'])){
+		if(in_array($request->action, ['enable', 'disable', 'change_category', 'add_category', 'change_price'])){
 			$products = $products->whereIn('id', $request->products);
 			if($request->action == 'enable'){
 				$products->update(['stock' => 1]);
@@ -1149,6 +1150,9 @@ class ProductsController extends Controller
 				foreach($products->get() as $product){
 					$product->categories()->attach($request->category);
 				}
+			}elseif($request->action == 'change_price'){
+				$percent = 1 + (float)str_replace(['%', ','], ['', '.'], $request->percent)/100;
+				Products::where('id', '>=', 1)->update(['price' => DB::raw("CEIL(price * $percent)")]);
 			}
 		}
     }

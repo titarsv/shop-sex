@@ -134,7 +134,7 @@
                                 <picture>
                                     <source data-src="/images/icons/catalog.webp" srcset="/images/pixel.webp" type="image/webp">
                                     <source data-src="/images/icons/catalog.png" srcset="/images/pixel.png" type="image/png">
-                                    <img src="/images/pixel.jpg" alt="cart-main" style="width: 100%;">
+                                    <img src="/images/pixel.jpg" alt="cart-main">
                                 </picture>
                                 Каталог товаров</a>
                         </li>

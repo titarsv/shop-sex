@@ -37,6 +37,9 @@
     </script>
 @endsection
 @section('page_vars')
+    @if($content->url_alias == 'kontakty')
+        @include('public.layouts.microdata.local_business')
+    @endif
     @include('public.layouts.microdata.open_graph', [
      'title' => $content->meta_title,
      'description' => null,

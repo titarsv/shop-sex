@@ -5,6 +5,7 @@
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
 @endsection
 @section('page_vars')
+    @include('public.layouts.microdata.local_business')
     @include('public.layouts.microdata.open_graph', [
      'title' => $settings->meta_title,
      'description' => $settings->meta_description,

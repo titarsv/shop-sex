@@ -267,7 +267,7 @@
                     <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
                         <div class="question-popup__container">
                             <p class="question-popup__container-title">К Вам в корзину добавлен: </p>
-                            <p class="product-name" itemprop="name">{{ $product->name }}</p>
+                            <p class="product-name">{{ $product->name }}</p>
                             <img class="question-popup__container-img" src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}">
                             <div class="question-popup__container-btns">
                                 <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">Продолжить покупки</button>

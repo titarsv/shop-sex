@@ -510,14 +510,8 @@
     </div>
     <div style="padding: 25px 0 0;text-align: center;">
         <a href="https://triplefork.it" target="_blank" rel="nofollow" class="triplefork" style="display: flex; align-items: center;justify-content: center;margin: 0 auto;">
-<style type="text/css">
-  .triplefork{width: max-content;color:#fff;text-decoration: none;}
-  .triplefork:hover .st1{fill:#F25733;stroke:#F25733;}
-  .triplefork span{color:#fff;text-decoration: none;font-family: arial, sans-serif;font-size: 12px;fill: none;stroke: none;margin-right: 5px}
-  .triplefork:hover span{color:#fff;text-decoration: none;fill: none;stroke: none;}
-</style>
 <span>Разработка:</span>
-<svg class="triplefork-logo" version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 27 25" style="enable-background:new 0 0 27 25;width: 26px;margin-right: 5px" xml:space="preserve">
+<svg class="triplefork-logo" version="1.1" id="sl_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 27 25" style="enable-background:new 0 0 27 25;width: 26px;margin-right: 5px" xml:space="preserve">
 <style type="text/css">
   .st0{fill:none;stroke:#F25733;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}  
 </style>
@@ -529,7 +523,7 @@
 <path class="st0" d="M7.5,21.8c-0.3-0.1-4.4-2-4.5-2.2c-0.6-0.4-0.7-0.6-0.7-1.1c0-0.1-0.2-6.2-0.2-6.2"></path>
 <path class="st0" d="M6.7,3.1C6.9,3,12,0.9,12,0.9c0.9-0.2,0.9-0.2,1.7,0c0,0,5.4,2,5.4,2"></path>
 </svg>
-<svg class="triplefork-txt" version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 98 15" style="enable-background:new 0 0 98 15;width: 97px;" xml:space="preserve">
+<svg class="triplefork-txt" version="1.1" id="sl_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 98 15" style="enable-background:new 0 0 98 15;width: 97px;" xml:space="preserve">
 <style type="text/css">
   .st1{fill:#fff;stroke:#fff;}
 </style>

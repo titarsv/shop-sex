@@ -78,12 +78,12 @@
                                                            data-attribute="{{ $key }}"
                                                            data-value="{{ $i }}"
                                                            data-url="/catalog{{ $attribute_value['url'] }}"
-                                                           id="product-filter-{!! $key !!}__check-{!! $i !!}"
+                                                           id="product-filters-{!! $key !!}__check-{!! $i !!}"
                                                            class="radio"
                                                            @if($attribute_value['checked'])
                                                            checked
                                                             @endif>
-                                                    <label class="radio-label" for="product-filter-{!! $key !!}__check-{!! $i !!}">{!! $attribute_value['name'] !!}</label>
+                                                    <label class="radio-label" for="product-filters-{!! $key !!}__check-{!! $i !!}">{!! $attribute_value['name'] !!}</label>
                                                 @endif
                                             @endforeach
                                         </div>
@@ -135,8 +135,6 @@
                                     @endif
                                 @endforeach
                             </div>
-                        </div>
-                        <div id="filters-min">
                         @if(!empty($attributes))
                             @foreach($attributes as $key => $attribute)
                                 <div class="filters__item">
@@ -204,7 +202,7 @@
                         <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
                             <div class="question-popup__container">
                                 <p class="question-popup__container-title">К Вам в корзину добавлен: </p>
-                                <p class="product-name" itemprop="name">{{ $product->name }}</p>
+                                <p class="product-name">{{ $product->name }}</p>
                                 <img class="question-popup__container-img" src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}">
                                 <div class="question-popup__container-btns">
                                     <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">Продолжить покупки</button>

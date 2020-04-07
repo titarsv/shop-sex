@@ -45,7 +45,7 @@ Route::post('/review/add-likes', 'ReviewsController@addLikes');
 
 Route::get('/reviews', 'ReviewsController@shopReviews');
 
-Route::post('/saveUserData', 'UserController@saveUserData');
+//Route::post('/saveUserData', 'UserController@saveUserData');
 
 
 /**
@@ -232,18 +232,18 @@ Route::post('cart/get','CartController@getCart');
 /**
  * Users routing
  */
-Route::group(['prefix' => 'user', 'middleware' => ['user']], function(){
-    Route::get('/', 'UserController@show');
-    Route::post('/', 'UserController@saveChangedData');
-    Route::post('/updatePassword', 'UserController@updatePassword');
-    Route::post('/updateSubscr', 'UserController@updateSubscr');
-    Route::post('/updateAddress', 'UserController@updateAddress');
-    Route::patch('/', 'UserController@history');
-    Route::get('/history', 'UserController@history');
-    Route::get('/wishlist', 'UserController@wishList');
-    Route::get('/change-data', 'UserController@changeData');
-    Route::post('/change-data', 'UserController@saveChangedData');
-});
+//Route::group(['prefix' => 'user', 'middleware' => ['user']], function(){
+//    Route::get('/', 'UserController@show');
+//    Route::post('/', 'UserController@saveChangedData');
+//    Route::post('/updatePassword', 'UserController@updatePassword');
+//    Route::post('/updateSubscr', 'UserController@updateSubscr');
+//    Route::post('/updateAddress', 'UserController@updateAddress');
+//    Route::patch('/', 'UserController@history');
+//    Route::get('/history', 'UserController@history');
+//    Route::get('/wishlist', 'UserController@wishList');
+//    Route::get('/change-data', 'UserController@changeData');
+//    Route::post('/change-data', 'UserController@saveChangedData');
+//});
 
 Route::post('/subscribe', 'UserController@subscribe');
 Route::post('/callback', 'UserController@callback');

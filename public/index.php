@@ -7,6 +7,10 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+if (substr($_SERVER['SERVER_NAME'], 0, 4) === 'www.') {
+	header('Location: https://' . substr($_SERVER['SERVER_NAME'], 4)); exit();
+}
+
 if (urldecode($_SERVER['REQUEST_URI']) != strtolower(urldecode($_SERVER['REQUEST_URI'])) ) {
     header('Location: http://'.$_SERVER['HTTP_HOST'] .
         strtolower(urldecode($_SERVER['REQUEST_URI'])), true, 301);

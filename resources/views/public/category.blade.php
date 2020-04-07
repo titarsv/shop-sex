@@ -220,7 +220,8 @@
     @if(!empty($products))
         @include('public.layouts.pagination', ['paginator' => $products])
     @endif
-    
+
+    @if($products->currentPage() < 2)
     <div class="category-description">
         <div class="container">
             <div class="row">
@@ -230,4 +231,5 @@
             </div>
         </div>
     </div>
+    @endif
 @endsection

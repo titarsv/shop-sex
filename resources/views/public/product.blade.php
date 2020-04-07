@@ -112,7 +112,9 @@
                         <div class="question-popup__container">
                             <p class="question-popup__container-title">К Вам в корзину добавлен: </p>
                             <p class="product-name">{{ $product->name }}</p>
+                            @if(!empty($product->image))
                             <img class="question-popup__container-img" src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">
+                            @endif
                             <div class="question-popup__container-btns">
                                 <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">Продолжить покупки</button>
                                 <a href="/checkout" class="cart-popup__cart-btn">Перейти в корзину</a>
@@ -142,7 +144,9 @@
                                 <input type="hidden" name="product_id" value="{{ $product->id }}" data-title="ID товара">
                                 <input type="hidden" name="product_articul" value="{{ $product->articul }}" data-title="Артикул товара">
                                 <div class="click-buy-popup__form-product">
+                                    @if(!empty($product->image))
                                     <img src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">
+                                    @endif
                                     <div class="prod-name">
                                         <p>{{ $product->name }}</p>
                                         <span>Артикул: {{ $product->articul }}</span>

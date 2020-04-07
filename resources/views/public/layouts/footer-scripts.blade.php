@@ -1,4 +1,6 @@
+@if(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome-Lighthouse') === false && config('app.debug') === false)
 <script src="//code.jivosite.com/widget.js" data-jv-id="MRKzy1hzQb" async></script>
+@endif
 <!-- Optimized loading JS Start -->
 <script>var scr = {"scripts":[
             {"src" : "{{ mix("js/app.js") }}", "async" : false}

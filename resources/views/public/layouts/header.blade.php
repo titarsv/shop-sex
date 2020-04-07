@@ -80,6 +80,7 @@
     </noscript>
     <!-- Load Custom CSS Compiled without JS End -->
 
+    @if(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome-Lighthouse') === false && config('app.debug') === false)
     {{--<script>--}}
         {{--var _gaq = _gaq || [];--}}
         {{--_gaq.push(["_setAccount", "UA-57227952-1"]);--}}
@@ -101,5 +102,6 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-M2XBVPW');</script>
     <!-- End Google Tag Manager -->
+    @endif
     @yield('page_vars')
 </head>

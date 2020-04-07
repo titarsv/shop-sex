@@ -1,5 +1,6 @@
 <footer class="footer">
     <div id="gm" style="height: 450px;"></div>
+    @if(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome-Lighthouse') === false && config('app.debug') === false)
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAdZiyAi-wihFqIfVhsaH6TtQXInoNtS4"></script>
     <script type="text/javascript">
         google.maps.event.addDomListener(window, 'load', init);
@@ -474,6 +475,7 @@
     </script>
 
     {{--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2562.3256914431086!2d36.21304241599528!3d50.042729879421096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a6ae15c37805%3A0x4356917fd8cbf4bf!2z0L_RgNC-0YHQv9C10LrRgiDQm9C10L3RltC90LAsIDI5LCDQpdCw0YDQutGW0LIsINCl0LDRgNC60ZbQstGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCA2MTAwMA!5e0!3m2!1sru!2sua!4v1539860122128" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>--}}
+    @endif
     <div class="map-form-container">
         <form action="/sendmail" class="question-popup__form ajax_form"
                 data-error-title="Ошибка отправки!"

@@ -2,17 +2,23 @@
 {
   "@context": "http://www.schema.org",
   "@type": "product",
-  @if(!empty($brand = $product->get_attribute('brand')))
-  "brand": "{{ $brand }}",
-  @endif
   "logo": "{{env('APP_URL')}}/images/logo.png",
   "name": "{{ $product->name }}",
-  "sku": "{{ $product->sku }}",
-  @if(!empty($category = $product->main_category()))
-  "category": "{{ $category->name }}",
-  @endif
-  @if(!empty($product->image))
-  "image": "{{env('APP_URL')}}{{ $product->image->url() }}",
+  "sku": "{{ $product->articul }}",
+  @if(!empty($gallery))
+    "image": [
+      @foreach($gallery as $i => $image)
+        @if(is_object($image))
+          "{{ $image->url('product') }}"{{ count($gallery) > $i + 1 ? ',' : '' }}
+        @endif
+      @endforeach
+    ],
+  @else
+    @if(empty($product->image))
+      "image": "/uploads/no_image.jpg",
+    @else
+      "image": "{{ $product->image->url('product') }}",
+    @endif
   @endif
   "description": "{{ empty($product->description) ? $product->name : strip_tags($product->description) }}",
   "offers": {
@@ -25,7 +31,7 @@
     "url": "{{ env('APP_URL')}}/product/{{ $product->url_alias }}",
     "seller": {
       "@type": "Organization",
-      "name": "КамТех"
+      "name": "Интернет-магазин «Интим»"
     }
   }
   @if(isset($reviews))

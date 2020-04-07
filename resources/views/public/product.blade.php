@@ -8,6 +8,7 @@
     @endif
 @endsection
 @section('page_vars')
+    @include('public.layouts.microdata.product', ['product' => $product])
     @include('public.layouts.microdata.open_graph', [
      'title' => $product->name,
      'description' => $product->description,
@@ -18,8 +19,7 @@
 
 @section('content')
 
-    <section itemscope itemtype="http://schema.org/Product">
-        <meta itemprop="name" content="{{ $product->name }}" />
+    <section>
         <div class="container">
             <div class="row">
                 {!! Breadcrumbs::render('product', $product, $product->categories) !!}
@@ -51,7 +51,7 @@
                             @if(is_object($image))
                                 <div>
                                     <div class="product-slider__item nav">
-                                        <img src="{{ $image->url('product') }}" alt="{{ $product->name }}" itemprop="image">
+                                        <img src="{{ $image->url('product') }}" alt="{{ $product->name }}">
                                     </div>
                                 </div>
                             @endif
@@ -59,9 +59,9 @@
                             <div>
                                 <div class="product-slider__item nav">
                                     @if(empty($product->image))
-                                        <img src="/uploads/no_image.jpg" alt="{{ $product->name }}" itemprop="image">
+                                        <img src="/uploads/no_image.jpg" alt="{{ $product->name }}">
                                     @else
-                                        <img src="{{ $product->image->url('product') }}" alt="{{ $product->name }}" itemprop="image">
+                                        <img src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">
                                     @endif
                                 </div>
                             </div>
@@ -70,17 +70,15 @@
                     @endif
                 </div>
                 <div class="col-md-8 col-sm-7 col-xs-12">
-                    <div class="product-description-wrp" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                        <meta itemprop="priceCurrency" content="грн." />
-                        <meta itemprop="price" content="{{ round($product->price, 2) }}" />
+                    <div class="product-description-wrp">
                         <p class="product-article">Артикул: {{ $product->articul }}</p>
-                        <p class="product-name" itemprop="name">{{ $product->name }}</p>
+                        <p class="product-name">{{ $product->name }}</p>
                         @if($product->stock)
-                            <p class="product-available" itemprop="availability" href="http://schema.org/InStock">Есть в наличии</p>
+                            <p class="product-available">Есть в наличии</p>
                         @else
                             <p class="product-unavailable">Нет в наличии</p>
                         @endif
-                        <p class="product-decription" itemprop="description">{!! $product->description !!}</p>
+                        <p class="product-decription">{!! $product->description !!}</p>
                         <p class="product-price">{{ number_format($product->price, 2, '.', ' ') }} грн</p>
                         <button class="product-buy-btn btn_buy popup-btn"  data-mfp-src="#cart-popup" data-prod-id="{{ $product->id }}">В корзину</button>
                         <button class="product-click-btn popup-btn"  data-mfp-src="#click-buy-popup">Купить в один клик</button>
@@ -113,7 +111,7 @@
                     <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
                         <div class="question-popup__container">
                             <p class="question-popup__container-title">К Вам в корзину добавлен: </p>
-                            <p class="product-name" itemprop="name">{{ $product->name }}</p>
+                            <p class="product-name">{{ $product->name }}</p>
                             <img class="question-popup__container-img" src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">
                             <div class="question-popup__container-btns">
                                 <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">Продолжить покупки</button>

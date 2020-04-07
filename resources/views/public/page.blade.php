@@ -6,6 +6,35 @@
     @if(!empty($content->robots))
         <meta name="robots" content="{!! $content->robots !!}">
     @endif
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{env('APP_URL')}}/{{ Request::path() }}"
+      },
+      "headline": "{{ $content->meta_title }}",
+      "image": [
+        "{{env('APP_URL')}}/images/forum-bg.jpg"
+       ],
+      "datePublished": "{{ $content->created_at->format('m/d/Y') }}",
+      "dateModified": "{{ $content->updated_at->format('m/d/Y') }}",
+      "author": {
+        "@type": "Person",
+        "name": "ventelator"
+      },
+       "publisher": {
+        "@type": "Organization",
+        "name": "Интернет-магазин «Интим»",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://shop-sex.com.ua/images/logo.png"
+        }
+      }
+    }
+    </script>
 @endsection
 @section('page_vars')
     @include('public.layouts.microdata.open_graph', [

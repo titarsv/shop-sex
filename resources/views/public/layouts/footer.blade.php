@@ -492,10 +492,20 @@
             <div class="col-sm-2 col-xs-3">
                 @if(Request::path()!='/')
                     <a href="{{env('APP_URL')}}">
-                        <img src="/images/logo.png" class="header__logo" alt="Главная">
+                        {{--<img src="/images/logo.png" class="header__logo" alt="Главная">--}}
+                        <picture>
+                            <source data-src="/images/logo.webp" srcset="/images/pixel.webp" type="image/webp">
+                            <source data-src="/images/logo.png" srcset="/images/pixel.png" type="image/png">
+                            <img src="/images/pixel.jpg" alt="Главная" style="width: 100%;">
+                        </picture>
                     </a>
                 @else
-                    <img src="/images/logo.png" class="header__logo" alt="Главная">
+                    {{--<img src="/images/logo.png" class="header__logo" alt="Главная">--}}
+                    <picture>
+                        <source data-src="/images/logo.webp" srcset="/images/pixel.webp" type="image/webp">
+                        <source data-src="/images/logo.png" srcset="/images/pixel.png" type="image/png">
+                        <img src="/images/pixel.jpg" alt="Главная" style="width: 100%;">
+                    </picture>
                 @endif
             </div>
             <div class="col-sm-7 col-xs-9">

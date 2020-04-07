@@ -9,17 +9,35 @@
                         {{--<li class="col-sm-2 header__enter-login"><a href="{{env('APP_URL')}}/login">Войти</a></li>--}}
                     </ul>
                     <ul class="header__contacts hedr col-sm-3 hidden-xs">
-                        <li><img src="/images/icons/qa.png" alt=""><a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a></li>
+                        <li>
+                            {{--<img src="/images/icons/qa.png" alt="">--}}
+                            <picture>
+                                <source data-src="/images/icons/qa.webp" srcset="/images/pixel.webp" type="image/webp">
+                                <source data-src="/images/icons/qa.png" srcset="/images/pixel.png" type="image/png">
+                                <img src="/images/pixel.jpg" alt="Sex Shop">
+                            </picture>
+                            <a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="row header__logo-search-wrp">
                     <div class="col-sm-2 col-xs-5">
                         @if(Request::path()!='/')
                             <a href="{{env('APP_URL')}}">
-                                <img src="/images/logo.png" class="header__logo" alt="Главная">
+                                {{--<img src="/images/logo.png" class="header__logo" alt="Главная">--}}
+                                <picture>
+                                    <source srcset="/images/logo.webp" type="image/webp">
+                                    <source srcset="/images/logo.png" type="image/png">
+                                    <img src="/images/logo.png" alt="Главная">
+                                </picture>
                             </a>
                         @else
-                            <img src="/images/logo.png" class="header__logo" alt="Главная">
+                            {{--<img src="/images/logo.png" class="header__logo" alt="Главная">--}}
+                            <picture>
+                                <source srcset="/images/logo.webp" type="image/webp">
+                                <source srcset="/images/logo.png" type="image/png">
+                                <img src="/images/logo.png" alt="Главная" style="width: 100%;">
+                            </picture>
                         @endif
                     </div>
                     <div class="col-sm-4 hidden-xs">
@@ -30,9 +48,33 @@
                     </div>
                     <div class="col-sm-6 hidden-xs">
                         <ul class="header__contacts">
-                            <li><img src="/images/icons/phone.png" alt=""> <a href="tel:0507000197">050 700-01-97</a></li>
-                            <li><img src="/images/icons/phone.png" alt=""> <a href="tel:0958860978">095 886-09-78</a></li>
-                            <li><img src="/images/icons/inst.png" alt=""> shop_sex.com.ua</li>
+                            <li>
+                                {{--<img src="/images/icons/phone.png" alt="">--}}
+                                <picture>
+                                    <source data-src="/images/icons/phone.webp" srcset="/images/pixel.webp" type="image/webp">
+                                    <source data-src="/images/icons/phone.png" srcset="/images/pixel.png" type="image/png">
+                                    <img src="/images/pixel.jpg" alt="phone">
+                                </picture>
+                                <a href="tel:0507000197">050 700-01-97</a>
+                            </li>
+                            <li>
+                                {{--<img src="/images/icons/phone.png" alt="">--}}
+                                <picture>
+                                    <source data-src="/images/icons/phone.webp" srcset="/images/pixel.webp" type="image/webp">
+                                    <source data-src="/images/icons/phone.png" srcset="/images/pixel.png" type="image/png">
+                                    <img src="/images/pixel.jpg" alt="phone">
+                                </picture>
+                                <a href="tel:0958860978">095 886-09-78</a>
+                            </li>
+                            <li>
+                                {{--<img src="/images/icons/inst.png" alt="">--}}
+                                <picture>
+                                    <source data-src="/images/icons/inst.webp" srcset="/images/pixel.webp" type="image/webp">
+                                    <source data-src="/images/icons/inst.png" srcset="/images/pixel.png" type="image/png">
+                                    <img src="/images/pixel.jpg" alt="inst">
+                                </picture>
+                                shop_sex.com.ua
+                            </li>
                         </ul>
                     </div>
                     <div class="visible-xs-block col-xs-5">
@@ -49,13 +91,26 @@
            <div class="header-mobile__wrp-container">
             <div class="hidden-sm hidden-md visible-xs-block col-xs-6">
                     <ul class="header__contacts ask-quen">
-                        <li><img src="/images/icons/qa.png" alt=""><a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a></li>
+                        <li>
+                            {{--<img src="/images/icons/qa.png" alt="">--}}
+                            <picture>
+                                <source data-src="/images/icons/qa.webp" srcset="/images/pixel.webp" type="image/webp">
+                                <source data-src="/images/icons/qa.png" srcset="/images/pixel.png" type="image/png">
+                                <img src="/images/pixel.jpg" alt="inst">
+                            </picture>
+                            <a href="" class="popup-btn"  data-mfp-src="#question-popup">Задать вопрос</a>
+                        </li>
                     </ul>
             </div>
                 <div class="col-sm-2 col-xs-6">
                     <a href="{{env('APP_URL')}}/checkout" class="cart-link">
                         <div class="header__cart">
-                        <img src="/images/icons/cart-main.png" class="header__cart-img" alt="">
+                            {{--<img src="/images/icons/cart-main.png" class="header__cart-img" alt="">--}}
+                            <picture class="header__cart-img">
+                                <source data-src="/images/icons/cart-main.webp" srcset="/images/pixel.webp" type="image/webp">
+                                <source data-src="/images/icons/cart-main.png" srcset="/images/pixel.png" type="image/png">
+                                <img src="/images/pixel.jpg" alt="cart-main" style="width: 100%;">
+                            </picture>
                             <p class="header__cart-title">Корзина</p>
                             @if(isset($cart) && $cart->total_quantity)
                                 <p class="header__cart-sum">{{ number_format($cart->total_price, 2, '.', ' ') }}грн</p>
@@ -74,7 +129,15 @@
             <div class="col-sm-12 hidden-xs">
                 <nav>
                     <ul class="navigation">
-                        <li class="navigation__catalog"><a href="{{env('APP_URL')}}/catalog"><img src="/images/icons/catalog.png" alt=""> Каталог товаров</a></li>
+                        <li class="navigation__catalog"><a href="{{env('APP_URL')}}/catalog">
+                                {{--<img src="/images/icons/catalog.png" alt="">--}}
+                                <picture>
+                                    <source data-src="/images/icons/catalog.webp" srcset="/images/pixel.webp" type="image/webp">
+                                    <source data-src="/images/icons/catalog.png" srcset="/images/pixel.png" type="image/png">
+                                    <img src="/images/pixel.jpg" alt="cart-main" style="width: 100%;">
+                                </picture>
+                                Каталог товаров</a>
+                        </li>
                         @if($isset_new)
                         <li><a href="{{env('APP_URL')}}/catalog/novinki">Новинки</a></li>
                         @endif

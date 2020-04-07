@@ -47,10 +47,10 @@ body{
         position: absolute;
         width: 20px;
         height: 15px;
-        background: url('../images/icons/mask.png') center no-repeat;
         background-size: contain;
         left: 54px;
         top: 3px;
+        background: url('../images/icons/mask.png') center no-repeat;
         @include bp (lg){
             left: 12px;
         }
@@ -66,6 +66,14 @@ body{
         display: inline-block;
         // margin-right: 25%;
     }
+}
+
+@media not all and (min-resolution:.001dpcm){
+  @supports (-webkit-appearance:none) and (stroke-color:transparent){
+    .header__enter-garant:before{
+      background: url('../images/icons/mask.png') center no-repeat;
+    }
+  }
 }
 
 .header__enter-list{
@@ -107,16 +115,23 @@ body{
     position: relative;
     &::after{
         content: '';
-        background: url('../images/icons/search.png') center no-repeat;
         position: absolute;
         width: 15px;
         height: 15px;
         right: 10px;
         top: 7px;
+        background: url('../images/icons/search.png') center no-repeat;
         @include bp (sm){
             top: 16px;
         }
     }
+}
+@media not all and (min-resolution:.001dpcm){
+  @supports (-webkit-appearance:none) and (stroke-color:transparent){
+    .header__search-wrp:after{
+      background: url('../images/icons/search.png') center no-repeat;
+    }
+  }
 }
 
 .header__search{

@@ -1,6 +1,14 @@
 .section-3{
-    background: url('../images/address-bg.png') center no-repeat;
+    background: url(../images/address-bg.png) center no-repeat;
     background-size: cover;
+}
+
+@media not all and (min-resolution:.001dpcm){
+  @supports (-webkit-appearance:none) and (stroke-color:transparent){
+    .section-3{
+      background: url("../images/address-bg.png") center no-repeat;
+    }
+  }
 }
 
 .store-address{

@@ -5,6 +5,20 @@
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
 @endsection
 @section('page_vars')
+    <style>
+        .section-1 .banner picture{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .section-1 .banner picture img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
     @include('public.layouts.microdata.local_business')
     @include('public.layouts.microdata.open_graph', [
      'title' => $settings->meta_title,
@@ -22,7 +36,8 @@
                 @foreach($slideshow as $slide)
                     @if($slide->status)
                         <div>
-                            <div class="banner" style="background: center url('{{ $slide->image->url() }}') no-repeat; background-size: cover;">
+                            <div class="banner">
+                                {!! $slide->image->webp_image('full', ['alt' => $slide->data()->slide_title]) !!}
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-5 col-sm-7 col-xs-8" style="display: none;">
@@ -192,7 +207,12 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="text-section-img">
-                        <img src="/images/sec-logo.jpg" alt="">
+                        {{--<img src="/images/sec-logo.jpg" alt="">--}}
+                        <picture>
+                            <source data-src="/images/sec-logo.webp" srcset="/images/pixel.webp" type="image/webp">
+                            <source data-src="/images/sec-logo.jpg" srcset="/images/pixel.jpeg" type="image/jpeg">
+                            <img src="/images/pixel.jpg" alt="Sex Shop">
+                        </picture>
                     </div>
                 </div>
                 <div class="col-sm-offset-1 col-sm-8">
@@ -213,7 +233,12 @@
             <div class="row">
                 <div class="col-sm-12 feature-map">
                     <div class="feature-map__img">
-                        <img src="/images/feature/1.png" alt="">
+                        {{--<img src="/images/feature/1.png" alt="">--}}
+                        <picture>
+                            <source data-src="/images/feature/1.webp" srcset="/images/pixel.webp" type="image/webp">
+                            <source data-src="/images/feature/1.png" srcset="/images/pixel.png" type="image/png">
+                            <img src="/images/pixel.jpg" alt="Sex Shop">
+                        </picture>
                     </div>
                     <div class="feature-map__text">
                         <p class="feature-map__text-title left">Надежный магазин</p>
@@ -227,13 +252,23 @@
                         <p>Благодаря тому, что из цепочки изготовитель-потребитель исключены все посредники вы можете выбирать дешевый товар. Низкая стоимость не говорит о плохом качестве. Ценообразующими показателями у нас является только качество товара. Каждый отдельный материал протестирован и допущен к изготовлению игрушек и одежды. Вся Украина оценила низкую стоимость, что и повлекло за собой крупное расширение ассортимента, который вы можете увидеть. Интернет магазин исключает дополнительную надбавку стоимости на коммунальные платежи, транспортные расходы и зарплаты работникам обычного магазина. Покупая в sex shop «Интим», вы платите только за приобретенный товар.Благодаря тому, что из цепочки изготовитель-потребитель исключены все посредники вы можете выбирать дешевый товар. Низкая стоимость не говорит о плохом качестве. Ценообразующими показателями у нас является только качество товара. Каждый отдельный материал протестирован и допущен к изготовлению игрушек и одежды. Вся Украина оценила низкую стоимость, что и повлекло за собой крупное расширение ассортимента, который вы можете увидеть. Интернет магазин исключает дополнительную надбавку стоимости на коммунальные платежи, транспортные расходы и зарплаты работникам обычного магазина. Покупая в sex shop «Интим», вы платите только за приобретенный товар.</p>
                     </div>
                     <div class="feature-map__img">
-                        <img src="/images/feature/2.png" alt="">
+                        {{--<img src="/images/feature/2.png" alt="">--}}
+                        <picture>
+                            <source data-src="/images/feature/2.webp" srcset="/images/pixel.webp" type="image/webp">
+                            <source data-src="/images/feature/2.png" srcset="/images/pixel.png" type="image/png">
+                            <img src="/images/pixel.jpg" alt="Sex Shop">
+                        </picture>
                     </div>
                 </div>
 
                 <div class="col-sm-12 feature-map">
                     <div class="feature-map__img">
-                        <img src="/images/feature/3.png" alt="">
+                        {{--<img src="/images/feature/3.png" alt="">--}}
+                        <picture>
+                            <source data-src="/images/feature/3.webp" srcset="/images/pixel.webp" type="image/webp">
+                            <source data-src="/images/feature/3.png" srcset="/images/pixel.png" type="image/png">
+                            <img src="/images/pixel.jpg" alt="Sex Shop">
+                        </picture>
                     </div>
                     <div class="feature-map__text">
                         <p class="feature-map__text-title left">Полная конфиденциальность</p>
@@ -247,7 +282,12 @@
                         <p>От вас зависит только желание удовлетворить свои потребности в половой жизни. Секс шоп предоставляет все необходимое для этого. Пользоваться интимным бельем вполне нормально для мужчины и женщины во всей Украине, поэтому ваш заказ доставят не только в Харьков, но и в любой населенный пункт страны. Улучшите, разнообразьте и украсьте свои достижения в кровати, а мы в этом поможем.</p>
                     </div>
                     <div class="feature-map__img">
-                        <img src="/images/feature/4.png" alt="">
+                        {{--<img src="/images/feature/4.png" alt="">--}}
+                        <picture>
+                            <source data-src="/images/feature/4.webp" srcset="/images/pixel.webp" type="image/webp">
+                            <source data-src="/images/feature/4.png" srcset="/images/pixel.png" type="image/png">
+                            <img src="/images/pixel.jpg" alt="Sex Shop">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -270,7 +310,16 @@
                         <div class="question-popup__container">
                             <p class="question-popup__container-title">К Вам в корзину добавлен: </p>
                             <p class="product-name">{{ $product->name }}</p>
-                            <img class="question-popup__container-img" src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}">
+{{--                            <img class="question-popup__container-img" src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}">--}}
+                            @if($product->image == null)
+                                <picture>
+                                    <source data-src="/uploads/no_image.webp" srcset="/images/pixel.webp" type="image/webp">
+                                    <source data-src="/uploads/no_image.jpg" srcset="/images/pixel.jpg" type="image/jpeg">
+                                    <img src="/images/pixel.jpg" alt="{{ $product->name }}" class="question-popup__container-img">
+                                </picture>
+                            @else
+                                {!! $product->image->webp_image('product_list', ['alt' => $product->name, 'class' => 'question-popup__container-img'], !empty($lazy) ? $lazy : 'static') !!}
+                            @endif
                             <div class="question-popup__container-btns">
                                 <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">Продолжить покупки</button>
                                 <a href="/checkout" class="cart-popup__cart-btn">Перейти в корзину</a>

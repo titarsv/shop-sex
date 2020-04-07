@@ -30,14 +30,14 @@
                     </div>
                     <div class="col-sm-6 hidden-xs">
                         <ul class="header__contacts">
-                            <li><img src="/images/icons/phone.png" alt=""> <a href="tel:0509712569">050 971-25-69</a></li>
+                            <li><img src="/images/icons/phone.png" alt=""> <a href="tel:0507000197">050 700-01-97</a></li>
                             <li><img src="/images/icons/phone.png" alt=""> <a href="tel:0958860978">095 886-09-78</a></li>
                             <li><img src="/images/icons/inst.png" alt=""> shop_sex.com.ua</li>
                         </ul>
                     </div>
                     <div class="visible-xs-block col-xs-5">
                         <ul class="header__contacts">
-                            <li><a href="tel:0509712569">050 971-25-69</a></li>
+                            <li><a href="tel:0507000197">050 700-01-97</a></li>
                             <li><a href="tel:0958860978">095 886-09-78</a></li>
                         </ul>
                     </div>

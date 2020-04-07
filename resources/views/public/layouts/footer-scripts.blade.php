@@ -1,3 +1,4 @@
+<script src="//code.jivosite.com/widget.js" data-jv-id="MRKzy1hzQb" async></script>
 <!-- Optimized loading JS Start -->
 <script>var scr = {"scripts":[
             {"src" : "{{ mix("js/app.js") }}", "async" : false}

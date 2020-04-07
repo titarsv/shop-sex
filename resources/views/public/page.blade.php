@@ -7,6 +7,14 @@
         <meta name="robots" content="{!! $content->robots !!}">
     @endif
 @endsection
+@section('page_vars')
+    @include('public.layouts.microdata.open_graph', [
+     'title' => $content->meta_title,
+     'description' => null,
+     'image' => '/images/forum-bg.jpg',
+     'type' => 'NewsArticle'
+     ])
+@endsection
 
 @section('content')
     <section>

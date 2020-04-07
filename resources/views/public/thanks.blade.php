@@ -1,6 +1,28 @@
 @extends('public.layouts.main')
 @section('meta')
     <title>Спасибо за заказ</title>
+    @if($ecommerce)
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            transactionId: {{ $order->id }},
+            transactionTotal: {{ $order->total_price }},
+            transactionShipping: 0,
+            transactionProducts: [
+                @foreach($order->getProducts() as $i => $product)
+                {{$i > 0 ? ',' : ''}}{
+                id: {{ $product['product']->id }},
+                name: "{{ $product['product']->name }}",
+                sku: "{{ $product['product']->articul }}",
+                category: "{{ $product['product']->category()->name }}",
+                price: {{ $product['price'] }},
+                quantity: {{ $product['quantity'] }}
+                }
+                @endforeach
+            ]
+        });
+    </script>
+    @endif
 @endsection
 @section('content')
     <main id="main-container">

@@ -70,45 +70,28 @@
     </noscript>
     <!-- Load Custom CSS Compiled without JS End -->
 
-    <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "Store",
-        "name": "Интим",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Украина, ул. Пушкинская, 43",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
-            "postalCode": "61000"
-        },
-        "logo": "https://shop-sex.com.ua/images/logo.png",
-        "image": "https://shop-sex.com.ua/images/logo.png",
-        "telePhone": "050-971-25-69",
-        "faxNumber": "057-751-83-45",
-        "url": "https://shop-sex.com.ua",
-        "paymentAccepted": [ "cash", "credit card", "invoice" ],
-        "openingHours": "Mo,Tu,We,Th,Fr 09:00-18:00",
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "49.999068",
-            "longitude": "36.241342"
-        },
-        "priceRange":"$$$"
-    }
-    </script>
+    {{--<script>--}}
+        {{--var _gaq = _gaq || [];--}}
+        {{--_gaq.push(["_setAccount", "UA-57227952-1"]);--}}
+        {{--_gaq.push(["_trackPageview"]);--}}
+        {{--(function() {--}}
+            {{--var ga = document.createElement("script");--}}
+            {{--ga.type = "text/javascript";--}}
+            {{--ga.async = true;--}}
+            {{--ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";--}}
+            {{--var s = document.getElementsByTagName("script")[0];--}}
+            {{--s.parentNode.insertBefore(ga, s);--}}
+        {{--})();--}}
+    {{--</script>--}}
 
-    <script>
-        var _gaq = _gaq || [];
-        _gaq.push(["_setAccount", "UA-57227952-1"]);
-        _gaq.push(["_trackPageview"]);
-        (function() {
-            var ga = document.createElement("script");
-            ga.type = "text/javascript";
-            ga.async = true;
-            ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-M2XBVPW');</script>
+    <!-- End Google Tag Manager -->
+
+    @include('public.layouts.microdata.local_business')
+    @yield('page_vars')
 </head>

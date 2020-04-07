@@ -6,15 +6,11 @@
         @else
             {!! $category->meta_title !!} | Секс-шоп в Харькове, интернет-магазин | Shop-sex.com.ua
         @endif
-        @if(!empty($products) && $products->currentPage() > 1) - Страница {!! $products->currentPage() !!}@endif
+        @if(!empty($products) && $products->currentPage() > 1) - Страница №{!! $products->currentPage() !!}@endif
     </title>
 
+    <meta name="description" content="{{ $category->name }} по лучшим ценам в Харькове, Украине ✓Гарантия анонимности{{ (!empty($products) && $products->currentPage() > 1) ? ' - Страница №'.$products->currentPage() : '' }}">
     @if(empty($products) || $products->currentPage() == 1)
-        @if(empty($category->meta_description))
-        <meta name="description" content="{{ strip_tags($category->description) }}">
-        @else
-        <meta name="description" content="{{ strip_tags($category->meta_description) }}">
-        @endif
         <meta name="keywords" content="{{ $category->meta_keywords or '' }}">
     @endif
 
@@ -30,6 +26,14 @@
     @if(!empty($products) && $products->currentPage() < $products->lastPage())
         <link rel="next" href="{!! $cp->url($products->url($products->currentPage() + 1), $products->currentPage() + 1) !!}">
     @endif
+@endsection
+@section('page_vars')
+    @include('public.layouts.microdata.open_graph', [
+     'title' => $category->name,
+     'description' => null,
+     'image' => !empty($category->imag) ? $category->image->url() : '/images/no_image.jpg',
+     'type' => 'catalog'
+     ])
 @endsection
 
 @section('content')

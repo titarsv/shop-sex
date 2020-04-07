@@ -4,6 +4,14 @@
     <meta name="description" content="{!! $settings->meta_description !!}">
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
 @endsection
+@section('page_vars')
+    @include('public.layouts.microdata.open_graph', [
+     'title' => $settings->meta_title,
+     'description' => $settings->meta_description,
+     'image' => '/images/logo.png',
+     'type' => 'главная'
+     ])
+@endsection
 
 @section('content')
 
@@ -13,14 +21,14 @@
                 @foreach($slideshow as $slide)
                     @if($slide->status)
                         <div>
-                            <div class="banner" style="background: center url({{ $slide->image->url() }}) no-repeat; background-size: cover;">
+                            <div class="banner" style="background: center url('{{ $slide->image->url() }}') no-repeat; background-size: cover;">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md-5 col-sm-7 col-xs-8">
+                                        <div class="col-md-5 col-sm-7 col-xs-8" style="display: none;">
                                             <p class="main-title">{!! $slide->data()->slide_title !!}</p>
-                                            <p class="main-title">{{ $slide->data()->slide_description }}</p>
+                                            <p class="main-title">{!! $slide->data()->slide_description !!}</p>
                                         </div>
-                                        <div class="col-sm-12 col-xs-12">
+                                        <div class="col-sm-12 col-xs-12" style="position: absolute;left: 0;width: 100%;bottom: 7vh;display: flex;justify-content: center;">
                                             <a href="{{ $slide->link }}" class="banner-btn">{{ $slide->data()->button_text }}</a>
                                         </div>
 

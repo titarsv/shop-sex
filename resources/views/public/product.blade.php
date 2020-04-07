@@ -1,23 +1,19 @@
 @extends('public.layouts.main', ['root_category' => $root_category])
 @section('meta')
-    <title>
-        @if(empty($product->meta_title))
-            {!! $product->name !!} купить по выгодной цене
-        @else
-            {!! $product->meta_title !!}
-        @endif
-    </title>
-
-    @if(empty($product->meta_description))
-        <meta name="description" content="Купить {!! $product->name !!}} в Харькове">
-    @else
-        <meta name="description" content="{!! $product->meta_description !!}">
-    @endif
-
+    <title>Купить {!! $product->name !!} | Секс-шоп в Харькове, интернет-магазин | Shop-sex.com.ua</title>
+    <meta name="description" content="{!! $product->name !!} по лучшим ценам в Харькове, Украине ✓Гарантия анонимности">
     <meta name="keywords" content="{!! $product->meta_keywords !!}">
     @if(!empty($product->robots))
         <meta name="robots" content="{!! $product->robots !!}">
     @endif
+@endsection
+@section('page_vars')
+    @include('public.layouts.microdata.open_graph', [
+     'title' => $product->name,
+     'description' => $product->description,
+     'image' => !empty($product->imag) ? $product->image->url() : '/images/no_image.jpg',
+     'type' => 'product'
+     ])
 @endsection
 
 @section('content')

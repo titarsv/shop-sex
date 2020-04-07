@@ -1,6 +1,6 @@
 <footer class="footer">
     <div id="gm" style="height: 450px;"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgqs_0_glakYRIvqjMSYoJIdeBHpV4tE0"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAdZiyAi-wihFqIfVhsaH6TtQXInoNtS4"></script>
     <script type="text/javascript">
         google.maps.event.addDomListener(window, 'load', init);
         function init() {
@@ -72,6 +72,11 @@
                 map: map,
                 // icon: image,
             });
+            var marker11 = new google.maps.Marker({
+                position: new google.maps.LatLng(50.058784, 36.201487),
+                map: map,
+                // icon: image,
+            });
 
 
             var content1 = '<div id="iw-container">' +
@@ -124,6 +129,10 @@
                 '<p class="iw-info">торговое помещение 94/1</p>' +
                 '<img src="/images/addr/addr10.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
+            var content11 = '<div id="iw-container">' +
+                '<p class="iw-title">пр. Людвига Свободы, 43</p>'
+                '<img src="/uploads/addr11.jpg" class="iw-info" style="width: 283px;">' +
+                '</div>';
 
             // A new Info Window is created and set content
             var infowindow1 = new google.maps.InfoWindow({
@@ -168,6 +177,10 @@
                 content: content10,
                 maxWidth: 300
             });
+            var infowindow11 = new google.maps.InfoWindow({
+                content: content11,
+                maxWidth: 300
+            });
 
             // This event expects a click on a marker
             // When this event is fired the Info Window is opened.
@@ -201,6 +214,9 @@
             google.maps.event.addListener(marker10, 'click', function() {
                 infowindow10.open(map,marker10);
             });
+            google.maps.event.addListener(marker11, 'click', function() {
+                infowindow11.open(map,marker11);
+            });
 
             // Event that closes the Info Window with a click on the map
             google.maps.event.addListener(map, 'click', function() {
@@ -214,6 +230,7 @@
                 infowindow8.close();
                 infowindow9.close();
                 infowindow10.close();
+                infowindow11.close();
             });
 
             var mapElement1 = document.getElementById('addr1');
@@ -406,6 +423,25 @@
                 });
             }
 
+            var mapElement11 = document.getElementById('addr11');
+            if(mapElement11 !== null){
+                var map11 = new google.maps.Map(mapElement11, {
+                    zoom: 16,
+                    scrollwheel: true,
+                    center: new google.maps.LatLng(50.058784, 36.201487)
+                });
+                var marker11 = new google.maps.Marker({
+                    position: new google.maps.LatLng(50.058784, 36.201487),
+                    map: map11,
+                });
+                google.maps.event.addListener(marker11, 'click', function() {
+                    infowindow11.open(map11,marker11);
+                });
+                google.maps.event.addListener(map11, 'click', function() {
+                    infowindow11.close();
+                });
+            }
+
             var mapMuzElement = document.getElementById('map');
             if(mapMuzElement !== null){
                 var mapMuz = new google.maps.Map(mapMuzElement, {
@@ -465,11 +501,88 @@
             </div>
             <div class="col-sm-3 col-xs-12">
                 <ul class="footer__contacts">
-                    <li><a href="tel:0509712569" style="color: #fff;">050 971-25-69</a></li>
+                    <li><a href="tel:0507000197" style="color: #fff;">050 700-01-97</a></li>
                     <li><a href="tel:0958860978" style="color: #fff;">095 886-09-78</a></li>
                     <li>shop_sex.com.ua</li>
                 </ul>
             </div>
         </div>
+    </div>
+    <div style="padding: 25px 0 0;text-align: center;">
+        <a href="https://triplefork.it" target="_blank" rel="nofollow" class="triplefork" style="display: flex; align-items: center;justify-content: center;margin: 0 auto;">
+<style type="text/css">
+  .triplefork{width: max-content;color:#fff;text-decoration: none;}
+  .triplefork:hover .st1{fill:#F25733;stroke:#F25733;}
+  .triplefork span{color:#fff;text-decoration: none;font-family: arial, sans-serif;font-size: 12px;fill: none;stroke: none;margin-right: 5px}
+  .triplefork:hover span{color:#fff;text-decoration: none;fill: none;stroke: none;}
+</style>
+<span>Разработка:</span>
+<svg class="triplefork-logo" version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 27 25" style="enable-background:new 0 0 27 25;width: 26px;margin-right: 5px" xml:space="preserve">
+<style type="text/css">
+  .st0{fill:none;stroke:#F25733;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}  
+</style>
+<path class="st0" d="M12.9,10l9.7-4.3c0.5-0.2,0.8-0.3,1-0.2C23.8,5.6,24,5.8,24,6.1c0,0.3-0.1,1.8-0.3,2.1c-0.2,0.3-0.6,0.6-1,0.8
+  l-7.8,3.4v2.4l4.8-2.2c0.4-0.2,0.8-0.3,1-0.2c0.2,0.1,0.3,0.3,0.3,0.6c0,0.3-0.1,1.8-0.3,2.1c-0.2,0.3-0.5,0.5-1,0.7L14.8,18v2.3"></path>
+<path class="st0" d="M23.6,14.6c0,0,0,3.5,0,3.6c0,0.4-0.1,0.6-0.5,0.9c-0.1,0.1-0.2,0.1-0.4,0.2c-2.5,1.4-9.3,4.5-9.5,4.6
+  c-0.4,0.2-0.9,0.1-1.1,0c-0.4-0.2-0.7-0.3-0.9-0.7C10.9,22.7,11,22,11,21.4v-4.5v-2.1v-2.3L3.3,8.8c-0.5-0.2-0.8-0.5-1-0.8
+  C2,7.8,1.9,6.2,1.9,5.9c0-0.3,0.1-0.5,0.3-0.6c0.2-0.1,0.6,0,1,0.2l9.6,4.5"></path>
+<path class="st0" d="M7.5,21.8c-0.3-0.1-4.4-2-4.5-2.2c-0.6-0.4-0.7-0.6-0.7-1.1c0-0.1-0.2-6.2-0.2-6.2"></path>
+<path class="st0" d="M6.7,3.1C6.9,3,12,0.9,12,0.9c0.9-0.2,0.9-0.2,1.7,0c0,0,5.4,2,5.4,2"></path>
+</svg>
+<svg class="triplefork-txt" version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 98 15" style="enable-background:new 0 0 98 15;width: 97px;" xml:space="preserve">
+<style type="text/css">
+  .st1{fill:#fff;stroke:#fff;}
+</style>
+<path class="st1" d="M9,0.4c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.4-0.2,0.5C8.9,1.5,8.7,1.6,8.5,1.6H5.4v8.9c0,0.2-0.1,0.4-0.2,0.5
+  c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.4-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5V1.6H0.7c-0.2,0-0.4-0.1-0.5-0.2C0.1,1.3,0,1.1,0,0.9
+  c0-0.2,0.1-0.4,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2h7.8C8.7,0.2,8.9,0.3,9,0.4z"></path>
+<path class="st1" d="M13.9,3.7c0.3,0.2,0.4,0.3,0.4,0.6c0,0.1,0,0.1,0,0.1c-0.1,0.3-0.3,0.4-0.6,0.4c0,0-0.1,0-0.2,0
+  c-0.4-0.1-0.7-0.1-1-0.1c-0.7,0-1.3,0.2-1.7,0.5c-0.4,0.3-0.6,0.7-0.6,1.2v4.1c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.6,0.2
+  c-0.2,0-0.4-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5V4.2c0-0.2,0.1-0.4,0.2-0.5C9,3.6,9.2,3.5,9.4,3.5c0.5,0,0.7,0.2,0.7,0.7v0.3
+  c0.3-0.3,0.7-0.6,1.1-0.8c0.4-0.2,0.9-0.3,1.4-0.3C13.2,3.4,13.6,3.5,13.9,3.7z"></path>
+<path class="st1" d="M17.4,0.7c0.2,0.2,0.3,0.4,0.3,0.7c0,0.3-0.1,0.5-0.3,0.7c-0.2,0.2-0.4,0.3-0.7,0.3c-0.3,0-0.5-0.1-0.7-0.3
+  c-0.2-0.2-0.3-0.4-0.3-0.7c0-0.3,0.1-0.5,0.3-0.7c0.2-0.2,0.4-0.3,0.7-0.3C17,0.4,17.2,0.5,17.4,0.7z M16.2,3.7
+  c0.1-0.1,0.3-0.2,0.5-0.2c0.2,0,0.4,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5v6.2c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2
+  c-0.2,0-0.4-0.1-0.5-0.2C16,10.9,16,10.7,16,10.5V4.2C16,4,16,3.8,16.2,3.7z"></path>
+<path class="st1" d="M26.3,4c0.6,0.3,1.1,0.8,1.5,1.4c0.4,0.6,0.5,1.3,0.5,2c0,0.7-0.2,1.4-0.5,2c-0.3,0.6-0.8,1.1-1.3,1.4
+  c-0.6,0.3-1.2,0.5-1.9,0.5c-0.6,0-1.1-0.1-1.6-0.3c-0.5-0.2-0.9-0.5-1.2-0.9v3.8c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2
+  c-0.2,0-0.4-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5V7.4c0-0.7,0.2-1.4,0.5-2c0.4-0.6,0.8-1.1,1.4-1.4c0.6-0.3,1.3-0.5,2-0.5
+  C25,3.5,25.7,3.6,26.3,4z M25.6,9.6c0.4-0.2,0.7-0.5,0.9-0.9c0.2-0.4,0.3-0.8,0.3-1.3S26.8,6.4,26.5,6S26,5.3,25.6,5.1
+  c-0.4-0.2-0.8-0.3-1.3-0.3c-0.5,0-0.9,0.1-1.3,0.3C22.6,5.3,22.2,5.6,22,6c-0.2,0.4-0.3,0.9-0.3,1.3c0,0.5,0.1,0.9,0.3,1.3
+  c0.2,0.4,0.5,0.7,0.9,0.9c0.4,0.2,0.8,0.3,1.3,0.3C24.8,10,25.2,9.9,25.6,9.6z"></path>
+<path class="st1" d="M30.4,0.4c0.1-0.1,0.3-0.2,0.5-0.2c0.2,0,0.4,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5v7.7c0,0.3,0.1,0.6,0.2,0.9
+  c0.1,0.2,0.3,0.3,0.5,0.3h0.4c0.2,0,0.4,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.4-0.3,0.5c-0.2,0.1-0.4,0.2-0.7,0.2h0
+  c-0.4,0-0.8-0.1-1.1-0.3c-0.3-0.2-0.6-0.5-0.8-0.9c-0.2-0.4-0.3-0.8-0.3-1.3V0.9C30.2,0.7,30.3,0.6,30.4,0.4z"></path>
+<path class="st1" d="M42.6,7.7c-0.1,0.1-0.3,0.2-0.5,0.2h-5.6c0.1,0.7,0.4,1.2,0.9,1.6C38,9.8,38.6,10,39.3,10
+  c0.3,0,0.6-0.1,0.9-0.2c0.3-0.1,0.6-0.2,0.8-0.4c0.1-0.1,0.3-0.2,0.5-0.2c0.2,0,0.3,0,0.4,0.1c0.2,0.1,0.3,0.3,0.3,0.5
+  c0,0.2-0.1,0.3-0.2,0.4c-0.3,0.3-0.7,0.5-1.2,0.6c-0.5,0.2-1,0.2-1.4,0.2c-0.8,0-1.5-0.2-2.2-0.5c-0.6-0.3-1.1-0.8-1.5-1.4
+  c-0.4-0.6-0.5-1.3-0.5-2c0-0.7,0.2-1.4,0.5-2C36,4.8,36.5,4.3,37.1,4c0.6-0.3,1.3-0.5,2-0.5c0.8,0,1.4,0.2,1.9,0.5
+  c0.5,0.3,1,0.8,1.3,1.3c0.3,0.6,0.4,1.2,0.4,2C42.8,7.4,42.7,7.6,42.6,7.7z M37.4,5.2c-0.4,0.4-0.7,0.9-0.8,1.5h4.9
+  c-0.1-0.6-0.3-1.1-0.7-1.5c-0.4-0.4-0.9-0.6-1.6-0.6C38.4,4.7,37.8,4.9,37.4,5.2z"></path>
+<path class="st1" d="M51.2,5.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2h-4.2v4.1
+  c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.4-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5V1c0-0.2,0.1-0.4,0.2-0.5
+  c0.1-0.1,0.3-0.2,0.5-0.2h6.6c0.2,0,0.4,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2h-5.9
+  V5h4.2C50.9,5,51.1,5.1,51.2,5.2z"></path>
+<path class="st1" d="M60.6,4c0.6,0.3,1.1,0.8,1.4,1.4c0.3,0.6,0.5,1.3,0.5,2c0,0.7-0.2,1.4-0.5,2c-0.3,0.6-0.8,1-1.4,1.4
+  c-0.6,0.3-1.3,0.5-2.1,0.5c-0.8,0-1.5-0.2-2.1-0.5c-0.6-0.3-1.1-0.8-1.4-1.4c-0.3-0.6-0.5-1.3-0.5-2c0-0.8,0.2-1.4,0.5-2
+  c0.3-0.6,0.8-1,1.4-1.4c0.6-0.3,1.3-0.5,2.1-0.5C59.3,3.5,60,3.6,60.6,4z M57.2,5.1c-0.4,0.2-0.7,0.5-0.9,0.9
+  c-0.2,0.4-0.3,0.9-0.3,1.4c0,0.5,0.1,1,0.3,1.4c0.2,0.4,0.5,0.7,0.9,0.9C57.6,9.9,58,10,58.5,10c0.5,0,0.9-0.1,1.3-0.3
+  c0.4-0.2,0.7-0.5,0.9-0.9c0.2-0.4,0.3-0.8,0.3-1.4S61,6.4,60.8,6c-0.2-0.4-0.5-0.7-0.9-0.9c-0.4-0.2-0.8-0.3-1.3-0.3
+  C58,4.7,57.6,4.8,57.2,5.1z"></path>
+<path class="st1" d="M69.9,3.7c0.3,0.2,0.4,0.3,0.4,0.6c0,0.1,0,0.1,0,0.1c-0.1,0.3-0.3,0.4-0.6,0.4c0,0-0.1,0-0.2,0
+  c-0.4-0.1-0.7-0.1-1-0.1c-0.7,0-1.3,0.2-1.7,0.5c-0.4,0.3-0.6,0.7-0.6,1.2v4.1c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.6,0.2
+  c-0.2,0-0.4-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5V4.2c0-0.2,0.1-0.4,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2c0.5,0,0.7,0.2,0.7,0.7v0.3
+  c0.3-0.3,0.7-0.6,1.1-0.8c0.4-0.2,0.9-0.3,1.4-0.3C69.2,3.4,69.6,3.5,69.9,3.7z"></path>
+<path class="st1" d="M78.1,10.6c0,0.2-0.1,0.4-0.3,0.5c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.4-0.1-0.5-0.3l-2.8-3.3l-0.7,0.6v2.2
+  c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.4-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5V0.9c0-0.2,0.1-0.4,0.2-0.5
+  c0.1-0.1,0.3-0.2,0.5-0.2c0.2,0,0.4,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5v5.7l3.6-3c0.1-0.1,0.3-0.2,0.5-0.2c0.2,0,0.4,0.1,0.5,0.2
+  C78,3.7,78,3.9,78,4.1c0,0.2-0.1,0.4-0.2,0.5l-2.7,2.3l2.8,3.3C78,10.3,78.1,10.4,78.1,10.6z"></path>
+<path class="st1" d="M84.9,0.4c0.1-0.1,0.3-0.2,0.5-0.2c0.2,0,0.4,0.1,0.6,0.2c0.1,0.1,0.2,0.3,0.2,0.5v9.5c0,0.2-0.1,0.4-0.2,0.5
+  c-0.1,0.1-0.3,0.2-0.6,0.2c-0.2,0-0.4-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5V1C84.6,0.8,84.7,0.6,84.9,0.4z"></path>
+<path class="st1" d="M96.9,0.4c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2h-3.1v8.9
+  c0,0.2-0.1,0.4-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.4-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5V1.6h-3.2c-0.2,0-0.4-0.1-0.5-0.2
+  c-0.1-0.1-0.2-0.3-0.2-0.5c0-0.2,0.1-0.4,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2h7.8C96.6,0.2,96.8,0.3,96.9,0.4z"></path>
+</svg>
+</a>
     </div>
 </footer>

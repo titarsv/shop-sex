@@ -1,7 +1,7 @@
 @extends('public.layouts.main', ['root_category' => $root_category])
 @section('meta')
-    <title>Купить {!! $product->name !!} | Секс-шоп в Харькове, интернет-магазин | Shop-sex.com.ua</title>
-    <meta name="description" content="{!! $product->name !!} по лучшим ценам в Харькове, Украине ✓Гарантия анонимности">
+    <title>Купить {{ $product->name }} | Секс-шоп в Харькове, интернет-магазин | Shop-sex.com.ua</title>
+    <meta name="description" content="{{ $product->name }} по лучшим ценам в Харькове, Украине ✓Гарантия анонимности">
     <meta name="keywords" content="{!! $product->meta_keywords !!}">
     @if(!empty($product->robots))
         <meta name="robots" content="{!! $product->robots !!}">
@@ -29,7 +29,8 @@
                             @if(is_object($image))
                                 <div>
                                     <div class="product-slider__item">
-                                        <img src="{{ $image->url('product') }}" alt="{{ $product->name }}">
+                                        {{--<img src="{{ $image->url('product') }}" alt="{{ $product->name }}">--}}
+                                        {!! $image->webp_image('product', ['alt' => $product->name], 'slider') !!}
                                     </div>
                                 </div>
                             @endif
@@ -37,9 +38,15 @@
                             <div>
                                 <div class="product-slider__item">
                                     @if(empty($product->image))
-                                        <img src="/uploads/no_image.jpg" alt="{{ $product->name }}">
+                                        {{--<img src="/uploads/no_image.jpg" alt="{{ $product->name }}">--}}
+                                        <picture>
+                                            <source data-lazy="/uploads/no_image.webp" srcset="/images/pixel.webp" type="image/webp">
+                                            <source data-lazy="/uploads/no_image.jpg" srcset="/images/pixel.jpg" type="image/jpeg">
+                                            <img src="/images/pixel.jpg" alt="{{ $product->name }}">
+                                        </picture>
                                     @else
-                                        <img src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">
+                                        {{--<img src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">--}}
+                                        {!! $product->image->webp_image('product', ['alt' => $product->name], 'slider') !!}
                                     @endif
                                 </div>
                             </div>
@@ -51,7 +58,8 @@
                             @if(is_object($image))
                                 <div>
                                     <div class="product-slider__item nav">
-                                        <img src="{{ $image->url('product') }}" alt="{{ $product->name }}">
+                                        {{--<img src="{{ $image->url('product') }}" alt="{{ $product->name }}">--}}
+                                        {!! $image->webp_image('product', ['alt' => $product->name], 'slider') !!}
                                     </div>
                                 </div>
                             @endif
@@ -59,9 +67,15 @@
                             <div>
                                 <div class="product-slider__item nav">
                                     @if(empty($product->image))
-                                        <img src="/uploads/no_image.jpg" alt="{{ $product->name }}">
+                                        {{--<img src="/uploads/no_image.jpg" alt="{{ $product->name }}">--}}
+                                        <picture>
+                                            <source data-lazy="/uploads/no_image.webp" srcset="/images/pixel.webp" type="image/webp">
+                                            <source data-lazy="/uploads/no_image.jpg" srcset="/images/pixel.jpg" type="image/jpeg">
+                                            <img src="/images/pixel.jpg" alt="{{ $product->name }}">
+                                        </picture>
                                     @else
-                                        <img src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">
+                                        {{--<img src="{{ $product->image->url('product') }}" alt="{{ $product->name }}">--}}
+                                        {!! $product->image->webp_image('product', ['alt' => $product->name], 'slider') !!}
                                     @endif
                                 </div>
                             </div>

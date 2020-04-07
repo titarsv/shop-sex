@@ -15,7 +15,8 @@
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="category-item">
                                 <a href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}" class="category-item__img">
-                                    <img src="{{ $category->image->url() }}" alt="{{ $category->name }}">
+                                    {{--<img src="{{ $category->image->url() }}" alt="{{ $category->name }}">--}}
+                                    {!! $category->image->webp_image([200, 200], ['alt' => $category->name], 'static') !!}
                                 </a>
                                 <a href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}" class="category-item__title">{{ $category->name }}</a>
                                 <div class="category-item__btn">

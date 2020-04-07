@@ -7,6 +7,10 @@ use Intervention\Image\ImageManagerStatic as Img;
 
 class Image extends Model
 {
+	protected $files_path = '/uploads/';
+	protected $max_width = 1920;
+	protected $max_height = 1920;
+
     public function blog()
     {
         return $this->hasOne('App\Models\Blog', 'image_id', 'id');
@@ -95,46 +99,79 @@ class Image extends Model
             ->update(['sizes' => json_encode($sizes)]);
     }
 
-    /**
-     * Получение нужного размера изображения
-     * @param int|array|object $image id, массив, объект изображения
-     * @param string|array $size Размер изображения ('full', 'product', 'product_list', 'blog', [100, 100])
-     * @return string Абсолютный путь к изображению
-     */
-    public function get_file_url($image, $size = 'full')
-    {
-        if(is_object($image))
-            $image = $image->toArray();
-        elseif(is_int($image))
-            $image = $this->where('id', $image)
-                ->take(1)
-                ->get()
-                ->first()
-                ->toArray();
+	/**
+	 * Получение нужного размера изображения
+	 * @param int|array|object $image id, массив, объект изображения
+	 * @param string|array $size Размер изображения ('full', 'product', 'product_list', 'blog', [100, 100])
+	 * @return string Абсолютный путь к изображению
+	 */
+	public function get_file_url($image, $size = 'full')
+	{
+		if(is_object($image))
+			$image = $image->toArray();
+		elseif(is_int($image))
+			$image = $this->where('id', $image)
+			              ->take(1)
+			              ->get()
+			              ->first()
+			              ->toArray();
 
-        if($size == 'full'){
-            return '/uploads/' . $image['href'];
-        }
+		if($size == 'full'){
+			return $this->files_path . $image['href'];
+		}
 
-        $img_sizes = json_decode($image['sizes']);
+		$img_sizes = json_decode($image['sizes']);
 
-        if(is_array($size)){
-            foreach ($img_sizes as $img_size){
-                if($img_size['w'] == $size[0] && $img_size->h == $size[1])
-                    return '/uploads/' . $img_size->href;
-            }
-            foreach ($img_sizes as $img_size){
-                if($img_size['w'] >= $size[0] && $img_size->h >= $size[1])
-                    return '/uploads/' . $img_size->href;
-            }
-        }else{
-            if(isset($img_sizes->$size)){
-                return '/uploads/' . $img_sizes->$size->href;
-            }
-        }
+		if(is_array($size)){
+			foreach ($img_sizes as $img_size){
+				if($img_size->w == $size[0] && $img_size->h == $size[1])
+					return $this->files_path . $img_size->href;
+			}
+			return $this->create_size($image, implode('_', $size), ['width' => $size[0], 'height' => $size[1]]);
+//            foreach ($img_sizes as $img_size){
+//                if($img_size->w >= $size[0] && $img_size->h >= $size[1])
+//                    return $this->files_path . $img_size->href;
+//            }
+		}else{
+			if(isset($img_sizes->$size)){
+				return $this->files_path . $img_sizes->$size->href;
+			}
+			$image_sizes = config("image.sizes");
+			if(isset($image_sizes[$size])){
+				return $this->create_size($image, $size, $image_sizes[$size]);
+			}
+		}
 
-        return '/uploads/' . $image['href'];
-    }
+		return $this->files_path . $image['href'];
+	}
+
+	/**
+	 * Создание недостающей миниатюры
+	 *
+	 * @param $image
+	 * @param $name
+	 * @param $sizes
+	 * @return string
+	 */
+	public function create_size($image, $name, $sizes){
+		$img_sizes = json_decode($image['sizes'], true);
+		$new_file = $this->update_image_size($image['href'], $sizes['width'], $sizes['height'], 'contain');
+
+		if(!empty($new_file)) {
+			$href = $new_file;
+		}else{
+			$href = $image['href'];
+		}
+
+		$img_sizes[$name]['href'] = $href;
+		$img_sizes[$name]['w'] = $sizes['width'];
+		$img_sizes[$name]['h'] = $sizes['height'];
+		$this->where('id', $image['id'])
+		     ->take(1)
+		     ->get()
+		     ->first()->update_images_sizes($image['id'], $img_sizes);
+		return $this->files_path . $href;
+	}
 
     /**
      * Получение нужного размера текущего изображения
@@ -145,6 +182,176 @@ class Image extends Model
     {
         return $this->get_file_url($this, $size);
     }
+
+	/**
+	 * Вывод оптимизированного изображения
+	 *
+	 * @param string $size
+	 * @param array $attributes
+	 * @param bool $lazy
+	 * @return string
+	 * @throws \Throwable
+	 */
+	public function webp_image($size = 'full', $attributes = [], $lazy = false){
+		$image_data = $this->toArray();
+		if(is_array($size)){
+			$size = $this->find_size_name($image_data, $size);
+		}
+		$data = $this->find_by_size($image_data, $size);
+
+		if(empty($data)){
+			$size = 'full';
+			$data = $this->find_by_size($image_data, $size);
+			if(empty($data)){
+				$sizes = json_decode($image_data['sizes']);
+				if(empty($sizes)){
+					$sizes = (object)[];
+				}
+				$path = public_path($this->files_path) . $image_data['href'];
+				if(is_file($path)){
+					$imagesizes = getimagesize($path);
+					if($imagesizes[0]*$imagesizes[1] > $this->max_width*$this->max_height){
+						$sizes->full = (object)[
+							'w' => $imagesizes[0],
+							'h' => $imagesizes[1],
+							'href' => $image_data['href']
+						];
+					}elseif($imagesizes[0] > $this->max_width || $imagesizes[1] > $this->max_height){
+						$name = $this->update_image_size($image_data['href'], $this->max_width, $this->max_height,'contain');
+						if(is_file(public_path($this->files_path) . $name)) {
+							$imagesizes = getimagesize(public_path($this->files_path) . $name);
+						}
+						$sizes->full = (object)[
+							'w' => $imagesizes[0],
+							'h' => $imagesizes[1],
+							'href' => $name
+						];
+					}else{
+						$sizes->full = (object)[
+							'w' => $imagesizes[0],
+							'h' => $imagesizes[1],
+							'href' => $image_data['href']
+						];
+					}
+				}
+				$this->update_images_sizes($this->id, $sizes);
+				if(isset($sizes->full)){
+					$data = $sizes->full;
+				}
+			}
+		}
+
+		if(!empty($data)){
+			$original = $data->href;
+			if(isset($data->webp) && is_file(public_path($this->files_path) . $data->webp)){
+				$webp = $data->webp;
+			}elseif(isset($data->w) && isset($data->h) && ($data->w <= $this->max_width || $data->h <= $this->max_height)){
+				$webp = $this->createWebp($size);
+			}else{
+				if(isset($data->w) && isset($data->h) && ($data->w > $this->max_width || $data->h > $this->max_height) && is_file(public_path($this->files_path) . $original) && !is_file(public_path('/big_images/') . $original)){
+					copy(public_path($this->files_path) . $original, public_path('/big_images/') . $original);
+				}
+				$webp = '';
+			}
+
+			$mime = strtolower(pathinfo($original, PATHINFO_EXTENSION ));
+			if($mime == 'jpg'){
+				$mime = 'jpeg';
+			}
+
+			return view('public.layouts.webp')
+				->with('original', $original)
+				->with('original_mime', $mime)
+				->with('webp', $webp)
+				->with('attributes', $attributes)
+				->with('lazy', $lazy)
+				->render();
+		}
+
+		return view('public.layouts.webp')
+			->with('attributes', $attributes)
+			->render();
+	}
+
+	/**
+	 * Создание webp-изображения
+	 *
+	 * @param $size
+	 *
+	 * @return mixed|null
+	 */
+	public function createWebp($size){
+		$image_data = $this->toArray();
+		$data = $this->find_by_size($image_data, $size);
+		$sizes = json_decode($image_data['sizes']);
+
+		if(!empty($data)){
+			$filepath = public_path() . $this->files_path . $data->href;
+			$extension = strtolower(pathinfo($data->href, PATHINFO_EXTENSION ));
+			$webp_name = str_replace('.'.$extension, '_'.$extension.'.webp', $data->href);
+			$webp_path = public_path() . $this->files_path . $webp_name;
+			if(is_file($filepath) && function_exists('imagewebp')){
+				$image = $this->imagecreatefromfile($filepath);
+				imagepalettetotruecolor($image);
+				imagealphablending($image, true);
+				imagesavealpha($image, true);
+				imagewebp($image, $webp_path);
+				imagedestroy($image);
+
+				$sizes->$size->webp = $webp_name;
+				$this->update_images_sizes($this->id, $sizes);
+				return $webp_name;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Поиск названия размера миниатюры
+	 *
+	 * @param $image_data
+	 * @param array $size
+	 *
+	 * @return int|null|string
+	 */
+	public function find_size_name($image_data, $size = [0, 0]){
+		$img_sizes = json_decode($image_data['sizes'], true);
+
+		foreach ($img_sizes as $name => $img_size){
+			if($img_size['w'] == $size[0] && $img_size['h'] == $size[1])
+				return $name;
+		}
+		$size_name = implode('_', $size);
+		$href = $this->create_size($image_data, $size_name, ['width' => $size[0], 'height' => $size[1]]);
+		return $size_name;
+	}
+
+	/**
+	 * Поиск миниатюры необходимого размера
+	 *
+	 * @param $image_data
+	 * @param $size
+	 *
+	 * @return null
+	 */
+	public function find_by_size($image_data, $size){
+		$img_sizes = json_decode($image_data['sizes']);
+		$data = null;
+
+		if(is_array($size)){
+			$name = $this->find_size_name($image_data, $size);
+			if(!empty($name)){
+				return $img_sizes->$name;
+			}
+		}else{
+			if(isset($img_sizes->$size)){
+				$data = $img_sizes->$size;
+			}
+		}
+
+		return $data;
+	}
 
     /**
      * Используется ли изображение
@@ -360,7 +567,10 @@ class Image extends Model
         $name_parts = explode('.', $href);
         $extension = end($name_parts);
 
-        $path = public_path('uploads/' . $href);
+        $path = str_replace('\\', '/', public_path('uploads/' . $href));
+        if(!is_file($path)){
+        	return null;
+        }
         $new_name = '';
 
         $image = Img::make($path);

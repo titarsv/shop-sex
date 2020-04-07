@@ -62,7 +62,8 @@
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="category-item">
                                 <a href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}" class="category-item__img">
-                                    <img src="{{ $category->image->url() }}" alt="{{ $category->name }}">
+                                    {{--<img src="{{ $category->image->url() }}" alt="{{ $category->name }}">--}}
+                                    {!! $category->image->webp_image([200, 200], ['alt' => $category->name], 'static') !!}
                                 </a>
                                 <a href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}" class="category-item__title">{{ $category->name }}</a>
                                 <div class="category-item__btn">
@@ -153,7 +154,8 @@
                     @foreach($shops as $shop)
                     <div class="col-sm-4 col-xs-6">
                         <div class="store-address">
-                            <img src="{!! $shop->image->url() !!}" alt="{{ $shop->slide_title }}">
+                            {{--<img src="{!! $shop->image->url() !!}" alt="{{ $shop->slide_title }}">--}}
+                            {!! $shop->image->webp_image([360, 240], ['alt' => $shop->slide_title], 'static') !!}
                             <p>{!! $shop->slide_title !!}</p>
                         </div>
                     </div>
@@ -174,7 +176,7 @@
                         @foreach($bestsellers as $bestseller)
                         <div class="col-md-2 col-sm-4 col-xs-4">
                             <div class="product-item top">
-                                @include('public.layouts.product', ['product' => $bestseller])
+                                @include('public.layouts.product', ['product' => $bestseller, 'lazy' => 'slider'])
                             </div>
                         </div>
                         @endforeach

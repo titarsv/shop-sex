@@ -381,28 +381,39 @@ class Image extends Model
         return false;
     }
 
-    /**
-     * Динамическое создание объекта изображения из файла
-     * @param $filename
-     * @return resource
-     */
-    public function imagecreatefromfile($filename)
-    {
-        switch (strtolower(pathinfo($filename, PATHINFO_EXTENSION ))) {
-            case 'jpeg':
-            case 'jpg':
-                return imagecreatefromjpeg($filename);
-                break;
+	/**
+	 * Динамическое создание объекта изображения из файла
+	 * @param $filename
+	 * @return resource
+	 */
+	public function imagecreatefromfile($filename)
+	{
+		$mime = mime_content_type($filename);
+		if($mime == 'image/webp'){
+			return imagecreatefromwebp($filename);
+		}elseif($mime == 'image/jpeg'){
+			return imagecreatefromjpeg($filename);
+		}elseif($mime == 'image/png'){
+			return imagecreatefrompng($filename);
+		}elseif($mime == 'image/gif'){
+			return imagecreatefromgif($filename);
+		}
 
-            case 'png':
-                return imagecreatefrompng($filename);
-                break;
+		switch (strtolower(pathinfo($filename, PATHINFO_EXTENSION ))) {
+			case 'jpeg':
+			case 'jpg':
+				return imagecreatefromjpeg($filename);
+				break;
 
-            case 'gif':
-                return imagecreatefromgif($filename);
-                break;
-        }
-    }
+			case 'png':
+				return imagecreatefrompng($filename);
+				break;
+
+			case 'gif':
+				return imagecreatefromgif($filename);
+				break;
+		}
+	}
 
     public function create_thumbnail($filepath, $overlays)
     {

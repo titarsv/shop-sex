@@ -31,7 +31,7 @@
     @include('public.layouts.microdata.open_graph', [
      'title' => $category->name,
      'description' => null,
-     'image' => !empty($category->imag) ? $category->image->url() : '/images/no_image.jpg',
+     'image' => !empty($category->image) ? $category->image->url() : '/images/no_image.jpg',
      'type' => 'catalog'
      ])
 @endsection

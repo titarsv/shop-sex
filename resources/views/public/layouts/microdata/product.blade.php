@@ -26,7 +26,7 @@
     "priceCurrency": "UAH",
     "price": "{{ $product->price }}",
     "priceValidUntil": "{{ date('Y-m-d', time() + 86400 * 30) }}",
-    "itemCondition": "http://schema.org/UsedCondition",
+    "itemCondition": "http://schema.org/NewCondition",
     "availability": "http://schema.org/InStock",
     "url": "{{ env('APP_URL')}}/product/{{ $product->url_alias }}",
     "seller": {

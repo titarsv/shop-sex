@@ -29,7 +29,7 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right control-label">Название</label>
                                 <div class="form-element col-sm-10">
-                                    <input type="text" data-translit="input" class="form-control" name="name" value="{!! old('name') ? old('name') : $category->name !!}" />
+                                    <input type="text" class="form-control" name="name" value="{!! old('name') ? old('name') : $category->name !!}" />
                                     @if($errors->has('name'))
                                         <p class="warning" role="alert">{!! $errors->first('name',':message') !!}</p>
                                     @endif
@@ -145,7 +145,7 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right control-label">Alias</label>
                                 <div class="form-element col-sm-10">
-                                    <input type="text" data-translit="output" class="form-control" name="url_alias" value="{!! old('url_alias') ? old('url_alias') : $category->url_alias !!}" />
+                                    <input type="text" class="form-control" name="url_alias" value="{!! old('url_alias') ? old('url_alias') : $category->url_alias !!}" />
                                     @if($errors->has('url_alias'))
                                         <p class="warning" role="alert">{!! $errors->first('url_alias',':message') !!}</p>
                                     @endif

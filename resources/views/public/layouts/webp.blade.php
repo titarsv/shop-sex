@@ -1,5 +1,6 @@
 @if(!empty($webp))
 <picture>
+    @if(empty($lazy) || $lazy != 'slider')
     <source
     @if($lazy == 'slider')
         data-lazy="/uploads/{{ $webp }}"
@@ -9,6 +10,8 @@
         srcset="/uploads/{{ $webp }}"
     @endif
     type="image/webp">
+    @endif
+    @if(empty($lazy) || $lazy != 'slider')
     <source
     @if($lazy == 'slider')
         data-lazy="/uploads/{{ $original }}"
@@ -18,6 +21,7 @@
         srcset="/uploads/{{ $original }}"
     @endif
     type="image/{{ $original_mime }}">
+    @endif
     <img
     @if($lazy == 'slider')
         data-lazy="/uploads/{{ $original }}"

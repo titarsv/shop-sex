@@ -8,7 +8,7 @@
  */
 
 if (substr($_SERVER['SERVER_NAME'], 0, 4) === 'www.') {
-	header('Location: https://' . substr($_SERVER['SERVER_NAME'], 4)); exit();
+	header('Location: https://' . substr($_SERVER['SERVER_NAME'], 4), true, 301); exit();
 }
 
 if (urldecode($_SERVER['REQUEST_URI']) != strtolower(urldecode($_SERVER['REQUEST_URI'])) ) {

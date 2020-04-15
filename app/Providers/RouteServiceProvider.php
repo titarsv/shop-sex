@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Models\Redirect;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes(Router $router)
     {
+	    $redirect = Redirect::where('old_url', '/'.request()->path())->first();
+	    if(!empty($redirect)){
+		    redirect($redirect->new_url)->send();
+	    }
+
         $router->group([
             'namespace' => $this->namespace, 'middleware' => 'web',
         ], function ($router) {

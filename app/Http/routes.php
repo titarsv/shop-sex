@@ -217,6 +217,14 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
         Route::get('/delete/{id}', 'SeoController@destroy');
         Route::get('/edit/{id}', 'SeoController@edit');
         Route::post('/edit/{id}', 'SeoController@update');
+		Route::group(['prefix' => 'redirects'], function(){
+		    Route::any('/', 'SeoController@redirects');
+		    Route::get('/create', 'SeoController@createRedirect');
+		    Route::post('/create', 'SeoController@storeRedirect');
+		    Route::get('/delete/{id}', 'SeoController@destroyRedirect');
+		    Route::get('/edit/{id}', 'SeoController@editRedirect');
+		    Route::post('/edit/{id}', 'SeoController@updateRedirect');
+	    });
     });
 
 	Route::post('/group_action','ProductsController@groupAction');

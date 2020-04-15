@@ -51,7 +51,11 @@
             <li><a href="/admin/cacheflush"><i class="fa fa-circle-thin" aria-hidden="true"></i>Очистить кэш</a></li>
         </ul>
     </li>
-    <li role="presentation">
-        <a href="/admin/seo/list"><i class="fa fa-wrench" aria-hidden="true"></i>SEO</a>
+	<li role="presentation">
+        <p data-toggle="collapse" data-target="#seo-collapse" class="nav-collapse"><i class="fa fa-line-chart" aria-hidden="true"></i>Продвижение</p>
+        <ul id="seo-collapse" class="collapse nav nav-pills nav-stacked nav-collapse">
+            <li><a href="/admin/seo/list"><i class="fa fa-circle-thin" aria-hidden="true"></i>Метатеги</a></li>
+            <li><a href="/admin/seo/redirects"><i class="fa fa-circle-thin" aria-hidden="true"></i>Редиректы</a></li>
+        </ul>
     </li>
 </ul>

@@ -55,7 +55,7 @@ class RouteServiceProvider extends ServiceProvider
     {
 	    $redirect = Redirect::where('old_url', '/'.request()->path())->first();
 	    if(!empty($redirect)){
-		    redirect($redirect->new_url)->send();
+		    redirect($redirect->new_url, 301)->send();
 	    }
 
         $router->group([

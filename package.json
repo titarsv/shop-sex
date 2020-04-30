@@ -17,7 +17,7 @@
     "chosen-js": "^1.6.2",
     "cross-env": "^5.1",
     "html-webpack-plugin": "^3.2.0",
-    "jquery": "^3.2",
+    "jquery": "^3.5",
     "jquery.maskedinput": "^1.4.1",
     "jscrollpane": "^2.0.22",
     "laravel-mix": "^2.0",

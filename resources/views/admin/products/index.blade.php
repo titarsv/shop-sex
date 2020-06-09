@@ -22,6 +22,24 @@
         </div>
     @endif
 
+    <form action="products" method="post" id="settings-form">
+        {!! csrf_field() !!}
+        <div class="settings row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <label for="search" class="input-group-addon">Поиск:</label>
+                    <input type="text" id="search" name="search" placeholder="Введите текст..." class="form-control input-sm" value="{{ isset($current_search) ? $current_search : '' }}" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+    </form>
+
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading">

@@ -218,7 +218,7 @@
                     data.percent = $('#price_percent').val();
                 }
                 $.post('/admin/group_action', data, function(response){
-                    // location = location;
+                    location = location;
                 });
             });
         });

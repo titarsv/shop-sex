@@ -41,17 +41,17 @@ class ModuleslideshowController extends Controller
     public function save()
     {
         $rules = [
-            'slide.*.slide_title'           => 'required',
-            'slide.*.slide_description'     => 'required',
+//            'slide.*.slide_title'           => 'required',
+//            'slide.*.slide_description'     => 'required',
             'slide.*.button_text'           => 'required|max:30',
 //            'slide.*.text.*'                => 'max:30'
         ];
         $messages = [
-            'slide.*.slide_title.required'           => 'Обязательно заполнить!',
+//            'slide.*.slide_title.required'           => 'Обязательно заполнить!',
 //            'slide.*.slide_title.max'                => 'Не больше 30 символов!',
             'slide.*.button_text.max'                => 'Не больше 30 символов!',
             'slide.*.button_text.required'           => 'Обязательно заполнить!',
-            'slide.*.slide_description.required'     => 'Обязательно заполнить!',
+//            'slide.*.slide_description.required'     => 'Обязательно заполнить!',
 //            'slide.*.slide_description.max'          => 'Не больше 30 символов!',
 //            'slide.*.text.*.max'                     => 'Не больше 30 символов!',
         ];

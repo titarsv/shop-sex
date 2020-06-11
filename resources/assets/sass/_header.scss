@@ -1,17 +1,17 @@
 body{
     font-family: 'Roboto', sans-serif;
-    padding-top: 120px;
+    padding-top: 152px;
     @include bp(lg){
-        padding-top: 110px;
+        padding-top: 130px;
     }
     @include bp(md){
-         padding-top: 121px;
+         padding-top: 150px;
     }
     @include bp(sm){
-        padding-top: 194px;
+        padding-top: 235px;
     }
     @include bp(xs){
-        padding-top: 186px;
+        padding-top: 210px;
     }
 }
 

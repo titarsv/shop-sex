@@ -23,6 +23,9 @@ body{
     width: 100%;
     top: 0;
     margin-top: -20px;
+    @include bp(md){
+        margin-top: 0;
+    }
     @include bp (sm){
         padding: 10px 0;
     }
@@ -35,6 +38,9 @@ body{
     text-align: right;
     position: relative;
     bottom: -30px;
+    @include bp(md){
+        bottom: auto;
+    }
     @include bp (sm){
         text-align: center;
         display: flex;
@@ -186,6 +192,9 @@ body{
     justify-content: space-between;
     position: relative;
     bottom: -15px;
+    @include bp(md){
+        bottom: auto;
+    }
     &.hedr{
         bottom: auto;
     }
@@ -259,7 +268,8 @@ body{
     position: relative;
     padding: 10px;
     bottom: -30px;
-    @include bp (md){
+    @include bp(md){
+        bottom: auto;
         font-size: 13px;
     }
     @include bp (sm){

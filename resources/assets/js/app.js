@@ -65,10 +65,10 @@ $(function() {
     });
   });
 
-  $('.hmb-menu').click(function() {
+  /*$('.hmb-menu').click(function() {
     $(this).toggleClass('active');
     $('.mob-navigation').slideToggle();
-  });
+  });*/
 
   $('.mobile-filters-toggle').click(function() {
       $(this).next('form.filters').addClass('open');
@@ -170,6 +170,19 @@ $(function() {
         var total = $(this).val() * $(this).data('price');
         $('.result-price').text(total.toFixed(2) + ' грн');
     });
+
+    if ($(window).width() >= 767) {
+        $('.hmb-menu').click(function() {
+            $(this).toggleClass('active');
+            $('.navigation').toggle();
+        });
+    }
+    else{
+        $('.hmb-menu').click(function() {
+            $(this).toggleClass('active');
+            $('.header-nav').toggle();
+        });
+    }
 });
 
 require('./custom.js');

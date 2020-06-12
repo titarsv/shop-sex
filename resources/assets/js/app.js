@@ -173,16 +173,24 @@ $(function() {
 
     if ($(window).width() >= 767) {
         $('.hmb-menu').click(function() {
+            setTimeout(function() { $('body').trigger('scroll') }, 10);
             $(this).toggleClass('active');
             $('.navigation').toggle();
         });
     }
     else{
         $('.hmb-menu').click(function() {
+            setTimeout(function() { $('body').trigger('scroll') }, 10);
             $(this).toggleClass('active');
             $('.header-nav').toggle();
         });
     }
+
+    $('.mob-btn').click(function() {
+        setTimeout(function() { $('body').trigger('scroll') }, 10);
+    });
+
+    setTimeout(function() { $('body').trigger('scroll') }, 10);
 });
 
 require('./custom.js');

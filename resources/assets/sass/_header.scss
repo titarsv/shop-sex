@@ -21,9 +21,6 @@ body{
     width: 100%;
     top: 0;
     .container, .row{
-        @include bp (sm){
-            padding-left: 0;
-        }
         &:before, &:after{
             display: none;
         }

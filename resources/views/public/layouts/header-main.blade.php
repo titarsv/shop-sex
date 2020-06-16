@@ -10,23 +10,11 @@
                             <img src="/images/logo.png" alt="Главная">
                         </picture>
                     </a>
-                    <a href="{{env('APP_URL')}}">
-                        <picture class="logo-mob">
-                            <source srcset="/images/logo-mob.webp" type="image/webp">
-                            <source srcset="/images/logo-mob.png" type="image/png">
-                            <img src="/images/logo-mob.png" alt="Главная">
-                        </picture>
-                    </a>
                 @else
                     <picture class="logo">
                         <source srcset="/images/logo.webp" type="image/webp">
                         <source srcset="/images/logo.png" type="image/png">
                         <img src="/images/logo.png" alt="Главная">
-                    </picture>
-                    <picture class="logo-mob">
-                        <source srcset="/images/logo-mob.webp" type="image/webp">
-                        <source srcset="/images/logo-mob.png" type="image/png">
-                        <img src="/images/logo-mob.png" alt="Главная">
                     </picture>
                 @endif
                 <div class="header-controls">
@@ -39,6 +27,11 @@
                                     <source data-src="/images/icons/cart-main.png" srcset="/images/pixel.png" type="image/png">
                                     <img src="/images/pixel.jpg" alt="cart-main" style="width: 100%;">
                                 </picture>
+                                <picture class="header__cart-mob">
+                                    <source data-src="/images/icons/cart-mob.webp" srcset="/images/pixel.webp" type="image/webp">
+                                    <source data-src="/images/icons/cart-mob.png" srcset="/images/pixel.png" type="image/png">
+                                    <img src="/images/pixel.jpg" alt="cart-main" style="width: 100%;">
+                                </picture>
                                 <p class="header__cart-title">Корзина</p>
                                 @if(isset($cart) && $cart->total_quantity)
                                     <p class="header__cart-sum">{{ number_format($cart->total_price, 2, '.', ' ') }}грн</p>
@@ -46,6 +39,8 @@
                                 @endif
                             </div>
                         </a>
+                        <div class="header-spacer"></div>
+                        <div class="search-btn"></div>
                         <div class="mob-btn popup-btn" data-mfp-src="#phones-popup">
                             <picture>
                                 <source data-src="/images/icons/phone.webp" srcset="/images/pixel.webp" type="image/webp">

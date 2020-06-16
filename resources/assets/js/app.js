@@ -186,6 +186,19 @@ $(function() {
         });
     }
 
+    $('.search-btn').click(function() {
+        $('.header-bot').toggle();
+        return false;
+    });
+
+    $(document).on('click', '.header-bot', function(e) {
+        e.stopPropagation();
+    });
+
+    $(document).click(function() {
+        $('.header-bot').hide();
+    });
+
     $('.mob-btn').click(function() {
         setTimeout(function() { $('body').trigger('scroll') }, 10);
     });

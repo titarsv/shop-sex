@@ -194,10 +194,11 @@ $(function() {
     $(document).on('click', '.header-bot', function(e) {
         e.stopPropagation();
     });
-
-    $(document).click(function() {
-        $('.header-bot').hide();
-    });
+    if ($(window).width() < 767) {
+        $(document).click(function () {
+            $('.header-bot').hide();
+        });
+    }
 
     $('.mob-btn').click(function() {
         setTimeout(function() { $('body').trigger('scroll') }, 10);

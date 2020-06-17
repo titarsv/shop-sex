@@ -65,10 +65,10 @@ $(function() {
     });
   });
 
-  $('.hmb-menu').click(function() {
+  /*$('.hmb-menu').click(function() {
     $(this).toggleClass('active');
     $('.mob-navigation').slideToggle();
-  });
+  });*/
 
   $('.mobile-filters-toggle').click(function() {
       $(this).next('form.filters').addClass('open');
@@ -170,6 +170,41 @@ $(function() {
         var total = $(this).val() * $(this).data('price');
         $('.result-price').text(total.toFixed(2) + ' грн');
     });
+
+    if ($(window).width() >= 767) {
+        $('.hmb-menu').click(function() {
+            setTimeout(function() { $('body').trigger('scroll') }, 10);
+            $(this).toggleClass('active');
+            $('.navigation').toggle();
+        });
+    }
+    else{
+        $('.hmb-menu').click(function() {
+            setTimeout(function() { $('body').trigger('scroll') }, 10);
+            $(this).toggleClass('active');
+            $('.header-nav').toggle();
+        });
+    }
+
+    $('.search-btn').click(function() {
+        $('.header-bot').toggle();
+        return false;
+    });
+
+    $(document).on('click', '.header-bot', function(e) {
+        e.stopPropagation();
+    });
+    if ($(window).width() < 767) {
+        $(document).click(function () {
+            $('.header-bot').hide();
+        });
+    }
+
+    $('.mob-btn').click(function() {
+        setTimeout(function() { $('body').trigger('scroll') }, 10);
+    });
+
+    setTimeout(function() { $('body').trigger('scroll') }, 10);
 });
 
 require('./custom.js');

@@ -78,6 +78,11 @@
                 map: map,
                 // icon: image,
             });
+            var marker12 = new google.maps.Marker({
+                position: new google.maps.LatLng(50.0025129, 36.2698513),
+                map: map,
+                // icon: image,
+            });
 
 
             var content1 = '<div id="iw-container">' +
@@ -131,8 +136,13 @@
                 '<img src="/images/addr/addr10.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content11 = '<div id="iw-container">' +
-                '<p class="iw-title">пр. Людвига Свободы, 43</p>'
+                '<p class="iw-title">пр. Людвига Свободы, 43</p>'+
                 '<img src="/uploads/addr11.jpg" class="iw-info" style="width: 283px;">' +
+                '</div>';
+            var content12 = '<div id="iw-container">' +
+                '<p class="iw-title">ул. Шевченко, 142А</p>'+
+                '<p class="iw-info">ТЦ «Рост» (ст. метро Киевская)</p>' +
+                '<img src="/uploads/addr/addr12.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
 
             // A new Info Window is created and set content
@@ -182,6 +192,10 @@
                 content: content11,
                 maxWidth: 300
             });
+            var infowindow12 = new google.maps.InfoWindow({
+                content: content12,
+                maxWidth: 300
+            });
 
             // This event expects a click on a marker
             // When this event is fired the Info Window is opened.
@@ -218,6 +232,9 @@
             google.maps.event.addListener(marker11, 'click', function() {
                 infowindow11.open(map,marker11);
             });
+            google.maps.event.addListener(marker12, 'click', function() {
+                infowindow12.open(map,marker12);
+            });
 
             // Event that closes the Info Window with a click on the map
             google.maps.event.addListener(map, 'click', function() {
@@ -232,6 +249,7 @@
                 infowindow9.close();
                 infowindow10.close();
                 infowindow11.close();
+                infowindow12.close();
             });
 
             var mapElement1 = document.getElementById('addr1');
@@ -440,6 +458,25 @@
                 });
                 google.maps.event.addListener(map11, 'click', function() {
                     infowindow11.close();
+                });
+            }
+
+            var mapElement12 = document.getElementById('addr12');
+            if(mapElement12 !== null){
+                var map12 = new google.maps.Map(mapElement12, {
+                    zoom: 16,
+                    scrollwheel: true,
+                    center: new google.maps.LatLng(50.0025129, 36.2698513)
+                });
+                var marker12 = new google.maps.Marker({
+                    position: new google.maps.LatLng(50.0025129, 36.2698513),
+                    map: map12,
+                });
+                google.maps.event.addListener(marker12, 'click', function() {
+                    infowindow12.open(map12,marker12);
+                });
+                google.maps.event.addListener(map12, 'click', function() {
+                    infowindow12.close();
                 });
             }
 

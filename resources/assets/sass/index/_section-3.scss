@@ -1,6 +1,13 @@
 .section-3{
     background: url(../images/address-bg.png) center no-repeat;
     background-size: cover;
+    .slick-slider{
+        .slick-slide{
+            &.slick-cloned{
+                opacity: 0;
+            }
+        }
+    }
 }
 
 @media not all and (min-resolution:.001dpcm){

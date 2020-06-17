@@ -210,8 +210,8 @@
                         {{--<img src="/images/sec-logo.jpg" alt="">--}}
                         <picture>
                             <source data-src="/images/sec-logo.webp" srcset="/images/pixel.webp" type="image/webp">
-                            <source data-src="/images/sec-logo.jpg" srcset="/images/pixel.jpeg" type="image/jpeg">
-                            <img src="/images/pixel.jpg" alt="Sex Shop">
+                            <source data-src="/images/sec-logo.png" srcset="/images/pixel.jpeg" type="image/jpeg">
+                            <img src="/images/pixel.png" alt="Sex Shop">
                         </picture>
                     </div>
                 </div>

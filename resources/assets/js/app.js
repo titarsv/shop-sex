@@ -205,6 +205,30 @@ $(function() {
     });
 
     setTimeout(function() { $('body').trigger('scroll') }, 10);
+
+    // search
+    var search_output = $('[data-output="search-results"]');
+    $('[data-autocomplete="input-search"]').on('keyup focus', function(){
+        var search = $(this).val();
+        search_output.html('').hide();
+
+        if (search.length > 1) {
+            var data = {};
+            data.search = search;
+
+            $.get('/livesearch', data,
+                function(html) {
+                    if(html === ''){
+                        search_output.html('').hide();
+                    }else{
+                        search_output.html(html).show();
+                    }
+                }
+            );
+        } else {
+            search_output.hide();
+        }
+    });
 });
 
 require('./custom.js');

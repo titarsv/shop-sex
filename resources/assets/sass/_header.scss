@@ -305,6 +305,7 @@ body{
     &:focus{
         outline: none;
         background-color: #fff;
+        color: #000;
         & + .search-hidden{
             display: block;
         }

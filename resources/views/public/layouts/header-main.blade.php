@@ -86,42 +86,10 @@
                     </div>
                     <div class="header-bot">
                         {!! Form::open(['route' => 'search', 'class' => 'header__search-wrp', 'method' => 'post']) !!}
-                        {!! Form::input('search', 'text', null, ['class' => 'header__search'] ) !!}
-                        <input type="submit" value="" class="search-hidden">
-                        <div class="search-results">
-                            <a href="">
-                                <picture>
-                                    <source data-src="/images/logo.webp" srcset="/images/pixel.webp" type="image/webp">
-                                    <source data-src="/images/logo.png" srcset="/images/pixel.png" type="image/png">
-                                    <img src="/images/pixel.jpg" alt="">
-                                </picture>
-                                <div>
-                                    <span class="search-name">Кукла Sausy One Two Three</span>
-                                    <span class="search-price">1400 грн</span>
-                                </div>
-                            </a>
-                            <a href="">
-                                <picture>
-                                    <source data-src="/images/logo.webp" srcset="/images/pixel.webp" type="image/webp">
-                                    <source data-src="/images/logo.png" srcset="/images/pixel.png" type="image/png">
-                                    <img src="/images/pixel.jpg" alt="">
-                                </picture>
-                                <div>
-                                    <span class="search-name">Кукла Sausy One Two Three</span>
-                                    <span class="search-price">1400 грн</span>
-                                </div>
-                            </a>
-                            <a href="">
-                                <picture>
-                                    <source data-src="/images/logo.webp" srcset="/images/pixel.webp" type="image/webp">
-                                    <source data-src="/images/logo.png" srcset="/images/pixel.png" type="image/png">
-                                    <img src="/images/pixel.jpg" alt="">
-                                </picture>
-                                <div>
-                                    <span class="search-name">Кукла Sausy One Two Three</span>
-                                    <span class="search-price">1400 грн</span>
-                                </div>
-                            </a>
+                        {!! Form::input('search', 'text', null, ['class' => 'header__search', 'data-autocomplete' => 'input-search'] ) !!}
+                        <input type="submit" value="" class="search-hidden" data-autocomplete="input-search">
+                        <div class="search-results" data-output="search-results" style="display: none">
+
                         </div>
                         {!! Form::close()!!}
                         <a href="{{env('APP_URL')}}/checkout" class="cart-link">

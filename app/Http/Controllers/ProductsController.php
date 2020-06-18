@@ -521,23 +521,9 @@ class ProductsController extends Controller
      */
     public function livesearch(Request $request, Products $products)
     {
-        $results = $products->where('name', 'like', '%' . $request->search . '%')->paginate(5);
+        $products = $products->where('name', 'like', '%' . $request->search . '%')->with('image')->paginate(5);
 
-        foreach ($results as $result) {
-
-            if ($result) {
-                $json[] = [
-                    'product_id' => $result->id,
-                    'name'       => $result->name
-                ];
-            }
-        }
-
-        if (!empty($json)) {
-            return json_encode($json);
-        } else {
-            return json_encode([['empty' => 'Ничего не найдено!']]);
-        }
+        return view('public.layouts.search_results')->with('products', $products);
     }
 
     /**
@@ -664,18 +650,18 @@ class ProductsController extends Controller
         $search_text = urldecode($request->input('text'));
 
         //$id = $request->get('page', 1);
-		
+
 		 // Установка текущей страницы пагинации
         $request->page = (int) str_replace('page', '', $page);
-		
+
         $data = $products->search($search_text, str_replace('page', '', $page), 18);
-        
+
         if(method_exists($data, 'total')) {
             $paginator = $data->appends(['text' => $search_text]);
         } else {
             $paginator = false;
         }
-        
+
         return view('public.search')->with('products', $data)
             ->with('paginator', $paginator)
             ->with('search_text', $search_text);

@@ -113,11 +113,21 @@
 
             <nav class="header-nav">
                 <div class="header-nav__top">
-                    <picture class="logo-mob">
-                        <source srcset="/images/logo-mob.webp" type="image/webp">
-                        <source srcset="/images/logo-mob.png" type="image/png">
-                        <img src="/images/logo-mob.png" alt="Главная">
-                    </picture>
+                    @if(Request::path()!='/')
+                        <a href="{{env('APP_URL')}}">
+                            <picture class="logo-mob">
+                                <source srcset="/images/logo-mob.webp" type="image/webp">
+                                <source srcset="/images/logo-mob.png" type="image/png">
+                                <img src="/images/logo-mob.png" alt="Главная">
+                            </picture>
+                        </a>
+                    @else
+                        <picture class="logo-mob">
+                            <source srcset="/images/logo-mob.webp" type="image/webp">
+                            <source srcset="/images/logo-mob.png" type="image/png">
+                            <img src="/images/logo-mob.png" alt="Главная">
+                        </picture>
+                    @endif
                     <div class="header-anon">
                         <picture>
                             <source srcset="/images/icons/anon.webp" type="image/webp">

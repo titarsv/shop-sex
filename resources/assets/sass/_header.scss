@@ -900,6 +900,12 @@ body{
     align-items: center;
     text-align: right;
     color: #fff;
+    a{
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
     img{
         margin-right: 10px;
     }

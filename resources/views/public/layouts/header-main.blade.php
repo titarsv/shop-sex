@@ -160,12 +160,14 @@
                 </ul>
 
                 <div class="header-nav__insta">
-                    <picture>
-                        <source data-src="/images/icons/inst.webp" srcset="/images/pixel.webp" type="image/webp">
-                        <source data-src="/images/icons/inst.png" srcset="/images/pixel.png" type="image/png">
-                        <img src="/images/pixel.jpg" alt="inst">
-                    </picture>
-                    shop_sex.com.ua
+                    <a href="https://www.instagram.com/shop_sex.com.ua/" target="_blank">
+                        <picture>
+                            <source data-src="/images/icons/inst.webp" srcset="/images/pixel.webp" type="image/webp">
+                            <source data-src="/images/icons/inst.png" srcset="/images/pixel.png" type="image/png">
+                            <img src="/images/pixel.jpg" alt="inst">
+                        </picture>
+                        shop_sex.com.ua
+                    </a>
                 </div>
             </nav>
             {{--<div class="col-sm-10">

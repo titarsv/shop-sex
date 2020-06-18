@@ -43,7 +43,7 @@ class ModuleslideshowController extends Controller
         $rules = [
 //            'slide.*.slide_title'           => 'required',
 //            'slide.*.slide_description'     => 'required',
-            'slide.*.button_text'           => 'required|max:30',
+//            'slide.*.button_text'           => 'required|max:30',
 //            'slide.*.text.*'                => 'max:30'
         ];
         $messages = [

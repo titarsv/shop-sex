@@ -74,12 +74,14 @@
                                 <a href="tel:0958860978">095 886-09-78</a>
                             </li>
                             <li>
-                                <picture>
-                                    <source data-src="/images/icons/inst.webp" srcset="/images/pixel.webp" type="image/webp">
-                                    <source data-src="/images/icons/inst.png" srcset="/images/pixel.png" type="image/png">
-                                    <img src="/images/pixel.jpg" alt="inst">
-                                </picture>
-                                shop_sex.com.ua
+                                <a href="https://www.instagram.com/shop_sex.com.ua/" target="_blank">
+                                    <picture>
+                                        <source data-src="/images/icons/inst.webp" srcset="/images/pixel.webp" type="image/webp">
+                                        <source data-src="/images/icons/inst.png" srcset="/images/pixel.png" type="image/png">
+                                        <img src="/images/pixel.jpg" alt="inst">
+                                    </picture>
+                                    shop_sex.com.ua
+                                </a>
                             </li>
                         </ul>
                         <div class="hmb-menu"></div>

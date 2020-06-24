@@ -79,7 +79,7 @@
                 // icon: image,
             });
             var marker12 = new google.maps.Marker({
-                position: new google.maps.LatLng(50.0025129, 36.2698513),
+                position: new google.maps.LatLng(50.001949, 36.271176),
                 map: map,
                 // icon: image,
             });
@@ -466,10 +466,10 @@
                 var map12 = new google.maps.Map(mapElement12, {
                     zoom: 16,
                     scrollwheel: true,
-                    center: new google.maps.LatLng(50.0025129, 36.2698513)
+                    center: new google.maps.LatLng(50.001949, 36.271176)
                 });
                 var marker12 = new google.maps.Marker({
-                    position: new google.maps.LatLng(50.0025129, 36.2698513),
+                    position: new google.maps.LatLng(50.001949, 36.271176),
                     map: map12,
                 });
                 google.maps.event.addListener(marker12, 'click', function() {

@@ -403,6 +403,11 @@ body{
         &:last-child{
             margin-right: 0;
         }
+        a{
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
         img{
             margin-right: 3px;
             @include bp(md){

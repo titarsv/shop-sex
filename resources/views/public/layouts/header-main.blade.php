@@ -74,12 +74,14 @@
                                 <a href="tel:0958860978">095 886-09-78</a>
                             </li>
                             <li>
-                                <picture>
-                                    <source data-src="/images/icons/inst.webp" srcset="/images/pixel.webp" type="image/webp">
-                                    <source data-src="/images/icons/inst.png" srcset="/images/pixel.png" type="image/png">
-                                    <img src="/images/pixel.jpg" alt="inst">
-                                </picture>
-                                shop_sex.com.ua
+                                <a href="https://www.instagram.com/shop_sex.com.ua/" target="_blank">
+                                    <picture>
+                                        <source data-src="/images/icons/inst.webp" srcset="/images/pixel.webp" type="image/webp">
+                                        <source data-src="/images/icons/inst.png" srcset="/images/pixel.png" type="image/png">
+                                        <img src="/images/pixel.jpg" alt="inst">
+                                    </picture>
+                                    shop_sex.com.ua
+                                </a>
                             </li>
                         </ul>
                         <div class="hmb-menu"></div>
@@ -113,11 +115,21 @@
 
             <nav class="header-nav">
                 <div class="header-nav__top">
-                    <picture class="logo-mob">
-                        <source srcset="/images/logo-mob.webp" type="image/webp">
-                        <source srcset="/images/logo-mob.png" type="image/png">
-                        <img src="/images/logo-mob.png" alt="Главная">
-                    </picture>
+                    @if(Request::path()!='/')
+                        <a href="{{env('APP_URL')}}">
+                            <picture class="logo-mob">
+                                <source srcset="/images/logo-mob.webp" type="image/webp">
+                                <source srcset="/images/logo-mob.png" type="image/png">
+                                <img src="/images/logo-mob.png" alt="Главная">
+                            </picture>
+                        </a>
+                    @else
+                        <picture class="logo-mob">
+                            <source srcset="/images/logo-mob.webp" type="image/webp">
+                            <source srcset="/images/logo-mob.png" type="image/png">
+                            <img src="/images/logo-mob.png" alt="Главная">
+                        </picture>
+                    @endif
                     <div class="header-anon">
                         <picture>
                             <source srcset="/images/icons/anon.webp" type="image/webp">

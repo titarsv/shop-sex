@@ -568,7 +568,7 @@ class ProductsController extends Controller
             if (!isset($attributes[$attribute->info->name])) {
                 $attributes[$attribute->info->name] = [];
             }
-            $attributes[$attribute->info->name][] = ['name' => $attribute->value->name, 'value' => $attribute->value->value];
+            $attributes[$attribute->info->name][] = $attribute->value->name;
         }
 
         $max_price = $product->price;

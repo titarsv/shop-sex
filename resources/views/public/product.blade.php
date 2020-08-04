@@ -202,7 +202,17 @@
             <div class="row">
                 <div class="col-sm-9 col-xs-12 tab-content clearfix">
                     <div class="tab-pane active" id="1">
-                        <div class="product__tabs-descr">{!! $product->description !!}</div>
+                        <div class="product__tabs-descr">
+                            {!! $product->description !!}
+                            <table style="font-size: 16px; margin-top: 15px;">
+                                @foreach($product_attributes as $attr => $values)
+                                    <tr>
+                                        <td style="padding-right: 15px">{{ $attr }}:</td>
+                                        <td>{{ implode(', ', $values) }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane" id="2">
                         @if(!empty($user))

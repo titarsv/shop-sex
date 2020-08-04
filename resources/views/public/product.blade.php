@@ -105,7 +105,13 @@
                             </li>
                             <li>
                                 <img src="/images/icons/prod-wallet.png" alt="Оплата любым способом">
-                                <p>Оплата любым способом</p>
+                                <p>Оплата любым способом
+                                    <span>и даже <img src="/images/liqpay.jpg" alt="liqpay">
+                                        <div class="product-features__tooltip">
+                                            На сайте подключены електронные платежи. Теперь Вы можете купить товар с оплатой онлайн
+                                        </div>
+                                    </span>
+                                </p>
                             </li>
                             <li>
                                 <img src="/images/icons/prod-incog.png" alt="Конфиденциальная доставка">

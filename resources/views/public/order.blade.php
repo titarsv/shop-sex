@@ -57,7 +57,19 @@
                         <p class="cart-form__text">Ваш контактный телефон</p>
                         <input class="cart-form__input clear-styles" type="tel" name="phone" data-title="Телефон" data-validate-required="Обязательное поле" data-validate-uaphone="Неправильный номер" placeholder="+380(___)-__-__-__">
                         <textarea name="comment" class="cart-form__textarea" placeholder="Комментарий"></textarea>
+                        <div class="cart-form__radio">
+                            <input type="radio" name="r1" id="r1" checked>
+                            <label for="r1">Наложенный платеж</label>
+                        </div>
+                        <div class="cart-form__radio">
+                            <input type="radio" name="r1" id="r2">
+                            <label for="r2">Оплата онлайн <img src="/images/liqpay.jpg" alt="liqpay"></label>
+                        </div>
                         <button type="submit" class="cart-form__bnt clear-styles">Оформить заказ</button>
+                        <div class="cart-form__footnote">
+                            <img src="/images/info.png" alt="info">
+                            <span>Продавец оставляет за собой право замены Вашего заказа аналогичным товаром, если заказанного Вами товара не окажется в наличии! Стоимость товара при этом не меняется!</span>
+                        </div>
                     </form>
                 </div>
                 <div class="visible-xs-block col-xs-12">

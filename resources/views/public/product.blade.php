@@ -19,7 +19,7 @@
 
 @section('content')
 
-    <section>
+    <section style="margin-bottom: 40px;">
         <div class="container">
             <div class="row">
                 {!! Breadcrumbs::render('product', $product, $product->categories) !!}
@@ -93,6 +93,14 @@
                             <p class="product-unavailable">Нет в наличии</p>
                         @endif
                         <p class="product-decription">{!! $product->description !!}</p>
+                        <table style="font-size: 14px; margin-top: 15px; border-collapse: collapse;">
+                            @foreach($product_attributes as $attr => $values)
+                                <tr>
+                                    <td style="padding: 5px; border: 1px solid black;">{{ $attr }}:</td>
+                                    <td style="padding: 5px; border: 1px solid black;">{{ implode(', ', $values) }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
                         <p class="product-price">{{ number_format($product->price, 2, '.', ' ') }} грн</p>
                         <button class="product-buy-btn btn_buy popup-btn"  data-mfp-src="#cart-popup" data-prod-id="{{ $product->id }}">В корзину</button>
                         <button class="product-click-btn popup-btn"  data-mfp-src="#click-buy-popup">Купить в один клик</button>
@@ -187,38 +195,38 @@
         </div>
     </div>
 
-    <section class="product__tabs">
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#1" data-toggle="tab">Описание</a></li>
+    {{--<section class="product__tabs">--}}
+        {{--<ul class="nav nav-tabs">--}}
+            {{--<li class="active"><a href="#1" data-toggle="tab">Описание</a></li>--}}
             {{--<li><a href="#2" data-toggle="tab">Отзывы</a></li>--}}
-        </ul>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9 col-xs-12 tab-content clearfix">
-                    <div class="tab-pane active" id="1">
-                        <div class="product__tabs-descr">
-                            {!! $product->description !!}
-                            <table style="font-size: 16px; margin-top: 15px;">
-                                @foreach($product_attributes as $attr => $values)
-                                    <tr>
-                                        <td style="padding-right: 15px">{{ $attr }}:</td>
-                                        <td>{{ implode(', ', $values) }}</td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="2">
-                        @if(!empty($user))
-                            <form action="" class="response-form">
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="hidden" name="name" value="{{ $user->first_name  }}">
-                                <input type="hidden" name="email" value="{{ $user->email }}">
-                                <input type="hidden" name="grade" value="5">
-                                <textarea name="review" class="response-form__textarea clear-styles" placeholder="Оставить отзыв"></textarea>
-                                <button type="submit" class="response-form__btn clear-styles">Отправить</button>
-                            </form>
-                        @endif
+        {{--</ul>--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-sm-9 col-xs-12 tab-content clearfix">--}}
+                    {{--<div class="tab-pane active" id="1">--}}
+                        {{--<div class="product__tabs-descr">--}}
+                            {{--{!! $product->description !!}--}}
+                            {{--<table style="font-size: 16px; margin-top: 15px;">--}}
+                                {{--@foreach($product_attributes as $attr => $values)--}}
+                                    {{--<tr>--}}
+                                        {{--<td style="padding-right: 15px">{{ $attr }}:</td>--}}
+                                        {{--<td>{{ implode(', ', $values) }}</td>--}}
+                                    {{--</tr>--}}
+                                {{--@endforeach--}}
+                            {{--</table>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="tab-pane" id="2">--}}
+                        {{--@if(!empty($user))--}}
+                            {{--<form action="" class="response-form">--}}
+                                {{--<input type="hidden" name="product_id" value="{{ $product->id }}">--}}
+                                {{--<input type="hidden" name="name" value="{{ $user->first_name  }}">--}}
+                                {{--<input type="hidden" name="email" value="{{ $user->email }}">--}}
+                                {{--<input type="hidden" name="grade" value="5">--}}
+                                {{--<textarea name="review" class="response-form__textarea clear-styles" placeholder="Оставить отзыв"></textarea>--}}
+                                {{--<button type="submit" class="response-form__btn clear-styles">Отправить</button>--}}
+                            {{--</form>--}}
+                        {{--@endif--}}
                         {{--<div class="user-response__item">--}}
                             {{--<div  class="user-response__item-name-wrp">--}}
                                 {{--<p class="user-response__item-name">Анастасия</p>--}}
@@ -226,11 +234,11 @@
                             {{--</div>--}}
                             {{--<p class="user-response__item-text">Рейтинг, безусловно, основан на опыте повседневного применения. Бизнес-план, отбрасывая подробности, позиционирует продукт. Отсюда естественно следует, что внутрифирменная реклама консолидирует рекламный макет.</p>--}}
                         {{--</div>--}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</section>--}}
 
     @if(!empty($related))
     <section>

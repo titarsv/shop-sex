@@ -550,6 +550,9 @@
             </div>
             <div class="col-sm-3 col-xs-12">
                 <ul class="footer__contacts">
+                    <li style="cursor: pointer;" class="popup-btn" data-mfp-src="#popup-return">Условия обмена/возврата</li>
+                    <li><a href="/page/oferta/" style="color: #fff;">Оферта</a></li>
+                    <li><a href="/page/politika-konfidentsialnosti" style="color: #fff;">Политика конфиденциальности</a></li>
                     <li><a href="tel:0507000197" style="color: #fff;">050 700-01-97</a></li>
                     <li><a href="tel:0958860978" style="color: #fff;">095 886-09-78</a></li>
                     <li>shop_sex.com.ua</li>
@@ -629,3 +632,20 @@
 </a>
     </div>
 </footer>
+<div class="mfp-hide">
+    <div id="popup-return" class="view-popup">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
+                    <div class="question-popup__container">
+                        <p class="question-popup__container-title">Условия обмена/возврата</p>
+                        <br>
+                        <p>Согласно дополнения №3 к постановлению Кабинета Министров Украины от 19 Марта 1994 г.№172</p>
+                        <p>Средства санитарной гигиены, одежда и товары сексуального предназначения надлежащего качества обмену/возврату не подлежат.</p>
+                        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -639,8 +639,8 @@
                 <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
                     <div class="question-popup__container">
                         <p class="question-popup__container-title">Условия обмена/возврата</p>
-                        <br>
                         <p>Согласно дополнения №3 к постановлению Кабинета Министров Украины от 19 Марта 1994 г.№172</p>
+                        <br>
                         <p>Средства санитарной гигиены, одежда и товары сексуального предназначения надлежащего качества обмену/возврату не подлежат.</p>
                         <button title="Close (Esc)" type="button" class="mfp-close">×</button>
                     </div>

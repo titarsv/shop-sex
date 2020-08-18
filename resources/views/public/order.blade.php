@@ -71,6 +71,9 @@
                             <span>Продавец оставляет за собой право замены Вашего заказа аналогичным товаром, если заказанного Вами товара не окажется в наличии! Стоимость товара при этом не меняется!</span>
                         </div>
                     </form>
+                    <div class="cart-form__after">
+
+                    </div>
                 </div>
                 <div class="visible-xs-block col-xs-12">
                     <a href="{{env('APP_URL')}}/catalog" class="cart-link back">вернуться к покупкам</a>

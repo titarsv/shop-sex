@@ -261,3 +261,15 @@
         object-fit: contain;
     }
 }
+
+.cart-form__after{
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    span{
+        font-size: 12px;
+        line-height: 14px;
+        color: #000;
+        margin-right: 5px;
+    }
+}

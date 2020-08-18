@@ -72,7 +72,8 @@
                         </div>
                     </form>
                     <div class="cart-form__after">
-
+                        <span>Возможна электронная оплата </span>
+                        <img src="/images/visa.png" alt="visa mastercard">
                     </div>
                 </div>
                 <div class="visible-xs-block col-xs-12">

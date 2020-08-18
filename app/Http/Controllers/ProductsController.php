@@ -457,6 +457,11 @@ class ProductsController extends Controller
         $product = Products::find($id);
         $product->delete();
 
+        if(strpos($_SERVER['HTTP_REFERER'], '/admin/products/edit/'.$id) !== false){
+            return redirect('/admin/products')
+                ->with('message-success', 'Товар ' . $product->name . ' успешно удален.');
+        }
+
         return redirect()->back()
             ->with('message-success', 'Товар ' . $product->name . ' успешно удален.');
     }

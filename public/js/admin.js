@@ -815,6 +815,13 @@ function confirmSeoDelete(id, name)
     $('#seo-delete-modal').modal();
 }
 
+function confirmRedirectDelete(id, name)
+{
+    $('#seo-delete-modal #confirm').attr('href', '/admin/seo/redirects/delete/' + id);
+    $('#seo-delete-modal #category-name').html(name);
+    $('#seo-delete-modal').modal();
+}
+
 function filterProducts(button)
 {
     var buttons = $('.sort-buttons');

@@ -78,12 +78,12 @@ class CheckoutController extends Controller
             'status_id' => 0,
             'created_at' => Carbon::now()
         ];
-
+;
         $id = $order->insertGetId($data);
 
         $this->sendOrderMails($id);
-        if($order->payment == 'card')
-            return $this->get_liqpay_data($order);
+        if($request->payment == 'card')
+            return $this->get_liqpay_data($order->find($id));
         else
             return response()->json(['success' => 'redirect', 'order_id' => $id]);
     }
@@ -117,6 +117,31 @@ class CheckoutController extends Controller
                 $msg->subject('Новый заказ');
             });
         }
+    }
+
+    /**
+     * Получене данных для Liqpay
+     *
+     * @param $order
+     * @return array
+     * @throws \League\Flysystem\Exception
+     */
+    public function get_liqpay_data($order){
+        $public_key = config('liqpay.public_key');
+        $private_key = config('liqpay.private_key');
+        $liqpay = new Liqpay($public_key, $private_key);
+        $checkout = $liqpay->cnb_form([
+            'action'    => 'pay',
+            'amount'    => $order->total_price,
+            'currency'  => 'UAH',
+            'description'   => 'Оплата заказа №' . $order->id . ' на сайте shop-sex.com.ua',
+            'order_id'  => $order->id,
+            'sandbox'   => 0,
+            'version'   => 3,
+            'result_url' => url('/checkout/complete?order_id=' . $order->id)
+        ]);
+
+        return ['success' => 'liqpay', 'liqpay' => $checkout, 'order_id' => $order->id];
     }
 
     /**

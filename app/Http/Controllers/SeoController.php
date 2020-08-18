@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Seo;
 use App\Models\Redirect;
 use Validator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class SeoController extends Controller

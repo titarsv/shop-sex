@@ -51,19 +51,19 @@
                     @endforeach
                     <a href="{{env('APP_URL')}}/catalog" class="cart-link back hidden-link">← Вернуться к покупкам</a>
                 </div>
-                <div class="col-sm-4 col-xs-12">
+                <div class="col-sm-4 col-xs-12" id="liqpay_checkout">
                     <p class="cart-form__text">Оформление заказа</p>
                     <form action="{{env('APP_URL')}}/order/create" method="post" class="cart-form" id="order-checkout">
                         <p class="cart-form__text">Ваш контактный телефон</p>
                         <input class="cart-form__input clear-styles" type="tel" name="phone" data-title="Телефон" data-validate-required="Обязательное поле" data-validate-uaphone="Неправильный номер" placeholder="+380(___)-__-__-__">
                         <textarea name="comment" class="cart-form__textarea" placeholder="Комментарий"></textarea>
                         <div class="cart-form__radio">
-                            <input type="radio" name="r1" id="r1" checked>
-                            <label for="r1">Наложенный платеж</label>
+                            <input type="radio" name="payment" id="cash" value="cash" checked>
+                            <label for="cash">Наложенный платеж</label>
                         </div>
                         <div class="cart-form__radio">
-                            <input type="radio" name="r1" id="r2">
-                            <label for="r2">Оплата онлайн <img src="/images/liqpay.jpg" alt="liqpay"></label>
+                            <input type="radio" name="payment" id="liqpay" value="card">
+                            <label for="liqpay">Оплата онлайн <img src="/images/liqpay.jpg" alt="liqpay"></label>
                         </div>
                         <button type="submit" class="cart-form__bnt clear-styles">Оформить заказ</button>
                         <div class="cart-form__footnote">
@@ -71,6 +71,7 @@
                             <span>Продавец оставляет за собой право замены Вашего заказа аналогичным товаром, если заказанного Вами товара не окажется в наличии! Стоимость товара при этом не меняется!</span>
                         </div>
                     </form>
+                    <script src="//static.liqpay.ua/libjs/checkout.js" async></script>
                 </div>
                 <div class="visible-xs-block col-xs-12">
                     <a href="{{env('APP_URL')}}/catalog" class="cart-link back">вернуться к покупкам</a>

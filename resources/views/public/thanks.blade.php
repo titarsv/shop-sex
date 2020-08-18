@@ -1,7 +1,7 @@
 @extends('public.layouts.main')
 @section('meta')
     <title>Спасибо за заказ</title>
-    @if($ecommerce)
+    @if(!empty($ecommerce))
     <script>
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({

@@ -102,7 +102,7 @@
                     @endforeach
 
                     <ul class="cart-links hidden-xs">
-                        @include('public.layouts.links')
+                        {{--@include('public.layouts.links')--}}
                     </ul>
                 </div>
 

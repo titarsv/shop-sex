@@ -521,7 +521,7 @@ class ProductsController extends Controller
      */
     public function livesearch(Request $request, Products $products)
     {
-        $products = $products->where('name', 'like', '%' . $request->search . '%')->with('image')->paginate(5);
+        $products = $products->where('name', 'like', '%' . $request->search . '%')->where('stock', 1)->with('image')->paginate(5);
 
         return view('public.layouts.search_results')->with('products', $products);
     }

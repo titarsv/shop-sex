@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-
 use League\Flysystem\Exception;
 
 /**
@@ -34,15 +30,15 @@ use League\Flysystem\Exception;
  *
  * @author      Liqpay <support@liqpay.com>
  */
-class LiqPay extends Controller
+class Liqpay extends Controller
 {
     const CURRENCY_EUR = 'EUR';
     const CURRENCY_USD = 'USD';
     const CURRENCY_UAH = 'UAH';
     const CURRENCY_RUB = 'RUB';
     const CURRENCY_RUR = 'RUR';
-    private $_api_url = 'https://www.liqpay.com/api/';
-    private $_checkout_url = 'https://www.liqpay.com/api/3/checkout';
+    private $_api_url = 'https://www.liqpay.ua/api/';
+    private $_checkout_url = 'https://www.liqpay.ua/api/3/checkout';
     protected $_supportedCurrencies = array(
         self::CURRENCY_EUR,
         self::CURRENCY_USD,

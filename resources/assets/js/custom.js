@@ -310,6 +310,7 @@ $(function() {
                         //     '<input type="hidden" name="signature" value="' + response.liqpay.signature + '" />' +
                         //     '</form>');
                         // $('#liqpay-form').submit();
+                        $('#order-checkout').remove();
                         LiqPayCheckout.init({
                             data: response.liqpay.data,
                             signature:  response.liqpay.signature,

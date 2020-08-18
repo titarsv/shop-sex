@@ -142,7 +142,7 @@
             var content12 = '<div id="iw-container">' +
                 '<p class="iw-title">ул. Шевченко, 142А</p>'+
                 '<p class="iw-info">ТЦ «Рост» (ст. метро Киевская)</p>' +
-                '<img src="/uploads/addr/addr12.jpg" class="iw-info" style="width: 283px;">' +
+                '<img src="/uploads/addr12.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
 
             // A new Info Window is created and set content

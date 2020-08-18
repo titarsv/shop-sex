@@ -49,12 +49,23 @@
                             </picture>
                         </div>
                         <div class="header-anon">
-                            <picture>
-                                <source srcset="/images/icons/anon.webp" type="image/webp">
-                                <source srcset="/images/icons/anon.png" type="image/png">
-                                <img src="/images/icons/anon.png" alt="">
-                            </picture>
-                            <span>Гарантия анонимности</span>
+                            <div>
+                                <picture>
+                                    <source srcset="/images/icons/anon.webp" type="image/webp">
+                                    <source srcset="/images/icons/anon.png" type="image/png">
+                                    <img src="/images/icons/anon.png" alt="">
+                                </picture>
+                                <span>Гарантия анонимности</span>
+                            </div>
+                            <div class="header-adult">
+                                <picture>
+                                    <source srcset="/images/icons/pepper.webp" type="image/webp">
+                                    <source srcset="/images/icons/pepper.png" type="image/png">
+                                    <img src="/images/icons/pepper.png" alt="">
+                                </picture>
+                                <span>18+</span>
+                                <p>Сайт содержит контент для лиц достигших 18 лет (18+)</p>
+                            </div>
                         </div>
                         <ul class="header__contacts">
                             <li>
@@ -137,6 +148,14 @@
                             <img src="/images/icons/anon.png" alt="">
                         </picture>
                         <span>Гарантия анонимности</span>
+                    </div>
+                    <div class="header-adult">
+                        <picture>
+                            <source srcset="/images/icons/pepper.webp" type="image/webp">
+                            <source srcset="/images/icons/pepper.png" type="image/png">
+                            <img src="/images/icons/pepper.png" alt="">
+                        </picture>
+                        <span>Сайт содержит контент для лиц достигших 18 лет (18+)</span>
                     </div>
                 </div>
                 <ul class="header-nav__phones">

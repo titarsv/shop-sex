@@ -71,6 +71,10 @@
                             <span>Продавец оставляет за собой право замены Вашего заказа аналогичным товаром, если заказанного Вами товара не окажется в наличии! Стоимость товара при этом не меняется!</span>
                         </div>
                     </form>
+                    <div class="cart-form__after">
+                        <span>Возможна электронная оплата </span>
+                        <img src="/images/visa.png" alt="visa mastercard">
+                    </div>
                     <script src="//static.liqpay.ua/libjs/checkout.js" async></script>
                 </div>
                 <div class="visible-xs-block col-xs-12">

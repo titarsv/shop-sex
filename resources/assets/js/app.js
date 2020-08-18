@@ -206,6 +206,23 @@ $(function() {
 
     setTimeout(function() { $('body').trigger('scroll') }, 10);
 
+    // 18+ btn
+
+    if ($(window).width() >= 767) {
+        $('.header-adult').click(function () {
+            $(this).toggleClass('active');
+            return false;
+        });
+
+        $(document).click(function () {
+            $('.header-adult').removeClass('active');
+        });
+
+        $(document).on('click', '.header-adult', function (e) {
+            e.stopPropagation();
+        });
+    }
+
     // search
     var search_output = $('[data-output="search-results"]');
     $('[data-autocomplete="input-search"]').on('keyup focus', function(){

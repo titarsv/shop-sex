@@ -98,7 +98,7 @@
                         <div class="hmb-menu"></div>
                     </div>
                     <div class="header-bot">
-                        {!! Form::open(['route' => 'search', 'class' => 'header__search-wrp', 'method' => 'post']) !!}
+                        {!! Form::open(['route' => 'search', 'class' => 'header__search-wrp', 'method' => 'get']) !!}
                         {!! Form::input('search', 'text', null, ['class' => 'header__search', 'data-autocomplete' => 'input-search'] ) !!}
                         <input type="submit" value="" class="search-hidden" data-autocomplete="input-search">
                         <div class="search-results" data-output="search-results" style="display: none">

@@ -652,7 +652,10 @@ class ProductsController extends Controller
      */
     public function search(Products $products, Request $request, $page = 'page1')
     {
-        $search_text = urldecode($request->input('text'));
+        $search_text = $request->input('text');
+        if(strpos($search_text, '%') === 0){
+            $search_text = urlencode($search_text);
+        }
 
         //$id = $request->get('page', 1);
 

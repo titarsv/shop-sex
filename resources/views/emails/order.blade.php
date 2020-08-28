@@ -39,6 +39,19 @@
 </table>
 
 @if($admin)
+    @if($order->payment == 'cash')
+        <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Наличными при доставке</p>
+    @elseif($order->payment == 'prepayment')
+        <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Предоплата</p>
+    @elseif($order->payment == 'card')
+        <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>На расчетный счет Приват Банка</p>
+    @elseif($order->payment == 'nal_delivery')
+        <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Наличными курьеру</p>
+    @elseif($order->payment == 'nal_samovivoz')
+        <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Оплата при самовывозе</p>
+    @elseif($order->payment == 'nalogenniy')
+        <p style="font-size:16px; color: #333;"><strong>Оплата: </strong>Оплата наложенным платежом</p>
+    @endif
     <p><strong>Телефон:</strong> {!! $user['phone'] !!}</p>
     <p><strong>Комментарий:</strong> {!! $user['comment'] !!}</p>
 @else

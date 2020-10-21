@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -333,12 +334,21 @@ class OrdersController extends Controller
         return true;
     }
 
-    public function thank_you()
+    public function thank_you(Request $request)
     {
+        $order_id = !is_null(Cookie::get('order_id')) ? Cookie::get('order_id') : $request->order_id;
+        $order = Order::find($order_id);
+
         $bestsellers = [];
         foreach (ModuleBestsellers::all() as $product){
             $bestsellers[] = $product->product;
         }
-        return view('public.thanks')->with('bestsellers', $bestsellers);
+
+        Cookie::queue('ecommerce', 0, 2628000, null, null, false, false);
+
+        return view('public.thanks')
+            ->with('order', $order)
+            ->with('bestsellers', $bestsellers)
+            ->with('ecommerce',  Cookie::get('ecommerce', 1));
     }
 }

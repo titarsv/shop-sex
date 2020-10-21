@@ -77,8 +77,9 @@ Route::post('/lostpassword', 'LoginController@changePassword');
  */
 Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
     Route::get('/', 'AdminController@dash');
+    Route::match(['get', 'post'], '/ajax', 'AjaxController@index');
     Route::get('/products', 'ProductsController@index');
-    Route::post('/products', 'ProductsController@index');
+	Route::post('/products', 'ProductsController@index');
 
     Route::get('/settings', 'SettingsController@index');
     Route::post('/settings', 'SettingsController@update');

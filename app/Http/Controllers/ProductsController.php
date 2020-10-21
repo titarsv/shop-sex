@@ -7,6 +7,7 @@ use App\Models\Variation;
 use App\Product;
 use Illuminate\Http\Request;
 use Validator;
+use Config;
 
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Categories;
@@ -253,6 +254,8 @@ class ProductsController extends Controller
 //        $data['photos'] = $request->photos;
 
         $id = $products->insert_product($data);
+        $product = $products->find($id);
+        $product->saveLocalization($request);
 
         if($id != 'already_exist'){
             $this->updateVariations($products->find($id), $request->variations);
@@ -283,18 +286,20 @@ class ProductsController extends Controller
             }
         }
 
-        $sets = Products::where('id', '<>', $id)->get();
-        $added_set = $product->set_products->pluck('id')->toArray();
+//        $sets = Products::where('id', '<>', $id)->get();
+//        $added_set = $product->set_products->pluck('id')->toArray();
 
         return view('admin.products.edit')
             ->with('product', $product)
             ->with('categories', Categories::all())
             ->with('added_categories', $categories)
-            ->with('sets', $sets)
-            ->with('added_set', $added_set)
+//            ->with('sets', $sets)
+//            ->with('added_set', $added_set)
             ->with('labels', $product->labels())
-            ->with('related', $product->related->pluck('id')->toArray())
-            ->with('attributes', Attribute::all());
+//            ->with('related', $product->related->pluck('id')->toArray())
+            ->with('languages', Config::get('app.locales_names'))
+            ->with('attributes', Attribute::all())
+            ->with('editors', localizationFields(['description']));
     }
 
 
@@ -349,21 +354,22 @@ class ProductsController extends Controller
             $product->gallery->images = json_encode($request->gallery);
         }
 
-        if(!empty($request->related)) {
-            foreach (Products::whereIn('id', $request->related)->get() as $prod) {
-                $r = [$product->id];
-                foreach ($request->related as $rel_id) {
-                    if ($rel_id != $prod->id)
-                        $r[] = $rel_id;
-                }
-                $prod->related()->attach($r);
-            }
-        }
-        $product->related()->sync($request->related);
+//        if(!empty($request->related)) {
+//            foreach (Products::whereIn('id', $request->related)->get() as $prod) {
+//                $r = [$product->id];
+//                foreach ($request->related as $rel_id) {
+//                    if ($rel_id != $prod->id)
+//                        $r[] = $rel_id;
+//                }
+//                $prod->related()->attach($r);
+//            }
+//        }
+//        $product->related()->sync($request->related);
 
         $product->fill($product_table_fill);
 
         $product->push();
+        $product->saveLocalization($request);
 
         $product->categories()->sync($request->product_category_id);
 

@@ -78,7 +78,7 @@ class CheckoutController extends Controller
             'status_id' => 0,
             'created_at' => Carbon::now()
         ];
-;
+
         $id = $order->insertGetId($data);
 
         $this->sendOrderMails($id);

@@ -47,11 +47,11 @@ class ModuleslideshowController extends Controller
 //            'slide.*.text.*'                => 'max:30'
         ];
         $messages = [
-//            'slide.*.slide_title.required'           => 'Обязательно заполнить!',
+            'slide.*.slide_title.required'           => 'Обязательно заполнить!',
 //            'slide.*.slide_title.max'                => 'Не больше 30 символов!',
             'slide.*.button_text.max'                => 'Не больше 30 символов!',
             'slide.*.button_text.required'           => 'Обязательно заполнить!',
-//            'slide.*.slide_description.required'     => 'Обязательно заполнить!',
+            'slide.*.slide_description.required'     => 'Обязательно заполнить!',
 //            'slide.*.slide_description.max'          => 'Не больше 30 символов!',
 //            'slide.*.text.*.max'                     => 'Не больше 30 символов!',
         ];

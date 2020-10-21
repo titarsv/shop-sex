@@ -36,14 +36,38 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right control-label">Мета-тег Title</label>
                                 <div class="form-element col-sm-10">
-                                    @if(old('meta_title') !== null)
-                                        <input type="text" class="form-control" name="meta_title" value="{!! old('meta_title') !!}" />
-                                        @if($errors->has('meta_title'))
-                                            <p class="warning" role="alert">{!! $errors->first('meta_title',':message') !!}</p>
-                                        @endif
-                                    @else
-                                        <input type="text" class="form-control" name="meta_title" value="{!! $settings->meta_title !!}" />
-                                    @endif
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            @if(old('meta_title_ru') !== null)
+                                                <input type="text" class="form-control" name="meta_title_ru" value="{!! old('meta_title_ru') !!}" />
+                                                @if($errors->has('meta_title_ru'))
+                                                    <p class="warning" role="alert">{!! $errors->first('meta_title_ru',':message') !!}</p>
+                                                @endif
+                                            @else
+                                                <input type="text" class="form-control" name="meta_title_ru" value="{!! $settings->meta_title_ru !!}" />
+                                            @endif
+                                        </div>
+                                        <div class="col-xs-4">
+                                            @if(old('meta_title_ua') !== null)
+                                                <input type="text" class="form-control" name="meta_title_ua" value="{!! old('meta_title_ua') !!}" />
+                                                @if($errors->has('meta_title_ua'))
+                                                    <p class="warning" role="alert">{!! $errors->first('meta_title_ua',':message') !!}</p>
+                                                @endif
+                                            @else
+                                                <input type="text" class="form-control" name="meta_title_ua" value="{!! $settings->meta_title_ua !!}" />
+                                            @endif
+                                        </div>
+                                        <div class="col-xs-4">
+                                            @if(old('meta_title_en') !== null)
+                                                <input type="text" class="form-control" name="meta_title_en" value="{!! old('meta_title_en') !!}" />
+                                                @if($errors->has('meta_title_en'))
+                                                    <p class="warning" role="alert">{!! $errors->first('meta_title_en',':message') !!}</p>
+                                                @endif
+                                            @else
+                                                <input type="text" class="form-control" name="meta_title_en" value="{!! $settings->meta_title_en !!}" />
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,14 +75,38 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Мета-тег Description</label>
                                 <div class="form-element col-sm-10">
-                                    @if(old('meta_description') !== null)
-                                        <textarea name="meta_description" class="form-control" rows="6">{!! old('meta_description') !!}</textarea>
-                                        @if($errors->has('meta_description'))
-                                            <p class="warning" role="alert">{!! $errors->first('meta_description',':message') !!}</p>
-                                        @endif
-                                    @else
-                                        <textarea name="meta_description" class="form-control" rows="6">{!! $settings->meta_description !!}</textarea>
-                                    @endif
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            @if(old('meta_description_ru') !== null)
+                                                <textarea name="meta_description_ru" class="form-control" rows="6">{!! old('meta_description_ru') !!}</textarea>
+                                                @if($errors->has('meta_description_ru'))
+                                                    <p class="warning" role="alert">{!! $errors->first('meta_description_ru',':message') !!}</p>
+                                                @endif
+                                            @else
+                                                <textarea name="meta_description_ru" class="form-control" rows="6">{!! $settings->meta_description_ru !!}</textarea>
+                                            @endif
+                                        </div>
+                                        <div class="col-xs-4">
+                                            @if(old('meta_description_ua') !== null)
+                                                <textarea name="meta_description_ua" class="form-control" rows="6">{!! old('meta_description_ua') !!}</textarea>
+                                                @if($errors->has('meta_description_ua'))
+                                                    <p class="warning" role="alert">{!! $errors->first('meta_description',':message') !!}</p>
+                                                @endif
+                                            @else
+                                                <textarea name="meta_description_ua" class="form-control" rows="6">{!! $settings->meta_description_ua !!}</textarea>
+                                            @endif
+                                        </div>
+                                        <div class="col-xs-4">
+                                            @if(old('meta_description_en') !== null)
+                                                <textarea name="meta_description_en" class="form-control" rows="6">{!! old('meta_description_en') !!}</textarea>
+                                                @if($errors->has('meta_description_en'))
+                                                    <p class="warning" role="alert">{!! $errors->first('meta_description_en',':message') !!}</p>
+                                                @endif
+                                            @else
+                                                <textarea name="meta_description_en" class="form-control" rows="6">{!! $settings->meta_description_en !!}</textarea>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -66,14 +114,38 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Мета-тег Keywords</label>
                                 <div class="form-element col-sm-10">
-                                    @if(old('meta_keywords') !== null)
-                                        <textarea name="meta_keywords" class="form-control" rows="6">{!! old('meta_keywords') !!}</textarea>
-                                        @if($errors->has('meta_description'))
-                                            <p class="warning" role="alert">{!! $errors->first('meta_description',':message') !!}</p>
-                                        @endif
-                                    @else
-                                        <textarea name="meta_keywords" class="form-control" rows="6">{!! $settings->meta_keywords !!}</textarea>
-                                    @endif
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            @if(old('meta_keywords_ru') !== null)
+                                                <textarea name="meta_keywords_ru" class="form-control" rows="6">{!! old('meta_keywords_ru') !!}</textarea>
+                                                @if($errors->has('meta_description_ru'))
+                                                    <p class="warning" role="alert">{!! $errors->first('meta_description_ru',':message') !!}</p>
+                                                @endif
+                                            @else
+                                                <textarea name="meta_keywords_ru" class="form-control" rows="6">{!! $settings->meta_keywords_ru !!}</textarea>
+                                            @endif
+                                        </div>
+                                        <div class="col-xs-4">
+                                            @if(old('meta_keywords_ua') !== null)
+                                                <textarea name="meta_keywords_ua" class="form-control" rows="6">{!! old('meta_keywords_ua') !!}</textarea>
+                                                @if($errors->has('meta_description_ua'))
+                                                    <p class="warning" role="alert">{!! $errors->first('meta_description_ua',':message') !!}</p>
+                                                @endif
+                                            @else
+                                                <textarea name="meta_keywords_ua" class="form-control" rows="6">{!! $settings->meta_keywords_ua !!}</textarea>
+                                            @endif
+                                        </div>
+                                        <div class="col-xs-4">
+                                            @if(old('meta_keywords_en') !== null)
+                                                <textarea name="meta_keywords_en" class="form-control" rows="6">{!! old('meta_keywords_en') !!}</textarea>
+                                                @if($errors->has('meta_description_en'))
+                                                    <p class="warning" role="alert">{!! $errors->first('meta_description_en',':message') !!}</p>
+                                                @endif
+                                            @else
+                                                <textarea name="meta_keywords_en" class="form-control" rows="6">{!! $settings->meta_keywords_en !!}</textarea>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +161,17 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Содержание</label>
                                 <div class="form-element col-sm-10">
-                                    <textarea id="text-area" name="about" class="form-control" rows="6">{!! old('about') ? old('about') : $settings->about  !!}</textarea>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <textarea id="text-area-ru" name="about_ru" class="form-control" rows="6">{!! old('about_ru') ? old('about_ru') : $settings->about_ru  !!}</textarea>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <textarea id="text-area-ua" name="about_ua" class="form-control" rows="6">{!! old('about_ua') ? old('about_ua') : $settings->about_ua  !!}</textarea>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <textarea id="text-area-en" name="about_en" class="form-control" rows="6">{!! old('about_en') ? old('about_en') : $settings->about_en  !!}</textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +187,17 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Содержание</label>
                                 <div class="form-element col-sm-10">
-                                    <textarea id="text-area-terms" name="terms" class="form-control" rows="6">{!! old('terms') ? old('terms') : $settings->terms  !!}</textarea>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <textarea id="text-area-ru-terms" name="terms_ru" class="form-control" rows="6">{!! old('terms_ru') ? old('terms_ru') : $settings->terms_ru  !!}</textarea>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <textarea id="text-area-ua-terms" name="terms_ua" class="form-control" rows="6">{!! old('terms_ua') ? old('terms_ua') : $settings->terms_ua  !!}</textarea>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <textarea id="text-area-en-terms" name="terms_en" class="form-control" rows="6">{!! old('terms_en') ? old('terms_en') : $settings->terms_en  !!}</textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -147,11 +239,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group phones">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Дополнительные</label>
-                                <div class="form-element col-sm-10">
-                                    @if(old('other_phones'))
+                        {{--<div class="form-group phones">--}}
+                            {{--<div class="row">--}}
+                                {{--<label class="col-sm-2 text-right">Дополнительные</label>--}}
+                                {{--<div class="form-element col-sm-10">--}}
+                                    {{--@if(old('other_phones'))--}}
                                         {{--@foreach(old('other_phones') as $key => $phone)--}}
                                             {{--<div class="input-group">--}}
                                                 {{--<input type="text" name="other_phones[]" class="form-control" value="{!! $phone !!}" />--}}
@@ -173,7 +265,7 @@
                                                 {{--<p class="warning" role="alert">{!! $errors->first('other_phones.' . $key,':message') !!}</p>--}}
                                             {{--@endif--}}
                                         {{--@endforeach--}}
-                                    @elseif($settings->other_phones !== null)
+                                    {{--@elseif($settings->other_phones !== null)--}}
                                         {{--@foreach(json_decode($settings->other_phones) as $phone)--}}
                                             {{--<div class="input-group">--}}
                                                 {{--<input type="text" name="other_phones[]" class="form-control" value="{!! $phone !!}" />--}}
@@ -182,11 +274,11 @@
                                                 {{--</span>--}}
                                             {{--</div>--}}
                                         {{--@endforeach--}}
-                                    @endif
-                                    <button type="button" class="btn" id="button-add-telephone">Добавить</button>
-                                </div>
-                            </div>
-                        </div>
+                                    {{--@endif--}}
+                                    {{--<button type="button" class="btn" id="button-add-telephone">Добавить</button>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -248,163 +340,8 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Размер изображения товара в категории</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<label class="col-sm-2 control-label text-right">Ширина</label>--}}
-                                            {{--<div class="col-sm-10">--}}
-                                                {{--@if(old('product_list_image_width') !== null)--}}
-                                                    {{--<input type="text" class="form-control" name="product_list_image_width" value="{!! old('product_list_image_width') !!}" />--}}
-                                                    {{--@if($errors->has('product_list_image_width'))--}}
-                                                        {{--<p class="warning" role="alert">{!! $errors->first('product_list_image_width',':message') !!}</p>--}}
-                                                    {{--@endif--}}
-                                                {{--@else--}}
-                                                    {{--<input type="text" class="form-control" name="product_list_image_width" value="{!! isset($settings->product_list_image_width)?$settings->product_list_image_width:'' !!}" />--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<label class="col-sm-2 control-label text-right">Высота</label>--}}
-                                            {{--<div class="col-sm-10">--}}
-                                                {{--@if(old('product_list_image_height') !== null)--}}
-                                                    {{--<input type="text" class="form-control" name="product_list_image_height" value="{!! old('product_list_image_height') !!}" />--}}
-                                                    {{--@if($errors->has('product_list_image_height'))--}}
-                                                        {{--<p class="warning" role="alert">{!! $errors->first('product_list_image_height',':message') !!}</p>--}}
-                                                    {{--@endif--}}
-                                                {{--@else--}}
-                                                    {{--<input type="text" class="form-control" name="product_list_image_height" value="{!! isset($settings->product_list_image_height)?$settings->product_list_image_height:'' !!}" />--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Размер главного изображения в карточке товара</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<label class="col-sm-2 control-label text-right">Ширина</label>--}}
-                                            {{--<div class="col-sm-10">--}}
-                                                {{--@if(old('product_image_width') !== null)--}}
-                                                    {{--<input type="text" class="form-control" name="product_image_width" value="{!! old('product_image_width') !!}" />--}}
-                                                    {{--@if($errors->has('product_image_width'))--}}
-                                                        {{--<p class="warning" role="alert">{!! $errors->first('product_image_width',':message') !!}</p>--}}
-                                                    {{--@endif--}}
-                                                {{--@else--}}
-                                                    {{--<input type="text" class="form-control" name="product_image_width" value="{!! isset($settings->product_image_width)?$settings->product_image_width:'' !!}" />--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<label class="col-sm-2 control-label text-right">Высота</label>--}}
-                                            {{--<div class="col-sm-10">--}}
-                                                {{--@if(old('product_image_height') !== null)--}}
-                                                    {{--<input type="text" class="form-control" name="product_image_height" value="{!! old('product_image_height') !!}" />--}}
-                                                    {{--@if($errors->has('product_image_height'))--}}
-                                                        {{--<p class="warning" role="alert">{!! $errors->first('product_image_height',':message') !!}</p>--}}
-                                                    {{--@endif--}}
-                                                {{--@else--}}
-                                                    {{--<input type="text" class="form-control" name="product_image_height" value="{!! isset($settings->product_image_height)?$settings->product_image_height:'' !!}" />--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Размер изображения блога</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<label class="col-sm-2 control-label text-right">Ширина</label>--}}
-                                            {{--<div class="col-sm-10">--}}
-                                                {{--@if(old('blog_image_width') !== null)--}}
-                                                    {{--<input type="text" class="form-control" name="blog_image_width" value="{!! old('blog_image_width') !!}" />--}}
-                                                    {{--@if($errors->has('blog_image_width'))--}}
-                                                        {{--<p class="warning" role="alert">{!! $errors->first('blog_image_width',':message') !!}</p>--}}
-                                                    {{--@endif--}}
-                                                {{--@else--}}
-                                                    {{--<input type="text" class="form-control" name="blog_image_width" value="{!! isset($settings->blog_image_width)?$settings->blog_image_width:'' !!}" />--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<label class="col-sm-2 control-label text-right">Высота</label>--}}
-                                            {{--<div class="col-sm-10">--}}
-                                                {{--@if(old('blog_image_height') !== null)--}}
-                                                    {{--<input type="text" class="form-control" name="blog_image_height" value="{!! old('blog_image_height') !!}" />--}}
-                                                    {{--@if($errors->has('blog_image_height'))--}}
-                                                        {{--<p class="warning" role="alert">{!! $errors->first('blog_image_height',':message') !!}</p>--}}
-                                                    {{--@endif--}}
-                                                {{--@else--}}
-                                                    {{--<input type="text" class="form-control" name="blog_image_height" value="{!! isset($settings->blog_image_height)?$settings->blog_image_height:'' !!}" />--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Размер изображения слайда</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<label class="col-sm-2 control-label text-right">Ширина</label>--}}
-                                            {{--<div class="col-sm-10">--}}
-                                                {{--@if(old('slide_image_width') !== null)--}}
-                                                    {{--<input type="text" class="form-control" name="blog_image_height" value="{!! old('slide_image_width') !!}" />--}}
-                                                    {{--@if($errors->has('slide_image_width'))--}}
-                                                        {{--<p class="warning" role="alert">{!! $errors->first('slide_image_width',':message') !!}</p>--}}
-                                                    {{--@endif--}}
-                                                {{--@else--}}
-                                                    {{--<input type="text" class="form-control" name="slider_image_width" value="{!! isset($settings->slide_image_width)?$settings->slide_image_width:''  !!}" />--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<label class="col-sm-2 control-label text-right">Высота</label>--}}
-                                            {{--<div class="col-sm-10">--}}
-                                                {{--@if(old('slider_image_height') !== null)--}}
-                                                    {{--<input type="text" class="form-control" name="blog_image_height" value="{!! old('slider_image_height') !!}" />--}}
-                                                    {{--@if($errors->has('slider_image_height'))--}}
-                                                        {{--<p class="warning" role="alert">{!! $errors->first('slider_image_height',':message') !!}</p>--}}
-                                                    {{--@endif--}}
-                                                {{--@else--}}
-                                                    {{--<input type="text" class="form-control" name="slider_image_height" value="{!! isset($settings->slide_image_height)?$settings->slide_image_height:'' !!}" />--}}
-                                                {{--@endif--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
                     </div>
                 </div>
-                {{--<div class="panel panel-default">--}}
-                    {{--<div class="panel-heading">--}}
-                        {{--<h4>Курсы валют</h4>--}}
-                    {{--</div>--}}
-                    {{--<div class="panel-body">--}}
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Курс гривны</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<input type="text" class="form-control" name="rate" value="{!! $settings->rate !!}" />--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
@@ -421,11 +358,27 @@
 
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace( 'text-area', {
+        CKEDITOR.replace( 'text-area-ru', {
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
             filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
         });
-        CKEDITOR.replace('text-area-terms', {
+        CKEDITOR.replace('text-area-ru-terms', {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+        });
+        CKEDITOR.replace( 'text-area-ua', {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+        });
+        CKEDITOR.replace('text-area-ua-terms', {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+        });
+        CKEDITOR.replace( 'text-area-en', {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+        });
+        CKEDITOR.replace('text-area-en-terms', {
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
             filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
         });

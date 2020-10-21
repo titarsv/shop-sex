@@ -25,17 +25,12 @@
                         <h4>Общая информация</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right control-label">Название</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="text" data-translit="input" class="form-control" name="name" value="{!! old('name') !!}" />
-                                    @if($errors->has('name'))
-                                        <p class="warning" role="alert">{!! $errors->first('name',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        @include('admin.layouts.form.string', [
+                         'label' => 'Название',
+                         'key' => 'name',
+                         'locale' => 'ru',
+                         'required' => true
+                        ])
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-sm-2 text-right control-label">Слаг</label>

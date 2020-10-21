@@ -11,7 +11,7 @@
                 <h1>Список атрибутов</h1>
             </div>
             <div class="col-sm-2 text-right">
-                <a href="/admin/attributes/create" class="btn">Добавить</a>
+                <a href="/admin/attributes/create" class="btn" id="add_attribute">Добавить</a>
             </div>
         </div>
     </div>
@@ -100,4 +100,55 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function(){
+            $('#add_attribute').click(function(e){
+                e.preventDefault();
+                swal({
+                    title: 'Введите название атрибута',
+                    input: 'text',
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+                    focusConfirm: false,
+                    preConfirm: (name) => {
+                        return new Promise((resolve, reject) => {
+                            let formData = new FormData();
+                            formData.append('name_{{ Config::get('app.locale') }}', name);
+                            $.ajax({
+                                type:"POST",
+                                url:"/admin/attributes/create",
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                async:true,
+                                success: function(response){
+                                    console.log(response);
+                                    if(response.result === 'success'){
+                                        resolve(response.redirect);
+                                    }else{
+                                        reject(response.errors);
+                                    }
+                                }
+                            });
+                        })
+                    }
+                }).then(function(redirect) {
+                    location = redirect;
+                }, function(errors) {
+                    if(typeof errors !== 'string'){
+                        var message = '';
+                        for(err in errors){
+                            message += errors[err] + '<br>';
+                        }
+                        swal(
+                            'Ошибка!',
+                            message,
+                            'error'
+                        );
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

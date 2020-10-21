@@ -6,6 +6,7 @@
     {{--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">--}}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{env('APP_URL')}}/images/favicon.png" type="image/png">
     <title>Панель администратора</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -16,4 +17,5 @@
     <script src="/js/libs/jquery.min.js"></script>
     <script src="/js/chosen/chosen.jquery.min.js"></script>
     <script src="/js/libs/bootstrap.min.js"></script>
+    <script src="/js/admin/sweetalert2.all.min.js"></script>
 </head>

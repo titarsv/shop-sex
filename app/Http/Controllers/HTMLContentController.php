@@ -4,29 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\HTMLContent;
-use Validator;
 use App\Models\News;
+use App;
+use Validator;
+use Config;
 
 class HTMLContentController extends Controller
 {
     protected $rules = [
-        'name' => 'required|unique:html_content',
-        'content' => 'required',
-        'url_alias' => 'required|unique:html_content',
-//        'meta_title' => 'required|max:75',
-//        'meta_description' => 'max:180',
-//        'meta_keywords' => 'max:180',
+        'name_ru' => 'required',
+        'url_alias' => 'required|unique:html_content'
     ];
     protected $messages = [
-        'name.required' => 'Поле должно быть заполнено!',
-        'name.unique' => 'Значение должно быть уникальным!',
-        'content.required' => 'Поле должно быть заполнено!',
+        'name_ru.required' => 'Поле должно быть заполнено!',
         'url_alias.required' => 'Поле должно быть заполнено!',
-        'url_alias.unique' => 'Значение должно быть уникальным!',
-        'meta_title.required' => 'Поле должно быть заполнено!',
-//        'meta_title.max' => 'Максимальная длина заголовка не может превышать 75 символов!',
-//        'meta_description.max' => 'Максимальная длина описания не может превышать 180 символов!',
-//        'meta_keywords.max' => 'Максимальная длина ключевых слов не может превышать 180 символов!',
+        'url_alias.unique' => 'Значение должно быть уникальным!'
     ];
 
     /**
@@ -34,21 +26,9 @@ class HTMLContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(HTMLContent $content)
-    {
+    public function index(HTMLContent $content){
         return view('admin.htmlcontent.index')
             ->with('content', $content->paginate(10));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(HTMLContent $content)
-    {
-        return view('admin.htmlcontent.create')
-            ->with('pages', $content->all());
     }
 
     /**
@@ -57,26 +37,18 @@ class HTMLContentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, HTMLContent $content)
-    {
-        $validator = Validator::make($request->all(), $this->rules, $this->messages);
+    public function store(Request $request, HTMLContent $pages){
+        $validator = Validator::make($request->all(), ['name_'.Config::get('app.locale') => 'required'], ['name_'.Config::get('app.locale').'.required' => 'Поле должно быть заполнено!']);
 
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->with('message-error', 'Сохранение не удалось! Проверьте форму на ошибки!')
-                ->withErrors($validator);
+        if($validator->fails()){
+            return response()->json($validator);
         }
 
-        $content->fill($request->except('_token'));
-        $content->content = htmlentities($request->content);
-        $content->sort_order = !empty($request->sort_order) ? $request->sort_order : 0;
-        $content->save();
+        $id = $pages->insertGetId(['parent_id' => 0, 'content' => '', 'status' => 0, 'sort_order' => 0]);
+        $page = $pages->find($id);
+        $page->saveLocalization($request);
 
-        return redirect('/admin/html')
-            ->with('content', $content->paginate(10))
-            ->with('message-success', 'Страница ' . $content->name . ' успешно добавлена.');
+        return response()->json(['result' => 'success', 'redirect' => '/admin/html/edit/'.$id]);
     }
 
     /**
@@ -85,11 +57,14 @@ class HTMLContentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, HTMLContent $content)
-    {
+    public function edit($id, HTMLContent $content){
+        $page = $content->find($id);
+        $page->content = html_entity_decode($page->content);
         return view('admin.htmlcontent.edit')
             ->with('pages', $content->all())
-            ->with('content', $content->find($id));
+            ->with('content', $page)
+            ->with('languages', Config::get('app.locales_names'))
+            ->with('editors', localizationFields(['content']));
     }
 
     /**
@@ -102,7 +77,6 @@ class HTMLContentController extends Controller
     public function update(Request $request, $id)
     {
         $rules = $this->rules;
-        $rules['name'] = 'required|unique:html_content,name,'.$id;
         $rules['url_alias'] = 'required|unique:html_content,url_alias,'.$id;
 
         $validator = Validator::make($request->all(), $rules, $this->messages);
@@ -117,9 +91,9 @@ class HTMLContentController extends Controller
 
         $content = HTMLContent::find($id);
         $content->fill($request->except('_token'));
-        $content->content = htmlentities($request->content);
         $content->sort_order = !empty($request->sort_order) ? $request->sort_order : 0;
         $content->save();
+        $content->saveLocalization($request);
 
         return redirect('/admin/html')
             ->with('content', $content->paginate(10))

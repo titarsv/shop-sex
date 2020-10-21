@@ -8,7 +8,6 @@ use App\Product;
 use Illuminate\Http\Request;
 use Validator;
 use Config;
-
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Categories;
 use App\Models\Products;
@@ -201,7 +200,8 @@ class ProductsController extends Controller
         return view('admin.products.create')
             ->with('categories', Categories::all())
             ->with('labels', $product->labels())
-            ->with('attributes', Attribute::all());
+            ->with('attributes', Attribute::all())
+            ->with('editors', localizationFields(['description']));
     }
 
     /**

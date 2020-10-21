@@ -2,32 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
 use App\Models\Attribute;
-use App\Models\ModuleBestsellers;
-use App\Models\Modules;
 use App\ProductAttribute;
 use Illuminate\Http\Request;
 use App\Models\Categories;
-use App\Models\Settings;
-use App\Models\Image;
 use App\Models\Filter;
-use App\Models\Products;
-use App\Http\Requests;
 use Validator;
-use Cartalyst\Sentinel\Native\Facades\Sentinel;
-use Illuminate\Support\Facades\Cache;
-
+use Config;
 
 class CategoriesController extends Controller
 {
 
     private $rules = [
-        'name' => 'required',
+        'name_ru' => 'required',
         'url_alias' => 'required|unique:categories',
     ];
 
     private $messages = [
-        'name.required' => 'Поле должно быть заполнено!',
+        'name_ru.required' => 'Поле должно быть заполнено!',
         'meta_title.required' => 'Поле должно быть заполнено!',
         'url_alias.required' => 'Поле должно быть заполнено!',
         'url_alias.unique' => 'Значение должно быть уникальным для каждой категории!'
@@ -52,7 +45,9 @@ class CategoriesController extends Controller
     {
         return view('admin.categories.create')
             ->with('categories', Categories::all())
-            ->with('attributes', Attribute::all());
+            ->with('attributes', Attribute::all())
+            ->with('languages', Config::get('app.locales_names'))
+            ->with('editors', localizationFields(['description']));
     }
 
     /**
@@ -78,6 +73,7 @@ class CategoriesController extends Controller
         $categories->description = !empty($request->description) ? $request->description : null;
         $categories->sort_order = !empty($request->sort_order) ? $request->sort_order : 0;
         $categories->save();
+        $categories->saveLocalization($request);
 
         return redirect('/admin/categories')
             ->with('message-success', 'Категория ' . $categories->name . ' успешно добавлена.');
@@ -103,7 +99,9 @@ class CategoriesController extends Controller
             ->with('attributes', Attribute::all())
             ->with('related_attributes', $attributes)
             ->with('category', $category)
-            ->with('categories', Categories::all());
+            ->with('categories', Categories::all())
+            ->with('languages', Config::get('app.locales_names'))
+            ->with('editors', localizationFields(['description']));
     }
 
     /**
@@ -134,6 +132,7 @@ class CategoriesController extends Controller
         $category->description = !empty($request->description) ? $request->description : null;
         $category->sort_order = !empty($request->sort_order) ? $request->sort_order : 0;
         $category->save();
+        $category->saveLocalization($request);
 
         $category->attributes()->sync($request->related_attribute_ids);
 

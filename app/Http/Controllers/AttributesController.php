@@ -5,22 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\AttributeValues;
 use App\Models\ProductAttributes;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use Illuminate\Support\Str;
 use App\Models\Attribute;
 use Validator;
+use Config;
 
 class AttributesController extends Controller
 {
     private $rules = [
-        'name' => 'required',
-        'values' => 'required',
-//        'max_quantity' => 'required_if:enable_image_overlay,1|numeric'
+        'name_ru' => 'required'
     ];
 
     private $messages = [
-        'name.required' => 'Поле должно быть заполнено!',
-        'values.required' => 'Невозможно создать атрибут без значений!',
+        'name_ru.required' => 'Поле должно быть заполнено!',
         'values.*.distinct' => 'Значения одинаковы!',
         'values.*.filled' => 'Поле должно быть заполнено!',
         'max_quantity.required_if' => 'Поле должно быть заполнено!',
@@ -28,25 +25,6 @@ class AttributesController extends Controller
         'image_height.numeric' => 'Значение должно быть числовым!',
         'max_quantity.numeric' => 'Значение должно быть числовым!',
     ];
-    
-//    public $overlay_position = [
-//        [
-//            'placement'     => 'left_top',
-//            'name'          => 'Верхний левый угол'
-//        ],
-//        [
-//            'placement'     => 'right_top',
-//            'name'          => 'Верхний правый угол'
-//        ],
-//        [
-//            'placement'     => 'left_bottom',
-//            'name'          => 'Нижний левый угол'
-//        ],
-//        [
-//            'placement'     => 'right_bottom',
-//            'name'          => 'Нижний правый угол'
-//        ]
-//    ];
 
     /**
      * Display a listing of the resource.
@@ -60,69 +38,27 @@ class AttributesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.attributes.create');
-            //->with('overlay_position', $this->overlay_position);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Attribute $attributes)
-    {
+    public function store(Request $request, Attribute $attributes){
+        $validator = Validator::make($request->all(), ['name_'.Config::get('app.locale') => 'required'], ['name_'.Config::get('app.locale').'.required' => 'Поле должно быть заполнено!']);
 
-        $rules = $this->rules;
-        $rules['values.new.*.name'] = 'distinct|filled';
-
-        $validator = Validator::make($request->all(), $rules, $this->messages);
-
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->with('message-error', 'Сохранение не удалось! Проверьте форму на ошибки!')
-                ->withErrors($validator);
+        if($validator->fails()){
+            return response()->json($validator);
         }
 
-        $attributes->fill($request->only(['name', 'slug']));
-        //$overlay_settings = null;
+        $name_key = 'name_'.Config::get('app.locale');
 
-//        if($request->enable_image_overlay){
-//            $overlay_settings = $request->only([
-//                'coordinates',
-//                'image_percent',
-//                'offset_x',
-//                'offset_y',
-//                'max_quantity'
-//            ]);
-//        }
+        $id = $attributes->insertGetId(['slug' => Str::slug(str_replace(['-', '_', ' '], '', mb_strtolower(translit($request->$name_key))))]);
+        $attribute = $attributes->find($id);
+        $attribute->saveLocalization($request);
 
-        //$attributes->image_overlay_settings = $overlay_settings ? serialize($overlay_settings) : null;
-        $attributes->save();
+        $attribute->load('localization');
 
-        foreach ($request->values as $attribute_value_id => $value){
-
-            foreach ($value as $new) {
-                $attribute_value = new AttributeValues;
-                $attribute_value->attribute_id = $attributes->id;
-                $attribute_value->name = $new['name'];
-                $attribute_value->value = $new['value'];
-                //$attribute_value->image_href = $new['image_href'] ? $new['image_href'] : null;
-                $attribute_value->save();
-            }
-
-        }
-
-        return redirect('/admin/attributes')
-            ->with('message-success', 'Атрибут ' . $attributes->name . ' успешно добавлен.');
+        return response()->json(['result' => 'success', 'redirect' => '/admin/attributes/edit/'.$id]);
     }
 
     /**
@@ -131,23 +67,12 @@ class AttributesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         $attribute = Attribute::find($id);
-//        $empty_settings = [
-//            'coordinates'   => '',
-//            'image_percent' => 0,
-//            'offset_x'  => 0,
-//            'offset_y'  => 0,
-//            'max_quantity' => 1
-//        ];
-
-//        $overlay_settings = $attribute->image_overlay_settings ? unserialize($attribute->image_overlay_settings) : $empty_settings;
 
         return view('admin.attributes.edit')
+            ->with('languages', Config::get('app.locales_names'))
             ->with('attribute', $attribute);
-            //->with('overlay_position', $this->overlay_position)
-//            ->with('overlay_settings', $overlay_settings);
     }
 
     /**
@@ -157,11 +82,10 @@ class AttributesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $rules = $this->rules;
-        $rules['values.new.*.name'] = 'distinct|filled';
-        $rules['values.*.name'] = 'distinct|filled';
+        $rules['values.*.name_ru'] = 'distinct|filled';
+        $rules['values.*.value'] = 'distinct|filled';
 
         $validator = Validator::make($request->all(), $rules, $this->messages);
 
@@ -174,48 +98,22 @@ class AttributesController extends Controller
         }
 
         $attribute = Attribute::find($id);
-        $attribute->fill($request->only(['name', 'slug']));
-//        $overlay_settings = null;
 
-//        if($request->enable_image_overlay){
-//            $overlay_settings = $request->only([
-//                'coordinates',
-//                'image_percent',
-//                'offset_x',
-//                'offset_y',
-//                'max_quantity'
-//            ]);
-//        }
-//
-//        $attribute->image_overlay_settings = $overlay_settings ? serialize($overlay_settings) : null;
+        $attribute->fill($request->only(['slug']));
+        $attribute->saveLocalization($request);
         $attribute->save();
 
         foreach ($request->values as $attribute_value_id => $value){
-
-            if($attribute_value_id == 'new') {
-
-                foreach ($value as $new) {
-                    $attribute_value = new AttributeValues;
-                    $attribute_value->attribute_id = $attribute->id;
-                    $attribute_value->name = $new['name'];
-                    $attribute_value->value = $new['value'];
-                    //$attribute_value->image_href = $new['image_href'] ? $new['image_href'] : null;
-                    $attribute_value->save();
-                }
-            } elseif($attribute_value_id == 'delete') {
-                foreach ($value as $delete) {
-                    $attribute_value = AttributeValues::find($delete);
-                    $attribute_value->delete();
-                    ProductAttributes::where('attribute_value_id', $delete)->delete();
-                }
-            } else {
-                $attribute_value = AttributeValues::find($attribute_value_id);
-                $attribute_value->name = $value['name'];
-                $attribute_value->value = $value['value'];
-                //$attribute_value->image_href = $value['image_href'] ? $value['image_href'] : null;
-                $attribute_value->save();
-            }
-
+            $attribute_value = AttributeValues::find($attribute_value_id);
+            $attribute_value->value = str_replace(['-', '_', ' '], '',$value['value']);
+            $attribute_value->save();
+            $new_request = new Request();
+            $new_request->merge([
+                'name_ru' => $value['name_ru'],
+                'name_ua' => $value['name_ua'],
+                'name_en' => $value['name_en']
+            ]);
+            $attribute_value->saveLocalization($new_request);
         }
 
         return redirect('/admin/attributes')
@@ -254,4 +152,45 @@ class AttributesController extends Controller
 //            return response()->json(['href' => $newFileName]);
 //        }
 //    }
+
+    /**
+     * Создание значения атрибута
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function adminStoreValueAction(Request $request){
+        $name_key = 'name_'.Config::get('app.locale');
+
+        $attribute_value = new AttributeValues;
+
+        $id = $attribute_value->insertGetId([
+            'attribute_id' => $request->attribute_id,
+            'value' => str_replace(['-', '_', ''], '', mb_strtolower(translit($request->$name_key)))
+        ]);
+        $value = $attribute_value->find($id);
+
+        $value->saveLocalization($request);
+
+        return response()->json(['result' => 'success', 'html' => view('admin.attributes.value')->with('value', $value)->render()]);
+    }
+
+    /**
+     * Удаление значения атрибута
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function adminDestroyValueAction($id){
+        $value = AttributeValues::find($id);
+
+        ProductAttributes::where('attribute_value_id', $id)->delete();
+
+        $value->delete();
+
+        return response()->json(['result' => 'success']);
+    }
 }

@@ -106,11 +106,14 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
 
     Route::group(['prefix' => 'attributes'], function(){
         Route::get('/', 'AttributesController@index');
-        Route::get('/create', 'AttributesController@create');
         Route::post('/create', 'AttributesController@store');
         Route::get('/delete/{id}', 'AttributesController@destroy');
         Route::get('/edit/{id}', 'AttributesController@edit');
         Route::post('/edit/{id}', 'AttributesController@update');
+        Route::group(['prefix' => 'values'], function(){
+            Route::post('/create', 'AttributesController@adminStoreValueAction');
+            Route::post('/delete/{id}', 'AttributesController@adminDestroyValueAction');
+        });
     });
 
     Route::group(['prefix' => 'products'], function(){

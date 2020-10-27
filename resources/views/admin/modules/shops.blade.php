@@ -62,10 +62,26 @@
                                             </td>
                                             <td class="col-md-5">
                                                 <div>
-                                                    <input type="text" name="slide[{!! $key !!}][slide_title]" class="form-control" value="{!! $slide->slide_title !!}" />
+                                                    <input placeholder="На русском" type="text" name="slide[{!! $key !!}][slide_title]" class="form-control" value="{!! $slide->slide_title !!}" />
                                                     <span style="color: red">
                                                         @if($errors->has('slide.' . $key . '.slide_title'))
                                                             {{ $errors->first('slide.' . $key . '.slide_title',':message')  }}
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <input placeholder="Українською" type="text" name="slide[{!! $key !!}][slide_title_ua]" class="form-control" value="{!! isset($slide->slide_title_ua) ? $slide->slide_title_ua : '' !!}" />
+                                                    <span style="color: red">
+                                                        @if($errors->has('slide.' . $key . '.slide_title_ua'))
+                                                            {{ $errors->first('slide.' . $key . '.slide_title_ua',':message')  }}
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <input placeholder="In English" type="text" name="slide[{!! $key !!}][slide_title_en]" class="form-control" value="{!! isset($slide->slide_title_en) ? $slide->slide_title_en : '' !!}" />
+                                                    <span style="color: red">
+                                                        @if($errors->has('slide.' . $key . '.slide_title_en'))
+                                                            {{ $errors->first('slide.' . $key . '.slide_title_en',':message')  }}
                                                         @endif
                                                     </span>
                                                 </div>

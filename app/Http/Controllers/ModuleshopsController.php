@@ -35,6 +35,8 @@ class ModuleshopsController extends Controller
                 $slides[] = (object) [
                     'image_id' => $slide->image_id,
                     'slide_title' => $slide->slide_title,
+                    'slide_title_ua' => $slide->slide_title_ua,
+                    'slide_title_en' => $slide->slide_title_en,
                     'image' => Image::find($slide->image_id)
                 ];
             }

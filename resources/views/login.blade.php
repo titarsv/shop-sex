@@ -2,8 +2,8 @@
 
 @section('meta')
     <title>Вход в личный кабинет</title>
-    <meta name="description" content="{!! $settings->meta_description !!}">
-    <meta name="keywords" content="{!! $settings->meta_keywords !!}">
+    <meta name="description" content="{!! $settings->meta_description_ru !!}">
+    <meta name="keywords" content="{!! $settings->meta_keywords_ru !!}">
 @endsection
 
 @section('breadcrumbs')

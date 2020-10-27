@@ -211,7 +211,15 @@ $(document).ready(function(){
         html += '<input type="text" name="slide[' + i + '][sort_order]" class="form-control" value="" />';
         html += '</div><br><div><b>Статус</b><select name="slide[' + i + '][status]" class="form-control">';
         html += '<option value="1" selected>Отображать</option><option value="0">Скрыть</option>';
-        html += '</select></div></td>';
+        html += '</select></div><br>' +
+            '<div>' +
+            '<b>Язык:</b>' +
+            '<select name="slide[' + i + '][lang]" class="form-control">' +
+            '<option value="ru">Русский</option>' +
+            '<option value="ua">Українська</option>' +
+            '<option value="en">English</option>' +
+            '</select>' +
+            '</div></td>';
         html += '<td class="col-md-2"><div><b>Заголовок</b>';
         html += '<input type="text" name="slide[' + i + '][slide_title]" class="form-control" value="" />';
         html += '<span style="color: red">';

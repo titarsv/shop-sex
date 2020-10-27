@@ -1,8 +1,8 @@
 @extends('public.layouts.main')
 @section('meta')
-    <title>{!! $settings->meta_title !!}</title>
-    <meta name="description" content="{!! $settings->meta_description !!}">
-    <meta name="keywords" content="{!! $settings->meta_keywords !!}">
+    <title>{!! $settings->meta_title_ru !!}</title>
+    <meta name="description" content="{!! $settings->meta_description_ru !!}">
+    <meta name="keywords" content="{!! $settings->meta_keywords_ru !!}">
 @endsection
 @section('page_vars')
     <style>
@@ -21,8 +21,8 @@
     </style>
     @include('public.layouts.microdata.local_business')
     @include('public.layouts.microdata.open_graph', [
-     'title' => $settings->meta_title,
-     'description' => $settings->meta_description,
+     'title' => $settings->meta_title_ru,
+     'description' => $settings->meta_description_ru,
      'image' => '/images/logo.png',
      'type' => 'главная'
      ])
@@ -297,7 +297,7 @@
     <section class="section-8">
         <div class="container">
             <p class="about-us-title">О магазине</p>
-            {!! $settings->about !!}
+            {!! $settings->about_ru !!}
         </div>
     </section>
     
@@ -598,7 +598,7 @@
             {{--<div class="row">--}}
                 {{--<div class="col-md-6 col-sm-12 hidden-xs home-page-about-us-text">--}}
                     {{--<span>О нас</span>--}}
-                    {{--{!! $settings->about !!}--}}
+                    {{--{!! $settings->about_ru !!}--}}
                 {{--</div>--}}
                 {{--<div class="col-md-6 col-sm-12 hidden-xs home-page-about-us-text">--}}
                     {{--<p>Почему покупатели выбирают TYFLI.COM</p>--}}

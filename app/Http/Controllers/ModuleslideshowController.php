@@ -86,6 +86,7 @@ class ModuleslideshowController extends Controller
                 $slide_data['slide_description'] = $slide['slide_description'];
 //                $slide_data['text'] = $slide['text'];
                 $slide_data['button_text'] = $slide['button_text'];
+                $slide_data['lang'] = $slide['lang'];
                 $slide['slide_data'] = json_encode($slide_data);
                 $this->slideshow->create($slide);
             }

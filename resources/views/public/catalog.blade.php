@@ -1,8 +1,8 @@
 @extends('public.layouts.main')
 @section('meta')
-    <title>{!! $settings->meta_title !!}</title>
-    <meta name="description" content="{!! $settings->meta_description !!}">
-    <meta name="keywords" content="{!! $settings->meta_keywords !!}">
+    <title>{!! $settings->meta_title_ru !!}</title>
+    <meta name="description" content="{!! $settings->meta_description_ru !!}">
+    <meta name="keywords" content="{!! $settings->meta_keywords_ru !!}">
 @endsection
 
 @section('content')

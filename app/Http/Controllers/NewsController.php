@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use Illuminate\Pagination\Paginator;
 use App\Http\Controllers\Controller;
-use Validator;
+use Illuminate\Http\Request;
+use App\Models\Settings;
+use App\Http\Requests;
+use App\Models\Image;
 use App\Models\News;
 use App\Models\User;
-use App\Models\Settings;
-use App\Models\Image;
 use Carbon\Carbon;
-use Illuminate\Pagination\Paginator;
+use Validator;
+use Config;
 
 
 class NewsController extends Controller
@@ -25,15 +25,15 @@ class NewsController extends Controller
     public $curent_user;
 
     protected $rules = [
-        'title' => 'required|unique:blog',
-        'text' => 'required',
+        'title_ru' => 'required',
+//        'text' => 'required',
         'url_alias' => 'required|unique:blog',
         'image_id' => 'required',
     ];
     protected $messages = [
-        'title.required' => 'Поле должно быть заполнено!',
-        'title.unique' => 'Поле должно быть уникальным!',
-        'text.required' => 'Поле должно быть заполнено!',
+        'title_ru.required' => 'Поле должно быть заполнено!',
+//        'title_ru.unique' => 'Поле должно быть уникальным!',
+//        'text.required' => 'Поле должно быть заполнено!',
         'url_alias.required' => 'Поле должно быть заполнено!',
         'url_alias.unique' => 'Поле должно быть уникальным!',
         'image_id.required' => 'Поле должно быть заполнено!',
@@ -65,7 +65,9 @@ class NewsController extends Controller
         ];
         return view('admin.news.create')
             ->with('article', $articles)
-            ->with('image_size', $image_size);
+            ->with('image_size', $image_size)
+            ->with('languages', Config::get('app.locales_names'))
+            ->with('editors', localizationFields(['text']));
     }
 
     public function store(Request $request)
@@ -88,25 +90,24 @@ class NewsController extends Controller
                 ->withErrors($validator);
         }
 
-        $request = $request->only([
+        $article = $this->articles;
+        $article->fill($request->only([
             'user_id',
             'url_alias',
-            'title',
-            'subtitle',
+//            'title',
+//            'subtitle',
             'published',
-            'text',
+//            'text',
             'image_id',
             'category',
             'meta_title',
             'meta_keywords',
             'meta_description',
             'robots'
-        ]);
-
-        $article = $this->articles;
-        $article->fill($request);
-        $article->text = htmlentities($request['text']);
+        ]));
+//        $article->text = htmlentities($request['text']);
         $article->save();
+        $article->saveLocalization($request);
 
         return redirect('/admin/news')
             ->with('articles', $this->articles->paginate(10))
@@ -125,7 +126,9 @@ class NewsController extends Controller
 
         return view('admin.news.edit')
             ->with('article', $article)
-            ->with('image_size', $image_size);
+            ->with('image_size', $image_size)
+            ->with('languages', Config::get('app.locales_names'))
+            ->with('editors', localizationFields(['text']));
     }
 
     public function update($id, Request $request)
@@ -171,6 +174,7 @@ class NewsController extends Controller
         $article->fill($request);
         $article->text = htmlentities($request['text']);
         $article->save();
+        $article->saveLocalization($request);
 
         return redirect('/admin/news')
             ->with('articles', $this->articles->paginate(10))

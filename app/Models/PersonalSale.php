@@ -45,9 +45,9 @@ class PersonalSale extends Model
 
             foreach ($sales as $sale) {
                 Mail::send('emails.sale', ['sale' => $sale], function ($msg) use ($setting, $sale) {
-                    $msg->from($setting->get_setting('site_email'), 'Интернет-магазин Globalprom');
+                    $msg->from($setting->get_setting('site_email'), 'Интернет-магазин Интим');
                     $msg->to($sale->email);
-                    $msg->subject('Обновление цены на сайте Globalprom');
+                    $msg->subject('Обновление цены на сайте Интим');
                 });
 
                 $sale->update(['status' => 'mail']);

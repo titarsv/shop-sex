@@ -85,6 +85,10 @@ class Categories extends Model
         return $this->getAttributeByName('name');
     }
 
+    public function getDescriptionAttribute(){
+        return $this->getAttributeByName('description');
+    }
+
     public function getMetaTitleAttribute(){
         return $this->getAttributeByName('meta_title');
     }

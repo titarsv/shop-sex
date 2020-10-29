@@ -31,7 +31,7 @@
     "url": "{{ env('APP_URL')}}/product/{{ $product->url_alias }}",
     "seller": {
       "@type": "Organization",
-      "name": "Интернет-магазин «Интим»"
+      "name": "{{ trans('app.internet_store_intim') }}»"
     }
   }
   @if(isset($reviews))

@@ -4,7 +4,7 @@
     <p style="font-size: 20px;">Новое сообщение на сайте shop-sex.com.ua!</p>
 
     @if(!empty($$phone))
-    <p style="font-size: 20px;">Телефон:<b>{{ $phone }}</b></p>
+    <p style="font-size: 20px;">{{ trans('app.phone') }}:<b>{{ $phone }}</b></p>
     @endif
     @if(!empty($email))
         <p style="font-size: 20px;">Email:<b>{{ $email }}</b></p>

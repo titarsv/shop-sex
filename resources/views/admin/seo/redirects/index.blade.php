@@ -31,7 +31,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="input-group">
-                    <label for="search" class="input-group-addon">Поиск:</label>
+                    <label for="search" class="input-group-addon">{{ trans('app.search') }}</label>
                     <input type="text" id="search" name="search" placeholder="Введите текст..." class="form-control input-sm" value="{{ $current_search or '' }}" />
                 </div>
             </div>

@@ -27,7 +27,7 @@
       },
        "publisher": {
         "@type": "Organization",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "logo": {
           "@type": "ImageObject",
           "url": "https://shop-sex.com.ua/images/logo.png"

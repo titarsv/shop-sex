@@ -4,7 +4,7 @@
             <div class="row container-popup">
                 @if(!is_null($cart))
                 <div class="col-md-12">
-                    <h5 class="popup-title">Товар добавлен в корзину</h5>
+                    <h5 class="popup-title">{{ trans('app.product_added_to_cart') }}</h5>
                 </div>
                 <div class="col-md-12 no-padding">
                     @foreach ($cart->get_products() as $code => $product)
@@ -26,14 +26,14 @@
                                             @endif
                                         </h5>
                                     </a>
-                                    <p class="hidden-xs">Код товара:<span>{{ $product['product']->articul }}</span> </p>
+                                    <p class="hidden-xs">{{ trans('app.product_code') }}<span>{{ $product['product']->articul }}</span> </p>
                                 </div>
                                 <div class="cart-list cart-list-margins hidden-xs">
                                     <ul>
                                         <li>{{ $product['sale_percent'] }}%</li>
                                     </ul>
                                     <ul>
-                                        <li>{{ isset($product['variations']['Размер']) ? $product['variations']['Размер'] : '' }}</li>
+                                        <li>{{ isset($product['variations'][trans('app.the_size')]) ? $product['variations'][trans('app.the_size')] : '' }}</li>
                                     </ul>
                                     <ul>
                                         <li class="prod-quantity">
@@ -43,7 +43,7 @@
                                         </li>
                                     </ul>
                                     <div class="popup-price">
-                                        <p><span data-one-price="{{ round($product['price'] * $product['quantity'], 2) }}">{{ number_format( round($product['price'] * $product['quantity'], 2), 0, ',', ' ' ) }}</span> грн</p>
+                                        <p><span data-one-price="{{ round($product['price'] * $product['quantity'], 2) }}">{{ number_format( round($product['price'] * $product['quantity'], 2), 0, ',', ' ' ) }}</span> {{ trans('app.hryvnias') }}</p>
                                     </div>
                                 </div>
 
@@ -64,16 +64,16 @@
                                     </div>
                                     <ul class="mobile-prod-cart">
                                         <li>
-                                            <p>Цена</p>
+                                            <p>{{ trans('app.price') }}</p>
                                             <div class="popup-price">
-                                                <p><span data-one-price="{{ round($product['price'] * $product['quantity'], 2) }}">{{ number_format( round($product['price'] * $product['quantity'], 2), 0, ',', ' ' ) }}</span> грн</p>
+                                                <p><span data-one-price="{{ round($product['price'] * $product['quantity'], 2) }}">{{ number_format( round($product['price'] * $product['quantity'], 2), 0, ',', ' ' ) }}</span> {{ trans('app.hryvnias') }}</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <p>Размер</p><span>{{ isset($product['variations']['Размер']) ? $product['variations']['Размер'] : '' }}</span>
+                                            <p>{{ trans('app.the_size') }}</p><span>{{ isset($product['variations'][trans('app.the_size')]) ? $product['variations'][trans('app.the_size')] : '' }}</span>
                                         </li>
                                         <li>
-                                            <p>Цвет</p><span>{{ isset($product['variations']['Цвет']) ? $product['variations']['Цвет'] : '' }}</span>
+                                            <p>{{ trans('app.colour') }}</p><span>{{ isset($product['variations'][trans('app.colour')]) ? $product['variations'][trans('app.colour')] : '' }}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -83,22 +83,22 @@
                 </div>
                 <div class="col-md-12">
                     <div class="popup-total-price popup-price">
-                        <p>Сумма заказа <span>{{ $cart->total_price ? number_format( round($cart->total_price, 2), 0, ',', ' ' ) : '0' }}</span> грн</p>
+                        <p>{{ trans('app.order_price') }} <span>{{ $cart->total_price ? number_format( round($cart->total_price, 2), 0, ',', ' ' ) : '0' }}</span> {{ trans('app.hryvnias') }}</p>
                         <div class="order-popup__count-items hidden" data-qty="{{ $cart->total_quantity }} {{ Lang::choice('товар|товара|товаров', $cart->total_quantity, [], 'ru') }} на">{{ $cart->total_quantity }}</div>
                     </div>
                 </div>
                 <div class="col-sm-6 no-padding">
                     <a href="{{env('APP_URL')}}/cart" class="popup-btn process">
-                        <p>Перейти в корзину</p>
+                        <p>{{ trans('app.go_to_cart') }}</p>
                     </a>
                 </div>
                 <div class="col-sm-6 no-padding">
                     <a href="{{env('APP_URL')}}/catalog/tovary" class="popup-btn continue">
-                        <p>Продолжить покупки</p>
+                        <p>{{ trans('app.continue_shopping') }}</p>
                     </a>
                 </div>
                 @else
-                    Здесь пусто...
+                    {{ trans('app.its_empty_') }}
                 @endif
                 <button title="Close (Esc)" type="button" class="mfp-close"></button>
             </div>

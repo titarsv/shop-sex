@@ -11,7 +11,7 @@
         @endif
         <div>
             <span class="search-name">{{ $product->name }}</span>
-            <span class="search-price">{{ number_format($product->price, 2, '.', ' ') }} грн</span>
+            <span class="search-price">{{ number_format($product->price, 2, '.', ' ') }} {{ trans('app.hryvnias') }}</span>
         </div>
     </a>
 @endforeach

@@ -86,62 +86,62 @@
 
 
             var content1 = '<div id="iw-container">' +
-                '<p class="iw-title">ул. Пушкинская, 43</p>' +
-                '<p class="iw-info">(поликлиника "Cана" вход в арку)</p>' +
+                '<p class="iw-title">{{ trans('app.st_pushkinskaya_43') }}</p>' +
+                '<p class="iw-info">{{ trans('app.polyclinic_sana_entrance_to_the_arch') }}</p>' +
                 '<a href="tel:+380577518345" class="iw-info">+380 (57) 751-83-45</a>' +
                 '<img src="/images/addr/addr8.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content2 = '<div id="iw-container">' +
-                '<p class="iw-title">Бурсацкий спуск, 8</p>' +
+                '<p class="iw-title">{{ trans('app.bursatsky_descent_8') }}</p>' +
                 '<a href="tel:+380577312674" class="iw-info">+380 (57) 731-26-74</a>' +
                 '<img src="/images/addr/addr1.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content3 = '<div id="iw-container">' +
-                '<p class="iw-title">пр. Ленина, 29</p>' +
+                '<p class="iw-title">{{ trans('app.lenin_ave_29') }}</p>' +
                 '<a href="tel:+380577195653" class="iw-info">+380 (57) 719-56-53</a>' +
                 '</div>';
             var content4 = '<div id="iw-container">' +
-                '<p class="iw-title">пр. Московский, 90</p>' +
+                '<p class="iw-title">{{ trans('app.moskovsky_pr_90') }}</p>' +
                 '<img src="/images/addr/addr4.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content5 = '<div id="iw-container">' +
-                '<p class="iw-title">Полтавский Шлях 115</p>' +
-                '<p class="iw-info">ст. м. «Холодная Гора»</p>' +
-                '<p class="iw-info">(напротив ТЦ "РОСТ", рынок торгового центра Дигма)</p>' +
+                '<p class="iw-title">{{ trans('app.poltavskiy_shlyakh_115') }}</p>' +
+                '<p class="iw-info">{{ trans('app.art_m_cold_mountain') }}</p>' +
+                '<p class="iw-info">{{ trans('app.opposite_the_rost_shopping_center_the_market_of_the_digma_shopping_center') }}</p>' +
                 '<img src="/images/addr/addr6.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content6 = '<div id="iw-container">' +
-                '<p class="iw-title">ст. м. «Героев Труда»</p>' +
-                '<p class="iw-info">трам. ост. Рынок «АРАКС»</p>' +
+                '<p class="iw-title">{{ trans('app.art_m_heroes_of_labor') }}</p>' +
+                '<p class="iw-info">{{ trans('app.tram_ost_market_arax') }}</p>' +
                 '<img src="/images/addr/addr3.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content7 = '<div id="iw-container">' +
-                '<p class="iw-title">ул. Клочковская</p>' +
-                '<p class="iw-info">(напротив книжного рынка)</p>' +
+                '<p class="iw-title">{{ trans('app.st_klochkovskaya') }}</p>' +
+                '<p class="iw-info">{{ trans('app.opposite_the_book_market') }}</p>' +
                 '<img src="/images/addr/addr2.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content8 = '<div id="iw-container">' +
-                '<p class="iw-title">пр. Московский, 252б</p>' +
-                '<p class="iw-info">(станция метро им. Масельского)</p>' +
+                '<p class="iw-title">{{ trans('app.moskovsky_pr_252b') }}</p>' +
+                '<p class="iw-info">{{ trans('app.metro_station_named_after_maselsky') }}</p>' +
                 '<img src="/images/addr/addr5.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content9 = '<div id="iw-container">' +
-                '<p class="iw-title">пр. Тракторостроителей, 63</p>' +
-                '<p class="iw-info">(Напротив ТРЦ "Украина")</p>' +
+                '<p class="iw-title">{{ trans('app.ave_traktorostroiteley_63') }}</p>' +
+                '<p class="iw-info">{{ trans('app.opposite_the_shopping_center_ukraine') }}</p>' +
                 '<img src="/images/addr/addr7.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content10 = '<div id="iw-container">' +
-                '<p class="iw-title">Героев Сталинграда 136/8</p>' +
-                '<p class="iw-info">торговое помещение 94/1</p>' +
+                '<p class="iw-title">{{ trans('app.heroes_of_stalingrad_1368') }}</p>' +
+                '<p class="iw-info">{{ trans('app.retail_space_941') }}</p>' +
                 '<img src="/images/addr/addr10.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content11 = '<div id="iw-container">' +
-                '<p class="iw-title">пр. Людвига Свободы, 43</p>'+
+                '<p class="iw-title">{{ trans('app.ludwig_svoboda_ave_43') }}</p>'+
                 '<img src="/uploads/addr11.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
             var content12 = '<div id="iw-container">' +
-                '<p class="iw-title">ул. Шевченко, 142А</p>'+
-                '<p class="iw-info">ТЦ «Рост» (ст. метро Киевская)</p>' +
+                '<p class="iw-title">{{ trans('app.st_shevchenko_142a') }}</p>'+
+                '<p class="iw-info">{{ trans('app.shopping_center_rost_metro_station_kievskaya') }}</p>' +
                 '<img src="/uploads/addr12.jpg" class="iw-info" style="width: 283px;">' +
                 '</div>';
 
@@ -492,7 +492,7 @@
                     map: mapMuz,
                 });
                 var contentMuz = '<div id="iw-container">' +
-                    '<p class="iw-title">ул. Маяковского, 5 (во двор)</p>' +
+                    '<p class="iw-title">{{ trans('app.st_mayakovsky_5_in_the_yard') }}</p>' +
                     '<a href="+380577156315" class="iw-info">+38 (057) 715-63-15</a>' +
                     '<a href="+380577005002" class="iw-info">+38 (057) 700-50-02</a>' +
                     '</div>';
@@ -508,20 +508,19 @@
                 });
             }
         }
-
     </script>
 
     {{--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2562.3256914431086!2d36.21304241599528!3d50.042729879421096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a6ae15c37805%3A0x4356917fd8cbf4bf!2z0L_RgNC-0YHQv9C10LrRgiDQm9C10L3RltC90LAsIDI5LCDQpdCw0YDQutGW0LIsINCl0LDRgNC60ZbQstGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCA2MTAwMA!5e0!3m2!1sru!2sua!4v1539860122128" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>--}}
     @endif
     <div class="map-form-container">
         <form action="/sendmail" class="question-popup__form ajax_form"
-                data-error-title="Ошибка отправки!"
-                data-error-message="Попробуйте отправить вопрос через некоторое время."
-                data-success-title="Спасибо за вопрос!"
-                data-success-message="Наш менеджер свяжется с вами в ближайшее время.">
-            <textarea name="request" placeholder="Напишите свой вопрос" data-validate-required="Обязательное поле" data-title="Вопрос"></textarea>
-            <input type="tel" name="phone" placeholder="Номер телефона" data-title="Телефон" data-validate-required="Обязательное поле" data-validate-uaphone="Неправильный номер">
-            <button type="submit">Задать анонимный вопрос</button>
+                data-error-title="{{ trans('app.send_error') }}"
+                data-error-message="{{ trans('app.try_to_send_a_question_after_a_while') }}"
+                data-success-title="{{ trans('app.thanks_for_the_question') }}"
+                data-success-message="{{ trans('app.our_manager_will_contact_you_soon') }}">
+            <textarea name="request" placeholder="{{ trans('app.write_your_question') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-title="{{ trans('app.question') }}"></textarea>
+            <input type="tel" name="phone" placeholder="{{ trans('app.phone_number') }}" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="{{ trans('app.wrong_number') }}">
+            <button type="submit">{{ trans('app.ask_anonymous_question') }}</button>
         </form>
     </div>
     <div class="container">
@@ -529,30 +528,30 @@
             <div class="col-sm-2 col-xs-3">
                 @if(Request::path()!='/')
                     <a href="{{env('APP_URL')}}">
-                        {{--<img src="/images/logo.png" class="header__logo" alt="Главная">--}}
+                        {{--<img src="/images/logo.png" class="header__logo" alt="{{ trans('app.home') }}">--}}
                         <picture>
                             <source data-src="/images/logo.webp" srcset="/images/pixel.webp" type="image/webp">
                             <source data-src="/images/logo.png" srcset="/images/pixel.png" type="image/png">
-                            <img src="/images/pixel.jpg" alt="Главная" style="width: 100%;">
+                            <img src="/images/pixel.jpg" alt="{{ trans('app.home') }}" style="width: 100%;">
                         </picture>
                     </a>
                 @else
-                    {{--<img src="/images/logo.png" class="header__logo" alt="Главная">--}}
+                    {{--<img src="/images/logo.png" class="header__logo" alt="{{ trans('app.home') }}">--}}
                     <picture>
                         <source data-src="/images/logo.webp" srcset="/images/pixel.webp" type="image/webp">
                         <source data-src="/images/logo.png" srcset="/images/pixel.png" type="image/png">
-                        <img src="/images/pixel.jpg" alt="Главная" style="width: 100%;">
+                        <img src="/images/pixel.jpg" alt="{{ trans('app.home') }}" style="width: 100%;">
                     </picture>
                 @endif
             </div>
             <div class="col-sm-7 col-xs-9">
-                <p class="copyright">© 2007-{{ date('Y') }} Интернет-магазин «Интим»</p>
+                <p class="copyright">© 2007-{{ date('Y') }} {{ trans('app.internet_store_intim') }}</p>
             </div>
             <div class="col-sm-3 col-xs-12">
                 <ul class="footer__contacts">
-                    <li style="cursor: pointer;" class="popup-btn" data-mfp-src="#popup-return">Условия обмена/возврата</li>
-                    <li><a href="/page/oferta/" style="color: #fff;">Оферта</a></li>
-                    <li><a href="/page/politika-konfidentsialnosti" style="color: #fff;">Политика конфиденциальности</a></li>
+                    <li style="cursor: pointer;" class="popup-btn" data-mfp-src="#popup-return">{{ trans('app.exchange_return_conditions') }}</li>
+                    <li><a href="/page/oferta/" style="color: #fff;">{{ trans('app.offer') }}</a></li>
+                    <li><a href="/page/politika-konfidentsialnosti" style="color: #fff;">{{ trans('app.privacy_policy') }}</a></li>
                     <li><a href="tel:0507000197" style="color: #fff;">050 700-01-97</a></li>
                     <li><a href="tel:0958860978" style="color: #fff;">095 886-09-78</a></li>
                     <li>shop_sex.com.ua</li>
@@ -562,7 +561,7 @@
     </div>
     <div style="padding: 25px 0 0;text-align: center;">
         <a href="https://triplefork.it" target="_blank" rel="nofollow" class="triplefork" style="display: flex; align-items: center;justify-content: center;margin: 0 auto;">
-<span>Разработка:</span>
+<span>{{ trans('app.development') }}</span>
 <svg class="triplefork-logo" version="1.1" id="sl_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 27 25" style="enable-background:new 0 0 27 25;width: 26px;margin-right: 5px" xml:space="preserve">
 <style type="text/css">
   .st0{fill:none;stroke:#F25733;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}  
@@ -638,10 +637,10 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
                     <div class="question-popup__container">
-                        <p class="question-popup__container-title">Условия обмена/возврата</p>
-                        <p>Согласно дополнения №3 к постановлению Кабинета Министров Украины от 19 Марта 1994 г.№172</p>
+                        <p class="question-popup__container-title">{{ trans('app.exchange_return_conditions') }}</p>
+                        <p>{{ trans('app.according_to_addendum_no_3_to_the_resolution_of_the_cabinet_of_ministers_of_ukraine_dated_march_19_1994_no_172') }}</p>
                         <br>
-                        <p>Средства санитарной гигиены, одежда и товары сексуального предназначения надлежащего качества обмену/возврату не подлежат.</p>
+                        <p>{{ trans('app.hygiene_products_clothing_and_sex_products_of_proper_quality_cannot_be_exchanged__returned') }}</p>
                         <button title="Close (Esc)" type="button" class="mfp-close">×</button>
                     </div>
                 </div>

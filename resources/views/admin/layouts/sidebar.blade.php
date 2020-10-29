@@ -1,6 +1,6 @@
 <ul class="nav nav-pills nav-stacked">
     <li role="presentation">
-        <a href="/admin"><i class="fa fa-tachometer" aria-hidden="true"></i>Главная</a>
+        <a href="/admin"><i class="fa fa-tachometer" aria-hidden="true"></i>{{ trans('app.home') }}</a>
     </li>
     <li role="presentation">
         <p data-toggle="collapse" data-target="#products-collapse" class="nav-collapse"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Товары</p>
@@ -29,7 +29,7 @@
         <a href="/admin/news"><i class="fa fa-newspaper-o" aria-hidden="true"></i>Новости</a>
     </li>
     <li role="presentation">
-        <a href="/admin/reviews"><i class="fa fa-comments-o" aria-hidden="true"></i>Отзывы
+        <a href="/admin/reviews"><i class="fa fa-comments-o" aria-hidden="true"></i>{{ trans('app.reviews') }}
             @if(!$new_reviews->isEmpty())
                 <span class="badge">{!! $new_reviews->count() !!}</span>
             @endif

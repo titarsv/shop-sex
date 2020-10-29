@@ -8,7 +8,7 @@
 @section('content')
     <section>
         <div class="container">
-            <p class="section-title">Каталог товаров</p>
+            <p class="section-title">{{ trans('app.catalog') }}</p>
             <div class="row">
                 @foreach($categories as $category)
                     @if(!empty($category->image))
@@ -20,7 +20,7 @@
                                 </a>
                                 <a href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}" class="category-item__title">{{ $category->name }}</a>
                                 <div class="category-item__btn">
-                                    <a  class="category-item__btn-more" href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}">Подробнее</a>
+                                    <a  class="category-item__btn-more" href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}">{{ trans('app.More_details') }}</a>
                                     @if($category->children->count())
                                     <div class="category-details"></div>
                                     <ul class="category_links">

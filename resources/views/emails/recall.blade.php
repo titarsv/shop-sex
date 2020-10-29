@@ -7,9 +7,9 @@
         <p style="font-size: 20px;">Поступил заказ обратного звонка на сайте shop-sex.com.ua!</p>
     @endif
 
-    <p style="font-size: 20px;">Имя:<b>{{ $name }}</b></p>
+    <p style="font-size: 20px;">{{ trans('app.name') }}:<b>{{ $name }}</b></p>
     @if(!empty($phone))
-    <p style="font-size: 20px;">Телефон:<b>{{ $phone }}</b></p>
+    <p style="font-size: 20px;">{{ trans('app.phone') }}:<b>{{ $phone }}</b></p>
     @endif
     @if(!empty($email))
         <p style="font-size: 20px;">Email:<b>{{ $email }}</b></p>

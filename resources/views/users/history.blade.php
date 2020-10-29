@@ -52,10 +52,10 @@
                         </div>
                         <div class="col-md-12 col-xs-12 history-page">
                             <div class="history-list-title path-underline hidden-xs">
-                                <p>Скидка</p>
-                                <p>Размер</p>
-                                <p>Количество</p>
-                                <p>Сумма</p>
+                                <p>{{ trans('app.discount') }}</p>
+                                <p>{{ trans('app.the_size') }}</p>
+                                <p>{{ trans('app.number') }}</p>
+                                <p>{{ trans('app.sum') }}</p>
                             </div>
 
                             @foreach($orders as $order)
@@ -67,20 +67,20 @@
                                             </div>
                                             <div class="cart-prod-description hidden-xs">
                                                 <a href="{{env('APP_URL')}}/product/{{ $product['product']->url_alias }}"><h5 class="default-link-hover">{{ $product['product']->name }}</h5></a>
-                                                <p class="hidden-xs">Код товара:<span>{{ $product['product']->articul }}</span> </p>
+                                                <p class="hidden-xs">{{ trans('app.product_code') }}<span>{{ $product['product']->articul }}</span> </p>
                                             </div>
                                             <div class="cart-list cart-list-margins hidden-xs">
                                                 <ul>
                                                     <li>{{ $product['sale_percent'] or 0 }}%</li>
                                                 </ul>
                                                 <ul>
-                                                    <li>{{ isset($product['variations']['Размер']) ? $product['variations']['Размер'] : '' }}</li>
+                                                    <li>{{ isset($product['variations'][trans('app.the_size')]) ? $product['variations'][trans('app.the_size')] : '' }}</li>
                                                 </ul>
                                                 <ul>
                                                     <li class="prod-quantity">{{ $product['quantity'] }}</li>
                                                 </ul>
                                                 <div class="popup-price">
-                                                    <p><span>{{ $product['price'] }}</span> грн</p>
+                                                    <p><span>{{ $product['price'] }}</span> {{ trans('app.hryvnias') }}</p>
                                                 </div>
                                             </div>
 
@@ -90,16 +90,16 @@
                                                 </div>
                                                 <ul class="mobile-prod-cart">
                                                     <li>
-                                                        <p>Цена</p>
+                                                        <p>{{ trans('app.price') }}</p>
                                                         <div class="popup-price">
-                                                            <p><span>{{ $product['price'] }}</span> грн</p>
+                                                            <p><span>{{ $product['price'] }}</span> {{ trans('app.hryvnias') }}</p>
                                                         </div>
                                                     </li>
                                                     <li>
-                                                        <p>Размер</p><span>{{ isset($product['variations']['Размер']) ? $product['variations']['Размер'] : '' }}</span>
+                                                        <p>{{ trans('app.the_size') }}</p><span>{{ isset($product['variations'][trans('app.the_size')]) ? $product['variations'][trans('app.the_size')] : '' }}</span>
                                                     </li>
                                                     <li>
-                                                        <p>Цвет</p><span>{{ isset($product['variations']['Цвет']) ? $product['variations']['Цвет'] : '' }}</span>
+                                                        <p>{{ trans('app.colour') }}</p><span>{{ isset($product['variations'][trans('app.colour')]) ? $product['variations'][trans('app.colour')] : '' }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -129,7 +129,7 @@
                                         <p>Скидка на сайте</p>
                                         <p>{{ $user->sale() }} <span>%</span></p>
                                     </h5>
-                                    <span>Общая сумма Ваших покупок {{ $user->ordersTotal() }} грн.<br/>
+                                    <span>Общая сумма Ваших покупок {{ $user->ordersTotal() }} {{ trans('app.hryvnias') }}.<br/>
                                         @if(!empty($user->nextSale()))
                                             @php
                                                 $next_sale = $user->nextSale();
@@ -140,7 +140,7 @@
                                 </div>
                                 <div class="cart-receipt-item cart-receipt-price history-info-box">
                                     <h5>Общая сумма покупок</h5>
-                                    <p><span>{{ $user->ordersTotal() }}</span> грн</p>
+                                    <p><span>{{ $user->ordersTotal() }}</span> {{ trans('app.hryvnias') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                             <div class="cart-receipt-btn">
                                 @if(empty($orders))
                                     <a href="{{env('APP_URL')}}/" class="process" style="color: #F5F5F5; font-family: 'HelveticaNeue'; font-size: 18px; font-weight: bold; line-height: 25px; text-align: center; border: none; outline: none;">
-                                        <p>Продолжить покупки</p>
+                                        <p>{{ trans('app.continue_shopping') }}</p>
                                     </a>
                                 @else
                                     @php
@@ -162,7 +162,7 @@
                                         }
                                     @endphp
                                     <a href="{{env('APP_URL')}}{{ $href }}" class="process" style="color: #F5F5F5; font-family: 'HelveticaNeue'; font-size: 18px; font-weight: bold; line-height: 25px; text-align: center; border: none; outline: none;">
-                                        <p>Продолжить покупки</p>
+                                        <p>{{ trans('app.continue_shopping') }}</p>
                                     </a>
                                 @endif
                             </div>

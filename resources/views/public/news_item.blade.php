@@ -73,7 +73,7 @@
                             </div>
                             <div class="aside-filter-menu-item path-underline">
                                 <div class="aside-filter-menu-item-title">
-                                    <a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>Вопросы и ответы</p></a>
+                                    <a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>{{ trans('app.questions_and_answers') }}</p></a>
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item path-underline">
@@ -105,7 +105,7 @@
                                 <select name="" id=""  class="chosen-select site-section-select">
                                     <option value="{{env('APP_URL')}}/news">Новости и Акции</option>
                                     <option value="{{env('APP_URL')}}/articles">Статьи</option>
-                                    <option value="{{env('APP_URL')}}/page/voprosy--otvety">Вопросы и ответы</option>
+                                    <option value="{{env('APP_URL')}}/page/voprosy--otvety">{{ trans('app.questions_and_answers') }}</option>
                                     <option value="{{env('APP_URL')}}/handling">Уход за обувью</option>
                                     <option value="{{env('APP_URL')}}/page/bonusnyya-programma">Бонусная программа</option>
                                     <option value="{{env('APP_URL')}}/page/otkrytye-vakansii">Открытые вакансии</option>
@@ -180,7 +180,7 @@
                             <ul class="sections-links">
                                 <li><a href="javascript:void(0);">Новости и Акции</a> </li>
                                 <li><a href="{{env('APP_URL')}}/news">Статьи</a></li>
-                                <li><a href="javascript:void(0);">Вопросы и ответы</a></li>
+                                <li><a href="javascript:void(0);">{{ trans('app.questions_and_answers') }}</a></li>
                                 <li><a href="javascript:void(0);">Уход за обувью</a></li>
                                 <li><a href="javascript:void(0);">Бонусная программа</a></li>
                                 <li><a href="javascript:void(0);">Открытые вакансии</a></li>

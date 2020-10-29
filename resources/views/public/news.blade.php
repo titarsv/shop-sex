@@ -1,6 +1,6 @@
 @extends('public.layouts.main')
 @section('meta')
-    <title>Новости</title>
+    <title>{{ trans('app.news') }}</title>
     <meta name="description" content="{!! $settings->meta_description !!}">
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
 @endsection
@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="site-path">
-                    <a href="{{env('APP_URL')}}" class="site-path-link" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" itemprop="url">Главная</a>
+                    <a href="{{env('APP_URL')}}" class="site-path-link" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" itemprop="url">{{ trans('app.home') }}</a>
                     <a href="javascript:void(0);" class="site-path-link-active">{{ $title }}</a>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="aside-filter-menu-item path-underline">
                                 <div class="aside-filter-menu-item-title">
-                                    <a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>Вопросы и ответы</p></a>
+                                    <a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>{{ trans('app.questions_and_answers') }}</p></a>
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item path-underline">
@@ -107,7 +107,7 @@
                                 <select name="" id="redirect_select"  class="chosen-select site-section-select">
                                     <option value="{{env('APP_URL')}}/news"{{ $title == 'Новости и Акции' ? ' selected="selected"' : '' }}>Новости и Акции</option>
                                     <option value="{{env('APP_URL')}}/articles"{{ $title == 'Статьи' ? ' selected="selected"' : '' }}>Статьи</option>
-                                    <option value="{{env('APP_URL')}}/page/voprosy--otvety">Вопросы и ответы</option>
+                                    <option value="{{env('APP_URL')}}/page/voprosy--otvety">{{ trans('app.questions_and_answers') }}</option>
                                     <option value="{{env('APP_URL')}}/handling"{{ $title == 'Уход за обувью' ? ' selected="selected"' : '' }}>Уход за обувью</option>
                                     <option value="{{env('APP_URL')}}/page/bonusnyya-programma">Бонусная программа</option>
                                     <option value="{{env('APP_URL')}}/page/otkrytye-vakansii">Открытые вакансии</option>
@@ -140,7 +140,7 @@
                             <ul class="sections-links">
                                 <li><a href="{{env('APP_URL')}}/news">Новости и Акции</a> </li>
                                 <li><a href="{{env('APP_URL')}}/articles">Статьи</a> </li>
-                                <li><a href="{{env('APP_URL')}}/page/voprosy--otvety">Вопросы и ответы</a> </li>
+                                <li><a href="{{env('APP_URL')}}/page/voprosy--otvety">{{ trans('app.questions_and_answers') }}</a> </li>
                                 <li><a href="{{env('APP_URL')}}/handling">Уход за обувью</a> </li>
                                 <li><a href="{{env('APP_URL')}}/page/bonusnyya-programma">Бонусная программа</a> </li>
                                 <li><a href="{{env('APP_URL')}}/page/otkrytye-vakansii">Открытые вакансии</a> </li>

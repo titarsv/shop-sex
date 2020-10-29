@@ -2,14 +2,14 @@
 @section('meta')
     <title>
         @if(empty($category->meta_title)))
-            {!! $category->name !!}} | Секс-шоп в Харькове, интернет-магазин | Shop-sex.com.ua
+            {!! $category->name !!}} | {{ trans('app.sex_shop_in_kharkov_online_store') }} | Shop-sex.com.ua
         @else
-            {!! $category->meta_title !!} | Секс-шоп в Харькове, интернет-магазин | Shop-sex.com.ua
+            {!! $category->meta_title !!} | {{ trans('app.sex_shop_in_kharkov_online_store') }} | Shop-sex.com.ua
         @endif
         @if(!empty($products) && $products->currentPage() > 1) - Страница №{!! $products->currentPage() !!}@endif
     </title>
 
-    <meta name="description" content="{{ $category->name }} по лучшим ценам в Харькове, Украине ✓Гарантия анонимности{{ (!empty($products) && $products->currentPage() > 1) ? ' - Страница №'.$products->currentPage() : '' }}">
+    <meta name="description" content="{{ $category->name }} {{ trans('app.at_the_best_prices_in_kharkov_ukraine_anonymity_guarantee') }}{{ (!empty($products) && $products->currentPage() > 1) ? ' - Страница №'.$products->currentPage() : '' }}">
     @if(empty($products) || $products->currentPage() == 1)
         <meta name="keywords" content="{{ $category->meta_keywords or '' }}">
     @endif
@@ -44,12 +44,12 @@
                 <div class="visible-xs-block col-xs-12">
                     <div class="mobile-product-title">
                         <p>Каталог</p>
-                        <p class="mobile-filters-toggle">Настройки поиска</p>
+                        <p class="mobile-filters-toggle">{{ trans('app.search_settings') }}</p>
                         <form class="filters">
                             <div class="close-btn"></div>
-                            <p class="filters__item-title">Настройки поиска</p>
+                            <p class="filters__item-title">{{ trans('app.search_settings') }}</p>
                             <div class="filters__price">
-                                <p class="filters__item-title">Цена</p>
+                                <p class="filters__item-title">{{ trans('app.price') }}</p>
                                 <div class="tab_content first tab_price active">
                                     <fieldset>
                                         <div class="price-range" data-value="{{ isset($price[2]) ? $price[2] : $price[0] }};{{ isset($price[3]) ? $price[3] : $price[1] }}" data-max="{{ $price[1] }}" data-min="{{ $price[0] }}"></div>
@@ -90,15 +90,15 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <button type="submit">Применить</button>
+                            <button type="submit">{{ trans('app.apply') }}</button>
                         </form>
                     </div>
                 </div>
                 <div class="col-sm-3 hidden-xs">
                     <form class="filters">
                         <div class="filters__price">
-                            <p class="filters__item-title">Цена</p>
-                            <p class="filters__item-title">Настройки поиска</p>
+                            <p class="filters__item-title">{{ trans('app.price') }}</p>
+                            <p class="filters__item-title">{{ trans('app.search_settings') }}</p>
                             <div class="tab_content first tab_price active">
                                 <fieldset>
                                     <div class="price-range" data-value="{{ isset($price[2]) ? $price[2] : $price[0] }};{{ isset($price[3]) ? $price[3] : $price[1] }}" data-max="{{ $price[1] }}" data-min="{{ $price[0] }}"></div>
@@ -114,7 +114,7 @@
                         </div>
                         <div id="filters-min">
                             <div class="filters__item">
-                                <p class="filters__item-title">Категории</p>
+                                <p class="filters__item-title">{{ trans('app.categories') }}</p>
                                 @foreach($categories as $cat)
                                     @php
                                         $children = $cat->children;
@@ -167,7 +167,7 @@
                     <div class="row">
                         <div class="col-sm-12 hidden-xs">
                             <div class="sort-prod">
-                                Сортировать по:
+                                {{ trans('app.sort_by') }}
                                 <select name="sorting" class="chosen-select sorting" id="sorting-select">
                                     <option value="price-asc"{{ isset($_GET['order']) && $_GET['order'] == 'price-asc' ? ' selected="selected"' : '' }}>Возрастанию цены</option>
                                     <option value="price-desc"{{ isset($_GET['order']) && $_GET['order'] == 'price-desc' ? ' selected="selected"' : '' }}>Убыванию цены</option>
@@ -177,7 +177,7 @@
 
                         @if(empty($products))
                             <div class="col-md-12">
-                                <span>Нет таких товаров...</span>
+                                <span>{{ trans('app.there_are_no_such_items') }}</span>
                             </div>
                         @else
                             <div class="products-container">
@@ -201,12 +201,12 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
                             <div class="question-popup__container">
-                                <p class="question-popup__container-title">К Вам в корзину добавлен: </p>
+                                <p class="question-popup__container-title">{{ trans('app.added_to_your_cart') }} </p>
                                 <p class="product-name">{{ $product->name }}</p>
                                 <img class="question-popup__container-img" src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}">
                                 <div class="question-popup__container-btns">
-                                    <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">Продолжить покупки</button>
-                                    <a href="/checkout" class="cart-popup__cart-btn">Перейти в корзину</a>
+                                    <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">{{ trans('app.continue_shopping') }}</button>
+                                    <a href="/checkout" class="cart-popup__cart-btn">{{ trans('app.go_to_cart') }}</a>
                                 </div>
                                 <button title="Close (Esc)" type="button" class="mfp-close">×</button>
                             </div>

@@ -12,7 +12,7 @@
 </a>
 <div class="product-item__info">
     <p class="product-item__info-title">{{ $product->name }}</p>
-    <p class="product-item__info-price">{{ number_format($product->price, 2, '.', ' ') }}грн</p>
-    <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}" class="product-item__info-link">подробнее</a>
-    <button class="product-item__info-btn btn_buy popup-btn"  data-mfp-src="#cart-popup_{{ $product->id }}" data-prod-id="{{ $product->id }}">В корзину</button>
+    <p class="product-item__info-price">{{ number_format($product->price, 2, '.', ' ') }}{{ trans('app.hryvnias') }}</p>
+    <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}" class="product-item__info-link">{{ trans('app.more_details') }}</a>
+    <button class="product-item__info-btn btn_buy popup-btn"  data-mfp-src="#cart-popup_{{ $product->id }}" data-prod-id="{{ $product->id }}">{{ trans('app.in_garbage') }}</button>
 </div>

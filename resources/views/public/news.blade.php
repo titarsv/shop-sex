@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="site-path">
-                    <a href="{{env('APP_URL')}}" class="site-path-link" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" itemprop="url">{{ trans('app.home') }}</a>
+                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}" class="site-path-link" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" itemprop="url">{{ trans('app.home') }}</a>
                     <a href="javascript:void(0);" class="site-path-link-active">{{ $title }}</a>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                                 <div class="information-accordion-links unactive">
                                     {{--<h5>Повседневная обувь</h5>--}}
                                     @foreach($news as $item)
-                                        <a href="{{env('APP_URL')}}/news/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
+                                        <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/news/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
                                     @endforeach
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                                 <div class="information-accordion-links unactive">
                                     {{--<h5>Повседневная обувь</h5>--}}
                                     @foreach($articles as $item)
-                                        <a href="{{env('APP_URL')}}/articles/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
+                                        <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/articles/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
                                     @endforeach
                                 </div>
                             </div>
@@ -69,28 +69,28 @@
                                 <div class="information-accordion-links unactive">
                                     {{--<h5>Повседневная обувь</h5>--}}
                                     @foreach($handling as $item)
-                                        <a href="{{env('APP_URL')}}/handling/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
+                                        <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/handling/{!!$item->url_alias !!}"><p>{{ $item->title }}</p> </a>
                                     @endforeach
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item path-underline">
                                 <div class="aside-filter-menu-item-title">
-                                    <a href="{{env('APP_URL')}}/page/voprosy--otvety"><p>{{ trans('app.questions_and_answers') }}</p></a>
+                                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/voprosy--otvety"><p>{{ trans('app.questions_and_answers') }}</p></a>
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item path-underline">
                                 <div class="aside-filter-menu-item-title">
-                                    <a href="{{env('APP_URL')}}/page/bonusnyya-programma"><p>Бонусная программа</p></a>
+                                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/bonusnyya-programma"><p>Бонусная программа</p></a>
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title">
-                                    <a href="{{env('APP_URL')}}/page/otkrytye-vakansii"><p>Открытые вакансии</p></a>
+                                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/otkrytye-vakansii"><p>Открытые вакансии</p></a>
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title">
-                                    <a href="{{env('APP_URL')}}/page/drop-shipping"><p>Drop shipping</p></a>
+                                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/drop-shipping"><p>Drop shipping</p></a>
                                 </div>
                             </div>
                         </div>
@@ -120,12 +120,12 @@
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="article-slider-item">
                                         <div class="article-slider-item-img">
-                                            <a href="{{env('APP_URL')}}/{{ $slug }}/{!!$article->url_alias !!}">
+                                            <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/{{ $slug }}/{!!$article->url_alias !!}">
                                                 <img src="{!! $article->image->url('blog_list') !!}" alt="">
                                             </a>
                                         </div>
                                         <h5 class="article-slider-item-title">
-                                            <a href="{{env('APP_URL')}}/{{ $slug }}/{!!$article->url_alias !!}">{!! $article->title !!}</a>
+                                            <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/{{ $slug }}/{!!$article->url_alias !!}">{!! $article->title !!}</a>
                                         </h5>
                                         <span class="article-slider-item-data">
                                             {!! $article->created_at !!}
@@ -138,13 +138,13 @@
                         <div class="visible-xs-inline-block col-xs-12">
                             <p class=" sections-links-title">Разделы</p>
                             <ul class="sections-links">
-                                <li><a href="{{env('APP_URL')}}/news">Новости и Акции</a> </li>
-                                <li><a href="{{env('APP_URL')}}/articles">Статьи</a> </li>
-                                <li><a href="{{env('APP_URL')}}/page/voprosy--otvety">{{ trans('app.questions_and_answers') }}</a> </li>
-                                <li><a href="{{env('APP_URL')}}/handling">Уход за обувью</a> </li>
-                                <li><a href="{{env('APP_URL')}}/page/bonusnyya-programma">Бонусная программа</a> </li>
-                                <li><a href="{{env('APP_URL')}}/page/otkrytye-vakansii">Открытые вакансии</a> </li>
-                                <li><a href="{{env('APP_URL')}}/page/drop-shipping">Drop Shipping</a> </li>
+                                <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/news">Новости и Акции</a> </li>
+                                <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/articles">Статьи</a> </li>
+                                <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/voprosy--otvety">{{ trans('app.questions_and_answers') }}</a> </li>
+                                <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/handling">Уход за обувью</a> </li>
+                                <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/bonusnyya-programma">Бонусная программа</a> </li>
+                                <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/otkrytye-vakansii">Открытые вакансии</a> </li>
+                                <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/drop-shipping">Drop Shipping</a> </li>
                             </ul>
                         </div>
                     </div>

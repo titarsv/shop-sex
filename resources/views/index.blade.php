@@ -76,18 +76,18 @@
                     @if(!empty($category->image))
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="category-item">
-                                <a href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}" class="category-item__img">
+                                <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $category->url_alias }}" class="category-item__img">
                                     {{--<img src="{{ $category->image->url() }}" alt="{{ $category->name }}">--}}
                                     {!! $category->image->webp_image([200, 200], ['alt' => $category->name], 'static') !!}
                                 </a>
-                                <a href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}" class="category-item__title">{{ $category->name }}</a>
+                                <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $category->url_alias }}" class="category-item__title">{{ $category->name }}</a>
                                 <div class="category-item__btn">
-                                    <a  class="category-item__btn-more" href="{{env('APP_URL')}}/catalog/{{ $category->url_alias }}">{{ trans('app.More_details') }}</a>
+                                    <a  class="category-item__btn-more" href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $category->url_alias }}">{{ trans('app.More_details') }}</a>
                                     @if($category->children->count())
                                     <div class="category-details"></div>
                                     <ul class="category_links">
                                         @foreach($category->children as $children)
-                                        <li><a href="{{env('APP_URL')}}/catalog/{{ $children->url_alias }}">{{ $children->name }}</a></li>
+                                        <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $children->url_alias }}">{{ $children->name }}</a></li>
                                         @endforeach
                                     </ul>
                                     @endif
@@ -222,7 +222,7 @@
             <p class="section-title">{{ trans('app.assortment_sex_shop') }}</p>
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <p class="assort-text">{{ trans('app.a_variety_of_goods_for_personal_and_couples_use_in_an_intimate') }}</p>
+                    <p class="assort-text">{!! trans('app.a_variety_of_goods_for_personal_and_couples_use_in_an_intimate') !!}</p>
                 </div>
             </div>
         </div>
@@ -322,7 +322,7 @@
                             @endif
                             <div class="question-popup__container-btns">
                                 <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">{{ trans('app.continue_shopping') }}</button>
-                                <a href="/checkout" class="cart-popup__cart-btn">{{ trans('app.go_to_cart') }}</a>
+                                <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/checkout" class="cart-popup__cart-btn">{{ trans('app.go_to_cart') }}</a>
                             </div>
                             <button title="Close (Esc)" type="button" class="mfp-close">×</button>
                         </div>

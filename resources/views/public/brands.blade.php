@@ -25,7 +25,7 @@
                             <h1 class="title">{{ trans('app.brands') }}</h1>
                         </div>
                         @foreach($brands as $brand)
-                            <a href="{{env('APP_URL')}}/catalog/tovary/brend-{{ $brand->value }}">
+                            <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/tovary/brend-{{ $brand->value }}">
                                 <div class="col-md-4 col-xs-6 brand-item">{{ $brand->name }}</div>
                             </a>
                         @endforeach

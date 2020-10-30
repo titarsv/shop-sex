@@ -16,7 +16,7 @@
                 <div class="col-md-3 col-sm-4 hidden-xs">
                     <div class="aside-filter-menu-item">
                         <div class="aside-filter-menu-item-title aside-block">
-                            <a href="{{env('APP_URL')}}/page/contact"><p>{{ trans('app.contacts') }}</p></a>
+                            <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/contact"><p>{{ trans('app.contacts') }}</p></a>
                         </div>
                     </div>
                     <div class="aside-filter-menu-item">
@@ -32,7 +32,7 @@
                     <div class="col-md-12 col-xs-12">
                         @foreach($reviews as $review)
                             <div class="review-product-item path-underline">
-                                <a href="{{env('APP_URL')}}/product/{{ $review->product->url_alias }}">
+                                <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/product/{{ $review->product->url_alias }}">
                                     <div class="cart-img-wrp history-prod-img">
                                         <img src="{{  $review->product->image->url() }}" alt="{{ $review->product->name }}">
                                     </div>
@@ -40,7 +40,7 @@
                                 <div class="review-product-wrp">
                                     <div class="review-container">
                                         <div class="cart-prod-description">
-                                            <a href="{{env('APP_URL')}}/product/{{ $review->product->url_alias }}"><h5 class="default-link-hover review-prod-title">{{ $review->product->name }}</h5></a>
+                                            <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/product/{{ $review->product->url_alias }}"><h5 class="default-link-hover review-prod-title">{{ $review->product->name }}</h5></a>
                                         </div>
                                         <div class="review stars">
                                             @for($i=0;$i<5;$i++)

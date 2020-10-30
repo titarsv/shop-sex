@@ -49,7 +49,7 @@
                             </div>
                         @endif
                     @endforeach
-                    <a href="{{env('APP_URL')}}/catalog" class="cart-link back hidden-link">← {{ trans('app.Back_to_shopping') }}</a>
+                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog" class="cart-link back hidden-link">← {{ trans('app.Back_to_shopping') }}</a>
                 </div>
                 <div class="col-sm-4 col-xs-12" id="liqpay_checkout">
                     <p class="cart-form__text">{{ trans('app.checkout') }}</p>
@@ -78,7 +78,7 @@
                     <script src="//static.liqpay.ua/libjs/checkout.js" async></script>
                 </div>
                 <div class="visible-xs-block col-xs-12">
-                    <a href="{{env('APP_URL')}}/catalog" class="cart-link back">{{ trans('app.back_to_shopping') }}</a>
+                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog" class="cart-link back">{{ trans('app.back_to_shopping') }}</a>
                 </div>
             </div>
         </div>

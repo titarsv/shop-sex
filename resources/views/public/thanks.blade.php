@@ -30,7 +30,7 @@
             <div class="container">
                 <div class="row">
                     <ul class="col-sm-12 col-xs-12 breadcrumbs">
-                        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{env('APP_URL')}}" class="site-path-link" itemprop="url">{{ trans('app.home') }} -</a></li>
+                        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}" class="site-path-link" itemprop="url">{{ trans('app.home') }} -</a></li>
                         <li><a href="javascript:void(0);" class="site-path-link-active">{{ trans('app.checkout') }}</a></li>
                     </ul>
                 </div>
@@ -42,7 +42,7 @@
                                 <span class="succes__descr">{{ trans('app.tour_order_has_been_successfully_completed') }}</span>
                             </div>
                             <span class="succes__wait-call">{{ trans('app.expect_a_call_from_our_manager') }}</span>
-                            <a href="{{env('APP_URL')}}" class="main-btn main-btn_accent succes__btn">{{ trans('app.continue_shopping') }}</a>
+                            <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}" class="main-btn main-btn_accent succes__btn">{{ trans('app.continue_shopping') }}</a>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="header-main">
                 @if(Request::path()!='/')
-                    <a href="{{env('APP_URL')}}">
+                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}">
                         <picture class="logo">
                             <source srcset="/images/logo.webp" type="image/webp">
                             <source srcset="/images/logo.png" type="image/png">
@@ -19,7 +19,7 @@
                 @endif
                 <div class="header-controls">
                     <div class="header-top">
-                        <a href="{{env('APP_URL')}}/checkout" class="cart-link hidden-cart">
+                        <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/checkout" class="cart-link hidden-cart">
                             <div class="header__cart">
                                 {{--<img src="/images/icons/cart-main.png" class="header__cart-img" alt="">--}}
                                 <picture class="header__cart-img">
@@ -105,7 +105,7 @@
 
                         </div>
                         {!! Form::close()!!}
-                        <a href="{{env('APP_URL')}}/checkout" class="cart-link">
+                        <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/checkout" class="cart-link">
                             <div class="header__cart">
                                 {{--<img src="/images/icons/cart-main.png" class="header__cart-img" alt="">--}}
                                 <picture class="header__cart-img">
@@ -127,7 +127,7 @@
             <nav class="header-nav">
                 <div class="header-nav__top">
                     @if(Request::path()!='/')
-                        <a href="{{env('APP_URL')}}">
+                        <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}">
                             <picture class="logo-mob">
                                 <source srcset="/images/logo-mob.webp" type="image/webp">
                                 <source srcset="/images/logo-mob.png" type="image/png">
@@ -167,7 +167,7 @@
                     </li>
                 </ul>
                 <ul class="navigation">
-                    <li class="navigation__catalog"><a href="{{env('APP_URL')}}/catalog">
+                    <li class="navigation__catalog"><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog">
                             {{--<img src="/images/icons/catalog.png" alt="">--}}
                             <picture>
                                 <source data-src="/images/icons/catalog.webp" srcset="/images/pixel.webp" type="image/webp">
@@ -177,16 +177,16 @@
                             {{ trans('app.catalog') }}</a>
                     </li>
                     @if($isset_new)
-                        <li><a href="{{env('APP_URL')}}/catalog/novinki">{{ trans('app.new_items') }}</a></li>
+                        <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/novinki">{{ trans('app.new_items') }}</a></li>
                     @endif
                     @if($isset_actions)
-                        <li><a href="{{env('APP_URL')}}/catalog/aktsii">{{ trans('app.promotions') }}</a></li>
+                        <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/aktsii">{{ trans('app.promotions') }}</a></li>
                     @endif
-                    <li><a href="{{env('APP_URL')}}/page/o-magazine">{{ trans('app.about_store') }}</a></li>
-                    <li><a href="{{env('APP_URL')}}/page/voprosy-i-otvety">{{ trans('app.questions_and_answers') }}</a></li>
-                    <li><a href="{{env('APP_URL')}}/page/kak-kupit">{{ trans('app.how_to_buy') }}</a></li>
-                    <li><a href="{{env('APP_URL')}}/page/kontakty">{{ trans('app.contacts') }}</a></li>
-                    <li><a href="{{env('APP_URL')}}/page/forum">{{ trans('app.forum') }}</a></li>
+                    <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/o-magazine">{{ trans('app.about_store') }}</a></li>
+                    <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/voprosy-i-otvety">{{ trans('app.questions_and_answers') }}</a></li>
+                    <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/kak-kupit">{{ trans('app.how_to_buy') }}</a></li>
+                    <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/kontakty">{{ trans('app.contacts') }}</a></li>
+                    <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/forum">{{ trans('app.forum') }}</a></li>
                     <li><a href="" class="popup-btn" data-mfp-src="#question-popup">{{ trans('app.ask_a_question') }}</a></li>
                 </ul>
 

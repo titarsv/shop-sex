@@ -14,7 +14,7 @@
                                     <img src="{{ is_null($product['product']->image) ? '/uploads/no_image.jpg' : $product['product']->image->url('cart') }}" alt="{{ $product['product']->name }}">
                                 </div>
                                 <div class="cart-prod-description hidden-xs">
-                                    <a href="{{env('APP_URL')}}/product/{{ $product['product']->url_alias }}">
+                                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/product/{{ $product['product']->url_alias }}">
                                         <h5 class="default-link-hover">
                                             {{ $product['product']->name }}
                                             @if(!empty($product['variations']))
@@ -49,7 +49,7 @@
 
                                 <div class="visible-xs-inline-block col-xs-8">
                                     <div class="cart-list-margins">
-                                        <a href="{{env('APP_URL')}}/product/{{ $product['product']->url_alias }}">
+                                        <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/product/{{ $product['product']->url_alias }}">
                                             <h5 class="mobile-prod-cart-title default-link-hover">
                                                 {{ $product['product']->name }}
                                                 @if(!empty($product['variations']))
@@ -88,12 +88,12 @@
                     </div>
                 </div>
                 <div class="col-sm-6 no-padding">
-                    <a href="{{env('APP_URL')}}/cart" class="popup-btn process">
+                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/cart" class="popup-btn process">
                         <p>{{ trans('app.go_to_cart') }}</p>
                     </a>
                 </div>
                 <div class="col-sm-6 no-padding">
-                    <a href="{{env('APP_URL')}}/catalog/tovary" class="popup-btn continue">
+                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/tovary" class="popup-btn continue">
                         <p>{{ trans('app.continue_shopping') }}</p>
                     </a>
                 </div>

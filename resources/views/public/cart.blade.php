@@ -29,7 +29,7 @@
                                     <img src="{{ is_null($product['product']->image) ? '/uploads/no_image.jpg' : $product['product']->image->url('cart') }}" alt="{{ $product['product']->name }}">
                                 </div>
                                 <div class="cart-prod-description hidden-xs">
-                                    <a href="{{env('APP_URL')}}/product/{{ $product['product']->url_alias }}">
+                                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/product/{{ $product['product']->url_alias }}">
                                         <h5 class="default-link-hover">
                                             {{ $product['product']->name }}
                                             @if(!empty($product['variations']))
@@ -64,7 +64,7 @@
 
                                 <div class="visible-xs-inline-block col-xs-8">
                                     <div class="cart-list-margins">
-                                        <a href="{{env('APP_URL')}}/product/{{ $product['product']->url_alias }}">
+                                        <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/product/{{ $product['product']->url_alias }}">
                                             <h5 class="mobile-prod-cart-title default-link-hover">
                                                 {{ $product['product']->name }}
                                                 @if(!empty($product['variations']))
@@ -143,7 +143,7 @@
                         </div>
                         <div class="col-md-12 no-padding">
                             <div class="cart-receipt-btn">
-                                <a href="{{env('APP_URL')}}/checkout">
+                                <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/checkout">
                                     <p class="checkout-btn process">{{ trans('app.go_to_checkout') }}</p>
                                 </a>
                             </div>

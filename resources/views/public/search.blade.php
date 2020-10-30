@@ -46,7 +46,7 @@
                                         <img class="question-popup__container-img" src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}">
                                         <div class="question-popup__container-btns">
                                             <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">{{ trans('app.continue_shopping') }}</button>
-                                            <a href="/checkout" class="cart-popup__cart-btn">{{ trans('app.go_to_cart') }}</a>
+                                            <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/checkout" class="cart-popup__cart-btn">{{ trans('app.go_to_cart') }}</a>
                                         </div>
                                         <button title="Close (Esc)" type="button" class="mfp-close">×</button>
                                     </div>

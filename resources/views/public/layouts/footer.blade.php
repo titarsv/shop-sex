@@ -527,7 +527,7 @@
         <div class="row">
             <div class="col-sm-2 col-xs-3">
                 @if(Request::path()!='/')
-                    <a href="{{env('APP_URL')}}">
+                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}">
                         {{--<img src="/images/logo.png" class="header__logo" alt="{{ trans('app.home') }}">--}}
                         <picture>
                             <source data-src="/images/logo.webp" srcset="/images/pixel.webp" type="image/webp">
@@ -550,8 +550,8 @@
             <div class="col-sm-3 col-xs-12">
                 <ul class="footer__contacts">
                     <li style="cursor: pointer;" class="popup-btn" data-mfp-src="#popup-return">{{ trans('app.exchange_return_conditions') }}</li>
-                    <li><a href="/page/oferta/" style="color: #fff;">{{ trans('app.offer') }}</a></li>
-                    <li><a href="/page/politika-konfidentsialnosti" style="color: #fff;">{{ trans('app.privacy_policy') }}</a></li>
+                    <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/oferta/" style="color: #fff;">{{ trans('app.offer') }}</a></li>
+                    <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/politika-konfidentsialnosti" style="color: #fff;">{{ trans('app.privacy_policy') }}</a></li>
                     <li><a href="tel:0507000197" style="color: #fff;">050 700-01-97</a></li>
                     <li><a href="tel:0958860978" style="color: #fff;">095 886-09-78</a></li>
                     <li>shop_sex.com.ua</li>

@@ -10,7 +10,7 @@
                     <div class="order-page__pic-wrapper">
                         <img class="order-page__pic" src="{{ is_null($product['product']->image) ? '/uploads/no_image.jpg' : $product['product']->image->url('cart') }}" alt="">
                     </div>
-                    <a href="{{env('APP_URL')}}/product/{{ $product['product']->url_alias }}" class="order-page__title-item">
+                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/product/{{ $product['product']->url_alias }}" class="order-page__title-item">
                         {{ $product['product']->name }}
                         @if(!empty($product['variations']))
                             (

@@ -14,63 +14,6 @@ Route::get('/xmlsitemapupdate', function () {
     $exitCode = Artisan::call('xmlsitemap', []);
 });
 
-Route::get('/', ['as'=>'home', 'uses'=>'MainController@index']);
-Route::get('/page/{alias}', 'HTMLContentController@show');
-Route::get('/catalog', 'CategoriesController@catalog');
-Route::get('/catalog/{alias}/{filters?}/{page?}', 'CategoriesController@show');
-Route::get('/brands', 'CategoriesController@brands');
-//Route::get('/articles', 'BlogController@showAll');
-//Route::get('/articles/{alias}', 'BlogController@showCat');
-//Route::get('/article/{alias}', 'BlogController@show');
-Route::get('/news', 'NewsController@news');
-Route::get('/news/{alias}', 'NewsController@show');
-Route::get('/articles', 'NewsController@articles');
-Route::get('/articles/{alias}', 'NewsController@show');
-Route::get('/handling', 'NewsController@handling');
-Route::get('/handling/{alias}', 'NewsController@show');
-Route::get('/cart', 'CartController@cart');
-Route::get('/checkout', 'CartController@show');
-Route::post('/checkout', 'CartController@show');
-Route::get('/thank_you', 'OrdersController@thank_you');
-Route::match(['get', 'post'], '/search/{page?}', ['as' => 'search', 'uses' => 'ProductsController@search']);
-
-//Route::post('/neworder', 'OrdersController@newOrder');
-//Route::post('/neworderuser', 'OrdersController@newOrderUser');
-
-Route::post('/order/create', 'CheckoutController@createOrder');
-
-Route::get('/product/{alias}', 'ProductsController@show');
-Route::post('/review/add', 'ReviewsController@add');
-Route::post('/review/add-likes', 'ReviewsController@addLikes');
-
-Route::get('/reviews', 'ReviewsController@shopReviews');
-
-//Route::post('/saveUserData', 'UserController@saveUserData');
-
-
-/**
- * Authorization routing
- */
-Route::get('/login', 'LoginController@login');
-Route::post('/login', 'LoginController@authenticate');
-Route::get('/logout', 'LoginController@logout');
-//Route::get('/registration', 'LoginController@registration');
-//Route::post('/registration', 'LoginController@store');
-
-//Social Login
-Route::get('/login/{provider?}',[
-    'uses' => 'LoginController@getSocialAuth',
-    'as'   => 'auth.getSocialAuth'
-]);
-Route::get('/login/callback/{provider?}',[
-    'uses' => 'LoginController@getSocialAuthCallback',
-    'as'   => 'auth.getSocialAuthCallback'
-]);
-
-Route::get('/forgotten', 'LoginController@forgotten');
-Route::post('/forgotten', 'LoginController@reminder');
-Route::get('/lostpassword', 'LoginController@lostpassword');
-Route::post('/lostpassword', 'LoginController@changePassword');
 
 /**
  * Admin routing
@@ -80,7 +23,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
     Route::post('/async-upload', 'MediaController@upload');
     Route::match(['get', 'post'], '/ajax', 'AjaxController@index');
     Route::get('/products', 'ProductsController@index');
-	Route::post('/products', 'ProductsController@index');
+    Route::post('/products', 'ProductsController@index');
 
     Route::get('/settings', 'SettingsController@index');
     Route::post('/settings', 'SettingsController@update');
@@ -137,15 +80,6 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
         Route::post('/edit/{id}', 'ManufacturersController@update');
         Route::get('/delete/{id}', 'ManufacturersController@destroy');
     });
-
-//    Route::group(['prefix' => 'blog'], function(){
-//        Route::get('/', 'BlogController@index');
-//        Route::get('/create', 'BlogController@create');
-//        Route::post('/create', 'BlogController@store');
-//        Route::get('/edit/{id}', 'BlogController@edit');
-//        Route::post('/edit/{id}', 'BlogController@update');
-//        Route::get('/delete/{id}', 'BlogController@destroy'); //softDelete
-//    });
 
     Route::group(['prefix' => 'news'], function(){
         Route::get('/', 'NewsController@index');
@@ -223,63 +157,106 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
         Route::get('/delete/{id}', 'SeoController@destroy');
         Route::get('/edit/{id}', 'SeoController@edit');
         Route::post('/edit/{id}', 'SeoController@update');
-		Route::group(['prefix' => 'redirects'], function(){
-		    Route::any('/', 'SeoController@redirects');
-		    Route::get('/create', 'SeoController@createRedirect');
-		    Route::post('/create', 'SeoController@storeRedirect');
-		    Route::get('/delete/{id}', 'SeoController@destroyRedirect');
-		    Route::get('/edit/{id}', 'SeoController@editRedirect');
-		    Route::post('/edit/{id}', 'SeoController@updateRedirect');
-	    });
+        Route::group(['prefix' => 'redirects'], function(){
+            Route::any('/', 'SeoController@redirects');
+            Route::get('/create', 'SeoController@createRedirect');
+            Route::post('/create', 'SeoController@storeRedirect');
+            Route::get('/delete/{id}', 'SeoController@destroyRedirect');
+            Route::get('/edit/{id}', 'SeoController@editRedirect');
+            Route::post('/edit/{id}', 'SeoController@updateRedirect');
+        });
     });
 
-	Route::post('/group_action','ProductsController@groupAction');
+    Route::post('/group_action','ProductsController@groupAction');
 });
-Route::post('wishlist/update','WishListController@update');
-Route::post('wishlist/del','WishListController@delWishlist');
 
-Route::post('cart/update','CartController@updateCart');
-Route::post('cart/updateAll','CartController@update');
-Route::post('cart/get','CartController@getCart');
+$prefixes = Config::get('app.locales');
+if(in_array(Config::get('app.locale'), $prefixes)){
+    unset($prefixes[array_search(Config::get('app.locale'), $prefixes)]);
+}
+$prefixes[] = '';
+
+foreach($prefixes as $prefix){
+    $params = [];
+    if(!empty($prefix)){
+        $params = ['prefix' => $prefix, 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => 'setlocale'];
+    }
+    Route::group($params, function(){
+        Route::get('/', ['as'=>'home', 'uses'=>'MainController@index']);
+        Route::get('/page/{alias}', 'HTMLContentController@show');
+        Route::get('/catalog', 'CategoriesController@catalog');
+        Route::get('/catalog/{alias}/{filters?}/{page?}', 'CategoriesController@show');
+        Route::get('/brands', 'CategoriesController@brands');
+        Route::get('/news', 'NewsController@news');
+        Route::get('/news/{alias}', 'NewsController@show');
+        Route::get('/articles', 'NewsController@articles');
+        Route::get('/articles/{alias}', 'NewsController@show');
+        Route::get('/handling', 'NewsController@handling');
+        Route::get('/handling/{alias}', 'NewsController@show');
+        Route::get('/cart', 'CartController@cart');
+        Route::get('/checkout', 'CartController@show');
+        Route::post('/checkout', 'CartController@show');
+        Route::get('/thank_you', 'OrdersController@thank_you');
+        Route::match(['get', 'post'], '/search/{page?}', ['as' => 'search', 'uses' => 'ProductsController@search']);
+
+        Route::post('/order/create', 'CheckoutController@createOrder');
+
+        Route::get('/product/{alias}', 'ProductsController@show');
+        Route::post('/review/add', 'ReviewsController@add');
+        Route::post('/review/add-likes', 'ReviewsController@addLikes');
+
+        Route::get('/reviews', 'ReviewsController@shopReviews');
+
+        /**
+         * Authorization routing
+         */
+        Route::get('/login', 'LoginController@login');
+        Route::post('/login', 'LoginController@authenticate');
+        Route::get('/logout', 'LoginController@logout');
+
+        //Social Login
+        Route::get('/login/{provider?}',[
+            'uses' => 'LoginController@getSocialAuth',
+            'as'   => 'auth.getSocialAuth'
+        ]);
+        Route::get('/login/callback/{provider?}',[
+            'uses' => 'LoginController@getSocialAuthCallback',
+            'as'   => 'auth.getSocialAuthCallback'
+        ]);
+
+        Route::get('/forgotten', 'LoginController@forgotten');
+        Route::post('/forgotten', 'LoginController@reminder');
+        Route::get('/lostpassword', 'LoginController@lostpassword');
+        Route::post('/lostpassword', 'LoginController@changePassword');
+
+        Route::post('wishlist/update','WishListController@update');
+        Route::post('wishlist/del','WishListController@delWishlist');
+
+        Route::post('cart/update','CartController@updateCart');
+        Route::post('cart/updateAll','CartController@update');
+        Route::post('cart/get','CartController@getCart');
+
+        /**
+         * Users routing
+         */
+        Route::post('/subscribe', 'UserController@subscribe');
+        Route::post('/callback', 'UserController@callback');
+        Route::get('/livesearch', 'ProductsController@livesearch');
+        Route::post('get_models','ProductsController@getModels');
+        Route::post('get_years','ProductsController@getYears');
+        Route::post('order/create', 'CheckoutController@createOrder');
+        Route::post('checkout/delivery', 'CheckoutController@delivery');
+        Route::post('/checkout/cities', 'CheckoutController@getCities');
+        Route::post('/checkout/warehouses', 'CheckoutController@getWarehouses');
+        Route::post('/checkout/confirm', 'CheckoutController@confirmOrder');
+        Route::get('/checkout/complete', 'CheckoutController@orderComplete');
+        Route::post('/sendmail', 'UserController@sendMail');
+        Route::get('/sync-products', 'ProductsController@syncProducts');
 
 
-/**
- * Users routing
- */
-//Route::group(['prefix' => 'user', 'middleware' => ['user']], function(){
-//    Route::get('/', 'UserController@show');
-//    Route::post('/', 'UserController@saveChangedData');
-//    Route::post('/updatePassword', 'UserController@updatePassword');
-//    Route::post('/updateSubscr', 'UserController@updateSubscr');
-//    Route::post('/updateAddress', 'UserController@updateAddress');
-//    Route::patch('/', 'UserController@history');
-//    Route::get('/history', 'UserController@history');
-//    Route::get('/wishlist', 'UserController@wishList');
-//    Route::get('/change-data', 'UserController@changeData');
-//    Route::post('/change-data', 'UserController@saveChangedData');
-//});
-
-Route::post('/subscribe', 'UserController@subscribe');
-Route::post('/callback', 'UserController@callback');
-Route::get('/livesearch', 'ProductsController@livesearch');
-Route::post('get_models','ProductsController@getModels');
-Route::post('get_years','ProductsController@getYears');
-Route::post('order/create', 'CheckoutController@createOrder');
-Route::post('checkout/delivery', 'CheckoutController@delivery');
-Route::post('/checkout/cities', 'CheckoutController@getCities');
-Route::post('/checkout/warehouses', 'CheckoutController@getWarehouses');
-Route::post('/checkout/confirm', 'CheckoutController@confirmOrder');
-Route::get('/checkout/complete', 'CheckoutController@orderComplete');
-Route::post('/sendmail', 'UserController@sendMail');
-Route::get('/sync-products', 'ProductsController@syncProducts');
-
-
-Route::get('/{p1}/{p2?}/{p3?}/{p4?}/{p5?}/{p6?}/{p7?}/{p8?}', 'MainController@route');
-/*
- * Ройт для отладки
- */
-Route::get('/fuck', 'UserController@fuck');
-//Route::get('/parser/categories', 'ParserController@categories');
+        Route::get('/{p1}/{p2?}/{p3?}/{p4?}/{p5?}/{p6?}/{p7?}/{p8?}', 'MainController@route');
+    });
+}
 
 $middleware = array_merge(\Config::get('lfm.middlewares'), [
     '\Unisharp\Laravelfilemanager\middlewares\MultiUser',

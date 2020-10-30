@@ -121,17 +121,17 @@
                                     @endphp
                                     @if($children->count())
                                         @if($category->id == $cat->id || $category->parent_id == $cat->id)
-                                            <a class="root_cat active" href="/catalog/{{ $cat->url_alias }}">{{ $cat->name }}<span></span></a>
+                                            <a class="root_cat active" href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $cat->url_alias }}">{{ $cat->name }}<span></span></a>
                                         @else
-                                            <a class="root_cat" href="/catalog/{{ $cat->url_alias }}">{{ $cat->name }}<span></span></a>
+                                            <a class="root_cat" href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $cat->url_alias }}">{{ $cat->name }}<span></span></a>
                                         @endif
                                         <ul class="subcats">
                                             @foreach($children as $cat)
-                                                <li><a class="root_cat" href="/catalog/{{ $cat->url_alias }}">{{ $cat->name }}</a></li>
+                                                <li><a class="root_cat" href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $cat->url_alias }}">{{ $cat->name }}</a></li>
                                             @endforeach
                                         </ul>
                                     @else
-                                        <a class="root_cat" href="/catalog/{{ $cat->url_alias }}">{{ $cat->name }}</a>
+                                        <a class="root_cat" href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $cat->url_alias }}">{{ $cat->name }}</a>
                                     @endif
                                 @endforeach
                             </div>
@@ -206,7 +206,7 @@
                                 <img class="question-popup__container-img" src="{{ $product->image == null ? '/uploads/no_image.jpg' : $product->image->url('product_list') }}" alt="{{ $product->name }}">
                                 <div class="question-popup__container-btns">
                                     <button title="Close (Esc)" type="button" class="cart-popup__continue-btn mfp-close">{{ trans('app.continue_shopping') }}</button>
-                                    <a href="/checkout" class="cart-popup__cart-btn">{{ trans('app.go_to_cart') }}</a>
+                                    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/checkout" class="cart-popup__cart-btn">{{ trans('app.go_to_cart') }}</a>
                                 </div>
                                 <button title="Close (Esc)" type="button" class="mfp-close">×</button>
                             </div>

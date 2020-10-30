@@ -12,6 +12,8 @@ $(function() {
         }
     });
 
+    var prefix = location.pathname.substr(0, 3) == '/ua' ? '/ua' : (location.pathname.substr(0, 3) == '/en' ? '/en' : '');
+
     $('.prod-quont input, .cart__item-quont input').on('keydown', function (e) {
         return !(/^[А-Яа-яA-Za-z \-]$/.test(e.key));
     });
@@ -138,7 +140,7 @@ $(function() {
             quantity: qty > 1 ? qty : 1
         };
 
-        $.post("/cart/update", data, function(cart){
+        $.post(prefix+"/cart/update", data, function(cart){
             update_cart_quantity(cart);
         });
     });
@@ -151,7 +153,7 @@ $(function() {
         var $this = $(this);
 
         $.ajax({
-            url: '/review/add',
+            url: prefix+'/review/add',
             data: $(this).serialize(),
             method: 'post',
             dataType: 'json',
@@ -214,7 +216,7 @@ $(function() {
                 order_id: $('#current_order_id').val()
             };
 
-            $("#checkout-delivery-payment").load("/checkout/delivery", data, function (cart) {
+            $("#checkout-delivery-payment").load(prefix+"/checkout/delivery", data, function (cart) {
                 //$('select').fancySelect();
             });
             $('.checkout-step__body').removeClass('checkout-step__body_loader');
@@ -278,7 +280,7 @@ $(function() {
         var error_div = form.find('.error-message');
 
         $.ajax({
-            url: '/order/create',
+            url: prefix+'/order/create',
             type: 'post',
             data: $(this).serialize(),
             beforeSend: function(){
@@ -318,14 +320,14 @@ $(function() {
                         }).on("liqpay.callback", function(data){
                             console.log(data.status);
                             console.log(data);
-                            window.location = '/thank_you?order_id=' + response.order_id;
+                            window.location = prefix+'/thank_you?order_id=' + response.order_id;
                         }).on("liqpay.ready", function(data){
                             $('#liqpay_checkout').css('display', 'block');
                         }).on("liqpay.close", function(data){
-                            window.location = '/thank_you?order_id=' + response.order_id;
+                            window.location = prefix+'/thank_you?order_id=' + response.order_id;
                         });
                     } else if (response.success == 'redirect') {
-                        window.location = '/thank_you?order_id=' + response.order_id;
+                        window.location = prefix+'/thank_you?order_id=' + response.order_id;
                     }
                 }
             }
@@ -336,7 +338,7 @@ $(function() {
         e.preventDefault();
 
         $.ajax({
-            url: '/subscribe',
+            url: prefix+'/subscribe',
             data: $(this).serialize(),
             method: 'post',
             dataType: 'json',
@@ -363,7 +365,7 @@ $(function() {
             data['action'] = 'add';
         }
         $.ajax({
-            url: '/wishlist/update', type: 'POST', data: data, dataType: 'JSON',
+            url: prefix+'/wishlist/update', type: 'POST', data: data, dataType: 'JSON',
             success: function (response) {
                 if (response.count !== false) {
                     if($this.parents('.grid-product-card').length){
@@ -425,7 +427,7 @@ $(function() {
             //$(this).parents('form').submit();
 
             $.ajax({
-                url: '/order/create',
+                url: prefix+'/order/create',
                 type: 'post',
                 data: $(this).parents('form').serialize(),
                 beforeSend: function(){
@@ -453,16 +455,16 @@ $(function() {
                             }).on("liqpay.callback", function(data){
                                 console.log(data.status);
                                 console.log(data);
-                                window.location = '/thank_you?order_id=' + response.order_id;
+                                window.location = prefix+'/thank_you?order_id=' + response.order_id;
                             }).on("liqpay.ready", function(data){
                                 $('#liqpay_checkout').css('display', 'block');
                             }).on("liqpay.close", function(data){
-                                window.location = '/thank_you?order_id=' + response.order_id;
+                                window.location = prefix+'/thank_you?order_id=' + response.order_id;
                             });
                         } else if (response.success == 'redirect') {
                             swal('Заказ оформлен!', 'Номер заказа: '+response.order_id, 'success');
                             setTimeout(function(){
-                                window.location = '/user/history';
+                                window.location = prefix+'/user/history';
                             }, 5000);
                             //window.location = '/thank_you?order_id=' + response.order_id;
                         }
@@ -509,7 +511,7 @@ $(function() {
     // })
 
     $('[name="subscr-type"]').change(function(){
-        $.post('/user/updateSubscr', {subscr: $('[name="subscr-type"]:checked').val()}, function(response){
+        $.post(prefix+'/user/updateSubscr', {subscr: $('[name="subscr-type"]:checked').val()}, function(response){
             if(response.success){
                 swal('Сохранено', 'Данные успешно сохранениы!', 'success');
             }else{
@@ -527,7 +529,7 @@ $(function() {
             flat: $('[name="flat"]').val()
         };
 
-        $.post('/user/updateAddress', data, function(response){
+        $.post(prefix+'/user/updateAddress', data, function(response){
             if(response.success){
                 swal('Сохранено', 'Данные успешно сохранениы!', 'success');
             }else{
@@ -620,10 +622,12 @@ $(function() {
  * @param data
  */
 function update_cart(data){
-    $.post("/cart/update", data, function(cart){
+    var prefix = location.pathname.substr(0, 3) == '/ua' ? '/ua' : (location.pathname.substr(0, 3) == '/en' ? '/en' : '');
+
+    $.post(prefix+"/cart/update", data, function(cart){
         var order_cart_content = $('#order_checkout_content');
         if(order_cart_content.length > 0){
-            order_cart_content.load("/checkout #order_checkout_content");
+            order_cart_content.load(prefix+"/checkout #order_checkout_content");
         }
         update_cart_quantity(cart);
     });
@@ -654,17 +658,19 @@ function update_cart_quantity(cart) {
  * @param value
  */
 window.newpostUpdate = function(id, value) {
+    var prefix = location.pathname.substr(0, 3) == '/ua' ? '/ua' : (location.pathname.substr(0, 3) == '/en' ? '/en' : '');
+
     if (id == 'city') {
         var data = {
             city_id: value
         };
-        var path = '/checkout/warehouses';
+        var path = prefix+'/checkout/warehouses';
         var selector = jQuery('#checkout-step__warehouse');
     } else if (id == 'region') {
         var data = {
             region_id: value
         };
-        var path = 'checkout/cities';
+        var path = prefix+'checkout/cities';
         var selector = jQuery('#checkout-step__city');
     }
 

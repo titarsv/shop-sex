@@ -211,15 +211,37 @@ class Products extends Model
 		Paginator::currentPageResolver(function () use ($page) {
             return $page;
         });
-		
-        //$all_products = $this->where('name', 'like', '%'.$text.'%');
 
-        //$paginate = 1;
+//	    $data = $this
+//            ->where([['stock', 1], ['name', 'like', '%'.$text.'%']])
+//            ->orWhere([['stock', 1], ['articul', 'like', '%'.$text.'%']])
+//            ->orderBy('id', 'desc')
+//            ->paginate($count);
 
-        //$all_count = $this->where('name', 'like', '%'.$text.'%')->count();
+        $locale = App::getLocale();
 
-	    $data = $this->where([['stock', 1], ['name', 'like', '%'.$text.'%']])->orWhere([['stock', 1], ['articul', 'like', '%'.$text.'%']])->orderBy('id', 'desc')->paginate($count);
-        //$data = new LengthAwarePaginator($all_products->skip($count*($page-1))->take($count)->get(), ceil($all_count/$count), $paginate, $page, array('path' => 'search/'));
+        $data = $this->select('products.*')
+            ->join('localization', 'products.id', '=', 'localization.localizable_id')
+            ->where('stock', 1)
+            ->where('localization.localizable_type', 'App\Models\Products')
+            ->where('localization.field', 'name')
+            ->where(function($query) use($text){
+                $query->where('localization.value', 'like', '%'.$text.'%')
+                    ->orWhere('articul', 'like', '%'.$text.'%');
+            })
+            ->when($locale, function($query) use ($locale) {
+                if($locale == 'ru'){
+                    return $query->orderBy('localization.language', 'asc');
+                }else{
+                    return $query->orderBy('localization.language', 'desc');
+                }
+            })
+            ->orderBy('products.id', 'desc')
+            ->groupBy('products.id')
+            ->with(['localization' => function($query) use($locale){
+                $query->select(['field', 'language', 'value', 'localizable_type', 'localizable_id'])->where('language', $locale)->where('field', 'name');
+            }])
+            ->paginate($count);
 
         return $data;
     }

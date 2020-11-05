@@ -1,5 +1,5 @@
 @foreach($products as $product)
-    <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">
+    <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/product/{{ $product->url_alias }}">
         @if($product->image == null)
             <picture>
                 <source srcset="/uploads/no_image.webp" type="image/webp">
@@ -11,7 +11,7 @@
         @endif
         <div>
             <span class="search-name">{{ $product->name }}</span>
-            <span class="search-price">{{ number_format($product->price, 2, '.', ' ') }} грн</span>
+            <span class="search-price">{{ number_format($product->price, 2, '.', ' ') }} {{ trans('app.hryvnias') }}</span>
         </div>
     </a>
 @endforeach

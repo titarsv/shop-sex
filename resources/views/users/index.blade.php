@@ -63,11 +63,11 @@
                                     <span class="user-name">{{ $user->first_name }} {{ $user->last_name }}</span>
                                 </div>
                                 <div class="profile-data-item">
-                                    <h5 class="data-name">Телефон</h5>
+                                    <h5 class="data-name">{{ trans('app.phone') }}</h5>
                                     <span>{{ $user->user_data->phone }}</span>
                                 </div>
                                 <div class="profile-data-item">
-                                    <h5 class="data-name">Почта</h5>
+                                    <h5 class="data-name">{{ trans('app.mail') }}</h5>
                                     <span>{{ $user->email }}</span>
                                 </div>
                                 <div class="profile-data-item">
@@ -83,11 +83,11 @@
                                     <input type="text" name="fio" value="{{ $user->first_name }} {{ $user->last_name }}" class="profile-edit-data-input">
                                 </div>
                                 <div class="profile-data-item">
-                                    <h5 class="data-name">Телефон</h5>
+                                    <h5 class="data-name">{{ trans('app.phone') }}</h5>
                                     <input type="text" name="phone" value="{{ $user->user_data->phone }}" id="phone" class="profile-edit-data-input">
                                 </div>
                                 <div class="profile-data-item">
-                                    <h5 class="data-name">Почта</h5>
+                                    <h5 class="data-name">{{ trans('app.mail') }}</h5>
                                     <input type="text" name="email" value="{{ $user->email }}" class="profile-edit-data-input">
                                 </div>
                                 <div class="profile-data-item">
@@ -99,7 +99,7 @@
 
                             <form>
                                 <div class="profile-data-item">
-                                    <h5 class="data-name">Пароль</h5>
+                                    <h5 class="data-name">{{ trans('app.password') }}</h5>
                                     <a href="" class="user-password">
                                         <p>Сменить пароль</p>
                                     </a>
@@ -130,12 +130,12 @@
                             <div class="profile-discount-wrp profile-margin">
                                 @if(key($user->sales) > $user->ordersTotal())
                                     <p>У Вас нет скидки</p>
-                                    <span>Общая сумма Ваших покупок меньше {{ key($user->sales) }} грн.<br/>
+                                    <span>Общая сумма Ваших покупок меньше {{ key($user->sales) }} {{ trans('app.hryvnias') }}.<br/>
                                     При покупке на общую сумму свыше {{ key($user->sales) }} грн сумма скидки станет {{ $user->sales[key($user->sales)] }}%<br/>
                                     Узнать больше о <a href="/page/bonusnyya-programma" class="default-link-hover">Бонусной программе</a></span>
                                 @else
                                     <p>Ваша скидка составляет {{ $user->sale() }}%</p>
-                                    <span>Общая сумма Ваших покупок {{ $user->ordersTotal() }} грн.<br/>
+                                    <span>Общая сумма Ваших покупок {{ $user->ordersTotal() }} {{ trans('app.hryvnias') }}.<br/>
                                     @if(!empty($user->nextSale()))
                                         @php
                                             $next_sale = $user->nextSale();

@@ -6,8 +6,9 @@ use Cartalyst\Sentinel\Native\Facades\Sentinel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Models\Gallery;
 use Illuminate\Pagination\Paginator;
+use App\Models\Localization;
+use App;
 
 class Products extends Model
 {
@@ -137,6 +138,53 @@ class Products extends Model
         return $this->belongsToMany('App\Models\Products', 'related_products', 'product_id', 'related_id');
     }
 
+    public function localization(){
+        return $this->morphMany('App\Models\Localization', 'localizable');
+    }
+
+    public function saveLocalization($request){
+        $localization = new Localization();
+        $localization->saveLocalization($request, $this, localizationFields(['name', 'description', 'meta_title', 'meta_description', 'meta_keywords']));
+    }
+
+    public function localize($language, $field){
+        $localization = $this->localization()->where(['language' => $language, 'field' => $field])->first();
+        if(empty($localization)) {
+            return $language == 'ru' && isset($this->attributes[$field]) ? $this->attributes[$field] : '';
+        }else{
+            return $localization->value;
+        }
+    }
+
+    private function getAttributeByName($name){
+        $localization = $this->localization->where('language', App::getLocale())->where('field', $name)->first();
+        if(empty($localization)){
+            return isset($this->attributes[$name]) ? $this->attributes[$name] : '';
+        }else{
+            return $localization->value;
+        }
+    }
+
+    public function getNameAttribute(){
+        return $this->getAttributeByName('name');
+    }
+
+    public function getDescriptionAttribute(){
+        return $this->getAttributeByName('description');
+    }
+
+    public function getMetaTitleAttribute(){
+        return $this->getAttributeByName('meta_title');
+    }
+
+    public function getMetaDescriptionAttribute(){
+        return $this->getAttributeByName('meta_description');
+    }
+
+    public function getMetaKeywordsAttribute(){
+        return $this->getAttributeByName('meta_keywords');
+    }
+
     public function in_wish(){
         $user = Sentinel::check();
 
@@ -163,15 +211,37 @@ class Products extends Model
 		Paginator::currentPageResolver(function () use ($page) {
             return $page;
         });
-		
-        //$all_products = $this->where('name', 'like', '%'.$text.'%');
 
-        //$paginate = 1;
+//	    $data = $this
+//            ->where([['stock', 1], ['name', 'like', '%'.$text.'%']])
+//            ->orWhere([['stock', 1], ['articul', 'like', '%'.$text.'%']])
+//            ->orderBy('id', 'desc')
+//            ->paginate($count);
 
-        //$all_count = $this->where('name', 'like', '%'.$text.'%')->count();
+        $locale = App::getLocale();
 
-	    $data = $this->where([['stock', 1], ['name', 'like', '%'.$text.'%']])->orWhere([['stock', 1], ['articul', 'like', '%'.$text.'%']])->orderBy('id', 'desc')->paginate($count);
-        //$data = new LengthAwarePaginator($all_products->skip($count*($page-1))->take($count)->get(), ceil($all_count/$count), $paginate, $page, array('path' => 'search/'));
+        $data = $this->select('products.*')
+            ->join('localization', 'products.id', '=', 'localization.localizable_id')
+            ->where('stock', 1)
+            ->where('localization.localizable_type', 'App\Models\Products')
+            ->where('localization.field', 'name')
+            ->where(function($query) use($text){
+                $query->where('localization.value', 'like', '%'.$text.'%')
+                    ->orWhere('articul', 'like', '%'.$text.'%');
+            })
+            ->when($locale, function($query) use ($locale) {
+                if($locale == 'ru'){
+                    return $query->orderBy('localization.language', 'asc');
+                }else{
+                    return $query->orderBy('localization.language', 'desc');
+                }
+            })
+            ->orderBy('products.id', 'desc')
+            ->groupBy('products.id')
+            ->with(['localization' => function($query) use($locale){
+                $query->select(['field', 'language', 'value', 'localizable_type', 'localizable_id'])->where('language', $locale)->where('field', 'name');
+            }])
+            ->paginate($count);
 
         return $data;
     }
@@ -491,5 +561,14 @@ class Products extends Model
 //        dd($popular);
 
         return $popular;
+    }
+
+    public function category(){
+        $categories = $this->categories;
+        if(empty($categories)){
+            return Categories::find(5);
+        }else{
+            return $categories->first();
+        }
     }
 }

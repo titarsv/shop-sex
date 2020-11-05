@@ -658,4 +658,104 @@ class Image extends Model
             return '';
         }
     }
+
+    public function getFullData(){
+        $url = $this->url();
+        $filedata = $this->fileData();
+        $mime = explode('/', $filedata['mime']);
+        $sizes = [];
+        $s = json_decode($this->sizes);
+        if(is_object($s)) {
+            foreach ($s as $name => $size) {
+                $sizes[$name] = [
+                    'url' => $this->url($name),
+                    'height' => $size->h,
+                    'width' => $size->w,
+                    'orientation' => 'landscape',
+                ];
+            }
+        }
+        $data = [
+            'id' => $this->id,
+            'title' => $this->title,
+            'filename' => $this->href,
+            'url' => $url,
+            'link' => $url,
+            'alt' => $this->title,
+            'author' => 'admin',
+            'description' => '',
+            'caption' => '',
+            'name' => $this->title,
+            'status' => 'inherit',
+            'uploadedTo' => 0,
+            'date' => $this->created_at->timestamp,
+            'modified' => empty($this->updated_at) ? $this->created_at->timestamp : $this->updated_at->timestamp,
+            'menuOrder' => 0,
+            'mime' => $filedata['mime'],
+            'type' => $mime[0],
+            'subtype' => $mime[1],
+            'icon' => '/images/larchik/default.png',
+            'dateFormatted' =>  empty($this->updated_at) ? $this->created_at->format('d.m.Y') : $this->updated_at->format('d.m.Y'),
+            'nonces' => [
+                "update" => "2c7fa5b435",
+                "delete" =>"77118a539c",
+                "edit" => "fb580011e5"
+            ],
+            'editLink' => '',
+            'meta' => false,
+            'authorName' => 'admin',
+            'filesizeInBytes' => $filedata['filesize'],
+            'filesizeHumanReadable' => $filedata['filesizeHumanReadable'],
+            'context' => '',
+            'height' => $filedata[1],
+            'width' => $filedata[0],
+            'orientation' => "landscape",
+            'sizes' => $sizes,
+            'compat' => [
+                'item' => '',
+                'meta' => '',
+            ],
+        ];
+
+        return $data;
+    }
+
+    public function fileData(){
+        $filepath = public_path() . $this->files_path . $this->href;
+        if(is_file($filepath)){
+            try {
+                $data                          = getimagesize( $filepath );
+                $data['filesize']              = filesize( $filepath );
+                $data['filesizeHumanReadable'] = $this->size_format( $data['filesize'] );
+            }catch (Exception $e){
+                $data = [0 => 0, 1 => 0, 'mime' => ' / ', 'filesize' => '', 'filesizeHumanReadable' => ''];
+            }
+        }else{
+            $data = [0 => 0, 1 => 0, 'mime' => ' / ', 'filesize' => '', 'filesizeHumanReadable' => ''];
+        }
+
+        return $data;
+    }
+
+    public function size_format( $bytes, $decimals = 0 ) {
+        $quant = array(
+            'TB' => 1024*1024*1024*1024,
+            'GB' => 1024*1024*1024,
+            'MB' => 1024*1024,
+            'KB' => 1024,
+            'B'  => 1,
+        );
+
+        if ( 0 === $bytes ) {
+            return number_format( 0, abs(intval( $decimals )) ) . ' B';
+        }
+
+        foreach ( $quant as $unit => $mag ) {
+            if ( doubleval( $bytes ) >= $mag ) {
+                return number_format( $bytes / $mag, $decimals ) . ' ' . $unit;
+            }
+        }
+
+        return false;
+    }
 }

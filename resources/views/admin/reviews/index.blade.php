@@ -1,7 +1,7 @@
 @include('admin.layouts.header')
 @extends('admin.layouts.main')
 @section('title')
-    Отзывы
+    {{ trans('app.reviews') }}
 @endsection
 @section('content')
 
@@ -31,7 +31,7 @@
                     <tr class="success">
                         <td>Пользователь</td>
                         <td>Товар</td>
-                        <td>Оценка</td>
+                        <td>{{ trans('app.assessment') }}</td>
                         <td align="center">Опубликован</td>
                         <td align="center">Дата и время добавления</td>
                         <td align="center">Действия</td>

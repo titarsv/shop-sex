@@ -53,10 +53,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes(Router $router)
     {
-	    $redirect = Redirect::where('old_url', '/'.request()->path())->first();
-	    if(!empty($redirect)){
-		    redirect($redirect->new_url, 301)->send();
-	    }
+        $path = request()->path();
+        if(strpos($path, '.jpg') === false && strpos($path, '.png') === false && strpos($path, '.ico') === false){
+            $redirect = Redirect::where('old_url', '/'.$path)->first();
+            if(!empty($redirect)){
+                redirect($redirect->new_url, 301)->send();
+            }
+        }
 
         $router->group([
             'namespace' => $this->namespace, 'middleware' => 'web',

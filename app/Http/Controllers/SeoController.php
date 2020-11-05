@@ -6,19 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Seo;
 use App\Models\Redirect;
 use Validator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Config;
 
 
 class SeoController extends Controller
 {
 
     private $rules = [
-        'name' => 'required',
+        'name_ru' => 'required',
         'url' => 'required|unique:seo',
     ];
 
     private $messages = [
-        'name.required' => 'Поле должно быть заполнено!',
-        'meta_title.required' => 'Поле должно быть заполнено!',
+        'name_ru.required' => 'Поле должно быть заполнено!',
         'url.required' => 'Поле должно быть заполнено!',
         'url.unique' => 'Значение должно быть уникальным для каждой записи!'
     ];
@@ -40,7 +41,9 @@ class SeoController extends Controller
      */
     public function create()
     {
-        return view('admin.seo.create');
+        return view('admin.seo.create')
+            ->with('languages', Config::get('app.locales_names'))
+            ->with('editors', localizationFields(['description']));
     }
 
     /**
@@ -65,6 +68,7 @@ class SeoController extends Controller
         $seo->fill($request->except('_token'));
         $seo->description = !empty($request->description) ? $request->description : null;
         $seo->save();
+        $seo->saveLocalization($request);
 
         return redirect('/admin/seo/list')
             ->with('message-success', 'Запись ' . $seo->name . ' успешно добавлена.');
@@ -81,7 +85,9 @@ class SeoController extends Controller
         $seo = Seo::find($id);
 
         return view('admin.seo.edit')
-            ->with('seo', $seo);
+            ->with('seo', $seo)
+            ->with('languages', Config::get('app.locales_names'))
+            ->with('editors', localizationFields(['description']));
     }
 
     /**
@@ -111,6 +117,7 @@ class SeoController extends Controller
         $seo->fill($request->except('_token'));
         $seo->description = !empty($request->description) ? $request->description : null;
         $seo->save();
+        $seo->saveLocalization($request);
 
         return redirect('/admin/seo/list')
             ->with('message-success', 'Запись ' . $seo->name . ' успешно обновлена.');

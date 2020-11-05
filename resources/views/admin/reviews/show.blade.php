@@ -23,7 +23,7 @@
                             <tr class="success">
                                 <td>Пользователь</td>
                                 <td>Товар</td>
-                                <td align="center">Оценка</td>
+                                <td align="center">{{ trans('app.assessment') }}</td>
                                 {{--<td align="center">Like</td>--}}
                                 {{--<td align="center">Dislike</td>--}}
                                 <td>Содержание отзыва</td>

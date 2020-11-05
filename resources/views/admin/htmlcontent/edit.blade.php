@@ -32,28 +32,20 @@
                         <h4>Общая информация</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right control-label">Название</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="text" data-translit="input" class="form-control" name="name" value="{!! old('name') ? old('name') : $content->name !!}" />
-                                    @if($errors->has('name'))
-                                        <p class="warning" role="alert">{!! $errors->first('name',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right control-label">Содержимое страницы</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea id="text-area" name="content" class="form-control" rows="10">{!! old('content') ? old('content') : $content->content !!}</textarea>
-                                    @if($errors->has('content'))
-                                        <p class="warning" role="alert">{!! $errors->first('content',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        @include('admin.layouts.form.string', [
+                         'label' => 'Название',
+                         'key' => 'name',
+                         'locale' => 'ru',
+                         'required' => true,
+                         'item' => $content,
+                        ])
+                        @include('admin.layouts.form.editor', [
+                         'label' => 'Содержимое страницы',
+                         'key' => 'content',
+                         'locale' => 'ru',
+                         'item' => $content,
+                         'languages' => $languages
+                        ])
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-sm-2 text-right">Родительская страница</label>
@@ -81,39 +73,25 @@
                         <h4>SEO</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta title</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="text" class="form-control" name="meta_title" value="{!! old('meta_title') ? old('meta_title') : $content->meta_title !!}" />
-                                    @if($errors->has('meta_title'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_title',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta description</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea name="meta_description" class="form-control" rows="6">{!! old('meta_description') ? old('meta_description') : $content->meta_description !!}</textarea>
-                                    @if($errors->has('meta_description'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_description',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta keywords</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea name="meta_keywords" class="form-control" rows="6">{!! old('meta_keywords') ? old('meta_keywords') : $content->meta_keywords !!}</textarea>
-                                    @if($errors->has('meta_keywords'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_keywords',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        @include('admin.layouts.form.string', [
+                        'label' => 'Title',
+                        'key' => 'meta_title',
+                        'item' => $content,
+                        'locale' => 'ru',
+                        'required' => true
+                        ])
+                        @include('admin.layouts.form.text', [
+                        'label' => 'Meta description',
+                        'key' => 'meta_description',
+                        'item' => $content,
+                        'locale' => 'ru'
+                        ])
+                        @include('admin.layouts.form.text', [
+                        'label' => 'Meta keywords',
+                        'key' => 'meta_keywords',
+                        'item' => $content,
+                        'locale' => 'ru'
+                        ])
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-sm-2 text-right control-label">Alias</label>
@@ -183,14 +161,18 @@
         </form>
     </div>
 
-    <script src="/js/libs/transliterate.js"></script>
+    {{--<script src="/js/libs/transliterate.js"></script>--}}
 
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace( 'text-area', {
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-        });
-        CKEDITOR.config.allowedContent = true;
-    </script>
+    {{--<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>--}}
+    {{--<script>--}}
+        {{--CKEDITOR.replace( 'text-area', {--}}
+            {{--filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',--}}
+            {{--filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',--}}
+        {{--});--}}
+        {{--CKEDITOR.config.allowedContent = true;--}}
+    {{--</script>--}}
+    @include('admin.layouts.mce', ['editors' => $editors])
+@endsection
+@section('before_footer')
+    @include('admin.media.assets')
 @endsection

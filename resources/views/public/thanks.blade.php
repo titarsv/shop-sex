@@ -1,7 +1,7 @@
 @extends('public.layouts.main')
 @section('meta')
-    <title>Спасибо за заказ</title>
-    @if($ecommerce)
+    <title>{{ trans('app.thanks_for_your_order') }}</title>
+    @if(!empty($ecommerce))
     <script>
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
@@ -30,25 +30,25 @@
             <div class="container">
                 <div class="row">
                     <ul class="col-sm-12 col-xs-12 breadcrumbs">
-                        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{env('APP_URL')}}" class="site-path-link" itemprop="url">Главная -</a></li>
-                        <li><a href="javascript:void(0);" class="site-path-link-active">Оформление заказа</a></li>
+                        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}" class="site-path-link" itemprop="url">{{ trans('app.home') }} -</a></li>
+                        <li><a href="javascript:void(0);" class="site-path-link-active">{{ trans('app.checkout') }}</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-12">
                     <div style="text-align: center; margin-bottom: 40px;">
                         <div class="container succes__container">
-                            <h1 class="succes__container-title">Спасибо!</h1>
+                            <h1 class="succes__container-title">{{ trans('app.thanks') }}</h1>
                             <div class="succes__card">
-                                <span class="succes__descr">Ваш заказ успешно оформлен.</span>
+                                <span class="succes__descr">{{ trans('app.tour_order_has_been_successfully_completed') }}</span>
                             </div>
-                            <span class="succes__wait-call">Ожидайте звонок от нашего менеджера.</span>
-                            <a href="{{env('APP_URL')}}" class="main-btn main-btn_accent succes__btn">Продолжить покупки</a>
+                            <span class="succes__wait-call">{{ trans('app.expect_a_call_from_our_manager') }}</span>
+                            <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}" class="main-btn main-btn_accent succes__btn">{{ trans('app.continue_shopping') }}</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-12">
                     @if($bestsellers && count($bestsellers) > 0)
-                        <div class="section-title"><span>Хиты продаж</span></div>
+                        <div class="section-title"><span>{{ trans('app.bestsellers') }}</span></div>
                         <div class="slick-slider slick-prod" data-slick='{"slidesToShow": 6, "dots": false, "arrows": false, "responsive":[{"breakpoint":1199,"settings":{"slidesToShow": 4, "centerMode": true}}, {"breakpoint":991,"settings":{"slidesToShow": 3, "centerMode": true}}, {"breakpoint":768,"settings":{"slidesToShow": 2, "centerMode": true}}, {"breakpoint":480,"settings":{"slidesToShow": 1, "centerMode": true}}]}'>
                             @foreach($bestsellers as $bestseller)
                                 <div class="col-md-2 col-sm-4 col-xs-4">

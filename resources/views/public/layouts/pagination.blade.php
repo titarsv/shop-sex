@@ -1,12 +1,5 @@
 @if ($paginator->lastPage() > 1)
     <ul class="page-pagination">
-        {{--@if($paginator->currentPage() < $paginator->lastPage())--}}
-            {{--<div class="col-xs-12">--}}
-                {{--<a href="{{ $cp->url($paginator->url($paginator->currentPage()+1), $paginator->currentPage()+1) }}" class="show-more-btn margin" id="#more_products">--}}
-                    {{--<p>Показать еще</p>--}}
-                {{--</a>--}}
-            {{--</div>--}}
-        {{--@endif--}}
         @if($paginator->currentPage() > 1)
             <li class="prev-page"><a href="{{ $cp->url($paginator->url(1), 1) }}"></a></li>
         @endif

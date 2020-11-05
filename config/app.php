@@ -66,6 +66,16 @@ return [
     */
 
     'locale' => 'ru',
+    'locales' => [
+        'ru',
+        'ua',
+        'en'
+    ],
+    'locales_names' => [
+        'ru' => 'На русском',
+        'ua' => 'Українською',
+        'en' => 'In English'
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -170,6 +180,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
 
     ],
 

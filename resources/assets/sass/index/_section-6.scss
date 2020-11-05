@@ -1,13 +1,5 @@
 .section-6{
-  background: url(../images/header-pattern.png) center;
-}
-
-@media not all and (min-resolution:.001dpcm){
-  @supports (-webkit-appearance:none) and (stroke-color:transparent){
-    .section-6{
-      background: url("../images/header-pattern.png") center;
-    }
-  }
+    background: url('../images/header-pattern.png') center;
 }
 
 .assort-text{

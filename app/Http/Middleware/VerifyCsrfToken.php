@@ -29,5 +29,6 @@ class VerifyCsrfToken extends BaseVerifier
         '/checkout/confirm',
         '/subscribe',
         '/sendmail',
+        'admin/async-upload',
     ];
 }

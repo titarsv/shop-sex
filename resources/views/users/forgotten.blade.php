@@ -19,7 +19,7 @@
                         <div class="col-md-12">
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title aside-block">
-                                    <a href="javascript:void(0);" class="active-aside-link"><p>Вход</p></a>
+                                    <a href="javascript:void(0);" class="active-aside-link"><p>{{ trans('app.input') }}</p></a>
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item">
@@ -39,7 +39,7 @@
                 <div class="visible-xs-block col-xs-12">
                     <div>
                         <select name="site-section-select" id="redirect_select" class="site-section-select">
-                            <option value="{{env('APP_URL')}}/login">Вход</option>
+                            <option value="{{env('APP_URL')}}/login">{{ trans('app.input') }}</option>
                             <option value="{{env('APP_URL')}}/registration">Регистрация</option>
                             <option selected="selected" value="{{env('APP_URL')}}/forgotten">Забыли пароль</option>
                         </select>
@@ -79,7 +79,7 @@
                     <form class="sign-up-form sign-in-form" method="post">
                         {!! csrf_field() !!}
                         <div class="sign-up-form-item">
-                            <p>Почта</p>
+                            <p>{{ trans('app.mail') }}</p>
                             <input type="text" value="{!! old('email') !!}" name="email" id="email" class="@if($errors->has('email')) input-error @endif">
                         </div>
                         <button type="submit" class="registr-btn">Продолжить</button>

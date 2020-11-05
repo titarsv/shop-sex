@@ -24,9 +24,9 @@
     }
     .banner-btn{
         color: #fff;
-        background-color: #d8ba0e;
-        font-size: 18px;
-        line-height: 42px;
+        background-color: #ff3030;
+        font-size: 14px;
+        line-height: 30px;
         width: 200px;
         text-align: center;
         border-radius: 20px;
@@ -87,7 +87,7 @@
         .slick-active{
             button{
                 background-color: #ff3030;
-            }
+            }        
         }
     }
     &:not(.slick-initialized){

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
@@ -74,6 +75,7 @@ class Cart extends Model
      * Обновление корзины
      */
     public function update_cart(){
+        Cookie::queue('ecommerce', 1, 2628000, null, null, false, false);
         $products = json_decode($this->products, true);
 
         $total_quantity = 0;

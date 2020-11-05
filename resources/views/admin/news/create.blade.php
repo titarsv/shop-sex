@@ -32,47 +32,17 @@
                         <h4>Общая информация</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right control-label">Заголовок</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="text" data-translit="input" class="form-control" name="title" value="{!! old('title') !!}" />
-                                    @if($errors->has('title'))
-                                        <p class="warning" role="alert">{!! $errors->first('title',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right control-label">Текст новости</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea id="text-area" name="text" class="form-control" rows="6">{!! old('text') !!}</textarea>
-                                    @if($errors->has('text'))
-                                        <p class="warning" role="alert">{!! $errors->first('text',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Категория</label>
-                                <div class="form-element col-sm-10">
-                                    <select name="category" class="form-control">
-                                        @foreach($article->categories as $cat)
-                                            <option value="{!! $cat !!}"
-                                                    @if ($cat == old('category'))
-                                                    selected
-                                                    @endif
-                                            >{!! $cat !!}</option>
-                                        @endforeach
-                                    </select>
-                                    @if($errors->has('category'))
-                                        <p class="warning" role="alert">{!! $errors->first('category',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        @include('admin.layouts.form.string', [
+                        'label' => 'Заголовок',
+                        'key' => 'title',
+                        'locale' => 'ru',
+                        'required' => true
+                        ])
+                        @include('admin.layouts.form.editor', [
+                         'label' => 'Текст новости',
+                         'key' => 'text',
+                         'locale' => 'ru'
+                        ])
                     </div>
                 </div>
 
@@ -84,16 +54,10 @@
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-sm-2 text-right">Выберите изображение</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="hidden" id="image" name="image_id" value="{!! old('image_id') ? old('image_id') : 1 !!}" />
-                                    <div id="image-output" class="category-image">
-                                        <img src="/uploads/{!! old('href') ? old('href') : 'no_image.jpg' !!}" />
-                                        <button type="button" class="btn btn-del" data-toggle="tooltip" data-placement="bottom" title="Удалить изображение">X</button>
-                                        <button type="button" data-open="image" id="add-image" class="btn">Выбрать изображение</button>
-                                    </div>
-                                    @if($errors->has('image_id'))
-                                        <p class="warning" role="alert">{!! $errors->first('image_id', ':message') !!}</p>
-                                    @endif
+                                <div class="form-element col-sm-3">
+                                    @include('admin.layouts.form.image', [
+                                     'key' => 'image_id'
+                                    ])
                                 </div>
                             </div>
                         </div>
@@ -105,39 +69,22 @@
                         <h4>SEO</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta title</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="text" class="form-control" name="meta_title" value="{!! old('meta_title') !!}" />
-                                    @if($errors->has('meta_title'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_title',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta description</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea name="meta_description" class="form-control" rows="6">{!! old('meta_description') !!}</textarea>
-                                    @if($errors->has('meta_description'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_description',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta keywords</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea name="meta_keywords" class="form-control" rows="6">{!! old('meta_keywords') !!}</textarea>
-                                    @if($errors->has('meta_keywords'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_keywords',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        @include('admin.layouts.form.string', [
+                        'label' => 'Title',
+                        'key' => 'meta_title',
+                        'locale' => 'ru',
+                        'required' => true
+                        ])
+                        @include('admin.layouts.form.text', [
+                        'label' => 'Meta description',
+                        'key' => 'meta_description',
+                        'locale' => 'ru'
+                        ])
+                        @include('admin.layouts.form.text', [
+                        'label' => 'Meta keywords',
+                        'key' => 'meta_keywords',
+                        'locale' => 'ru'
+                        ])
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-sm-2 text-right control-label">Alias</label>
@@ -197,18 +144,20 @@
         </form>
     </div>
 
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace( 'text-area', {
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}'
-        });
-        CKEDITOR.config.allowedContent = true;
-    </script>
+    {{--<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>--}}
+    {{--<script>--}}
+        {{--CKEDITOR.replace( 'text-area', {--}}
+            {{--filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',--}}
+            {{--filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}'--}}
+        {{--});--}}
+        {{--CKEDITOR.config.allowedContent = true;--}}
+    {{--</script>--}}
 
-    <script src="/js/libs/transliterate.js"></script>
+    {{--<script src="/js/libs/transliterate.js"></script>--}}
+    @include('admin.layouts.mce', ['editors' => $editors])
 @endsection
 
 @section('before_footer')
-    @include('admin.layouts.imagesloader')
+    {{--@include('admin.layouts.imagesloader')--}}
+    @include('admin.media.assets')
 @endsection

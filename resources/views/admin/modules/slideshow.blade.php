@@ -85,6 +85,7 @@
                                 </thead>
                                 <tbody id="modules-table">
                                     @forelse($slideshow as $key => $slide)
+                                        @php $data = $slide->data(); @endphp
                                         <tr>
                                             <td class="col-md-2">
                                                 <input type="hidden" id="module-image-{!! $key !!}" name="slide[{!! $key !!}][image_id]" value="{!! $slide->image_id !!}" />
@@ -102,7 +103,7 @@
                                                 <br>
                                                 <div>
                                                     <b>Текст кнопки</b>
-                                                    <input type="text" name="slide[{!! $key !!}][button_text]" class="form-control" value="{!! json_decode($slide->slide_data)->button_text !!}" />
+                                                    <input type="text" name="slide[{!! $key !!}][button_text]" class="form-control" value="{!! $data->button_text !!}" />
                                                 </div>
                                                 <br>
                                                 <div>
@@ -136,11 +137,20 @@
                                                         @endif
                                                     </select>
                                                 </div>
+                                                <br>
+                                                <div>
+                                                    <b>Язык:</b>
+                                                    <select name="slide[{!! $key !!}][lang]" class="form-control">
+                                                        <option value="ru"{{ isset($data->lang) && $data->lang == 'ru' ? ' selected' : '' }}>Русский</option>
+                                                        <option value="ua"{{ isset($data->lang) && $data->lang == 'ua' ? ' selected' : '' }}>Українська</option>
+                                                        <option value="en"{{ isset($data->lang) && $data->lang == 'en' ? ' selected' : '' }}>English</option>
+                                                    </select>
+                                                </div>
                                             </td>
                                             <td class="col-md-3">
                                                 <div>
                                                     <b>Заголовок</b>
-                                                    <input type="text" name="slide[{!! $key !!}][slide_title]" class="form-control" value="{!! json_decode($slide->slide_data)->slide_title !!}" />
+                                                    <input type="text" name="slide[{!! $key !!}][slide_title]" class="form-control" value="{!! $data->slide_title !!}" />
                                                     <span style="color: red">
                                                         @if($errors->has('slide.' . $key . '.slide_title'))
                                                             {{ $errors->first('slide.' . $key . '.slide_title',':message')  }}
@@ -150,7 +160,7 @@
                                                 <br>
                                                 <div>
                                                     <b>Описание</b>
-                                                    <input type="text" name="slide[{!! $key !!}][slide_description]" class="form-control" value="{!! json_decode($slide->slide_data)->slide_description !!}" />
+                                                    <input type="text" name="slide[{!! $key !!}][slide_description]" class="form-control" value="{!! $data->slide_description !!}" />
                                                     <span style="color: red">
                                                         @if($errors->has('slide.' . $key . '.slide_description'))
                                                             {{ $errors->first('slide.' . $key . '.slide_description',':message')  }}

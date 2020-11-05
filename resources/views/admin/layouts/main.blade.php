@@ -28,7 +28,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="/admin/orders">Заказы <span class="badge">{!! $new_orders !!}</span></a></li>
-                            <li><a href="/admin/reviews">Отзывы <span class="badge">{!! $new_reviews !!}</span></a></li>
+                            <li><a href="/admin/reviews">{{ trans('app.go_to_cart') }} <span class="badge">{!! $new_reviews !!}</span></a></li>
                             <li><a href="/admin/personal_sales">Хотят скидку <span class="badge">{!! $personal_sales !!}</span></a></li>
                         </ul>
                     </li>

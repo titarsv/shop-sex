@@ -7,7 +7,7 @@ use App\Models\Variation;
 use App\Product;
 use Illuminate\Http\Request;
 use Validator;
-
+use Config;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Categories;
 use App\Models\Products;
@@ -18,6 +18,7 @@ use App\Models\Gallery;
 use App\Models\Sync;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use App;
 
 class ProductsController extends Controller
 {
@@ -200,7 +201,8 @@ class ProductsController extends Controller
         return view('admin.products.create')
             ->with('categories', Categories::all())
             ->with('labels', $product->labels())
-            ->with('attributes', Attribute::all());
+            ->with('attributes', Attribute::all())
+            ->with('editors', localizationFields(['description']));
     }
 
     /**
@@ -253,6 +255,8 @@ class ProductsController extends Controller
 //        $data['photos'] = $request->photos;
 
         $id = $products->insert_product($data);
+        $product = $products->find($id);
+        $product->saveLocalization($request);
 
         if($id != 'already_exist'){
             $this->updateVariations($products->find($id), $request->variations);
@@ -283,18 +287,20 @@ class ProductsController extends Controller
             }
         }
 
-        $sets = Products::where('id', '<>', $id)->get();
-        $added_set = $product->set_products->pluck('id')->toArray();
+//        $sets = Products::where('id', '<>', $id)->get();
+//        $added_set = $product->set_products->pluck('id')->toArray();
 
         return view('admin.products.edit')
             ->with('product', $product)
             ->with('categories', Categories::all())
             ->with('added_categories', $categories)
-            ->with('sets', $sets)
-            ->with('added_set', $added_set)
+//            ->with('sets', $sets)
+//            ->with('added_set', $added_set)
             ->with('labels', $product->labels())
-            ->with('related', $product->related->pluck('id')->toArray())
-            ->with('attributes', Attribute::all());
+//            ->with('related', $product->related->pluck('id')->toArray())
+            ->with('languages', Config::get('app.locales_names'))
+            ->with('attributes', Attribute::all())
+            ->with('editors', localizationFields(['description']));
     }
 
 
@@ -349,21 +355,22 @@ class ProductsController extends Controller
             $product->gallery->images = json_encode($request->gallery);
         }
 
-        if(!empty($request->related)) {
-            foreach (Products::whereIn('id', $request->related)->get() as $prod) {
-                $r = [$product->id];
-                foreach ($request->related as $rel_id) {
-                    if ($rel_id != $prod->id)
-                        $r[] = $rel_id;
-                }
-                $prod->related()->attach($r);
-            }
-        }
-        $product->related()->sync($request->related);
+//        if(!empty($request->related)) {
+//            foreach (Products::whereIn('id', $request->related)->get() as $prod) {
+//                $r = [$product->id];
+//                foreach ($request->related as $rel_id) {
+//                    if ($rel_id != $prod->id)
+//                        $r[] = $rel_id;
+//                }
+//                $prod->related()->attach($r);
+//            }
+//        }
+//        $product->related()->sync($request->related);
 
         $product->fill($product_table_fill);
 
         $product->push();
+        $product->saveLocalization($request);
 
         $product->categories()->sync($request->product_category_id);
 
@@ -457,6 +464,11 @@ class ProductsController extends Controller
         $product = Products::find($id);
         $product->delete();
 
+        if(strpos($_SERVER['HTTP_REFERER'], '/admin/products/edit/'.$id) !== false){
+            return redirect('/admin/products')
+                ->with('message-success', 'Товар ' . $product->name . ' успешно удален.');
+        }
+
         return redirect()->back()
             ->with('message-success', 'Товар ' . $product->name . ' успешно удален.');
     }
@@ -521,7 +533,39 @@ class ProductsController extends Controller
      */
     public function livesearch(Request $request, Products $products)
     {
-        $products = $products->where('name', 'like', '%' . $request->search . '%')->with('image')->paginate(5);
+//        $products = $products
+//            ->where('name', 'like', '%' . $request->search . '%')
+//            ->where('stock', 1)
+//            ->with('image')
+//            ->paginate(5);
+
+        $text = $request->search;
+
+        $locale = App::getLocale();
+
+        $products = $products->select('products.*')
+            ->join('localization', 'products.id', '=', 'localization.localizable_id')
+            ->where('stock', 1)
+            ->where('localization.localizable_type', 'App\Models\Products')
+            ->where('localization.field', 'name')
+            ->where(function($query) use($text){
+                $query->where('localization.value', 'like', '%'.$text.'%')
+                    ->orWhere('articul', 'like', '%'.$text.'%');
+            })
+            ->when($locale, function($query) use ($locale) {
+                if($locale == 'ru'){
+                    return $query->orderBy('localization.language', 'asc');
+                }else{
+                    return $query->orderBy('localization.language', 'desc');
+                }
+            })
+            ->orderBy('products.id', 'desc')
+            ->groupBy('products.id')
+            ->with(['localization' => function($query) use($locale){
+                $query->select(['field', 'language', 'value', 'localizable_type', 'localizable_id'])->where('language', $locale)->where('field', 'name');
+            }])
+            ->with('image')
+            ->paginate(5);
 
         return view('public.layouts.search_results')->with('products', $products);
     }
@@ -647,7 +691,10 @@ class ProductsController extends Controller
      */
     public function search(Products $products, Request $request, $page = 'page1')
     {
-        $search_text = urldecode($request->input('text'));
+        $search_text = $request->input('text');
+        if(strpos($search_text, '%') === 0){
+            $search_text = urlencode($search_text);
+        }
 
         //$id = $request->get('page', 1);
 

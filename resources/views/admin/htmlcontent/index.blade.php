@@ -26,7 +26,7 @@
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading text-right">
-                <a href="/admin/html/create" class="btn">Добавить новую</a>
+                <span class="btn" id="add_page">Добавить новую</span>
             </div>
             <div class="table table-responsive">
                 <table class="table table-hover">
@@ -90,4 +90,60 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function(){
+            $('#add_page').click(function(e){
+                e.preventDefault();
+                swal({
+                    title: 'Введите название страницы',
+                    input: 'text',
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+                    focusConfirm: false,
+                    preConfirm: (name) => {
+                        return new Promise((resolve, reject) => {
+                            let formData = new FormData();
+                            formData.append('name_{{ Config::get('app.locale') }}', name);
+                            $.ajax({
+                                type:"POST",
+                                url:"/admin/html/create",
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                async:true,
+                                success: function(response){
+                                    console.log(response);
+                                    if(response.result === 'success'){
+                                        resolve(response.redirect);
+                                    }else{
+                                        reject(response.errors);
+                                    }
+                                }
+                            });
+                        })
+                    }
+                }).then(function(redirect) {
+                    location = redirect;
+                }, function(errors) {
+                    if(typeof errors !== 'string'){
+                        var message = '';
+                        for(err in errors){
+                            message += errors[err] + '<br>';
+                        }
+                        swal(
+                            'Ошибка!',
+                            message,
+                            'error'
+                        );
+                    }
+                });
+            });
+        });
+        function confirmPageDelete(id, name) {
+            $('#html-delete-modal #confirm').attr('href', '/admin/html/delete/' + id);
+            $('#html-delete-modal #html-name').html(name);
+            $('#html-delete-modal').modal();
+        }
+    </script>
 @endsection

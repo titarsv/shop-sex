@@ -2,12 +2,12 @@
  {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, ул. Пушкинская, 43",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_st_pushkinskaya_43') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -32,9 +32,9 @@
         "name": "Интернет-магазин «Интим»",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, улица Полтавский Шлях, 115",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_street_poltavsky_shlyakh_115') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -56,12 +56,12 @@
 {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, Бурсацкий спуск, 8",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_bursatsky_descent_8') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -83,12 +83,12 @@
 {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, пр. Московский, 252б",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_moskovsky_ave_252b') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -110,12 +110,12 @@
 {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}»",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, пр. Ленина, 29",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_lenin_ave_29') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -137,12 +137,12 @@
 {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, Героев Сталинграда 136/8",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_heroes_of_stalingrada_1368') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -164,12 +164,12 @@
 {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, пр. Московский, 90",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_moskovsky_avenue_90') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -191,12 +191,12 @@
 {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, пр. Тракторостроителей, 63",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_traktorostroiteley_ave_63') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -218,12 +218,12 @@
 {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, ул. Клочковская",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_st_klochkovskaya') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -245,12 +245,12 @@
 {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, ст. м. «Героев Труда», трам. ост. Рынок «АРАКС»",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_art_m_heroes_of_labor_tram_ost_market_arax') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",
@@ -272,12 +272,12 @@
 {
         "@context": "http://schema.org",
         "@type": "Store",
-        "name": "Интернет-магазин «Интим»",
+        "name": "{{ trans('app.internet_store_intim') }}",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Украина, пр. Людвига Свободы, 43",
-            "addressLocality": "Харьков",
-            "addressRegion": "Харьковская",
+            "streetAddress": "{{ trans('app.ukraine_ludwig_svoboda_ave_43') }}",
+            "addressLocality": "{{ trans('app.kharkov') }}",
+            "addressRegion": "{{ trans('app.kharkiv') }}",
             "postalCode": "61000"
         },
         "logo": "https://shop-sex.com.ua/images/logo.png",

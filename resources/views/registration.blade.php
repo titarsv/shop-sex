@@ -1,7 +1,7 @@
 @extends('public.layouts.main')
 
 @section('meta')
-    <title>Вход в личный кабинет</title>
+    <title>{{ trans('app.login_to_your_personal_account') }}</title>
     <meta name="description" content="{!! $settings->meta_description !!}">
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
 @endsection
@@ -19,7 +19,7 @@
                         <div class="col-md-12">
                             <div class="aside-filter-menu-item">
                                 <div class="aside-filter-menu-item-title aside-block">
-                                    <a href="{{env('APP_URL')}}/login"><p>Вход</p></a>
+                                    <a href="{{env('APP_URL')}}/login"><p>{{ trans('app.input') }}</p></a>
                                 </div>
                             </div>
                             <div class="aside-filter-menu-item">
@@ -39,7 +39,7 @@
                 <div class="visible-xs-block col-xs-12">
                     <div>
                         <select name="site-section-select" id="redirect_select" class="site-section-select">
-                            <option value="{{env('APP_URL')}}/login">Вход</option>
+                            <option value="{{env('APP_URL')}}/login">{{ trans('app.input') }}</option>
                             <option selected="selected" value="{{env('APP_URL')}}/registration">Регистрация</option>
                             <option value="{{env('APP_URL')}}/forgotten">Забыли пароль</option>
                         </select>
@@ -76,7 +76,7 @@
                     <form action="" class="sign-up-form" method="post">
                         {!! csrf_field() !!}
                         <div class="sign-up-form-item">
-                            <p>Почта *</p>
+                            <p>{{ trans('app.mail') }} *</p>
                             <input type="text"
                                    name="email"
                                    id="email"
@@ -84,7 +84,7 @@
                                    value="{!! old('email') !!}" placeholder="E-mail">
                         </div>
                         <div class="sign-up-form-item">
-                            <p>Имя *</p>
+                            <p>{{ trans('app.name') }} *</p>
                             <input type="text"
                                    name="first_name"
                                    id="name"
@@ -100,15 +100,15 @@
                                    value="{!! old('last_name') !!}"placeholder="Ваша фамилия">
                         </div>
                         <div class="sign-up-form-item">
-                            <p>Телефон *</p>
+                            <p>{{ trans('app.phone') }} *</p>
                             <input type="text"
                                    name="phone"
                                    id="phone"
                                    class="form_input @if($errors->has('phone')) input_error @endif"
-                                   value="{!! old('phone') !!}" placeholder="Телефон">
+                                   value="{!! old('phone') !!}" placeholder="{{ trans('app.phone') }}">
                         </div>
                         <div class="sign-up-form-item">
-                            <p>Пароль *</p>
+                            <p>{{ trans('app.password') }} *</p>
                             <input type="password"
                                    name="password"
                                    id="password"
@@ -127,7 +127,7 @@
                         </div>
                         <button type="submit" class="registr-btn">Регистрация</button>
                     </form>
-                    <p class="margin">Я уже зарегистрирован <a href="{{env('APP_URL')}}/login">Вход</a></p>
+                    <p class="margin">Я уже зарегистрирован <a href="{{env('APP_URL')}}/login">{{ trans('app.input') }}</a></p>
                 </div>
             </div>
         </div>

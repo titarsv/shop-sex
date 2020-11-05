@@ -64,7 +64,7 @@ class MainController extends Controller
 
         $redirects = array(
             '/forumy/obshchaya-diskussiya' => '/page/forum',
-            '/osobye-pokrytiya-vibratorov-dlya-nezabyvaemyh-oshchushcheniy' => '/page/forum',
+			'/osobye-pokrytiya-vibratorov-dlya-nezabyvaemyh-oshchushcheniy' => '/page/forum',
             '/user/login' => '/login',
             '/user/register' => '/login',
             '/user/password' => '/login',

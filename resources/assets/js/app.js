@@ -29,7 +29,6 @@ let $ = require('jquery');
 require('./bootstrap');
 
 // Modules
-let Lazyload = require('./components/lazyload');
 let Forms = require('./components/forms');
 let Slider = require('./components/slider');
 let Popup = require('./components/popup');
@@ -42,7 +41,6 @@ require('./components/jquery-ui');
 
 // Are you ready?
 $(function() {
-  new Lazyload();
   new Forms();
   new Popup();
   new Fancy_select();
@@ -65,10 +63,10 @@ $(function() {
     });
   });
 
-  /*$('.hmb-menu').click(function() {
+  $('.hmb-menu').click(function() {
     $(this).toggleClass('active');
     $('.mob-navigation').slideToggle();
-  });*/
+  });
 
   $('.mobile-filters-toggle').click(function() {
       $(this).next('form.filters').addClass('open');
@@ -121,42 +119,11 @@ $(function() {
     });
 
 
-
     // $('input.sliderValue').change(function() {
     //   var $this = $(this);
     //   $('.price-range').slider('values', $this.data('index'), $this.val());
     // });
   }
-
-    $('.sliderValue').keypress(function(e) {
-        if(e.which == 13) {
-            var parent = $(this).parent();
-            var from = parent.find('.sliderValue').eq(0).val();
-            var to = parent.find('.sliderValue').eq(1).val();
-            var path_parts = location.pathname.split('/');
-            var append = false;
-            if(typeof path_parts[3] !== 'undefined'){
-                var filter = path_parts[3];
-                var filter_parts = filter.split('_');
-                for(var i=0; i<filter_parts.length; i++){
-                    var filter_data = filter_parts[i].split('-');
-                    if(filter_data.length == 3 && filter_data[0] == 'price'){
-                        filter_parts[i] = 'price-'+from+'-'+to;
-                        append = true;
-                    }
-                }
-                if(!append){
-                    filter_parts[filter_parts.length] = 'price-'+from+'-'+to;
-                }
-                path_parts[3] = filter_parts.join('_');
-            }else{
-                path_parts[3] = 'price-'+from+'-'+to;
-            }
-
-            var path = path_parts.join('/');
-            location = path;
-        }
-    });
 
     $('.category-details').click(function() {
         $(this).next('ul').toggleClass('open');
@@ -169,82 +136,6 @@ $(function() {
     $('#click-buy-popup .prod-quont input').keyup(function(){
         var total = $(this).val() * $(this).data('price');
         $('.result-price').text(total.toFixed(2) + ' грн');
-    });
-
-    if ($(window).width() >= 767) {
-        $('.hmb-menu').click(function() {
-            setTimeout(function() { $('body').trigger('scroll') }, 10);
-            $(this).toggleClass('active');
-            $('.navigation').toggle();
-        });
-    }
-    else{
-        $('.hmb-menu').click(function() {
-            setTimeout(function() { $('body').trigger('scroll') }, 10);
-            $(this).toggleClass('active');
-            $('.header-nav').toggle();
-        });
-    }
-
-    $('.search-btn').click(function() {
-        $('.header-bot').toggle();
-        return false;
-    });
-
-    $(document).on('click', '.header-bot', function(e) {
-        e.stopPropagation();
-    });
-    if ($(window).width() < 767) {
-        $(document).click(function () {
-            $('.header-bot').hide();
-        });
-    }
-
-    $('.mob-btn').click(function() {
-        setTimeout(function() { $('body').trigger('scroll') }, 10);
-    });
-
-    setTimeout(function() { $('body').trigger('scroll') }, 10);
-
-    // 18+ btn
-
-    if ($(window).width() >= 767) {
-        $('.header-adult').click(function () {
-            $(this).toggleClass('active');
-            return false;
-        });
-
-        $(document).click(function () {
-            $('.header-adult').removeClass('active');
-        });
-
-        $(document).on('click', '.header-adult', function (e) {
-            e.stopPropagation();
-        });
-    }
-
-    // search
-    var search_output = $('[data-output="search-results"]');
-    $('[data-autocomplete="input-search"]').on('keyup focus', function(){
-        var search = $(this).val();
-        search_output.html('').hide();
-
-        if (search.length > 1) {
-            var data = {};
-            data.search = search;
-
-            $.get('/livesearch', data,
-                function(html) {
-                    if(html === ''){
-                        search_output.html('').hide();
-                    }else{
-                        search_output.html(html).show();
-                    }
-                }
-            );
-        } else {
-            search_output.hide();
-        }
     });
 });
 

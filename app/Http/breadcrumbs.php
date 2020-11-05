@@ -4,7 +4,7 @@
  * Home
  */
 Breadcrumbs::register('home', function($breadcrumbs) {
-    $breadcrumbs->push('Главная', url('/'));
+    $breadcrumbs->push(trans('app.home'), url(App::getLocale() == 'ru' ? '/' : '/'.App::getLocale()));
 });
 
 /**
@@ -12,25 +12,25 @@ Breadcrumbs::register('home', function($breadcrumbs) {
  */
 Breadcrumbs::register('user', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Личный кабинет', url('/user'));
-    $breadcrumbs->push('Личные данные');
+    $breadcrumbs->push(trans('app.personal_area'), url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/user'));
+    $breadcrumbs->push(trans('app.personal_data'));
 });
 
 Breadcrumbs::register('history', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Личный кабинет', url('/user'));
-    $breadcrumbs->push('История заказов');
+    $breadcrumbs->push(trans('app.personal_area'), url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/user'));
+    $breadcrumbs->push(trans('app.history_of_orders'));
 });
 
 Breadcrumbs::register('wishlist', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Личный кабинет', url('/user'));
-    $breadcrumbs->push('Список желаний');
+    $breadcrumbs->push(trans('app.personal_area'), url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/user'));
+    $breadcrumbs->push(trans('app.a_wish_list'));
 });
 
 Breadcrumbs::register('change_user', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Личный кабинет');
+    $breadcrumbs->push(trans('app.personal_area'));
 });
 
 /**
@@ -49,7 +49,7 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
                     $alias = $category['url_alias'];
                 }
             }
-            $breadcrumbs->push($name, url('/catalog/' . $alias));
+            $breadcrumbs->push($name, url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/catalog/' . $alias));
         }
     }elseif(is_object($category)){
         foreach (array_reverse($category->get_parent_categories()) as $category) {
@@ -62,7 +62,7 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
                     $alias = $category['url_alias'];
                 }
             }
-            $breadcrumbs->push($name, url('/catalog/' . $alias));
+            $breadcrumbs->push($name, url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/catalog/' . $alias));
         }
     }else{
         if (!empty($category)) {
@@ -74,7 +74,7 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
                 $alias = $category['url_alias'];
             }
         }
-        $breadcrumbs->push($name, url('/catalog/' . $alias));
+        $breadcrumbs->push($name, url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/catalog/' . $alias));
     }
 });
 
@@ -83,7 +83,7 @@ Breadcrumbs::register('categories', function($breadcrumbs, $category) {
  */
 Breadcrumbs::register('blog', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Статьи', url('/articles'));
+    $breadcrumbs->push(trans('app.articles'), url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/articles'));
 });
 
 Breadcrumbs::register('blog_item', function($breadcrumbs, $article) {
@@ -96,7 +96,7 @@ Breadcrumbs::register('blog_item', function($breadcrumbs, $article) {
  */
 Breadcrumbs::register('news', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Новости', url('/news'));
+    $breadcrumbs->push(trans('app.news'), url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/news'));
 });
 
 Breadcrumbs::register('news_item', function($breadcrumbs, $article) {
@@ -117,17 +117,17 @@ Breadcrumbs::register('html', function($breadcrumbs, $page) {
  */
 Breadcrumbs::register('login', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Авторизация', url('/login'));
+    $breadcrumbs->push(trans('app.authorization'), url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/login'));
 });
 
 Breadcrumbs::register('register', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Регистрация');
+    $breadcrumbs->push(trans('app.check_in'));
 });
 
 Breadcrumbs::register('forgotten', function($breadcrumbs) {
     $breadcrumbs->parent('login');
-    $breadcrumbs->push('Восстановление пароля');
+    $breadcrumbs->push(trans('app.password_recovery'));
 });
 
 /**
@@ -145,7 +145,7 @@ Breadcrumbs::register('product', function($breadcrumbs, $product, $category) {
  */
 Breadcrumbs::register('search', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Поиск', url('/search'));
+    $breadcrumbs->push(trans('app.Search'), url((App::getLocale() == 'ru' ? '' : '/'.App::getLocale()).'/search'));
 });
 
 /**
@@ -153,7 +153,7 @@ Breadcrumbs::register('search', function($breadcrumbs) {
  */
 Breadcrumbs::register('cart', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Корзина');
+    $breadcrumbs->push(trans('app.basket'));
 });
 
 /**
@@ -161,7 +161,7 @@ Breadcrumbs::register('cart', function($breadcrumbs) {
  */
 Breadcrumbs::register('checkout', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Оформление заказа');
+    $breadcrumbs->push(trans('app.checkout'));
 });
 
 /**
@@ -169,5 +169,5 @@ Breadcrumbs::register('checkout', function($breadcrumbs) {
  */
 Breadcrumbs::register('brand', function($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Бренд');
+    $breadcrumbs->push(trans('app.brand'));
 });

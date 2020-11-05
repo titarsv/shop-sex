@@ -25,103 +25,34 @@
                         <h4>Общая информация</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right control-label">Название</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="text" data-translit="input" class="form-control" name="name" value="{!! old('name') !!}" />
-                                    @if($errors->has('name'))
-                                        <p class="warning" role="alert">{!! $errors->first('name',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        @include('admin.layouts.form.string', [
+                         'label' => 'Название',
+                         'key' => 'name',
+                         'locale' => 'ru',
+                         'required' => true
+                        ])
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-sm-2 text-right">Изображение товара</label>
-                                <div class="form-element col-sm-4">
-                                    <input type="hidden"
-                                           id="image"
-                                           name="image_id"
-                                           value="{!! old('image_id') ? old('image_id') : 1 !!}"
-                                    />
-
-                                    <div id="image-output" class="category-image">
-                                        <img src="/uploads/{!! old('href') ? old('href') : 'no_image.jpg' !!}" />
-                                        <button type="button" class="btn btn-del" data-toggle="tooltip" data-placement="bottom" title="Удалить изображение">X</button>
-                                        <button type="button" data-open="image" id="add-image" class="btn">Выбрать изображение</button>
-                                    </div>
+                                <div class="form-element col-sm-3">
+                                    @include('admin.layouts.form.image', [
+                                     'key' => 'image_id'
+                                    ])
                                 </div>
-                                <div class="form-element col-sm-6">
+                                <div class="form-element col-sm-7">
                                     <label class="gallery-label">Галлерея</label>
-                                    <div class="row gallery-container">
-                                        <div class="col-sm-3 add-gallery-image" id="add-gallery-image">
-                                            <div class="add-btn" data-open="gallery"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{--<div class="form-element col-sm-3">--}}
-                                    {{--<label class="gallery-label">Дополнительные фото</label>--}}
-                                    {{--<div class="row gallery-container">--}}
-                                        {{--<div class="col-sm-3 add-gallery-image" id="add-photos-image">--}}
-                                            {{--<div class="add-btn" data-open="photos"></div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            </div>
-                        </div>
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Краткое описание товара</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<textarea name="excerpt"--}}
-                                              {{--class="form-control"--}}
-                                              {{--rows="3">{!! old('excerpt') ? old('excerpt') : '' !!}</textarea>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Описание товара</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea name="description"
-                                              class="form-control editor"
-                                              rows="6">{!! old('description') ? old('description') : '' !!}</textarea>
+                                    @include('admin.layouts.form.gallery', [
+                                     'key' => 'gallery',
+                                     'gallery' => null
+                                    ])
                                 </div>
                             </div>
                         </div>
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Опции</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<textarea name="options"--}}
-                                              {{--class="form-control editor"--}}
-                                              {{--rows="6">{!! old('options') ? old('options') : '' !!}</textarea>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Размеры</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<textarea name="sizes"--}}
-                                              {{--class="form-control editor"--}}
-                                              {{--rows="6">{!! old('sizes') ? old('sizes') : '' !!}</textarea>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Акция</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<textarea name="action"--}}
-                                              {{--class="form-control"--}}
-                                              {{--rows="2">{!! old('action') ? old('action') : '' !!}</textarea>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                        @include('admin.layouts.form.editor', [
+                         'label' => 'Описание товара',
+                         'key' => 'description',
+                         'locale' => 'ru'
+                        ])
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-sm-2 text-right">Плашка</label>
@@ -194,39 +125,22 @@
                         <h4>SEO</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right control-label">Title</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="text" class="form-control" name="meta_title" value="{!! old('meta_title') !!}" />
-                                    @if($errors->has('meta_title'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_title',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta description</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea name="meta_description" class="form-control" rows="6">{!! old('meta_description') !!}</textarea>
-                                    @if($errors->has('meta_description'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_description',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta keywords</label>
-                                <div class="form-element col-sm-10">
-                                    <input name="meta_keywords" class="form-control" value="{!! old('meta_keywords') !!}">
-                                    @if($errors->has('meta_keywords'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_keywords',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        @include('admin.layouts.form.string', [
+                        'label' => 'Title',
+                        'key' => 'meta_title',
+                        'locale' => 'ru',
+                        'required' => true
+                        ])
+                        @include('admin.layouts.form.text', [
+                        'label' => 'Meta description',
+                        'key' => 'meta_description',
+                        'locale' => 'ru'
+                        ])
+                        @include('admin.layouts.form.text', [
+                        'label' => 'Meta keywords',
+                        'key' => 'meta_keywords',
+                        'locale' => 'ru'
+                        ])
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-sm-2 text-right control-label">Alias</label>
@@ -403,21 +317,23 @@
     </div>
 
 
-    <script src="/js/libs/transliterate.js"></script>
+    {{--<script src="/js/libs/transliterate.js"></script>--}}
 
-    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-    <script>
-        var options = {
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
-        };
-    </script>
-    <script>
-        CKEDITOR.replaceAll('editor', options);
-    </script>
+    {{--<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>--}}
+    {{--<script>--}}
+        {{--var options = {--}}
+            {{--filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',--}}
+            {{--filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',--}}
+            {{--filebrowserBrowseUrl: '/laravel-filemanager?type=Files',--}}
+            {{--filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'--}}
+        {{--};--}}
+    {{--</script>--}}
+    {{--<script>--}}
+        {{--CKEDITOR.replaceAll('editor', options);--}}
+    {{--</script>--}}
+    @include('admin.layouts.mce', ['editors' => $editors])
 @endsection
 @section('before_footer')
-    @include('admin.layouts.imagesloader')
+    {{--@include('admin.layouts.imagesloader')--}}
+    @include('admin.media.assets')
 @endsection

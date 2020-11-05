@@ -48,7 +48,7 @@
                                             <p class="warning" role="alert">{!! $errors->first('meta_title',':message') !!}</p>
                                         @endif
                                     @else
-                                        <input type="text" class="form-control" name="meta_title" value="{!! $settings->meta_title !!}" />
+                                        <input type="text" class="form-control" name="meta_title" value="{!! $settings->meta_title_ru !!}" />
                                     @endif
                                 </div>
                             </div>

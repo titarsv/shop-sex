@@ -36,61 +36,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right control-label">Название</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="text" data-translit="input" class="form-control" name="name" value="{!! old('name') !!}" />
-                                    @if($errors->has('name'))
-                                        <p class="warning" role="alert">{!! $errors->first('name',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Описание</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea id="text-area" name="description" class="form-control" rows="6">{!! old('description') !!}</textarea>
-                                    @if($errors->has('description'))
-                                        <p class="warning" role="alert">{!! $errors->first('description',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right control-label">Title</label>
-                                <div class="form-element col-sm-10">
-                                    <input type="text" class="form-control" name="meta_title" value="{!! old('meta_title') !!}" />
-                                    @if($errors->has('meta_title'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_title',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta description</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea name="meta_description" class="form-control" rows="6">{!! old('meta_description') !!}</textarea>
-                                    @if($errors->has('meta_description'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_description',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label class="col-sm-2 text-right">Meta keywords</label>
-                                <div class="form-element col-sm-10">
-                                    <textarea name="meta_keywords" class="form-control" rows="6">{!! old('meta_keywords') !!}</textarea>
-                                    @if($errors->has('meta_keywords'))
-                                        <p class="warning" role="alert">{!! $errors->first('meta_keywords',':message') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                        @include('admin.layouts.form.string', [
+                         'label' => 'Название',
+                         'key' => 'name',
+                         'locale' => 'ru',
+                         'required' => true
+                        ])
+                        @include('admin.layouts.form.editor', [
+                         'label' => 'Описание товара',
+                         'key' => 'description',
+                         'locale' => 'ru'
+                        ])
+                        @include('admin.layouts.form.string', [
+                        'label' => 'Title',
+                        'key' => 'meta_title',
+                        'locale' => 'ru',
+                        'required' => true
+                        ])
+                        @include('admin.layouts.form.text', [
+                        'label' => 'Meta description',
+                        'key' => 'meta_description',
+                        'locale' => 'ru'
+                        ])
+                        @include('admin.layouts.form.text', [
+                        'label' => 'Meta keywords',
+                        'key' => 'meta_keywords',
+                        'locale' => 'ru'
+                        ])
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-sm-2 text-right">Canonical</label>
@@ -128,21 +100,23 @@
         </form>
     </div>
 
-    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-    <script>
-        var options = {
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
-        };
-    </script>
-    <script>
-        CKEDITOR.replace('text-area', options);
-    </script>
+    {{--<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>--}}
+    {{--<script>--}}
+        {{--var options = {--}}
+            {{--filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',--}}
+            {{--filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',--}}
+            {{--filebrowserBrowseUrl: '/laravel-filemanager?type=Files',--}}
+            {{--filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'--}}
+        {{--};--}}
+    {{--</script>--}}
+    {{--<script>--}}
+        {{--CKEDITOR.replace('text-area', options);--}}
+    {{--</script>--}}
+    @include('admin.layouts.mce', ['editors' => $editors])
 @endsection
 @section('before_footer')
-    @include('admin.layouts.imagesloader')
+    {{--@include('admin.layouts.imagesloader')--}}
+    @include('admin.media.assets')
 @endsection
 @include('admin.layouts.footer')
 

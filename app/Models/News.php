@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Date\DateFormat;
+use App;
 
 class News extends Model
 {
@@ -13,12 +14,6 @@ class News extends Model
     protected $dates = ['deleted_at'];
 
     protected $table = 'news';
-
-    public $categories = [
-        1 => 'Новости и акции',
-        2 => 'Статьи',
-        3 => 'Уход за обувью'
-    ];
 
     public $fillable = [
         'user_id',
@@ -53,6 +48,53 @@ class News extends Model
     public function image()
     {
         return $this->belongsTo('App\Models\Image');
+    }
+
+    public function localization(){
+        return $this->morphMany('App\Models\Localization', 'localizable');
+    }
+
+    public function saveLocalization($request){
+        $localization = new Localization();
+        $localization->saveLocalization($request, $this, localizationFields(['title', 'text', 'meta_title', 'meta_description', 'meta_keywords']));
+    }
+
+    public function localize($language, $field){
+        $localization = $this->localization()->where(['language' => $language, 'field' => $field])->first();
+        if(empty($localization)) {
+            return $language == 'ru' && isset($this->attributes[$field]) ? $this->attributes[$field] : '';
+        }else{
+            return $localization->value;
+        }
+    }
+
+    private function getAttributeByName($name){
+        $localization = $this->localization->where('language', App::getLocale())->where('field', $name)->first();
+        if(empty($localization)){
+            return isset($this->attributes[$name]) ? $this->attributes[$name] : '';
+        }else{
+            return $localization->value;
+        }
+    }
+
+    public function getTitleAttribute(){
+        return $this->getAttributeByName('title');
+    }
+
+    public function getTextAttribute(){
+        return $this->getAttributeByName('text');
+    }
+
+    public function getMetaTitleAttribute(){
+        return $this->getAttributeByName('meta_title');
+    }
+
+    public function getMetaDescriptionAttribute(){
+        return $this->getAttributeByName('meta_description');
+    }
+
+    public function getMetaKeywordsAttribute(){
+        return $this->getAttributeByName('meta_keywords');
     }
 
     /**

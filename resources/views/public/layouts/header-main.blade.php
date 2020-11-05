@@ -58,7 +58,19 @@
                                 <span>{{ trans('app.guaranteed_anonymity') }}</span>
                             </div>
                             <p class="header-lang">
-                                <span>Рус</span> / <a href="">Укр</a> / <a href="">En</a>
+                            @if(App::getLocale() == 'ua')
+                                <a href="{{ Request::getRequestUri() == '/ua' ? '/' : substr(Request::getRequestUri(), 3) }}">Рус</a> /
+                                <span>Укр</span> /
+                                <a href="{{ Request::getRequestUri() == '/ua' ? '/en' : '/en'.substr(Request::getRequestUri(), 3) }}">En</a>
+                            @elseif(App::getLocale() == 'en')
+                                <a href="{{ Request::getRequestUri() == '/ua' ? '/' : substr(Request::getRequestUri(), 3) }}">Рус</a> /
+                                <a href="{{ Request::getRequestUri() == '/en' ? '/ua' : '/ua'.substr(Request::getRequestUri(), 3) }}">Укр</a> /
+                                <span>En</span>
+                            @elseif(App::getLocale() == 'ru')
+                                <span>Рус</span> /
+                                <a href="/ua{{ Request::getRequestUri() }}">Укр</a> /
+                                <a href="/en{{ Request::getRequestUri() }}">En</a>
+                            @endif
                             </p>
                             <div class="header-adult">
                                 <picture>

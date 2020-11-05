@@ -98,6 +98,12 @@ body{
     >div{
         display: flex;
         align-items: center;
+        @include bp (lg){
+            width: 140px;
+        }
+        @include bp (lg){
+            width: 110px;
+        }
         >span{
             margin-left: 15px;
             font-size: 16px;
@@ -475,6 +481,9 @@ body{
         }
         &:last-child{
             margin-right: 0;
+            @include bp(md){
+                display: none;
+            }
         }
         a{
             display: flex;
@@ -938,6 +947,10 @@ body{
         @include bp (sm){
             margin-right: 25px;
             display: flex;
+            justify-content: flex-start;
+            picture{
+                margin-right: 10px;
+            }
         }
         img{
             width: 22px;
@@ -1014,7 +1027,7 @@ body{
 
 .header-nav__insta{
     display: none;
-    margin-top: 40px;
+    margin-top: 48px;
     justify-content: flex-end;
     align-items: center;
     text-align: right;
@@ -1083,5 +1096,27 @@ body{
     flex: 1 0 auto;
     @include bp (sm){
         display: flex;
+    }
+}
+
+.header-lang{
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0;
+    @include bp (sm){
+        float: right;
+        margin-top: 15px;
+    }
+    span{
+        color: #FC4A4F;
+    }
+    a{
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.5);
+        &:hover{
+            color: #FC4A4F;
+            text-decoration: none;
+        }
     }
 }

@@ -57,6 +57,9 @@
                                 </picture>
                                 <span>Гарантия анонимности</span>
                             </div>
+                            <p class="header-lang">
+                                <span>Рус</span> / <a href="">Укр</a> / <a href="">En</a>
+                            </p>
                             <div class="header-adult">
                                 <picture>
                                     <source srcset="/images/icons/pepper.webp" type="image/webp">
@@ -67,6 +70,7 @@
                                 <p>Сайт содержит контент для лиц достигших 18 лет (18+)</p>
                             </div>
                         </div>
+
                         <ul class="header__contacts">
                             <li>
                                 <picture>
@@ -190,6 +194,9 @@
                     <li><a href="" class="popup-btn" data-mfp-src="#question-popup">Задать вопрос</a></li>
                 </ul>
 
+                <p class="header-lang">
+                    <span>Рус</span> / <a href="">Укр</a> / <a href="">En</a>
+                </p>
                 <div class="header-nav__insta">
                     <a href="https://www.instagram.com/shop_sex.com.ua/" target="_blank">
                         <picture>

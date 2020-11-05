@@ -586,6 +586,17 @@ body {
   }
 }
 
+.header-nav .header-lang {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .header-nav .header-lang {
+    display: block;
+    text-align: right;
+  }
+}
+
 .header__enter {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;

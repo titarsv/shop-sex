@@ -220,6 +220,13 @@ body{
         margin-top: 0;
         padding: 10px 15px 15px;
     }
+    .header-lang{
+        display: none;
+        @include bp (sm){
+            display: block;
+            text-align: right;
+        }
+    }
 }
 
 .header__enter{

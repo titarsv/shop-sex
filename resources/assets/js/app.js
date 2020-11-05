@@ -65,7 +65,7 @@ $(function() {
 
   $('.hmb-menu').click(function() {
     $(this).toggleClass('active');
-    $('.mob-navigation').slideToggle();
+    $('.header-nav').slideToggle();
   });
 
   $('.mobile-filters-toggle').click(function() {

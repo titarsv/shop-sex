@@ -103,7 +103,7 @@
                         </table>
                         <p class="product-price">{{ number_format($product->price, 2, '.', ' ') }} {{ trans('app.hryvnias') }}</p>
                         <button class="product-buy-btn btn_buy popup-btn"  data-mfp-src="#cart-popup" data-prod-id="{{ $product->id }}">{{ trans('app.in_garbage') }}</button>
-                        <button class="product-click-btn popup-btn"  data-mfp-src="#click-buy-popup">{{ trans('app.buy_in_one_click) }}</button>
+                        <button class="product-click-btn popup-btn"  data-mfp-src="#click-buy-popup">{{ trans('app.buy_in_one_click') }}</button>
                         <ul class="product-features">
                             <li>
                                 <a class="flash" href="viber://chat?number=+380509712569" style="color: #000; text-decoration: none;">

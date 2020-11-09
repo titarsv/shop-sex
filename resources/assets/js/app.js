@@ -29,6 +29,7 @@ let $ = require('jquery');
 require('./bootstrap');
 
 // Modules
+let Lazyload = require('./components/lazyload');
 let Forms = require('./components/forms');
 let Slider = require('./components/slider');
 let Popup = require('./components/popup');
@@ -41,6 +42,7 @@ require('./components/jquery-ui');
 
 // Are you ready?
 $(function() {
+  new Lazyload();
   new Forms();
   new Popup();
   new Fancy_select();

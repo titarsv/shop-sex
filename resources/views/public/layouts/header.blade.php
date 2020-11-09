@@ -28,15 +28,15 @@
     @if(App::getLocale() == 'ua')
         <link rel="alternate" hreflang="ru-UA" href="{{env('APP_URL')}}{{ Request::path() == 'ua' ? '' : '/'.substr(Request::path(), 3) }}" />
         <link rel="alternate" hreflang="uk-UA" href="{{env('APP_URL')}}/{{  Request::path() == '/' ? '' : Request::path() }}" />
-        <link rel="alternate" hreflang="en-US" href="{{env('APP_URL')}}{{ Request::path() == 'ua' ? '/en' : '/en/'.substr(Request::path(), 3) }}" />
+{{--        <link rel="alternate" hreflang="en-US" href="{{env('APP_URL')}}{{ Request::path() == 'ua' ? '/en' : '/en/'.substr(Request::path(), 3) }}" />--}}
     @elseif(App::getLocale() == 'ru')
         <link rel="alternate" hreflang="ru-UA" href="{{env('APP_URL')}}{{  Request::path() == '/' ? '' : '/'.Request::path() }}" />
         <link rel="alternate" hreflang="uk-UA" href="{{env('APP_URL')}}/ua{{ Request::path() == '/' ? '' : '/'.Request::path() }}" />
-        <link rel="alternate" hreflang="en-US" href="{{env('APP_URL')}}/en{{ Request::path() == '/' ? '' : '/'.Request::path() }}" />
-    @elseif(App::getLocale() == 'en')
-        <link rel="alternate" hreflang="ru-UA" href="{{env('APP_URL')}}{{ Request::path() == 'en' ? '' : '/'.substr(Request::path(), 3) }}" />
-        <link rel="alternate" hreflang="uk-UA" href="{{env('APP_URL')}}{{ Request::path() == 'en' ? '/ua' : '/ua/'.substr(Request::path(), 3) }}" />
-        <link rel="alternate" hreflang="en-US" href="{{env('APP_URL')}}/{{  Request::path() == '/' ? '' : Request::path() }}" />
+{{--        <link rel="alternate" hreflang="en-US" href="{{env('APP_URL')}}/en{{ Request::path() == '/' ? '' : '/'.Request::path() }}" />--}}
+    {{--@elseif(App::getLocale() == 'en')--}}
+        {{--<link rel="alternate" hreflang="ru-UA" href="{{env('APP_URL')}}{{ Request::path() == 'en' ? '' : '/'.substr(Request::path(), 3) }}" />--}}
+        {{--<link rel="alternate" hreflang="uk-UA" href="{{env('APP_URL')}}{{ Request::path() == 'en' ? '/ua' : '/ua/'.substr(Request::path(), 3) }}" />--}}
+        {{--<link rel="alternate" hreflang="en-US" href="{{env('APP_URL')}}/{{  Request::path() == '/' ? '' : Request::path() }}" />--}}
     @endif
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -221,13 +221,14 @@ class Products extends Model
         $locale = App::getLocale();
 
         $data = $this->select('products.*')
-            ->join('localization', 'products.id', '=', 'localization.localizable_id')
+            ->leftJoin('localization', 'products.id', '=', 'localization.localizable_id')
             ->where('stock', 1)
-            ->where('localization.localizable_type', 'App\Models\Products')
-            ->where('localization.field', 'name')
+//            ->where('localization.localizable_type', 'App\Models\Products')
+//            ->where('localization.field', 'name')
             ->where(function($query) use($text){
                 $query->where('localization.value', 'like', '%'.$text.'%')
-                    ->orWhere('articul', 'like', '%'.$text.'%');
+                    ->orWhere('products.articul', 'like', '%'.$text.'%')
+                    ->orWhere('products.name', 'like', '%'.$text.'%');
             })
             ->when($locale, function($query) use ($locale) {
                 if($locale == 'ru'){

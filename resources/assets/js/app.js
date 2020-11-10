@@ -143,6 +143,7 @@ $(function() {
     $('.search-btn').click(function() {
         $('.header-bot').toggle();
     })
+
 });
 
 require('./custom.js');

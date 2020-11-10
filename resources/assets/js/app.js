@@ -137,6 +137,10 @@ $(function() {
         var total = $(this).val() * $(this).data('price');
         $('.result-price').text(total.toFixed(2) + ' грн');
     });
+
+    $('.search-btn').click(function() {
+        $('.header-bot').toggle();
+    })
 });
 
 require('./custom.js');

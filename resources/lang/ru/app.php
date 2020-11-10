@@ -209,4 +209,6 @@ return [
     'password_recovery' => 'Восстановление пароля',
     'Search' => 'Поиск',
     'brand' => 'Бренд',
+    'ascending_price' => 'Возрастанию цены',
+    'descending_prices' => 'Убыванию цены',
 ];

@@ -208,5 +208,7 @@ return [
     'check_in' => 'Реєстрація',
     'password_recovery' => 'Відновлення паролю',
     'Search' => 'Пошук',
-    'brand' => 'Бренд'
+    'brand' => 'Бренд',
+    'ascending_price' => 'Зростанню ціни',
+    'descending_prices' => 'Зменшенню ціни',
 ];

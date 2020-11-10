@@ -276,8 +276,8 @@
                                   data-error-message="{{ trans('app.try_to_send_a_question_after_a_while') }}"
                                   data-success-title="{{ trans('app.thanks_for_the_question') }}"
                                   data-success-message="{{ trans('app.our_manager_will_contact_you_soon') }}">
-                                <textarea name="request" placeholder="Напишите свой вопрос" data-validate-required="{{ trans('app.obligatory_field') }}" data-title="Вопрос"></textarea>
-                                <input type="tel" name="phone" placeholder="Номер телефона" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="Неправильный номер">
+                                <textarea name="request" placeholder="{{ trans('app.write_your_question') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-title="Вопрос"></textarea>
+                                <input type="tel" name="phone" placeholder="{{ trans('app.phone_number') }}" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="Неправильный номер">
                                 <button type="submit">{{ trans('app.send_message') }}</button>
                             </form>
                             <button title="Close (Esc)" type="button" class="mfp-close">×</button>

@@ -14,6 +14,7 @@ use App\Http\Requests;
 use App\Models\Image;
 use App\Models\HTMLContent;
 use App\Models\Attribute;
+use App;
 
 
 class MainController extends Controller
@@ -46,7 +47,10 @@ class MainController extends Controller
 	        ->with('categories', $root_categories)
 	        ->with('shops', $shops)
 	        ->with('bestsellers', $bestsellers)
-            ->with('slideshow', $slideshow->all());
+            ->with('slideshow', $slideshow->where('status', 1)->orderBy('sort_order', 'asc')->get()->filter(function ($value, $key) {
+                $data = json_decode($value->slide_data, true);
+                return empty($data['lang']) || $data['lang'] === app()->getLocale();
+            }));
     }
 
     /**

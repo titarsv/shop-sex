@@ -169,8 +169,8 @@
                             <div class="sort-prod">
                                 {{ trans('app.sort_by') }}
                                 <select name="sorting" class="chosen-select sorting" id="sorting-select">
-                                    <option value="price-asc"{{ isset($_GET['order']) && $_GET['order'] == 'price-asc' ? ' selected="selected"' : '' }}>Возрастанию цены</option>
-                                    <option value="price-desc"{{ isset($_GET['order']) && $_GET['order'] == 'price-desc' ? ' selected="selected"' : '' }}>Убыванию цены</option>
+                                    <option value="price-asc"{{ isset($_GET['order']) && $_GET['order'] == 'price-asc' ? ' selected="selected"' : '' }}>{{ trans('app.ascending_price') }}</option>
+                                    <option value="price-desc"{{ isset($_GET['order']) && $_GET['order'] == 'price-desc' ? ' selected="selected"' : '' }}>{{ trans('app.descending_prices') }}</option>
                                 </select>
                             </div>
                         </div>

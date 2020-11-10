@@ -58,7 +58,19 @@
                                 <span>{{ trans('app.guaranteed_anonymity') }}</span>
                             </div>
                             <p class="header-lang">
-                                <span>Рус</span> / <a href="">Укр</a> / <a href="">En</a>
+                            @if(App::getLocale() == 'ua')
+                                <a href="{{ Request::getRequestUri() == '/ua' ? '/' : substr(Request::getRequestUri(), 3) }}">Рус</a> /
+                                <span>Укр</span>{{--  / --}}
+{{--                                <a href="{{ Request::getRequestUri() == '/ua' ? '/en' : '/en'.substr(Request::getRequestUri(), 3) }}">En</a>--}}
+                            {{--@elseif(App::getLocale() == 'en')--}}
+                                {{--<a href="{{ Request::getRequestUri() == '/ua' ? '/' : substr(Request::getRequestUri(), 3) }}">Рус</a> /--}}
+                                {{--<a href="{{ Request::getRequestUri() == '/en' ? '/ua' : '/ua'.substr(Request::getRequestUri(), 3) }}">Укр</a> /--}}
+                                {{--<span>En</span>--}}
+                            @elseif(App::getLocale() == 'ru')
+                                <span>Рус</span> /
+                                <a href="/ua{{ Request::getRequestUri() }}">Укр</a>{{-- / --}}
+                                {{--<a href="/en{{ Request::getRequestUri() }}">En</a>--}}
+                            @endif
                             </p>
                             <div class="header-adult">
                                 <picture>
@@ -195,7 +207,19 @@
                 </ul>
 
                 <p class="header-lang">
-                    <span>Рус</span> / <a href="">Укр</a> / <a href="">En</a>
+                    @if(App::getLocale() == 'ua')
+                        <a href="{{ Request::getRequestUri() == '/ua' ? '/' : substr(Request::getRequestUri(), 3) }}">Рус</a> /
+                        <span>Укр</span>{{-- / --}}
+{{--                        <a href="{{ Request::getRequestUri() == '/ua' ? '/en' : '/en'.substr(Request::getRequestUri(), 3) }}">En</a>--}}
+                    {{--@elseif(App::getLocale() == 'en')--}}
+                        {{--<a href="{{ Request::getRequestUri() == '/ua' ? '/' : substr(Request::getRequestUri(), 3) }}">Рус</a> /--}}
+                        {{--<a href="{{ Request::getRequestUri() == '/en' ? '/ua' : '/ua'.substr(Request::getRequestUri(), 3) }}">Укр</a> /--}}
+                        {{--<span>En</span>--}}
+                    @elseif(App::getLocale() == 'ru')
+                        <span>Рус</span> /
+                        <a href="/ua{{ Request::getRequestUri() }}">Укр</a>{{-- / --}}
+                        {{--<a href="/en{{ Request::getRequestUri() }}">En</a>--}}
+                    @endif
                 </p>
                 <div class="header-nav__insta">
                     <a href="https://www.instagram.com/shop_sex.com.ua/" target="_blank">
@@ -252,8 +276,8 @@
                                   data-error-message="{{ trans('app.try_to_send_a_question_after_a_while') }}"
                                   data-success-title="{{ trans('app.thanks_for_the_question') }}"
                                   data-success-message="{{ trans('app.our_manager_will_contact_you_soon') }}">
-                                <textarea name="request" placeholder="Напишите свой вопрос" data-validate-required="{{ trans('app.obligatory_field') }}" data-title="Вопрос"></textarea>
-                                <input type="tel" name="phone" placeholder="Номер телефона" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="Неправильный номер">
+                                <textarea name="request" placeholder="{{ trans('app.write_your_question') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-title="Вопрос"></textarea>
+                                <input type="tel" name="phone" placeholder="{{ trans('app.phone_number') }}" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="Неправильный номер">
                                 <button type="submit">{{ trans('app.send_message') }}</button>
                             </form>
                             <button title="Close (Esc)" type="button" class="mfp-close">×</button>

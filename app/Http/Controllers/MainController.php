@@ -32,7 +32,7 @@ class MainController extends Controller
             foreach ($settings->slides as $slide){
                 $shops[] = (object) [
                     'image_id' => $slide->image_id,
-                    'slide_title' => $slide->slide_title,
+                    'slide_title' => app()->getLocale() != 'ru' && isset($slide->{'slide_title_'.app()->getLocale()}) ? $slide->{'slide_title_'.app()->getLocale()} : $slide->slide_title,
                     'image' => Image::find($slide->image_id)
                 ];
             }

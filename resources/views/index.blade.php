@@ -1,8 +1,8 @@
 @extends('public.layouts.main')
 @section('meta')
-    <title>{!! $settings->meta_title_ru !!}</title>
-    <meta name="description" content="{!! $settings->meta_description_ru !!}">
-    <meta name="keywords" content="{!! $settings->meta_keywords_ru !!}">
+    <title>{!! $settings->{'meta_title_'.app()->getLocale()} !!}</title>
+    <meta name="description" content="{!! $settings->{'meta_description_'.app()->getLocale()} !!}">
+    <meta name="keywords" content="{!! $settings->{'meta_keywords_'.app()->getLocale()} !!}">
 @endsection
 @section('page_vars')
     <style>
@@ -21,8 +21,8 @@
     </style>
     @include('public.layouts.microdata.local_business')
     @include('public.layouts.microdata.open_graph', [
-     'title' => $settings->meta_title_ru,
-     'description' => $settings->meta_description_ru,
+     'title' => $settings->{'meta_title_'.app()->getLocale()},
+     'description' => $settings->{'meta_description_'.app()->getLocale()},
      'image' => '/images/logo.png',
      'type' => trans('app.home')
      ])
@@ -297,7 +297,7 @@
     <section class="section-8">
         <div class="container">
             <p class="about-us-title">{{ trans('app.about_store') }}</p>
-            {!! $settings->about_ru !!}
+            {!! $settings->{'about_'.app()->getLocale()} !!}
         </div>
     </section>
     

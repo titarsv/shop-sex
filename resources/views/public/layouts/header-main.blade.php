@@ -199,7 +199,7 @@
                         <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/aktsii">{{ trans('app.promotions') }}</a></li>
                     @endif
                     <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/o-magazine">{{ trans('app.about_store') }}</a></li>
-                    <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/voprosy-i-otvety">{{ trans('app.questions_and_answers') }}</a></li>
+                    {{--<li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/voprosy-i-otvety">{{ trans('app.questions_and_answers') }}</a></li>--}}
                     <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/kak-kupit">{{ trans('app.how_to_buy') }}</a></li>
                     <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/kontakty">{{ trans('app.contacts') }}</a></li>
                     <li><a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/page/forum">{{ trans('app.forum') }}</a></li>

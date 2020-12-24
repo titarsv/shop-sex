@@ -256,7 +256,8 @@ class ProductsController extends Controller
 
         $id = $products->insert_product($data);
         $product = $products->find($id);
-        $product->saveLocalization($request);
+        if(!empty($product))
+            $product->saveLocalization($request);
 
         if($id != 'already_exist'){
             $this->updateVariations($products->find($id), $request->variations);

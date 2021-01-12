@@ -534,39 +534,39 @@ class ProductsController extends Controller
      */
     public function livesearch(Request $request, Products $products)
     {
-//        $products = $products
-//            ->where('name', 'like', '%' . $request->search . '%')
-//            ->where('stock', 1)
-//            ->with('image')
-//            ->paginate(5);
-
         $text = $request->search;
 
         $locale = App::getLocale();
 
+//        $products = $products->select('products.*')
+//            ->leftJoin('localization', 'products.id', '=', 'localization.localizable_id')
+//            ->where('stock', 1)
+//            ->where(function($query) use($text){
+//                $query->where('localization.value', 'like', '%'.$text.'%')
+//                    ->orWhere('products.articul', 'like', '%'.$text.'%')
+//                    ->orWhere('products.name', 'like', '%'.$text.'%');
+//            })
+//            ->when($locale, function($query) use ($locale) {
+//                if($locale == 'ru'){
+//                    return $query->orderBy('localization.language', 'asc');
+//                }else{
+//                    return $query->orderBy('localization.language', 'desc');
+//                }
+//            })
+//            ->orderBy('products.id', 'desc')
+//            ->groupBy('products.id')
+//            ->with(['localization' => function($query) use($locale){
+//                $query->select(['field', 'language', 'value', 'localizable_type', 'localizable_id'])->where('language', $locale)->where('field', 'name');
+//            }])
+//            ->with('image')
+//            ->paginate(5);
+
         $products = $products->select('products.*')
-            ->leftJoin('localization', 'products.id', '=', 'localization.localizable_id')
             ->where('stock', 1)
-//            ->where('localization.localizable_type', 'App\Models\Products')
-//            ->where('localization.field', 'name')
-            ->where(function($query) use($text){
-                $query->where('localization.value', 'like', '%'.$text.'%')
-                    ->orWhere('products.articul', 'like', '%'.$text.'%')
-                    ->orWhere('products.name', 'like', '%'.$text.'%');
-            })
-            ->when($locale, function($query) use ($locale) {
-                if($locale == 'ru'){
-                    return $query->orderBy('localization.language', 'asc');
-                }else{
-                    return $query->orderBy('localization.language', 'desc');
-                }
-            })
-            ->orderBy('products.id', 'desc')
-            ->groupBy('products.id')
+            ->whereRaw("MATCH(search) AGAINST('$text')")
             ->with(['localization' => function($query) use($locale){
                 $query->select(['field', 'language', 'value', 'localizable_type', 'localizable_id'])->where('language', $locale)->where('field', 'name');
             }])
-            ->with('image')
             ->paginate(5);
 
         return view('public.layouts.search_results')->with('products', $products);

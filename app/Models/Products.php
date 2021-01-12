@@ -23,6 +23,7 @@ class Products extends Model
 //        'sizes',
         'meta_title',
         'meta_description',
+        'search',
         'meta_keywords',
         'robots',
         'url_alias',
@@ -145,6 +146,8 @@ class Products extends Model
     public function saveLocalization($request){
         $localization = new Localization();
         $localization->saveLocalization($request, $this, localizationFields(['name', 'description', 'meta_title', 'meta_description', 'meta_keywords']));
+        $this->load('localization');
+        $this->updateSearchField();
     }
 
     public function localize($language, $field){
@@ -212,39 +215,61 @@ class Products extends Model
             return $page;
         });
 
-//	    $data = $this
-//            ->where([['stock', 1], ['name', 'like', '%'.$text.'%']])
-//            ->orWhere([['stock', 1], ['articul', 'like', '%'.$text.'%']])
-//            ->orderBy('id', 'desc')
-//            ->paginate($count);
-
         $locale = App::getLocale();
 
+//        $data = $this->select('products.*')
+//            ->leftJoin('localization', 'products.id', '=', 'localization.localizable_id')
+//            ->where('stock', 1)
+//            ->where(function($query) use($text){
+//                $query->where('localization.value', 'like', '%'.$text.'%')
+//                    ->orWhere('products.articul', 'like', '%'.$text.'%')
+//                    ->orWhere('products.name', 'like', '%'.$text.'%');
+//            })
+//            ->when($locale, function($query) use ($locale) {
+//                if($locale == 'ru'){
+//                    return $query->orderBy('localization.language', 'asc');
+//                }else{
+//                    return $query->orderBy('localization.language', 'desc');
+//                }
+//            })
+//            ->orderBy('products.id', 'desc')
+//            ->groupBy('products.id')
+//            ->with(['localization' => function($query) use($locale){
+//                $query->select(['field', 'language', 'value', 'localizable_type', 'localizable_id'])->where('language', $locale)->where('field', 'name');
+//            }])
+//            ->paginate($count);
+
         $data = $this->select('products.*')
-            ->leftJoin('localization', 'products.id', '=', 'localization.localizable_id')
             ->where('stock', 1)
-//            ->where('localization.localizable_type', 'App\Models\Products')
-//            ->where('localization.field', 'name')
-            ->where(function($query) use($text){
-                $query->where('localization.value', 'like', '%'.$text.'%')
-                    ->orWhere('products.articul', 'like', '%'.$text.'%')
-                    ->orWhere('products.name', 'like', '%'.$text.'%');
-            })
-            ->when($locale, function($query) use ($locale) {
-                if($locale == 'ru'){
-                    return $query->orderBy('localization.language', 'asc');
-                }else{
-                    return $query->orderBy('localization.language', 'desc');
-                }
-            })
-            ->orderBy('products.id', 'desc')
-            ->groupBy('products.id')
+            ->whereRaw("MATCH(search) AGAINST('$text')")
             ->with(['localization' => function($query) use($locale){
                 $query->select(['field', 'language', 'value', 'localizable_type', 'localizable_id'])->where('language', $locale)->where('field', 'name');
             }])
             ->paginate($count);
 
         return $data;
+    }
+
+    public function updateSearchField(){
+        $search = $this->articul;
+        if(!empty($this->name)){
+            $search .= ' '.$this->name;
+        }
+        if(!empty($this->name)){
+            $search .= ' '.strip_tags($this->description);
+        }
+        foreach($this->localization as $localization){
+            if(in_array($localization->field, ['name', 'description']) && !empty($localization->value)){
+                $search .= ' '.strip_tags($localization->value);
+            }
+        }
+
+        $search = trim(mb_strtolower($search));
+
+        if(!empty($search)){
+            $this->search = $search;
+            $this->save();
+        }
     }
 
     public function create_product_thumnail($id)

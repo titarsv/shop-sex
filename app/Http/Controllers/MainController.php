@@ -21,6 +21,13 @@ class MainController extends Controller
 {
     public function index(Categories $categories, Modules $modules, Moduleslideshow $slideshow)
     {
+//        if(!empty(request()->index)){
+//            $products = Products::limit(1000)->offset(1000 * (request()->index - 1))->with('localization')->get();
+//            foreach($products as $product){
+//                $product->updateSearchField();
+//            }
+//        }
+
         $root_categories = $categories->get_root_categories();
 
         $module = $modules->getSlideshow('shops');

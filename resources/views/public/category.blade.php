@@ -165,6 +165,14 @@
                 </div>
                 <div class="col-sm-8 col-xs-12">
                     <div class="row">
+                        <div class="mob-filters">
+                            <select name="sorting" class="chosen-select sorting" id="sorting-select">
+                                <option selected disabled>{{ trans('app.sort') }}</option>
+                                <option value="price-asc"{{ isset($_GET['order']) && $_GET['order'] == 'price-asc' ? ' selected="selected"' : '' }}>{{ trans('app.by_ascending_price') }}</option>
+                                <option value="price-desc"{{ isset($_GET['order']) && $_GET['order'] == 'price-desc' ? ' selected="selected"' : '' }}>{{ trans('app.by_descending_prices') }}</option>
+                            </select>
+                            <span class="mobile-filters-toggle">{{ trans('app.filter') }}</span>
+                        </div>
                         <div class="col-sm-12 hidden-xs">
                             <div class="sort-prod">
                                 {{ trans('app.sort_by') }}

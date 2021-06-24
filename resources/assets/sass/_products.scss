@@ -568,3 +568,22 @@
     color: #fd4747;
   }
 }
+
+.mob-filters{
+  display: none;
+  justify-content: flex-end;
+  align-items: center;
+  @include bp (xs){
+    display: flex;
+  }
+  .mobile-filters-toggle{
+    font-size: 12px;
+    line-height: 14px;
+    color: #646464;
+    margin-left: 15px;
+    padding: 10px 0;
+    &:hover{
+      color: #D8BA0E;
+    }
+  }
+}

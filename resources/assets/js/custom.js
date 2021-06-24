@@ -3,6 +3,7 @@
 var $ = require('jquery');
 var swal = require('sweetalert2');
 require('../../../node_modules/jquery.maskedinput/src/jquery.maskedinput');
+require('../../../node_modules/sumoselect/jquery.sumoselect.min');
 
 // Are you ready?
 $(function() {
@@ -580,6 +581,12 @@ $(function() {
 
     $('#close_filter').click(function () {
         $('.aside-filter-menu-container').removeClass('active');
+    });
+
+    // sort select mobile
+
+    $('.sumo-select').SumoSelect({
+        forceCustomRendering: true
     });
 
     // Сортировка

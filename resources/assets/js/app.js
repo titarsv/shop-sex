@@ -70,7 +70,7 @@ $(function() {
     });*/
 
     $('.mobile-filters-toggle').click(function() {
-        $(this).next('form.filters').addClass('open');
+        $('form.filters').addClass('open');
     });
     $('form.filters .close-btn').click(function() {
         $(this).parent().removeClass('open');

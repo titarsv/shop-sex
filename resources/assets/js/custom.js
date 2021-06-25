@@ -590,7 +590,7 @@ $(function() {
     });
 
     // Сортировка
-    $('#sorting-select, #sorting-select-mob').change(function () {
+    $('.sorting-select').change(function () {
         var s = window.location.search.replace('?', '').split('&');
         var search = {};
         if(s.length){

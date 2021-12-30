@@ -3,6 +3,7 @@
 var $ = require('jquery');
 var swal = require('sweetalert2');
 require('../../../node_modules/jquery.maskedinput/src/jquery.maskedinput');
+require('../../../node_modules/sumoselect/jquery.sumoselect.min');
 
 // Are you ready?
 $(function() {
@@ -582,8 +583,14 @@ $(function() {
         $('.aside-filter-menu-container').removeClass('active');
     });
 
+    // sort select mobile
+
+    $('.sumo-select').SumoSelect({
+        forceCustomRendering: true
+    });
+
     // Сортировка
-    $('#sorting-select').change(function () {
+    $('.sorting-select').change(function () {
         var s = window.location.search.replace('?', '').split('&');
         var search = {};
         if(s.length){

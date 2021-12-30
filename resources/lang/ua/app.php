@@ -211,4 +211,8 @@ return [
     'brand' => 'Бренд',
     'ascending_price' => 'Зростанню ціни',
     'descending_prices' => 'Зменшенню ціни',
+    'sort' => 'Сортування',
+    'filter' => 'Фільтр',
+    'by_ascending_price' => 'За зростанням ціни',
+    'by_descending_prices' => 'За зменшенням ціни',
 ];

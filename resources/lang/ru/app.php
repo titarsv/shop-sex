@@ -215,4 +215,5 @@ return [
     'filter' => 'Фильтр',
     'by_ascending_price' => 'По возрастанию цены',
     'by_descending_prices' => 'По убыванию цены',
+    'new_arrivals' => 'Новые поступления',
 ];

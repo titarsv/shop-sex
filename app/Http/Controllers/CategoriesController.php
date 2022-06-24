@@ -215,7 +215,7 @@ class CategoriesController extends Controller
 
         return view('public.category')
             ->with('category', $category)
-            ->with('products', $filter->getProducts(isset($orders[$request->order]) ? $orders[$request->order] : ['price', 'asc'], 18, $request->page))
+            ->with('products', $filter->getProducts(isset($orders[$request->order]) ? $orders[$request->order] : ['id', 'desc'], 18, $request->page))
             ->with('attributes', $attributes)
             ->with('price', $filter->getPriceSlider());
     }

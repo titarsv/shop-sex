@@ -168,6 +168,7 @@
                         <div class="mob-filters">
                             <select name="sorting" class="sumo-select sorting sorting-select" id="sorting-select-mob">
                                 <option selected disabled>{{ trans('app.sort') }}</option>
+                                <option value="id-desc"{{ isset($_GET['order']) && $_GET['order'] == 'id-desc' ? ' selected="selected"' : '' }}>{{ trans('app.new_arrivals') }}</option>
                                 <option value="price-asc"{{ isset($_GET['order']) && $_GET['order'] == 'price-asc' ? ' selected="selected"' : '' }}>{{ trans('app.by_ascending_price') }}</option>
                                 <option value="price-desc"{{ isset($_GET['order']) && $_GET['order'] == 'price-desc' ? ' selected="selected"' : '' }}>{{ trans('app.by_descending_prices') }}</option>
                             </select>
@@ -177,6 +178,7 @@
                             <div class="sort-prod">
                                 {{ trans('app.sort_by') }}
                                 <select name="sorting" class="chosen-select sorting sorting-select" id="sorting-select">
+                                    <option value="id-desc"{{ isset($_GET['order']) && $_GET['order'] == 'id-desc' ? ' selected="selected"' : '' }}>{{ trans('app.new_arrivals') }}</option>
                                     <option value="price-asc"{{ isset($_GET['order']) && $_GET['order'] == 'price-asc' ? ' selected="selected"' : '' }}>{{ trans('app.ascending_price') }}</option>
                                     <option value="price-desc"{{ isset($_GET['order']) && $_GET['order'] == 'price-desc' ? ' selected="selected"' : '' }}>{{ trans('app.descending_prices') }}</option>
                                 </select>

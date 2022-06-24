@@ -148,12 +148,14 @@ class Filter
 	 *
 	 * @return null
 	 */
-    public function getProducts($current_sort = ['price', 'asc'], $take = 18, $page = 1){
+    public function getProducts($current_sort = ['id', 'desc'], $take = 18, $page = 1){
 	    if(empty($this->products) && !empty($this->category))
 		    $this->products = $this->categories->get_products($this->category->id, null, $this->filtered, $current_sort, $take, $this->price, $page);
 
 	    if($current_sort == ['price', 'desc']){
             $this->products->appends(['order' => 'price-desc']);
+        }elseif($current_sort == ['price', 'asc']){
+            $this->products->appends(['order' => 'price-asc']);
         }
 
 	    return $this->products;

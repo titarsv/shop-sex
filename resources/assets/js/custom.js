@@ -451,11 +451,9 @@ $(function() {
                             LiqPayCheckout.init({
                                 data: response.liqpay.data,
                                 signature:  response.liqpay.signature,
-                                embedTo: "#liqpay_checkout",
-                                mode: "embed" // embed || popup
+                                // embedTo: "#liqpay_checkout",
+                                mode: "popup" // embed || popup
                             }).on("liqpay.callback", function(data){
-                                console.log(data.status);
-                                console.log(data);
                                 window.location = prefix+'/thank_you?order_id=' + response.order_id;
                             }).on("liqpay.ready", function(data){
                                 $('#liqpay_checkout').css('display', 'block');

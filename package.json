@@ -29,5 +29,8 @@
     "slick-carousel": "^1.6.0",
     "sweetalert2": "^6.4.3",
     "vue": "^2.5.7"
+  },
+  "dependencies": {
+    "sumoselect": "^3.4.9"
   }
 }

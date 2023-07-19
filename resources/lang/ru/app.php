@@ -78,7 +78,7 @@ return [
     'empty_trash' => 'Очистить корзину',
     'Back_to_shopping' => 'Вернуться к покупкам',
     'your_contact_phone_number' => 'Ваш контактный телефон',
-    'comment' => 'Комментарий',
+    'comment' => 'Комментарий (можете указать предпочитаемый способ доставки, адрес...)',
     'cod' => 'Наложенный платеж',
     'online_payment' => 'Оплата онлайн',
     'the_seller_reserves_the_right_to_replace_your_order_with_a_similar_product_if_the_product_you_ordered_is_not_available_in_this_case,_the_cost_of_the_goods_does_not_change' => 'Продавец оставляет за собой право замены Вашего заказа аналогичным товаром, если заказанного Вами товара не окажется в наличии! Стоимость товара при этом не меняется!',

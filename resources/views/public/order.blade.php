@@ -54,8 +54,8 @@
                 <div class="col-sm-4 col-xs-12" id="liqpay_checkout">
                     <p class="cart-form__text">{{ trans('app.checkout') }}</p>
                     <form action="{{env('APP_URL')}}/order/create" method="post" class="cart-form" id="order-checkout">
-                        <p class="cart-form__text">{{ trans('app.your_contact_phone_number') }}</p>
-                        <input class="cart-form__input clear-styles" type="tel" name="phone" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="Неправильный номер" placeholder="+380(___)-__-__-__">
+                        <p class="cart-form__text">*{{ trans('app.your_contact_phone_number') }}</p>
+                        <input class="cart-form__input clear-styles" type="tel" name="phone" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="Неправильный номер" placeholder="+380(___)-__-__-__" required>
                         <textarea name="comment" class="cart-form__textarea" placeholder="{{ trans('app.comment') }}"></textarea>
                         <div class="cart-form__radio">
                             <input type="radio" name="payment" id="cash" value="cash" checked>
@@ -65,7 +65,7 @@
                             <input type="radio" name="payment" id="liqpay" value="card">
                             <label for="liqpay">{{ trans('app.online_payment') }} <img src="/images/liqpay.jpg" alt="liqpay"></label>
                         </div>
-                        <button type="submit" class="cart-form__bnt clear-styles">{{ trans('app.go_to_cart') }}</button>
+                        <button type="submit" class="cart-form__bnt clear-styles">{{ trans('app.checkoutt') }}</button>
                         <div class="cart-form__footnote">
                             <img src="/images/info.png" alt="info">
                             <span>{{ trans('app.the_seller_reserves_the_right_to_replace_your_order_with_a_similar_product_if_the_product_you_ordered_is_not_available_in_this_case,_the_cost_of_the_goods_does_not_change') }}</span>

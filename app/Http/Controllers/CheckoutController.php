@@ -35,7 +35,7 @@ class CheckoutController extends Controller
         $cart = $cart->current_cart();
 
         if(!$cart->total_quantity){
-            return response()->json(['error' => ['cart' => 'В корзине нет товаров!']]);
+            return response()->json(['error' => ['cart' => trans('app.empty_cart')]]);
         }
 
 //        $errors = $this->validateFields($request->all());
@@ -48,13 +48,13 @@ class CheckoutController extends Controller
         ];
 
         $messages = [
-            'phone.required' => 'Не указан контактный номер телефона!'
+            'phone.required' => trans('app.phone_required')
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if($validator->fails() || is_null($cart)){
-            $errors = is_null($cart) ? 'Ваша корзина пуста!' : $validator->messages();
+            $errors = is_null($cart) ? trans('app.empty_cart') : $validator->messages();
             return response()->json(['error' => $errors]);
         }
 

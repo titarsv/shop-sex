@@ -216,4 +216,6 @@ return [
     'by_ascending_price' => 'По возрастанию цены',
     'by_descending_prices' => 'По убыванию цены',
     'new_arrivals' => 'Новые поступления',
+    'phone_required' => 'Не указан контактный номер телефона!',
+    'empty_cart' => 'Ваша корзина пуста!',
 ];

@@ -216,4 +216,6 @@ return [
     'by_ascending_price' => 'За зростанням ціни',
     'by_descending_prices' => 'За зменшенням ціни',
     'new_arrivals' => 'Нові надходження',
+    'phone_required' => 'Не вказано номер телефону!',
+    'empty_cart' => 'Ваш кошик порожній!',
 ];

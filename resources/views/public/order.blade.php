@@ -56,6 +56,9 @@
                     <form action="{{env('APP_URL')}}/order/create" method="post" class="cart-form" id="order-checkout">
                         <p class="cart-form__text">*{{ trans('app.your_contact_phone_number') }}</p>
                         <input class="cart-form__input clear-styles" type="tel" name="phone" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="Неправильный номер" placeholder="+380(___)-__-__-__" required>
+                        <div class="cart-block_checkout">
+                            <div class="error-message__text" style="font-size: 12px"></div>
+                        </div>
                         <textarea name="comment" class="cart-form__textarea" placeholder="{{ trans('app.comment') }}"></textarea>
                         <div class="cart-form__radio">
                             <input type="radio" name="payment" id="cash" value="cash" checked>

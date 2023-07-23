@@ -55,7 +55,7 @@
                     <p class="cart-form__text">{{ trans('app.checkout') }}</p>
                     <form action="{{env('APP_URL')}}/order/create" method="post" class="cart-form" id="order-checkout">
                         <p class="cart-form__text">{{ trans('app.your_contact_phone_number') }}<br><small style="font-size: 12px;"><span style="color:#ff3030">*</span> {{ trans('app.obligatory_field') }}</small></p>
-                        <input class="cart-form__input clear-styles" type="tel" name="phone" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="Неправильный номер" placeholder="+380(___)-__-__-__">
+                        <input class="cart-form__input clear-styles" type="tel" name="phone" data-title="{{ trans('app.phone') }}" data-validate-required="{{ trans('app.obligatory_field') }}" data-validate-uaphone="Неправильный номер" placeholder="+38 (___)___-__-__">
                         <div class="cart-block_checkout">
                             <div class="error-message__text" style="font-size: 12px"></div>
                         </div>

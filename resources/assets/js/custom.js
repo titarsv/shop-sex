@@ -620,6 +620,34 @@ $(function() {
     });
 
     $('.cart-form__input[name="phone"]').mask('+38 (999) 999-99-99');
+
+    $('.click-buy-popup__form').on('click', function(){
+        if(typeof gtag !== 'undefined'){
+            gtag("event", "purchase", {
+                transaction_id: Math.round(Math.random() * (999999999 - 999999) + 999999),
+                value: $this.data('price'),
+                items: [
+                    {
+                        item_id: ""+$('[name="product_id"]').val(),
+                        name: $this.data('name'),
+                        sku: $this.data('sku'),
+                        category: $this.data('category'),
+                        price: $this.data('price'),
+                        quantity: 1,
+                        currency: "UAH"
+                    }
+                ],
+                currency: "UAH",
+                send_to: "G-Y9W5S3LTY4"
+            });
+        }
+    });
+
+    $('.question-popup__form, .contact-form').on('click', function(){
+        if(typeof gtag !== 'undefined'){
+            gtag("event", "Form_Question_submit", {send_to: "G-Y9W5S3LTY4"});
+        }
+    });
 });
 
 /**

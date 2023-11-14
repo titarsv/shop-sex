@@ -166,7 +166,11 @@
                                   data-error-title="{{ trans('app.send_error') }}"
                                   data-error-message="{{ trans('app.try_to_send_a_question_after_a_while') }}"
                                   data-success-title="{{ trans('app.thanks_for_the_question') }}"
-                                  data-success-message="{{ trans('app.our_manager_will_contact_you_soon') }}">
+                                  data-success-message="{{ trans('app.our_manager_will_contact_you_soon') }}"
+                                  data-price="{{ $product->price }}"
+                                  data-name="{{ $product->name }}"
+                                  data-sku="{{ $product->articul }}"
+                                  data-category="{{ $product->category()->name }}">
                                 <input type="hidden" name="form" value="{{ trans('app.buy_in_1_click') }}" data-title="{{ trans('app.the_form') }}">
                                 <input type="hidden" name="product_name" value="{{ $product->name }}" data-title="{{ trans('app.product_name') }}">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}" data-title="{{ trans('app.item_id') }}">

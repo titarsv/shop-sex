@@ -4,11 +4,28 @@
     @if(!empty($ecommerce))
     <script>
         window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            transactionId: {{ $order->id }},
-            transactionTotal: {{ $order->total_price }},
-            transactionShipping: 0,
-            transactionProducts: [
+        {{--dataLayer.push({--}}
+            {{--transactionId: {{ $order->id }},--}}
+            {{--transactionTotal: {{ $order->total_price }},--}}
+            {{--transactionShipping: 0,--}}
+            {{--transactionProducts: [--}}
+                {{--@foreach($order->getProducts() as $i => $product)--}}
+                {{--{{$i > 0 ? ',' : ''}}{--}}
+                {{--id: {{ $product['product']->id }},--}}
+                {{--name: "{{ $product['product']->name }}",--}}
+                {{--sku: "{{ $product['product']->articul }}",--}}
+                {{--category: "{{ $product['product']->category()->name }}",--}}
+                {{--price: {{ $product['price'] }},--}}
+                {{--quantity: {{ $product['quantity'] }}--}}
+                {{--}--}}
+                {{--@endforeach--}}
+            {{--]--}}
+        {{--});--}}
+
+        gtag("event", "purchase", {
+            transaction_id: {{ $order->id }},
+            value: {{ $order->total_price }},
+            items: [
                 @foreach($order->getProducts() as $i => $product)
                 {{$i > 0 ? ',' : ''}}{
                 id: {{ $product['product']->id }},
@@ -19,8 +36,10 @@
                 quantity: {{ $product['quantity'] }}
                 }
                 @endforeach
-            ]
-        });
+            ],
+            currency: "UAH",
+            send_to: "G-Y9W5S3LTY4"
+        })
     </script>
     @endif
 @endsection

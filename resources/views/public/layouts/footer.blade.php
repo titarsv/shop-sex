@@ -1,6 +1,7 @@
 
 <footer class="footer">
-    <div id="gm" style="height: 450px;"><iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1282.2534979999812!2d36.27047214773281!3d50.00185183212912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa4d249ff419ce917!2zU2V4IHNob3AgItCY0L3RgtC40Lwi!5e0!3m2!1sru!2sua!4v1623923874347!5m2!1sru!2sua" width="100%" height="450" allowfullscreen="allowfullscreen"></iframe></div>
+{{--    <div id="gm" style="height: 450px;"><iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1282.2534979999812!2d36.27047214773281!3d50.00185183212912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa4d249ff419ce917!2zU2V4IHNob3AgItCY0L3RgtC40Lwi!5e0!3m2!1sru!2sua!4v1623923874347!5m2!1sru!2sua" width="100%" height="450" allowfullscreen="allowfullscreen"></iframe></div>--}}
+    <div id="gm" style="height: 450px;"><iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2564.0439790253713!2d36.2429359!3d50.0105309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a0d97507d63d%3A0x12e60e5db0ab5a29!2z0LLRg9C70LjRhtGPINCc0LjRgNC-0L3QvtGB0LjRhtGM0LrQsCwgNzksINCl0LDRgNC60ZbQsiwg0KXQsNGA0LrRltCy0YHRjNC60LAg0L7QsdC70LDRgdGC0YwsIDYxMDIz!5e0!3m2!1suk!2sua!4v1759226368904!5m2!1suk!2sua" width="100%" height="450" allowfullscreen="allowfullscreen"></iframe></div>
     @if(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome-Lighthouse') === false && config('app.debug') === false)
     {{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAdZiyAi-wihFqIfVhsaH6TtQXInoNtS4"></script>
     <script type="text/javascript">
@@ -565,7 +566,7 @@
 <span>{{ trans('app.development') }}</span>
 <svg class="triplefork-logo" version="1.1" id="sl_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 27 25" style="enable-background:new 0 0 27 25;width: 26px;margin-right: 5px" xml:space="preserve">
 <style type="text/css">
-  .st0{fill:none;stroke:#F25733;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}  
+  .st0{fill:none;stroke:#F25733;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
 <path class="st0" d="M12.9,10l9.7-4.3c0.5-0.2,0.8-0.3,1-0.2C23.8,5.6,24,5.8,24,6.1c0,0.3-0.1,1.8-0.3,2.1c-0.2,0.3-0.6,0.6-1,0.8
   l-7.8,3.4v2.4l4.8-2.2c0.4-0.2,0.8-0.3,1-0.2c0.2,0.1,0.3,0.3,0.3,0.6c0,0.3-0.1,1.8-0.3,2.1c-0.2,0.3-0.5,0.5-1,0.7L14.8,18v2.3"></path>

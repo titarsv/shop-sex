@@ -8,6 +8,8 @@
             <meta name="keywords" content="{!! $seo->meta_keywords or '' !!}">
         @endif
 
+				<link rel="canonical" href="{{ url()->current() }}" />
+
         @if(!empty($seo->canonical))
             <meta name="canonical" content="{!! $seo->canonical !!}">
         @endif
@@ -95,7 +97,7 @@
         @endphp
     </style>
     @endif
-
+		
     <!-- Load Custom CSS Start -->
     <script>loadCSS( "{{ mix("css/app.css") }}", false, "all" );</script>
     <!-- Load Custom CSS End -->
@@ -121,22 +123,24 @@
         {{--})();--}}
     {{--</script>--}}
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-M2XBVPW');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9W5S3LTY4"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'G-Y9W5S3LTY4');
-    </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11429999367"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11429999367');
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TDVHS6JP');</script>
+<!-- End Google Tag Manager -->
     @endif
     @yield('page_vars')
 </head>
+

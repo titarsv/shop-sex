@@ -536,24 +536,24 @@
     </div>
     <div class="container footer-section">
         <div class="row">
-            <div class="col-sm-2 col-xs-3">
+            <div class="col-sm-3 col-xs-12">
                 @if(Request::path() != '/')
                     <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/' . App::getLocale() }}">
-                        <img src="/images/logo.svg" class="footer__logo" alt="{{ trans('app.home') }}">
+                        <img src="/images/new-logo.svg" class="footer__logo" alt="{{ trans('app.home') }}">
                         {{--<picture>
                             <source data-src="/images/logo.png" srcset="/images/pixel.png" type="image/png">
                             <img src="/images/pixel.jpg" alt="{{ trans('app.home') }}" style="width: 100%;">
                         </picture>--}}
                     </a>
                 @else
-                    <img src="/images/logo.svg" class="footer__logo" alt="{{ trans('app.home') }}">
+                    <img src="/images/new-logo.svg" class="footer__logo" alt="{{ trans('app.home') }}">
                     {{--<picture>
                         <source data-src="/images/logo.svg" srcset="/images/pixel.png" type="image/png">
                         <img src="/images/pixel.jpg" alt="{{ trans('app.home') }}" style="width: 100%;">
                     </picture>--}}
                 @endif
             </div>
-            <div class="col-sm-7 col-xs-9">
+            <div class="col-sm-6 col-xs-12">
                 <p class="copyright">© 2007-{{ date('Y') }} {{ trans('app.internet_store_intim') }}</p>
             </div>
             <div class="col-sm-3 col-xs-12">

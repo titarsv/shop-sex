@@ -3,6 +3,7 @@
     <title>{{ trans('app.search') }} {{ $search_text }}</title>
     <meta name="description" content="{{ trans('app.search_by_request') }} {{ $search_text }}">
     <meta name="keywords" content="{{ $search_text }}">
+		<link rel="canonical" href="{{ url()->current() }}" />
 @endsection
 
 @section('breadcrumbs')

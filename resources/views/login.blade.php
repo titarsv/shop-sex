@@ -4,6 +4,7 @@
     <title>{{ trans('app.login_to_your_personal_account') }}</title>
     <meta name="description" content="{!! $settings->meta_description_ru !!}">
     <meta name="keywords" content="{!! $settings->meta_keywords_ru !!}">
+		<link rel="canonical" href="{{ url()->current() }}" />
 @endsection
 
 @section('breadcrumbs')

@@ -17,6 +17,7 @@
     @if(!empty($category->canonical) && empty($_GET['page']))
         <meta name="canonical" content="{!! $category->canonical !!}">
     @endif
+		<link rel="canonical" href="{{ url()->current() }}" />
     @if(!empty($category->robots))
         <meta name="robots" content="{!! $category->robots !!}">
     @endif

@@ -3,6 +3,7 @@
     <title>{{ trans('app.news') }}</title>
     <meta name="description" content="{!! $settings->meta_description !!}">
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
+		<link rel="canonical" href="{{ url()->current() }}" />
 @endsection
 
 @section('content')

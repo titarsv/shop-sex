@@ -3,6 +3,7 @@
     <title>{{ trans('app.reviews') }}</title>
     <meta name="description" content="{{ trans('app.reviews') }}">
     <meta name="keywords" content="{{ trans('app.reviews') }}">
+		<link rel="canonical" href="{{ url()->current() }}" />
 @endsection
 
 @section('breadcrumbs')

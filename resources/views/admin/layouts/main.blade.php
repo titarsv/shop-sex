@@ -8,10 +8,10 @@
         </div>
         @include('admin.layouts.sidebar')
         <div class="bottom-logo">
-            <a href="http://triplefork.com.ua/" target="_blank">
-
+            <a href="https://tripleforkit.com" target="_blank">
+                
             </a>
-            <span>&copy; &laquo;Triplefork&raquo; 2018</span>
+            <span><a href="https://tripleforkit.com" target="_blank" style="color: #fff">&copy; &laquo;Triplefork&raquo; {{ date('Y') }}</a></span>
         </div>
     </aside>
     <div id="content">

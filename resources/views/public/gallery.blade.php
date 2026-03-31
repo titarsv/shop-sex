@@ -6,6 +6,7 @@
     @if(!empty($content->robots))
         <meta name="robots" content="{!! $content->robots !!}">
     @endif
+		<link rel="canonical" href="{{ url()->current() }}" />
 @endsection
 
 @section('breadcrumbs')

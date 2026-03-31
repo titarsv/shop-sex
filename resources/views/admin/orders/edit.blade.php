@@ -81,6 +81,14 @@
                                     <td>Телефон</td>
                                     <td>{!! $order->user->phone !!}</td>
                                 </tr>
+																<tr>
+                                    <td>Email</td>
+																		@if(isset($order->user->email) && !empty($order->user->email))
+																			<td>{!! $order->user->email !!}</td>
+																		@else
+																			<td>-</td>
+																		@endif
+																</tr>
                                 {{--<tr>--}}
                                     {{--<td>Почта</td>--}}
                                     {{--<td>{!! $order->user->email !!}</td>--}}

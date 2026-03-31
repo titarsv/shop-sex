@@ -3,6 +3,7 @@
     <title>{!! $settings->meta_title_ru !!}</title>
     <meta name="description" content="{!! $settings->meta_description_ru !!}">
     <meta name="keywords" content="{!! $settings->meta_keywords_ru !!}">
+		<link rel="canonical" href="{{ url()->current() }}" />
 @endsection
 
 @section('content')
@@ -16,7 +17,7 @@
                             <div class="category-item">
                                 <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $category->url_alias }}" class="category-item__img">
                                     {{--<img src="{{ $category->image->url() }}" alt="{{ $category->name }}">--}}
-                                    {!! $category->image->webp_image([200, 200], ['alt' => $category->name], 'static') !!}
+                                    {!! $category->image->webp_image([500, 500], ['alt' => $category->name], 'static') !!}
                                 </a>
                                 <a href="{{env('APP_URL')}}{{ App::getLocale() == 'ru' ? '' : '/'.App::getLocale() }}/catalog/{{ $category->url_alias }}" class="category-item__title">{{ $category->name }}</a>
                                 <div class="category-item__btn">

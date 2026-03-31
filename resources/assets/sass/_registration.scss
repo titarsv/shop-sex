@@ -12,7 +12,7 @@
         text-transform: uppercase;
         border: 1px solid #fd4747;
         text-align: center;
-    }        
+    }
 }
 
 .registration-form{
@@ -58,7 +58,7 @@
             left: 0;
             width: 10px;
             height: 1px;
-            background-color: #fd4747;
+            background-color: #e3045c;
         }
         @include bp (sm){
             width: 100%;
@@ -77,7 +77,7 @@
     padding: 10px;
     border: none;
     outline: none;
-    background: #fd4747;
+    background: #e3045c;
     border-radius: 20px;
     margin-bottom: 20px;
     @include bp (sm){

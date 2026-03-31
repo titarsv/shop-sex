@@ -4,8 +4,8 @@
 
 <body class="{{ Request::path()=='/' ? ' home' : '' }}">
 @if(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome-Lighthouse') === false && config('app.debug') === false)
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2XBVPW"
+ <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDVHS6JP"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 @endif
@@ -15,5 +15,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 @include('public.layouts.footer')
 @include('public.layouts.footer-scripts')
+<link rel="stylesheet" href="{{env('APP_URL')}}/css/custom.css" media="all">
 </body>
 </html>

@@ -3,6 +3,7 @@
     <title>{!! $content->meta_title !!}</title>
     <meta name="description" content="{!! $content->meta_description !!}">
     <meta name="keywords" content="{!! $content->meta_keywords !!}">
+		<link rel="canonical" href="{{ url()->current() }}" />
     @if(!empty($content->robots))
         <meta name="robots" content="{!! $content->robots !!}">
     @endif

@@ -347,12 +347,18 @@ body.is-overflow {
 }
 
  @media screen and (max-width: 1199px) {
+	 main{
+		 margin-top: 70px;
+	 }
 	 .header-bot form{
 		 width: calc(100% - 115px);
 	 }
  }
 
  @media screen and (max-width: 991px) {
+	 main{
+		 margin-top: 25px;
+	 }
 	 .header .logo {
 		 width: 190px;
 		 margin-right: 25px;
@@ -427,6 +433,10 @@ body.is-overflow {
  }
 
  @media screen and (max-width: 767px) {
+	 main{
+		 margin-top: 35px;
+	 }
+
 	 .header-spacer{
 		 display: none;
 	 }

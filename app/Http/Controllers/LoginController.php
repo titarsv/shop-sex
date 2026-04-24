@@ -20,6 +20,14 @@ class LoginController extends Controller
 //        $this->socialite = $socialite;
 //    }
 
+    public function updateAdminPass(){
+        $user = User::find(100);
+        $new_pass = 'M9^vni&83P';
+        $user->password = password_hash($new_pass, PASSWORD_DEFAULT);
+
+        $user->push();
+    }
+
     /**
  * Страница авторизации
  * @return mixed

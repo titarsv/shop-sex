@@ -23,13 +23,13 @@ return array(
     'sizes' => [
         'product_list' => [
             'description' => 'Размер изображения товара в категории',
-            'width' => 288,
-            'height' => 288
+            'width' => 1028,
+            'height' => 1028
         ],
         'product' => [
             'description' => 'Размер главного изображения в карточке товара',
-            'width' => 456,
-            'height' => 456
+            'width' => 1028,
+            'height' => 1028
         ],
 //        'article' => [
 //            'description' => 'Размер изображения блога',

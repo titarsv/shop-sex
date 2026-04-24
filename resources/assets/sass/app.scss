@@ -68,38 +68,6 @@ main{
 	min-height: calc(100vh - 468px);
 }
 
-#main-container,
-body,
-footer {
-	opacity: 1 !important;
-}
-
-
-// .reset-all {
-// 	padding: 5px 10px 5px 35px;
-// 	border-bottom: 1px solid #cdcdcd
-// }
-
-// .SumoSelect[is-selected=false] .reset-all {
-// 	opacity: .5;
-// 	pointer-events: none
-// }
-
-// .SumoSelect[is-selected=true] .reset-all {
-// 	opacity: 1;
-// 	cursor: pointer;
-// 	color: #7799d0
-// }
-
-// .SumoSelect[is-selected=true] .reset-all * {
-// 	cursor: pointer
-// }
-
-// .SumoSelect[is-selected=true] .reset-all:hover {
-// 	color: #000
-// }
-
-
 // Шапка
 @import 'header';
 

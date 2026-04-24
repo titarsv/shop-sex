@@ -44,11 +44,14 @@ class CheckoutController extends Controller
 //        }
 
         $rules = [
-            'phone' => 'required'
+            'phone' => 'required',
+						'email'     =>'required|email'
         ];
 
         $messages = [
-            'phone.required' => trans('app.phone_required')
+            'phone.required' => trans('app.phone_required'),
+						'email.required' => trans('app.email_required'),
+						'email.email'    => trans('app.email_not_valid')
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -71,6 +74,7 @@ class CheckoutController extends Controller
             'total_price'       => $cart->total_price,
             'user_info'         => json_encode([
                 'phone' => isset($request->phone) ? $request->phone : "",
+								'email' => isset($request->email) ? $request->email : "",
                 'comment' => isset($request->comment) ? $request->comment : ""
             ]),
             'delivery'  => json_encode($delivery_info),

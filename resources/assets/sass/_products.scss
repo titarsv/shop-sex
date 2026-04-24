@@ -12,15 +12,10 @@
 }
 
 .mobile-product-title{
-  font-size: 16px;
-  margin: 15px 0;
-  display: flex;
-  justify-content: space-between;
-  .mobile-filters-toggle{
-    @include bp (xs){
-      display: none;
-    }
-  }
+    font-size: 16px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .mobile-filters-toggle + .filters{
@@ -50,7 +45,7 @@
     color: #fff;
     font-size: 16px;
     text-align: center;
-    background: #e3045c;
+    background: #ff3030;
     width: 50%;
     margin-left: 25%;
     padding: 10px 0;
@@ -73,16 +68,12 @@
 }
 
 .sorting{
-  border: none;
-  border-bottom: 1px solid;
-  @include bp (xs){
     border: none;
-    font-size: 17px;
-  }
-  &:focus{
-    outline: none;
-    border: none;
-  }
+    border-bottom: 1px solid;
+    &:focus{
+        outline: none;
+        border: none;
+    }
 }
 
 .chosen-container-single .chosen-single{
@@ -116,7 +107,7 @@
 .chosen-container .chosen-results li.highlighted{
     border: none;
     color: #fff;
-    background-color: #e3045c;
+    background-color: #ff3030;
     background-image: none;
 }
 
@@ -209,7 +200,7 @@
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        border: 1px solid #e3045c;
+        border: 1px solid #fd4747;
     }
     &:hover{
         cursor: pointer;
@@ -217,7 +208,7 @@
 }
 
 .radio:checked + .radio-label::before{
-    background: #e3045c;
+    background: #fd4747;
 }
 
 .products-container{
@@ -309,7 +300,7 @@
 
 .product-item__info-link{
   &:hover{
-      color: #e3045c;
+      color: #ff3030;
   }
     color: #fff;
     font-size: 14px;
@@ -325,7 +316,7 @@
     font-size: 16px;
     line-height: 30px;
     border-radius: 20px;
-    background: #e3045c;
+    background: #ff5454;
     text-align: center;
     margin-top: 15px;
     width: 150px;
@@ -343,10 +334,10 @@
       }
     }
   &:hover{
-    background: #e3045c;
+    background: #ff3030;
   }
   &:active{
-      background: #e3045c;
+      background: #ff5454;
   }
   @include bp (sm){
     width: 100%;
@@ -370,11 +361,11 @@
       width: 13px;
       height: 13px;
       border-radius: 50%;
-      background: #e3045c;
+      background: #ff3030;
       cursor: pointer;
       top: -5px;
       &.first{
-        background-color:#e3045c;
+        background-color:#ff3030;
       }
     }
     .ui-slider-range{
@@ -385,7 +376,7 @@
       overflow: hidden;
     }
   }
-
+  
   .ui-slider-horizontal{
     height: 2px;
     .ui-slider-range{
@@ -398,22 +389,22 @@
     .ui-slider-range-max{
         left: calc(100% - 13px);
     }
-
+  
   }
-
+  
   .ui-widget-content{
-    background: #e3045c;
+    background: #ff3030;
   }
-
+  
   .ui-widget-header{
-    background: #e3045c;
+    background: #ff3030;
   }
-
+  
   .price-range{
     margin-bottom: 7px;
     margin-top: 18px;
   }
-
+  
   .price-inputs__inner{
     display: flex;
     align-items: center;
@@ -428,7 +419,7 @@
       justify-content: flex-start;
     }
   }
-
+  
   .sliderValue, .sliderValueMin{
     text-align: center;
     height: 32px;
@@ -436,7 +427,7 @@
     font-size: 11px;
     border-radius: 10px;
     padding: 11px 15px 10px !important;
-    background: #e3045c;
+    background: #ff3030;
     color: #fff;
     border: none;
     &.val1{
@@ -475,10 +466,10 @@
     text-decoration: none;
     min-height: 13px;
     &.active{
-      color: #e3045c;
+      color: #ff3030;
     }
     &:hover{
-      color: #e3045c;
+      color: #ff3030;
       text-decoration: none;
     }
     @include bp (xs){
@@ -574,132 +565,6 @@
   }
   a{
     text-decoration: none;
-    color: #e3045c;
-  }
-}
-
-.mob-filters{
-  display: none;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 15px;
-  @include bp (xs){
-    display: flex;
-  }
-  .mobile-filters-toggle{
-    font-size: 17px;
-    line-height: 20px;
-    color: #646464;
-    margin-left: 15px;
-    padding: 10px 0;
-    &:hover{
-      color: #D8BA0E;
-    }
-  }
-  .SumoSelect{
-    width: auto;
-    max-width: calc(100% - 42px);
-    &:hover, &:focus, &.open{
-      > .CaptionCont{
-        box-shadow: none;
-        border: none;
-        >span{
-          color: #D8BA0E;
-          &.placeholder{
-            color: #D8BA0E;
-          }
-        }
-        > label{
-          > i{
-            &:after{
-              border-top-color: #D8BA0E;
-            }
-          }
-        }
-      }
-    }
-    > .CaptionCont{
-      border: none;
-      >span{
-        color: #646464;
-        font-size: 17px;
-        line-height: 20px;
-        padding-right: 20px;
-        &.placeholder{
-          color: #646464;
-          font-style: normal;
-        }
-      }
-      > label{
-        margin-bottom: 0;
-        > i{
-          background: none;
-          &:after{
-            position: absolute;
-            content: '';
-            border-top: 5px solid #646464;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          }
-        }
-      }
-    }
-    >.optWrapper{
-      &.isFloating{
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: auto;
-        width: 220px;
-        bottom: auto;
-        margin: 0;
-        max-height: 300px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 0;
-        border: none;
-        padding: 10px 5px;
-        height: auto !important;
-        >.options{
-          box-shadow: none;
-          border-radius: 0;
-          border: none;
-          li{
-            &.opt{
-              padding: 5px 10px;
-              border: none;
-              label{
-                font-weight: normal;
-                margin-bottom: 0;
-                font-size: 17px;
-                line-height: 20px;
-                color: #202020;
-              }
-              &.disabled{
-                display: none;
-              }
-              &.selected{
-                &.opt{
-                  background: #FE3031;
-                  label{
-                    color: #fff;
-                  }
-                }
-              }
-            }
-            &:hover{
-              &.opt{
-                background: #FE3031;
-                label{
-                  color: #fff;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    color: #fd4747;
   }
 }

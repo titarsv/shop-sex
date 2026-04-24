@@ -3,7 +3,6 @@
 var $ = require('jquery');
 var swal = require('sweetalert2');
 require('../../../node_modules/jquery.maskedinput/src/jquery.maskedinput');
-require('../../../node_modules/sumoselect/jquery.sumoselect.min');
 
 // Are you ready?
 $(function() {
@@ -451,9 +450,11 @@ $(function() {
                             LiqPayCheckout.init({
                                 data: response.liqpay.data,
                                 signature:  response.liqpay.signature,
-                                // embedTo: "#liqpay_checkout",
-                                mode: "popup" // embed || popup
+                                embedTo: "#liqpay_checkout",
+                                mode: "embed" // embed || popup
                             }).on("liqpay.callback", function(data){
+                                console.log(data.status);
+                                console.log(data);
                                 window.location = prefix+'/thank_you?order_id=' + response.order_id;
                             }).on("liqpay.ready", function(data){
                                 $('#liqpay_checkout').css('display', 'block');
@@ -581,14 +582,8 @@ $(function() {
         $('.aside-filter-menu-container').removeClass('active');
     });
 
-    // sort select mobile
-
-    $('.sumo-select').SumoSelect({
-        forceCustomRendering: true
-    });
-
     // Сортировка
-    $('.sorting-select').change(function () {
+    $('#sorting-select').change(function () {
         var s = window.location.search.replace('?', '').split('&');
         var search = {};
         if(s.length){
@@ -620,34 +615,6 @@ $(function() {
     });
 
     $('.cart-form__input[name="phone"]').mask('+38 (999) 999-99-99');
-
-    $('.click-buy-popup__form').on('click', function(){
-        if(typeof gtag !== 'undefined'){
-            gtag("event", "purchase", {
-                transaction_id: Math.round(Math.random() * (999999999 - 999999) + 999999),
-                value: $this.data('price'),
-                items: [
-                    {
-                        item_id: ""+$('[name="product_id"]').val(),
-                        name: $this.data('name'),
-                        sku: $this.data('sku'),
-                        category: $this.data('category'),
-                        price: $this.data('price'),
-                        quantity: 1,
-                        currency: "UAH"
-                    }
-                ],
-                currency: "UAH",
-                send_to: "G-Y9W5S3LTY4"
-            });
-        }
-    });
-
-    $('.question-popup__form, .contact-form').on('click', function(){
-        if(typeof gtag !== 'undefined'){
-            gtag("event", "Form_Question_submit", {send_to: "G-Y9W5S3LTY4"});
-        }
-    });
 });
 
 /**

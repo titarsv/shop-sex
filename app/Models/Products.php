@@ -211,7 +211,7 @@ class Products extends Model
      */
     public function search($text = '', $page = 1, $count = 18)
     {
-		Paginator::currentPageResolver(function () use ($page) {
+        Paginator::currentPageResolver(function () use ($page) {
             return $page;
         });
 

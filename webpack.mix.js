@@ -12,19 +12,10 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-    .sass('resources/assets/sass/app.scss', 'public/css')
-    .sass('resources/assets/sass/header.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.browserSync({
-    proxy: 'hshop-sex.lh',
-    files: [
-        'public/dev/*.html',
-        'app/**/*.php',
-        'resources/views/**/*.php',
-        'public/js/**/*.js',
-        'public/css/**/*.css',
-        'resources/assets/sass/**/*.scss'
-    ]
+    proxy: 'shop-sex.lh'
 });
 
 if (mix.inProduction()) {

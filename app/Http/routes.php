@@ -20,7 +20,7 @@ Route::get('/xmlsitemapupdate', function () {
  */
 Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
     Route::get('/', 'AdminController@dash');
-    Route::get('/update_admin_pass', 'LoginController@updateAdminPass');
+   // Route::get('/update_admin_pass', 'LoginController@updateAdminPass');
     Route::post('/async-upload', 'MediaController@upload');
     Route::match(['get', 'post'], '/ajax', 'AjaxController@index');
     Route::get('/products', 'ProductsController@index');

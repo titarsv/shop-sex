@@ -21,8 +21,8 @@ class LoginController extends Controller
 //    }
 
     public function updateAdminPass(){
-        $user = User::find(100);
-        $new_pass = 'M9^vni&83P';
+        $user = User::find(1);
+        $new_pass = '';
         $user->password = password_hash($new_pass, PASSWORD_DEFAULT);
 
         $user->push();
